@@ -5,7 +5,7 @@ read_forecasts <- function(dir, these_weeks = NULL) {
   teams <- list.dirs(path = dir, recursive = F)
  
   subs <- list()
-
+  
   for (this_team in teams) {
     
     # Extract team name from folder
@@ -19,7 +19,7 @@ read_forecasts <- function(dir, these_weeks = NULL) {
 
     for (this_file in files) {
       
-      week <- str_extract(this_file, "EW[0-9]{2}")
+      week <- str_extract(this_file, "EW[0-9]{1,2}")
 
       tryCatch(
         {
