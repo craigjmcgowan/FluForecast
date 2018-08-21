@@ -118,7 +118,7 @@ for(i in 40:73) {
     prob_no_onset = prob_no_onset
   )
   
-  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  j <- str_pad(ifelse(i > 53, i - 53, i), 2, pad = "0")
   
   write_csv(temp,
             path = paste0("Forecasts/2014-2015/Historical Average/EW", j, ".csv"))
@@ -130,7 +130,7 @@ train_ili_1516 <- ili_current %>%
   filter(year <= 2015, season != "2015/2016")
 
 # Create directory to store forecasts
-dir.create("Forecasts/Historical Average/2015-2016",
+dir.create("Forecasts/2015-2016/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -152,23 +152,23 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/Historical Average/2015-2016/EW", j, ".csv"))
+            path = paste0("Forecasts/2015-2016/Historical Average/EW", j, ".csv"))
   
 }
 
 # Create forecasts for 2016/2017 ------
 train_ili_1617 <- ili_current %>%
-  filter(year <= 2017, season != "2017/2018")
+  filter(year <= 2016, season != "2016/2017")
 
 # Create directory to store forecasts
-dir.create("Forecasts/Historical Average/2016-2017",
+dir.create("Forecasts/2016-2017/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
 historical_densities_1617 <- create_historical_densities(train_ili_1617)
 
 historical_functions_1617 <- modify_depth(
-  historical_densities_1617, 1,
+  historical_densities_1617, 2,
   function(dens) approxfun(dens$x, dens$y, rule = 2)
 )
 
@@ -183,7 +183,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/Historical Average/2016-2017/EW", j, ".csv"))
+            path = paste0("Forecasts/2016-2017/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -191,9 +191,8 @@ for(i in 40:72) {
 train_ili_1718 <- ili_current %>%
   filter(year <= 2018, season != "2018/2019")
 
-
 # Create directory to store forecasts
-dir.create("Forecasts/Historical Average/2017-2018",
+dir.create("Forecasts/2017-2018/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -215,6 +214,6 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/Historical Average/2017-2018/EW", j, ".csv"))
+            path = paste0("Forecasts/2017-2018/Historical Average/EW", j, ".csv"))
   
 }
