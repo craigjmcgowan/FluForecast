@@ -55,7 +55,7 @@ ili_orig <- Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
 ili_current <- bind_rows(
   pull_curr_epidata(199740, 200139),
   pull_curr_epidata(200140, 200439),
-  pull_curr_epidata(200440, 200730),
+  pull_curr_epidata(200440, 200739),
   pull_curr_epidata(200740, 201039),
   pull_curr_epidata(201040, 201339),
   pull_curr_epidata(201340, 201639),
