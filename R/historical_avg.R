@@ -4,6 +4,7 @@ library(FluSight)
 
 # Load data -------
 load("Data/ili.Rdata")
+load("Data/pseudo_onsets_2003_2006.Rdata")
 
 # Load functions 
 source("R/create_historical_forecast.R")
@@ -25,14 +26,70 @@ prob_no_onset <- onsets %>%
 
 
 # Create forecasts for 2010/2011 ------
-## Errors in generating densities for season onset - training data too sparse
+train_ili_1011 <- ili_current %>%
+  filter(year <= 2010, season != "2010/2011")
 
+# Create directory to store forecasts
+dir.create("Forecasts/2010-2011/Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+historical_densities_1011 <- create_historical_densities(train_ili_1011,
+                                                         pseudo_onsets)
+
+historical_functions_1011 <- modify_depth(
+  historical_densities_1011, 2,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+for(i in 40:72) {
+  temp <- create_historical_forecast(
+    functions = historical_functions_1011,
+    pub_week = i,
+    season = "2010/2011",
+    prob_no_onset = prob_no_onset
+  )
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("Forecasts/2010-2011/Historical Average/EW", j, ".csv"))
+  
+}
 # Create forecasts for 2011/2012 ------
-## Errors in generating densities for season onset - training data too sparse
+train_ili_1112 <- ili_current %>%
+  filter(year <= 2011, season != "2011/2012")
+
+# Create directory to store forecasts
+dir.create("Forecasts/2011-2012/Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+historical_densities_1112 <- create_historical_densities(train_ili_1112,
+                                                         pseudo_onsets)
+
+historical_functions_1112 <- modify_depth(
+  historical_densities_1112, 2,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+for(i in 40:72) {
+  temp <- create_historical_forecast(
+    functions = historical_functions_1112,
+    pub_week = i,
+    season = "2011/2012",
+    prob_no_onset = prob_no_onset
+  )
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("Forecasts/2011-2012/Historical Average/EW", j, ".csv"))
+  
+}
+
 
 # Create forecasts for 2012/2013 ------
-## Errors in generating densities for season onset - training data too sparse
-
 train_ili_1213 <- ili_current %>%
   filter(year <= 2012, season != "2012/2013")
 
@@ -41,7 +98,8 @@ dir.create("Forecasts/2012-2013/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
-historical_densities_1213 <- create_historical_densities(train_ili_1213)
+historical_densities_1213 <- create_historical_densities(train_ili_1213,
+                                                         pseudo_onsets)
 
 historical_functions_1213 <- modify_depth(
   historical_densities_1213, 2,

@@ -5,9 +5,9 @@ library(FluSight)
 # Load data -------
 load("Data/ili.Rdata")
 load("Data/virologic.Rdata")
+load("Data/pseudo_onsets_2003_2006.Rdata")
 
 # Load functions 
-source("R/create_subtype_densities.R")
 source("R/create_subtype_forecast.R")
 source("R/week_order_functions.R")
 
@@ -48,7 +48,7 @@ prob_no_onset <- onsets %>%
 
 # Create forecasts for 2012/2013 ------
 train_ili_1213 <- ili_current %>%
-  filter(year <= 2013, season != "2013/2014")
+  filter(year <= 2012, season != "2012/2013")
 
 virologic_1213 <- virologic_combined %>%
   filter(season == "2012/2013") %>%

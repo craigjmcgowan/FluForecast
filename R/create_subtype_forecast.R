@@ -3,7 +3,7 @@ require(FluSight)
 
 # Create subtype-specific densities
 # Make densities based on provided data -----
-create_subtype_densities <- function(ili_df, vir_ssn_per) {
+create_subtype_densities <- function(ili_df, vir_ssn_per, pseudo_onsets) {
   
   # Only keep data from 2000/2001 season on, except 2009/2010
   train_ili <- filter(ili_df, season != "2009/2010",
@@ -18,7 +18,9 @@ create_subtype_densities <- function(ili_df, vir_ssn_per) {
     group_by(location, season) %>%
     do(create_onset(., region = .$location[1], 
                     year = as.numeric(substr(.$season[1], 1, 4)))) %>%
-    ungroup()
+    ungroup() %>%
+    # Bind to pseudo-onsets
+    bind_rows(pseudo_onsets)
   
   # Generate peaks from training data except 2008/2009 and 2009/2010 seasons
   train_peak <- train_ili %>%
