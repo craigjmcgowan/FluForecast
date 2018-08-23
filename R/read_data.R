@@ -5,26 +5,14 @@ library(MMWRweek)
 library(gtrendsR)
 library(lubridate)
 
-# Helper function to turn null into NA
-null_to_na <- function(x) {
-  if (is.null(x)) x <- NA
-}
-
-pull_curr_epidata <- function(start, end) {
-  Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
-                       'hhs6', 'hhs7', 'hhs8', 'hhs9', 'hhs10'),
-                  list(Epidata$range(start, end)))$epidata %>%
-    modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
-    bind_rows()
-}
+# Load functions
+source("R/utils.R")
+source('R/EpiDataAPI.R')
 
 # Save current MMWR week in format Epidata wants
 this_week <- as.numeric(paste0(MMWRweek(Sys.Date())[[1]], MMWRweek(Sys.Date())[[2]] ))
 
-
-
 # Fetch wILI data from EpiData API -------
-source('R/EpiDataAPI.R')
 ili_orig <- Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
                                  'hhs6', 'hhs7', 'hhs8', 'hhs9', 'hhs10'),
                             list(Epidata$range(201401, this_week)),
@@ -125,20 +113,6 @@ US_flu_1015 <- gtrends(keyword = "influenza",
 
 US_flu_1419 <- gtrends(keyword = "influenza",
                        geo = "US")$interest_over_time
-gdata1 <- US_flu_0407
-gdata2 <- US_flu_0611
-US_flu_ratio <- function(gdata1, gdata2) {
-  inner_join(gdata1 %>%
-               select(date, old_hits = hits) %>%
-               filter(MMWRweek(date)[[2]] > 40 | MMWRweek(date)[[2]] < 20),
-             gdata2 %>%
-               select(date, new_hits = hits) %>%
-               filter(MMWRweek(date)[[2]] > 40 | MMWRweek(date)[[2]] < 20),
-             by = "date") %>%
-  mutate(ratio = old_hits / new_hits) %>%
-  pull(ratio) %>%
-  mean()
-}
 
 gratio_0607 <- US_flu_ratio(US_flu_0407, US_flu_0611)
 gratio_1011 <- US_flu_ratio(US_flu_0611, US_flu_1015)
