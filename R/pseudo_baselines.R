@@ -8,9 +8,55 @@ load("Data/ili.Rdata")
 load("Data/virologic.Rdata")
 source("R/week_order_functions.R")
 
+# Create pseudo-onsets from calculated baselines --------
+create_pseudo_onset <- function(weekILI) {
+  
+  # Save maximum MMWR week in season being analyzed
+  maxMMWR <- max(weekILI$week)
+  
+  # Add 52/53 to weeks in new year to keep weeks in order
+  weekILI$week[weekILI$week < 40] <-
+    as.integer(weekILI$week[weekILI$week < 40] + maxMMWR)
+  
+  # Check to see if 3 weeks above baseline have passed
+  j <- 0  # Counter for weeks above peak
+  for (i in head(weekILI$week, n = 1):tail(weekILI$week, n = 1)) {
+    if (weekILI$ILI[weekILI$week == i] >= weekILI$baseline[weekILI$week == i]) {
+      j <- j + 1
+    } else {
+      j <- 0
+    }
+    if (j == 3) {
+      onset <- i - 2
+      break
+    }
+    if (i == tail(weekILI$week, n = 1)) {
+      onset <- "none"
+    }
+  }
+  
+  # If onset week > 52, reset to MMWR week
+  if (is.numeric(onset) && onset > maxMMWR) {
+    onset <- onset - maxMMWR
+  }
+  
+  onset_truth <- data.frame(target = "Season onset",
+                            location = weekILI$location[1],
+                            forecast_week = as.integer(NA),
+                            bin_start_incl = as.character(onset),
+                            stringsAsFactors = FALSE) %>%
+    mutate(bin_start_incl = trimws(replace(bin_start_incl,
+                                           !is.na(bin_start_incl) & bin_start_incl != "none",
+                                           format(round(as.numeric(
+                                             bin_start_incl[!is.na(bin_start_incl) & bin_start_incl != "none"])
+                                             , 1), nsmall = 1, trim = T))))
+  
+  
+  return(onset_truth)
+}  
 
 # Only keep years with full season data and before onset was officially calculated
-analysis <- ili_current %>%
+ILI_collapse <- ili_current %>%
   filter(season %in% c("2002/2003", "2003/2004", "2004/2005", "2005/2006", "2006/2007")) %>%
   # filter(season %in% c("2014/2015", "2015/2016", "2016/2017")) %>%
   select(location, season, week, year, ILI) %>%
@@ -58,31 +104,46 @@ analysis <- ili_current %>%
 
 # Calculate season specific baselines --------
 # 2003 baselines
-pseudo_baselines <- analysis %>%
+pseudo_baselines <- ILI_collapse %>%
   # 2003 baselines
   filter(season %in% c("2002/2003")) %>%
   group_by(location) %>%
   summarize(baseline = round(mean(ILI) + 2*sd(ILI), 1),
             year = 2003) %>%
   # 2004 baselines
-  bind_rows(analysis %>%
+  bind_rows(ILI_collapse %>%
               filter(season %in% c("2002/2003", "2003/2004")) %>%
               group_by(location) %>%
               summarize(baseline = round(mean(ILI) + 2*sd(ILI), 1),
                         year = 2004)) %>%
   # 2005 baselines
-  bind_rows(analysis %>%
+  bind_rows(ILI_collapse %>%
               filter(season %in% c("2002/2003", "2003/2004", "2004/2005")) %>%
               group_by(location) %>%
               summarize(baseline = round(mean(ILI) + 2*sd(ILI), 1),
                         year = 2005)) %>%
   # 2006 baselines
-  bind_rows(analysis %>%
+  bind_rows(ILI_collapse %>%
               filter(season %in% c("2003/2004", "2004/2005", "2005/2006")) %>%
               group_by(location) %>%
               summarize(baseline = round(mean(ILI) + 2*sd(ILI), 1),
-                        year = 2006)) 
+                        year = 2006)) %>%
+  # Add season baselines are applicable for
+  mutate(season = paste0(year, "/", year + 1)) %>%
+  select(-year)
 
-# Save file
-save(pseudo_baselines,
-     file = "Data/pseudo_baselines_2003_2006.Rdata")
+# Merge baselines into ILI ------
+pseudo_onsets <- ili_current %>%
+  filter(season %in% c("2003/2004", "2004/2005", "2005/2006", "2006/2007")) %>%
+  left_join(pseudo_baselines,
+            by = c("location", "season")) %>%
+  group_by(location, season) %>%
+  do(create_pseudo_onset(.)) %>%
+  ungroup() 
+
+  
+  
+  
+# Save results
+save(pseudo_baselines, pseudo_onsets,
+     file = "Data/pseudo_onsets_2003_2006.Rdata")
