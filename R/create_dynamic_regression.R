@@ -1,4 +1,4 @@
-# Dynamic regression model 
+# Dynamic harmonic regression model 
 
 library(tidyverse)
 library(forecast)
@@ -48,27 +48,46 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
 
 # Predictions for 2017-2018 season - simple model, just Fourier terms, no covariates
 # Train model based on prior data
-train <- filter(flu_data_merge, season != "2017/2018" | week %in% 40:43) %>%
+train <- filter(flu_data_merge, season != "2017/2018") %>%
   # Create time series of ILI
   mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))
 
 # Use auto.arima to determine best model
 (fit <- auto.arima(train$ILI,
-                   xreg = fourier(train$ILI, 3),
+                   xreg = fourier(train$ILI, K = 6),
                    seasonal = FALSE,
-                   lambda = -1))
+                   lambda = BoxCox.lambda(train$ILI)))
+
+# Create dataset of most recent data for predictions
+pred_data <- filter(flu_data_merge, season != "2017/2018" | week %in% 40:43) %>%
+  # Create time series of ILI
+  mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))
 
 # Fit ARIMA model based on most recent data using prior fit
-pred_fit <- Arima(train$ILI, xreg = fourier(train$ILI, 3), model = fit)
+pred_fit <- Arima(pred_data$ILI, xreg = fourier(pred_data$ILI, K = 6),
+                  model = fit)
 
 # Simulate output
 sim_output <- sample_predictive_trajectories_arima(
   pred_fit, 
-  h = 28,
-  xreg = fourier(train$ILI, 3, 28)
+  h = 35 - nrow(filter(pred_data, season == "2017/2018")),
+  xreg = fourier(pred_data$ILI, K = 6, 
+                 35 - nrow(filter(pred_data, season == "2017/2018")))
 )
 
+
 # Calculate forecast probabilities
+current_week <- ifelse(last(pred_data$week) < 40, last(pred_data$week) + 52,
+                       last(pred_data$week))
+season_max_ili <- filter(pred_data, season == "2017/2018") %>% pull(ILI) %>%
+  max() %>% round(1)
+
+season_max_week <- filter(pred_data, season == "2017/2018") %>%
+  mutate(ILI = as.numeric(ILI)) %>%
+  filter(ILI == max(ILI)) %>%
+  mutate(week = ifelse(week < 40, week + 52, week)) %>%
+  pull(week)
+
 forecast_results <- tibble() 
 
 # Week ahead forecasts
@@ -77,48 +96,112 @@ for (i in 1:4) {
     forecast_results <- bind_rows(
       forecast_results,
       tibble(target = paste(i, "wk ahead"),
-             bin_start_incl = j,
-             value = sum((sim_output[, i] == j))/nrow(sim_output)),
+             bin_start_incl = format(round(j, 1), nsmall = 1),
+             value = sum((sim_output[, i] == j), na.rm = T) / 
+               length(na.omit(sim_output[, i])))
     )
   }
   forecast_results <- bind_rows(
     forecast_results,
     tibble(target = paste(i, "wk ahead"),
-           bin_start_incl = 13,
-           value = sum((sim_output[, i] >= 13))/nrow(sim_output))
+           bin_start_incl = "13.0",
+           value = sum((sim_output[, i] == j), na.rm = T) / 
+             length(na.omit(sim_output[, i])))
   )
 }
 
 # Peak percentage forecasts
 max_ili <- apply(sim_output, 1, max, na.rm = T)
+
+# If max predicted is less than maximum observed so far this season, replace with that
+max_ili <- ifelse(max_ili < season_max_ili, season_max_ili, max_ili)
+
+
 for (j in seq(0, 12.9, 0.1)) {
   forecast_results <- bind_rows(
     forecast_results,
     tibble(target = "Season peak percentage",
-           bin_start_incl = j,
+           bin_start_incl = format(round(j, 1), nsmall = 1),
            value = sum((max_ili == j))/length(max_ili))
   )
 }
 forecast_results <- bind_rows(
   forecast_results,
   tibble(target = "Season peak percentage",
-         bin_start_incl = 13,
+         bin_start_incl = "13.0",
          value = sum((max_ili >= 13))/length(max_ili))
 )
 
+# Season peak week
+abv_max <- sim_output[apply(sim_output, 1, max, na.rm = T) > season_max_ili, ]
+below_max <- sim_output[apply(sim_output, 1, max, na.rm = T) < season_max_ili, ]
+at_max <- sim_output[apply(sim_output, 1, max, na.rm = T) == season_max_ili, ]
+
+peaks <- c(
+  unlist(apply(abv_max,  1, function(x) which(x == max(x, na.rm = TRUE)) + current_week)),
+  unlist(apply(at_max,  1, function(x) which(x == max(x, na.rm = TRUE)) + current_week)),
+  rep(season_max_week, nrow(at_max) + nrow(below_max))
+)
+
+for (j in 40:72) {
+  forecast_results <- bind_rows(
+    forecast_results,
+    tibble(target = "Season peak week",
+           bin_start_incl = format(round(j, 1), nsmall = 1),
+           value = sum((peaks == j))/length(peaks))
+  )
+}
+
+# Onset week
+calc_onset <- rbind(
+  matrix(filter(pred_data, season == "2017/2018") %>%
+           mutate(ILI = as.numeric(ILI)) %>% pull(ILI),
+         nrow = filter(pred_data, season == "2017/2018") %>% nrow(),
+         ncol = 5000),
+  t(sim_output)
+) %>% as.tibble()
+
+onsets <- apply(calc_onset, 2, function(x) {
+  temp <- tibble(week = 40:74,
+                 location = rep("US National", 35),
+                 ILI = x)
+  try(create_onset(temp, region = "US National", year = 2017)$bin_start_incl, silent = TRUE)
+})
+
+for (j in 40:72) {
+  forecast_results <- bind_rows(
+    forecast_results,
+    tibble(target = "Season onset",
+           bin_start_incl = format(round(j, 1), nsmall = 1),
+           value = sum(onsets == format(round(j, 1), nsmall = 1))/length(onsets))
+  )
+}
+forecast_results <- bind_rows(
+  forecast_results,
+  tibble(target = "Season onset",
+         bin_start_incl = "none",
+         value = sum((onsets == "none"))/length(onsets))
+)
+
+# Format in CDC style
 forecast_results <- forecast_results %>%
   mutate(location = "US National",
          type = "Bin",
-         unit = "percent",
-         bin_end_notincl = ifelse(bin_start_incl == 13, 100, 
-                                  bin_start_incl + 0.1))
-
-forecast(pred_fit,
-         xreg=fourier(train$ILI, 3, h=31)) %>%
-  autoplot()
-?simulate.Arima
-simulate(fit, nsim = 31, xreg = fourier(train$ILI, 3, h = 31))
-
+         unit = case_when(
+           target %in% c("Season onset", "Season peak week") ~ "week",
+           TRUE ~ "percent"
+           ),
+         bin_end_notincl = case_when(
+           bin_start_incl == "13.0" ~ "100.0",
+           bin_start_incl == "none" ~ "none",
+           target %in% c("Season onset", "Season peak week") ~ 
+             format(round(as.numeric(bin_start_incl) + 1, 1),
+                    nsmall = 1),
+           TRUE ~ format(round(as.numeric(bin_start_incl) + 0.1, 1),
+                         nsmall = 1)
+           ),
+         forecast_week = last(pred_data$week)
+  )
 
 
 
