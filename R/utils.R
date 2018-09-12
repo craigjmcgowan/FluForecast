@@ -201,7 +201,6 @@ subs_by_week <- function(subs) {
 
 
 # Create evaluation period for particular year ----------
-
 create_eval_period <- function(ILI, truth, season) {
   
   max_MMWR <- ifelse(season %in% 
@@ -386,4 +385,25 @@ calc_scores <- function(subs, truth, season, exclude = FALSE,
   }
   
   return(scores)
+}
+
+# Simulate predicted trajectories from ARIMA models
+sample_predictive_trajectories_arima <- function (object,
+                                                  h = ifelse(object$arma[5] > 1, 2 * object$arma[5]),
+                                                  xreg = NULL,
+                                                  lambda = object$lambda,
+                                                  npaths = 5000,
+                                                  ...) {
+  sim <- matrix(NA, nrow = npaths, ncol = h)
+
+  for (i in 1:npaths) {
+    try(sim[i, ] <- forecast:::simulate.Arima(object, 
+                                   xreg = xreg,
+                                   nsim = h), silent = TRUE)
+  }
+  
+  sim <- round(sim, 1)
+  
+  return(sim)
+  
 }

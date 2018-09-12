@@ -4,6 +4,7 @@ library(cdcfluview)
 library(MMWRweek)
 library(gtrendsR)
 library(lubridate)
+library(FluSight)
 
 # Load functions
 source("R/utils.R")
@@ -93,31 +94,57 @@ virologic_combined <- bind_rows(
                          paste0(year - 1, "/", year)),
          region = ifelse(region == "National", "US National", 
                          paste("HHS", region))) %>%
-  rename(location = region)
+  # Create mock H1 and H3 percents if all A samples had been tested
+  rowwise() %>%
+  mutate(pos_samples = sum(a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
+           a_unable_to_subtype, b, bvic, byam, na.rm = TRUE),
+         h1_per_samples = (sum(a_h1, a_2009_h1n1, na.rm = TRUE) / 
+                             sum(a_h1, a_2009_h1n1, a_h3, na.rm = TRUE)) *
+           sum(a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
+               a_unable_to_subtype, na.rm = T) / pos_samples,
+         h3_per_samples = a_h3 / sum(a_h1, a_2009_h1n1, a_h3, na.rm = TRUE) *
+           sum(a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
+               a_unable_to_subtype, na.rm = T) / pos_samples,
+         b_per_samples = sum(b, bvic, byam, na.rm = T) / pos_samples) %>%
+  ungroup() %>%
+  mutate_at(vars(c("h1_per_samples", "h3_per_samples", "b_per_samples")),
+            function(x) ifelse(is.na(x), 0, x)) %>%
+  select(location = region, season, year, week, a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
+         a_unable_to_subtype, b, bvic, byam, h1_per_samples, h3_per_samples, b_per_samples)
 
 save(virologic_combined,
      file = "Data/virologic.Rdata")
 
 # Fetch Google Trends data -----
-US_flu_0407 <- gtrends(keyword = "influenza",
+US_flu_0407 <- gtrends(keyword = "flu",
                        geo = "US",
-                       time = paste(MMWRweek2Date(2004, 41), MMWRweek2Date(2007, 40)))$interest_over_time
+                       time = paste(MMWRweek2Date(2004, 41), MMWRweek2Date(2007, 40)))$interest_over_time %>%
+  mutate(hits = case_when(hits == "<1" ~ 0,
+                              TRUE ~ as.numeric(hits)))
 
-US_flu_0611 <- gtrends(keyword = "influenza",
+US_flu_0611 <- gtrends(keyword = "flu",
                        geo = "US",
-                       time = paste(MMWRweek2Date(2006, 41), MMWRweek2Date(2011, 40)))$interest_over_time
+                       time = paste(MMWRweek2Date(2006, 41), MMWRweek2Date(2011, 40)))$interest_over_time %>%
+  mutate(hits = case_when(hits == "<1" ~ 0,
+                              TRUE ~ as.numeric(hits)))
 
-US_flu_1015 <- gtrends(keyword = "influenza",
+US_flu_1015 <- gtrends(keyword = "flu",
                       geo = "US",
-                      time = paste(MMWRweek2Date(2010, 41), MMWRweek2Date(2015, 40)))$interest_over_time
+                      time = paste(MMWRweek2Date(2010, 41), MMWRweek2Date(2015, 40)))$interest_over_time %>%
+  mutate(hits = case_when(hits == "<1" ~ 0,
+                              TRUE ~ as.numeric(hits)))
 
-US_flu_1419 <- gtrends(keyword = "influenza",
-                       geo = "US")$interest_over_time
+US_flu_1419 <- gtrends(keyword = "flu",
+                       geo = "US")$interest_over_time %>%
+  mutate(hits = case_when(hits == "<1" ~ 0,
+                              TRUE ~ as.numeric(hits)))
 
+# Set up ratios to normalize all Gtrends data to scale from 2010-2015
 gratio_0607 <- US_flu_ratio(US_flu_0407, US_flu_0611)
 gratio_1011 <- US_flu_ratio(US_flu_0611, US_flu_1015)
-gratio_1415 <- US_flu_ratio(US_flu_1015, US_flu_1419)
+inv_gratio_1415 <- US_flu_ratio(US_flu_1419, US_flu_1015)
 
+# Merge Gtrends data and rescale to 2010-2015 scale
 gtrend_US_flu_merge <- filter(US_flu_0407, !date %in% US_flu_0611$date) %>%
   mutate(hits = hits / gratio_0607) %>%
   bind_rows(US_flu_0611) %>%
@@ -125,11 +152,11 @@ gtrend_US_flu_merge <- filter(US_flu_0407, !date %in% US_flu_0611$date) %>%
   mutate(hits = hits / gratio_1011) %>%
   bind_rows(US_flu_1015) %>%
   filter(!date %in% US_flu_1419$date) %>%
-  mutate(hits = hits / gratio_1415) %>%
-  bind_rows(US_flu_1419) %>%
+  bind_rows(US_flu_1419 %>%
+              mutate(hits = hits / inv_gratio_1415)) %>%
   select(date, hits) %>%
-  mutate(year = MMWRweek(date)[[1]],
-         week = MMWRweek(date)[[2]],
+  mutate(week = MMWRweek(date)[[2]],
+         year = MMWRweek(date)[[1]],
          season = ifelse(week >= 40,
                          paste0(year, "/", year + 1),
                          paste0(year - 1, "/", year)))
