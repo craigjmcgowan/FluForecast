@@ -12,7 +12,7 @@ create_historical_densities <- function(ili_df, pseudo_onsets) {
   
   # Generate past onsets from years with baseline data
   train_onsets <- train_ili %>%
-    filter(year >= 2007, season != "2006/2007",
+    filter(year >= 2007, !season %in% c("2006/2007", "2009/2010"),
            (week >= 40 | week <= 20)) %>%
     group_by(location, season) %>%
     do(create_onset(., region = .$location[1], 
@@ -30,7 +30,7 @@ create_historical_densities <- function(ili_df, pseudo_onsets) {
   
   # Create empty object to store densities
   densities <- list()
-  
+
   for(this_location in unique(train_ili$location)) {
     
     # Onset densities
@@ -83,7 +83,6 @@ create_historical_densities <- function(ili_df, pseudo_onsets) {
   return(densities)
   
 }
-
 
 # Create unweighted historical forecasts -------
 create_historical_forecast <- function(functions, pub_week, 

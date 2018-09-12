@@ -13,7 +13,7 @@ create_subtype_densities <- function(ili_df, vir_ssn_per, pseudo_onsets) {
   
   # Generate past onsets from years with baseline data
   train_onsets <- train_ili %>%
-    filter(year >= 2007, season != "2006/2007",
+    filter(year >= 2007, !season %in% c("2006/2007", "2009/2010"),
            (week >= 40 | week <= 20)) %>%
     group_by(location, season) %>%
     do(create_onset(., region = .$location[1], 
@@ -85,13 +85,13 @@ create_subtype_densities <- function(ili_df, vir_ssn_per, pseudo_onsets) {
       density(temp_peak_per$bin_start_incl, bw = "SJ",
               weights = temp_peak_per$h3per / sum(temp_peak_per$h3per))
     
-    
+   
     # Densities for each week of the season
     for(this_week in 40:77) {
       temp_ili <- filter(train_ili, location == this_location,
                          order_week == this_week) %>%
         left_join(vir_ssn_per, by = c("season", "location"))
-      
+  
       densities[["h1"]][[paste(this_week)]][[this_location]] <-
         density(temp_ili$ILI, bw = "SJ",
                 weights = temp_ili$h1per / sum(temp_ili$h1per))
