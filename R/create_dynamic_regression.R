@@ -25,9 +25,11 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
   filter(!season %in% c("2008/2009", "2009/2010")) %>%
   # Remove week 33 in 2014 so all seasons have 52 weeks - minimal activity
   filter(!(year == 2014 & week == 33)) %>%
-  # Keep only US for now
-  filter(location == "US National")
-
+  mutate(order_week = case_when(
+    week < 40 & season == "2014/2015" ~ week + 53,
+    week < 40 ~ week + 52,
+    TRUE ~ week
+  ))
 
 ### Decisions to make ###
 
@@ -46,165 +48,72 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
 ## Scale up to evaluate lots of different model options
 
 
+forecasts <- list()
+
 # Predictions for 2017-2018 season - simple model, just Fourier terms, no covariates
 # Train model based on prior data
-train <- filter(flu_data_merge, season != "2017/2018") %>%
+model_fits <- filter(flu_data_merge, year < 2018, season != "2017/2018") %>%
+  # Nest by location
+  nest(-location) %>%
   # Create time series of ILI
-  mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))
+  mutate(data = map(data,
+                   ~ mutate(.x,
+                            ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
+  # Fit model
+  mutate(fit = map(data,
+                   ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 8),
+                                seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))))
 
-# Use auto.arima to determine best model
-(fit <- auto.arima(train$ILI,
-                   xreg = fourier(train$ILI, K = 6),
-                   seasonal = FALSE,
-                   lambda = BoxCox.lambda(train$ILI)))
-
-# Create dataset of most recent data for predictions
-pred_data <- filter(flu_data_merge, season != "2017/2018" | week %in% 40:43) %>%
-  # Create time series of ILI
-  mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))
-
-# Fit ARIMA model based on most recent data using prior fit
-pred_fit <- Arima(pred_data$ILI, xreg = fourier(pred_data$ILI, K = 6),
-                  model = fit)
-
-# Simulate output
-sim_output <- sample_predictive_trajectories_arima(
-  pred_fit, 
-  h = 35 - nrow(filter(pred_data, season == "2017/2018")),
-  xreg = fourier(pred_data$ILI, K = 6, 
-                 35 - nrow(filter(pred_data, season == "2017/2018")))
-)
-
-
-# Calculate forecast probabilities
-current_week <- ifelse(last(pred_data$week) < 40, last(pred_data$week) + 52,
-                       last(pred_data$week))
-season_max_ili <- filter(pred_data, season == "2017/2018") %>% pull(ILI) %>%
-  max() %>% round(1)
-
-season_max_week <- filter(pred_data, season == "2017/2018") %>%
-  mutate(ILI = as.numeric(ILI)) %>%
-  filter(ILI == max(ILI)) %>%
-  mutate(week = ifelse(week < 40, week + 52, week)) %>%
-  pull(week)
-
-forecast_results <- tibble() 
-
-# Week ahead forecasts
-for (i in 1:4) {
-  for (j in seq(0, 12.9, 0.1)) {
-    forecast_results <- bind_rows(
-      forecast_results,
-      tibble(target = paste(i, "wk ahead"),
-             bin_start_incl = format(round(j, 1), nsmall = 1),
-             value = sum((sim_output[, i] == j), na.rm = T) / 
-               length(na.omit(sim_output[, i])))
-    )
-  }
-  forecast_results <- bind_rows(
-    forecast_results,
-    tibble(target = paste(i, "wk ahead"),
-           bin_start_incl = "13.0",
-           value = sum((sim_output[, i] == j), na.rm = T) / 
-             length(na.omit(sim_output[, i])))
-  )
+start_time <- Sys.time()
+for(this_week in 43:70) {
+  # Create forecast for given week
+  forecasts[["2017/2018"]][[paste0("EW", this_week)]] <- filter(
+    flu_data_merge, season != "2017/2018" | order_week %in% 40:this_week
+    ) %>%
+    # Nest by location
+    nest(-location) %>%
+    # Create time series of ILI
+    mutate(pred_data = map(data,
+                      ~ mutate(.x,
+                               ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
+    left_join(select(model_fits, location, fit), by = "location") %>%
+    # Fit ARIMA model based on most recent data using prior fit
+    mutate(pred_fit = map2(pred_data, fit,
+                          ~ Arima(.x$ILI, xreg = fourier(.x$ILI, K = 8), model = .y))) %>%
+    # Create predicted results
+    mutate(pred_results = pmap(
+      list(pred_fit, pred_data, location),
+      ~ fit_to_forecast(object = ..1,
+                        xreg = fourier(..2$ILI, K = 8,
+                                       h = 35 - nrow(filter(..2, season == "2017/2018"))),
+                        pred_data = ..2,
+                        location = ..3,
+                        max_week = 52,
+                        npaths = 500))) %>%
+    select(location, pred_results) %>%
+    unnest() %>%
+    normalize_probs()
 }
+Sys.time()-start_time
+verify_entry(pred_data)
+filter(pred_data, location == "HHS Region 9", target == "Season onset") %>%
+  pull(value) %>%
+  sum()
 
-# Peak percentage forecasts
-max_ili <- apply(sim_output, 1, max, na.rm = T)
-
-# If max predicted is less than maximum observed so far this season, replace with that
-max_ili <- ifelse(max_ili < season_max_ili, season_max_ili, max_ili)
-
-
-for (j in seq(0, 12.9, 0.1)) {
-  forecast_results <- bind_rows(
-    forecast_results,
-    tibble(target = "Season peak percentage",
-           bin_start_incl = format(round(j, 1), nsmall = 1),
-           value = sum((max_ili == j))/length(max_ili))
-  )
+for(i in 1:11) {
+  object <- temp$pred_fit[[i]]
+  xreg <-fourier(temp$pred_data[[i]]$ILI, K = 8,
+                 h = 35 - nrow(filter(temp$pred_data[[i]], season == "2017/2018")))
+  pred_data <- temp$pred_data[[i]]
+  location <- temp$location[[i]]
+  npaths <- 50
+  
+  fit_to_forecast(object, xreg, pred_data, location, npaths)
 }
-forecast_results <- bind_rows(
-  forecast_results,
-  tibble(target = "Season peak percentage",
-         bin_start_incl = "13.0",
-         value = sum((max_ili >= 13))/length(max_ili))
-)
-
-# Season peak week
-abv_max <- sim_output[apply(sim_output, 1, max, na.rm = T) > season_max_ili, ]
-below_max <- sim_output[apply(sim_output, 1, max, na.rm = T) < season_max_ili, ]
-at_max <- sim_output[apply(sim_output, 1, max, na.rm = T) == season_max_ili, ]
-
-peaks <- c(
-  unlist(apply(abv_max,  1, function(x) which(x == max(x, na.rm = TRUE)) + current_week)),
-  unlist(apply(at_max,  1, function(x) which(x == max(x, na.rm = TRUE)) + current_week)),
-  rep(season_max_week, nrow(at_max) + nrow(below_max))
-)
-
-for (j in 40:72) {
-  forecast_results <- bind_rows(
-    forecast_results,
-    tibble(target = "Season peak week",
-           bin_start_incl = format(round(j, 1), nsmall = 1),
-           value = sum((peaks == j))/length(peaks))
-  )
-}
-
-# Onset week
-calc_onset <- rbind(
-  matrix(filter(pred_data, season == "2017/2018") %>%
-           mutate(ILI = as.numeric(ILI)) %>% pull(ILI),
-         nrow = filter(pred_data, season == "2017/2018") %>% nrow(),
-         ncol = 5000),
-  t(sim_output)
-) %>% as.tibble()
-
-onsets <- apply(calc_onset, 2, function(x) {
-  temp <- tibble(week = 40:74,
-                 location = rep("US National", 35),
-                 ILI = x)
-  try(create_onset(temp, region = "US National", year = 2017)$bin_start_incl, silent = TRUE)
-})
-
-for (j in 40:72) {
-  forecast_results <- bind_rows(
-    forecast_results,
-    tibble(target = "Season onset",
-           bin_start_incl = format(round(j, 1), nsmall = 1),
-           value = sum(onsets == format(round(j, 1), nsmall = 1))/length(onsets))
-  )
-}
-forecast_results <- bind_rows(
-  forecast_results,
-  tibble(target = "Season onset",
-         bin_start_incl = "none",
-         value = sum((onsets == "none"))/length(onsets))
-)
-
-# Format in CDC style
-forecast_results <- forecast_results %>%
-  mutate(location = "US National",
-         type = "Bin",
-         unit = case_when(
-           target %in% c("Season onset", "Season peak week") ~ "week",
-           TRUE ~ "percent"
-           ),
-         bin_end_notincl = case_when(
-           bin_start_incl == "13.0" ~ "100.0",
-           bin_start_incl == "none" ~ "none",
-           target %in% c("Season onset", "Season peak week") ~ 
-             format(round(as.numeric(bin_start_incl) + 1, 1),
-                    nsmall = 1),
-           TRUE ~ format(round(as.numeric(bin_start_incl) + 0.1, 1),
-                         nsmall = 1)
-           ),
-         forecast_week = last(pred_data$week)
-  )
-
-
-
+  forecast::myarima.sim
+str(pred_data$pred_results)
+?forecast.Arima
+install.packages("smooth")
 snaive_gtrend <- snaive(flu_data_merge$ILI)
 autoplot(snaive_gtrend)
 checkresiduals(snaive_gtrend)
