@@ -407,3 +407,150 @@ sample_predictive_trajectories_arima <- function (object,
   return(sim)
   
 }
+
+# Turn fitted forecast model into a CDC-style forecast ------
+fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, max_week = 52, ...){
+
+  # Simulate output
+  sim_output <- sample_predictive_trajectories_arima(
+    object, 
+    h = max_week - 17 - nrow(filter(pred_data, season == "2017/2018")),
+    xreg = xreg,
+    npaths = npaths
+  )
+  
+  
+  # Calculate forecast probabilities
+  current_week <- ifelse(last(pred_data$week) < 40, last(pred_data$week) + max_week,
+                         last(pred_data$week))
+  season_max_ili <- filter(pred_data, season == "2017/2018") %>% pull(ILI) %>%
+    max() %>% round(1)
+  
+  season_max_week <- filter(pred_data, season == "2017/2018") %>%
+    mutate(ILI = as.numeric(ILI)) %>%
+    filter(ILI == max(ILI)) %>%
+    mutate(week = ifelse(week < 40, week + max_week, week)) %>%
+    pull(week)
+  
+  forecast_results <- tibble()
+
+  # Week ahead forecasts
+  for (i in 1:4) {
+    for (j in seq(0, 12.9, 0.1)) {
+      forecast_results <- bind_rows(
+        forecast_results,
+        tibble(target = paste(i, "wk ahead"),
+               bin_start_incl = format(round(j, 1), nsmall = 1),
+               value = sum((sim_output[, i] == j), na.rm = T) /
+                 length(na.omit(sim_output[, i])))
+      )
+    }
+    forecast_results <- bind_rows(
+      forecast_results,
+      tibble(target = paste(i, "wk ahead"),
+             bin_start_incl = "13.0",
+             value = sum((sim_output[, i] == j), na.rm = T) /
+               length(na.omit(sim_output[, i])))
+    )
+  }
+
+  # Peak percentage forecasts
+  max_ili <- apply(sim_output, 1, max, na.rm = T)
+
+  # If max predicted is less than maximum observed so far this season, replace with that
+  max_ili <- ifelse(max_ili < season_max_ili, season_max_ili, max_ili)
+
+
+  for (j in seq(0, 12.9, 0.1)) {
+    forecast_results <- bind_rows(
+      forecast_results,
+      tibble(target = "Season peak percentage",
+             bin_start_incl = format(round(j, 1), nsmall = 1),
+             value = sum((max_ili == j))/length(max_ili))
+    )
+  }
+  forecast_results <- bind_rows(
+    forecast_results,
+    tibble(target = "Season peak percentage",
+           bin_start_incl = "13.0",
+           value = sum((max_ili >= 13))/length(max_ili))
+  )
+
+  # Season peak week
+  abv_max <- sim_output[apply(sim_output, 1, max, na.rm = T) > season_max_ili, , drop = FALSE]
+  below_max <- sim_output[apply(sim_output, 1, max, na.rm = T) < season_max_ili, , drop = FALSE]
+  at_max <- sim_output[apply(sim_output, 1, max, na.rm = T) == season_max_ili, , drop = FALSE]
+
+  peaks <- c(
+    unlist(apply(abv_max,  1, function(x) which(x == max(x, na.rm = TRUE)) + current_week)),
+    unlist(apply(at_max,  1, function(x) which(x == max(x, na.rm = TRUE)) + current_week)),
+    rep(season_max_week, nrow(at_max) + nrow(below_max))
+  )
+
+  for (j in 40:(max_week + 20)) {
+    forecast_results <- bind_rows(
+      forecast_results,
+      tibble(target = "Season peak week",
+             bin_start_incl = format(round(j, 1), nsmall = 1),
+             value = sum((peaks == j))/length(peaks))
+    )
+  }
+
+  # Onset week
+  calc_onset <- rbind(
+    matrix(filter(pred_data, season == "2017/2018") %>%
+             mutate(ILI = as.numeric(ILI)) %>% pull(ILI),
+           nrow = filter(pred_data, season == "2017/2018") %>% nrow(),
+           ncol = npaths),
+    t(sim_output)
+  ) %>% as.tibble()
+
+  onsets <- apply(calc_onset, 2, function(x) {
+    temp <- tibble(week = 40:(max_week + 22),
+                   location = location,
+                   ILI = x)
+    try(create_onset(temp, region = location, year = 2017)$bin_start_incl, silent = TRUE)
+  })
+
+  for (j in 40:(max_week + 20)) {
+    forecast_results <- bind_rows(
+      forecast_results,
+      tibble(target = "Season onset",
+             bin_start_incl = format(round(j, 1), nsmall = 1),
+             value = sum(onsets == format(round(j, 1), nsmall = 1))/length(onsets))
+    )
+  }
+  forecast_results <- bind_rows(
+    forecast_results,
+    tibble(target = "Season onset",
+           bin_start_incl = "none",
+           value = sum((onsets == "none"))/length(onsets))
+  )
+
+  # Format in CDC style
+  forecast_results <- forecast_results %>%
+    mutate(type = "Bin",
+           unit = case_when(
+             target %in% c("Season onset", "Season peak week") ~ "week",
+             TRUE ~ "percent"
+             ),
+           bin_start_incl = case_when(
+             target %in% c("Season onset", "Season peak week") & 
+               as.numeric(bin_start_incl) > max_week ~ 
+               format(round(as.numeric(bin_start_incl) - max_week, 1), nsmall = 1),
+             TRUE ~ bin_start_incl
+           ),
+           bin_end_notincl = case_when(
+             bin_start_incl == "13.0" ~ "100.0",
+             bin_start_incl == "none" ~ "none",
+             target %in% c("Season onset", "Season peak week") ~
+               trimws(format(round(as.numeric(bin_start_incl) + 1, 1),
+                      nsmall = 1)),
+             TRUE ~ trimws(format(round(as.numeric(bin_start_incl) + 0.1, 1),
+                           nsmall = 1))
+             ),
+           forecast_week = last(pred_data$week)
+    )
+
+  return(forecast_results)
+}
