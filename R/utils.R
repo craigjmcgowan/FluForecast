@@ -314,7 +314,7 @@ create_eval_period <- function(ILI, truth, season) {
 
 
 # Restrict score to evaluation period ------
-create_eval_scores <- function(scores, bounds) {
+create_eval_scores <- function(scores, bounds, season, ...) {
   
   max_MMWR <- ifelse(season %in% 
                        c("1997/1998", "2003/2004", "2008/2009", "2014/2015"),
