@@ -64,10 +64,11 @@ model_fits <- filter(flu_data_merge, year < 2018, season != "2017/2018") %>%
                    ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 8),
                                 seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))))
 
+this_model <- "Test Model"
 start_time <- Sys.time()
 for(this_week in 43:70) {
   # Create forecast for given week
-  forecasts[["2017/2018"]][[paste0("EW", this_week)]] <- filter(
+  forecasts[["2017/2018"]][[this_model]][[paste0("EW", this_week)]] <- filter(
     flu_data_merge, season != "2017/2018" | order_week %in% 40:this_week
     ) %>%
     # Nest by location
@@ -76,6 +77,7 @@ for(this_week in 43:70) {
     mutate(pred_data = map(data,
                       ~ mutate(.x,
                                ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
+    select(-data) %>%
     left_join(select(model_fits, location, fit), by = "location") %>%
     # Fit ARIMA model based on most recent data using prior fit
     mutate(pred_fit = map2(pred_data, fit,
@@ -95,109 +97,132 @@ for(this_week in 43:70) {
     normalize_probs()
 }
 Sys.time()-start_time
-verify_entry(pred_data)
-filter(pred_data, location == "HHS Region 9", target == "Season onset") %>%
-  pull(value) %>%
-  sum()
+save(forecasts, file = "Data/temp_forecasts.Rdata")
+load("Data/temp_forecasts.Rdata")
 
-for(i in 1:11) {
-  object <- temp$pred_fit[[i]]
-  xreg <-fourier(temp$pred_data[[i]]$ILI, K = 8,
-                 h = 35 - nrow(filter(temp$pred_data[[i]], season == "2017/2018")))
-  pred_data <- temp$pred_data[[i]]
-  location <- temp$location[[i]]
-  npaths <- 50
+# Create truth to score models against
+nested_truth <- ili_current %>%
+  filter(year >= 2010, season != "2009/2010") %>%
+  select(season, location, week, ILI) %>%
+  nest(-season) %>%
+  mutate(truth = map2(season, data,
+                      ~ create_truth(fluview = FALSE, year = substr(.x, 1, 4),
+                                     weekILI = .y)),
+         eval_period = pmap(list(data, truth, season),
+                             ~ create_eval_period(..1, ..2, ..3)),
+         exp_truth = map(truth,
+                         ~ expand_truth(.))) %>%
+  select(-data)
+
+# Create nested df of forecasts and score
+forecasts_df <- bind_rows(map(modify_depth(forecasts, 2, bind_rows), 
+                              bind_rows, .id = "team"),
+                          .id = "season") %>%
+  mutate(forecast_week = as.numeric(forecast_week)) %>%
+  mutate(extra_week = forecast_week) %>%
+  nest(-season, -team, -extra_week) %>%
+  left_join(nested_truth, by = "season") %>%
+  mutate(scores = map2(data, exp_truth,
+                       ~ score_entry(.x, .y)),
+         eval_scores = pmap(list(scores, eval_period, season),
+                            ~ create_eval_scores(..1, ..2, ..3))) 
   
-  fit_to_forecast(object, xreg, pred_data, location, npaths)
-}
-  forecast::myarima.sim
-str(pred_data$pred_results)
-?forecast.Arima
-install.packages("smooth")
-snaive_gtrend <- snaive(flu_data_merge$ILI)
-autoplot(snaive_gtrend)
-checkresiduals(snaive_gtrend)
-gglagplot(flu_data_merge$ILI)
-ggsubseriesplot(flu_data_merge$ILI)
-ggseasonplot(gtrend_US_ts)
-?auto.arima
-ggAcf(flu_data_merge$ILI)
-diff(diff(flu_data_merge$ILI, 52), 1) %>% autoplot()
-mstl(ili_US_ts) %>%
-  forecast(method = "arima", bootstrap = TRUE) %>%
-  autoplot()
-ma2x52 <- ma(ili_US_ts, order = 52, centre = TRUE)
-autoplot(ili_US_ts) +
-  autolayer(ma2x52)
-decompose(flu_data_merge$ILI) %>%
-  autoplot()
-seasonal::seas(ili_US_ts, x11 = "")
-autoplot(gtrend_ILI_no2009$ILI)
-
-BoxCox.lambda(ili_US_ts)
-
-plots <- list()
-for (i in 1:6) {
-  fit <- auto.arima(flu_data_merge$ILI,
-                      xreg = fourier(flu_data_merge$ILI, K = i),
-                    seasonal = FALSE,
-                    lambda = -1)
-  plots[[paste(i)]] <- autoplot(forecast(fit,
-                                         xreg = )) +
-    xlab(paste("k=",i,"   AICC=",round(fit[["aicc"]],2))) +
-    ylab("")
-}
-
-forecast(fit, xreg = fourier(gtrend_observed$ILI, K = 1, h = 30)) %>%
-  autoplot()
-
-checkresiduals(fit)
-gridExtra::grid.arrange(
-  plots[[1]],plots[[2]],plots[[3]],
-  plots[[4]],plots[[5]],plots[[6]],
-  nrow=3)
-
-ggplot(data = gtrend_ILI_no2009, aes(x = hits, y = ILI)) +
-  geom_point()
-?simulate.Arima
 
 
-fit <- auto.arima(gtrend_observed$ILI,
-                  xreg = cbind(fourier(gtrend_observed$ILI, K = 4),
-                               gtrend_observed$hits),
-                  seasonal = FALSE,
-                  lambda = -1)
-
-test <- sample_predictive_trajectories_arima(
-  fit,
-  h = 52,
-  xreg = cbind(fourier(gtrend_observed$ILI, K = 4, h = 52),
-               snaive(ts(gtrend_observed$hits, frequency = 52, start = c(2006, 40)), h = 52)$mean)
-)
-?snaive()
-hist(test[, 4])
-dim(test)
-(fit <- auto.arima(gtrend_observed$ILI, lambda = 0
-                   xreg = cbind(fourier(ili_US_ts, 3),
-                                gtrend_ILI_merge[1:618, c("hits", "h1_per_samples",
-                                                       "h3_per_samples")]),
-                   lambda = -1))
-(fit)
-
-checkresiduals(fit)
-
-BoxCox(ili_US_ts, -1) %>% autoplot()
-
-forecast(fit, 
-         xreg = cbind(fourier(ili_US_ts, 3, 24),
-                           snaive(ts(gtrend_ILI_merge$hits[1:723], frequency = 52, start = c(2004, 40)))$mean[1:24],
-                           snaive(ts(gtrend_ILI_merge$h1_per_samples[1:723], frequency = 52, start = c(2004, 40)))$mean[1:24],
-                           snaive(ts(gtrend_ILI_merge$h3_per_samples[1:723], frequency = 52, start = c(2004, 40)))$mean[1:24]),
-         bootstrap = TRUE) %>%
-  autoplot()
-
-forecast(fit, level = 80) %>% autoplot()
+scores <- forecasts_df %>%
+  select(season, team, eval_scores) %>%
+  unnest() %>%
+  group_by(season, team) %>%
+  summarize(mean_score = mean(score),
+            skill = exp(mean_score))
 
 
-## For future Google Trends - compare the 1 wk known value to what was observed at the same
-# week last year. Adjust the 2, 3, 4 seasonal naive values by the ratio of the two 1 wk values
+
+
+# snaive_gtrend <- snaive(flu_data_merge$ILI)
+# autoplot(snaive_gtrend)
+# checkresiduals(snaive_gtrend)
+# gglagplot(flu_data_merge$ILI)
+# ggsubseriesplot(flu_data_merge$ILI)
+# ggseasonplot(gtrend_US_ts)
+# ?auto.arima
+# ggAcf(flu_data_merge$ILI)
+# diff(diff(flu_data_merge$ILI, 52), 1) %>% autoplot()
+# mstl(ili_US_ts) %>%
+#   forecast(method = "arima", bootstrap = TRUE) %>%
+#   autoplot()
+# ma2x52 <- ma(ili_US_ts, order = 52, centre = TRUE)
+# autoplot(ili_US_ts) +
+#   autolayer(ma2x52)
+# decompose(flu_data_merge$ILI) %>%
+#   autoplot()
+# seasonal::seas(ili_US_ts, x11 = "")
+# autoplot(gtrend_ILI_no2009$ILI)
+# 
+# BoxCox.lambda(ili_US_ts)
+# 
+# plots <- list()
+# for (i in 1:6) {
+#   fit <- auto.arima(flu_data_merge$ILI,
+#                       xreg = fourier(flu_data_merge$ILI, K = i),
+#                     seasonal = FALSE,
+#                     lambda = -1)
+#   plots[[paste(i)]] <- autoplot(forecast(fit,
+#                                          xreg = )) +
+#     xlab(paste("k=",i,"   AICC=",round(fit[["aicc"]],2))) +
+#     ylab("")
+# }
+# 
+# forecast(fit, xreg = fourier(gtrend_observed$ILI, K = 1, h = 30)) %>%
+#   autoplot()
+# 
+# checkresiduals(fit)
+# gridExtra::grid.arrange(
+#   plots[[1]],plots[[2]],plots[[3]],
+#   plots[[4]],plots[[5]],plots[[6]],
+#   nrow=3)
+# 
+# ggplot(data = gtrend_ILI_no2009, aes(x = hits, y = ILI)) +
+#   geom_point()
+# ?simulate.Arima
+# 
+# 
+# fit <- auto.arima(gtrend_observed$ILI,
+#                   xreg = cbind(fourier(gtrend_observed$ILI, K = 4),
+#                                gtrend_observed$hits),
+#                   seasonal = FALSE,
+#                   lambda = -1)
+# 
+# test <- sample_predictive_trajectories_arima(
+#   fit,
+#   h = 52,
+#   xreg = cbind(fourier(gtrend_observed$ILI, K = 4, h = 52),
+#                snaive(ts(gtrend_observed$hits, frequency = 52, start = c(2006, 40)), h = 52)$mean)
+# )
+# ?snaive()
+# hist(test[, 4])
+# dim(test)
+# (fit <- auto.arima(gtrend_observed$ILI, lambda = 0
+#                    xreg = cbind(fourier(ili_US_ts, 3),
+#                                 gtrend_ILI_merge[1:618, c("hits", "h1_per_samples",
+#                                                        "h3_per_samples")]),
+#                    lambda = -1))
+# (fit)
+# 
+# checkresiduals(fit)
+# 
+# BoxCox(ili_US_ts, -1) %>% autoplot()
+# 
+# forecast(fit, 
+#          xreg = cbind(fourier(ili_US_ts, 3, 24),
+#                            snaive(ts(gtrend_ILI_merge$hits[1:723], frequency = 52, start = c(2004, 40)))$mean[1:24],
+#                            snaive(ts(gtrend_ILI_merge$h1_per_samples[1:723], frequency = 52, start = c(2004, 40)))$mean[1:24],
+#                            snaive(ts(gtrend_ILI_merge$h3_per_samples[1:723], frequency = 52, start = c(2004, 40)))$mean[1:24]),
+#          bootstrap = TRUE) %>%
+#   autoplot()
+# 
+# forecast(fit, level = 80) %>% autoplot()
+# 
+# 
+# ## For future Google Trends - compare the 1 wk known value to what was observed at the same
+# # week last year. Adjust the 2, 3, 4 seasonal naive values by the ratio of the two 1 wk values
