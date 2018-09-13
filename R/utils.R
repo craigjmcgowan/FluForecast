@@ -312,82 +312,30 @@ create_eval_period <- function(ILI, truth, season) {
     unique()
 }
 
-# Calculate scores from list of submissions ---------
-calc_scores <- function(subs, truth, season, exclude = FALSE,
-                        eval = FALSE, eval_period = NULL) {
+
+# Restrict score to evaluation period ------
+create_eval_scores <- function(scores, bounds) {
   
   max_MMWR <- ifelse(season %in% 
                        c("1997/1998", "2003/2004", "2008/2009", "2014/2015"),
                      53, 52)
   
-  scores <- data.frame()
-  names(forecasts_1213$`Subtype Historical Average`)
-  for (this_team in names(subs)) {
-    
-    # Determine which weeks to score
-    # exclude = F will count missing weeks as -10
-    # exclude = T will only score forecasts that teams have submitted
-    if (exclude == FALSE) {
-      weeks <- c("EW01", "EW02", "EW03", "EW04", "EW05", "EW06", "EW07", "EW08",
-                 "EW09", "EW10", "EW11", "EW12", "EW13", "EW14", "EW15", "EW16",
-                 "EW17", "EW18", "EW19", "EW20", "EW40", "EW41", "EW42", "EW43",
-                 "EW44", "EW45", "EW46", "EW47", "EW48", "EW49", "EW50", "EW51",
-                 "EW52")
-    } else weeks <- names(subs[[this_team]])
-    
-    for (this_week in weeks) { 
-      # Check for missing forecast - assign -10 if missing
-      if (is.null(subs[[this_team]][[this_week]])) {
-        these_scores <- expand.grid(location = c("US National", "HHS Region 1", 
-                                                 "HHS Region 2", "HHS Region 3",
-                                                 "HHS Region 4", "HHS Region 5", 
-                                                 "HHS Region 6", "HHS Region 7",
-                                                 "HHS Region 8", "HHS Region 9", 
-                                                 "HHS Region 10"),
-                                    target = c("Season onset", "Season peak percentage",
-                                               "Season peak week", "1 wk ahead",
-                                               "2 wk ahead", "3 wk ahead", 
-                                               "4 wk ahead"),
-                                    stringsAsFactors = FALSE)
-        these_scores$score <- -10
-        these_scores$forecast_week <- as.numeric(gsub("EW", "", this_week))
-        these_scores$team <- this_team
-      } else {
-        # Score receieved entry
-        these_scores <- score_entry(subs[[this_team]][[this_week]], truth)
-        these_scores$team <- this_team
-      }
-      # Bind entry scores together
-      scores <- bind_rows(scores, these_scores)
-    }
-  }
-  
-  # Create forecast skill metric and sort
-  scores <- scores %>% 
-    mutate(skill = exp(score)) %>%
-    arrange(team, forecast_week)
-  
-  # Return scores for evaluation period if requested
-  if (isTRUE(eval)) {
-    scores <- scores %>%
-      left_join(eval_period, by = c("location", "target")) %>%
-      # Get all weeks in order - deal w/ New Year transition
-      mutate(forecast_week_order = ifelse(forecast_week < 40, 
-                                          forecast_week + max_MMWR, forecast_week),
-             start_week_order = ifelse(start_week < 40, 
-                                       start_week + max_MMWR, start_week),
-             end_week_order = ifelse(end_week < 40, 
-                                     end_week + max_MMWR, end_week)) %>%
-      filter(forecast_week_order >= start_week_order &
-               forecast_week_order <= end_week_order) %>%
-      select(-start_week, -end_week, -forecast_week_order, 
-             -start_week_order, -end_week_order)
-  }
-  
-  return(scores)
+  scores %>%
+    left_join(bounds, by = c("location", "target")) %>%
+    # Get all weeks in order - deal w/ New Year transition
+    mutate(forecast_week_order = ifelse(forecast_week < 40, 
+                                        forecast_week + max_MMWR, forecast_week),
+           start_week_order = ifelse(start_week < 40, 
+                                     start_week + max_MMWR, start_week),
+           end_week_order = ifelse(end_week < 40, 
+                                   end_week + max_MMWR, end_week)) %>%
+    filter(forecast_week_order >= start_week_order &
+             forecast_week_order <= end_week_order) %>%
+    select(-start_week, -end_week, -forecast_week_order, 
+           -start_week_order, -end_week_order)
 }
 
-# Simulate predicted trajectories from ARIMA models
+# Simulate predicted trajectories from ARIMA models ------
 sample_predictive_trajectories_arima <- function (object,
                                                   h = ifelse(object$arma[5] > 1, 2 * object$arma[5]),
                                                   xreg = NULL,
@@ -398,8 +346,9 @@ sample_predictive_trajectories_arima <- function (object,
 
   for (i in 1:npaths) {
     try(sim[i, ] <- forecast:::simulate.Arima(object, 
-                                   xreg = xreg,
-                                   nsim = h), silent = TRUE)
+                                              xreg = xreg,
+                                              nsim = h,
+                                              bootstrap = TRUE), silent = TRUE)
   }
   
   sim <- round(sim, 1)
@@ -440,8 +389,8 @@ fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, ma
       forecast_results <- bind_rows(
         forecast_results,
         tibble(target = paste(i, "wk ahead"),
-               bin_start_incl = format(round(j, 1), nsmall = 1),
-               value = sum((sim_output[, i] == j), na.rm = T) /
+               bin_start_incl = trimws(format(round(j, 1), nsmall = 1)),
+               value = sum(near(sim_output[, i],j), na.rm = T) /
                  length(na.omit(sim_output[, i])))
       )
     }
@@ -449,7 +398,7 @@ fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, ma
       forecast_results,
       tibble(target = paste(i, "wk ahead"),
              bin_start_incl = "13.0",
-             value = sum((sim_output[, i] == j), na.rm = T) /
+             value = sum((sim_output[, i] >= 13), na.rm = T) /
                length(na.omit(sim_output[, i])))
     )
   }
@@ -465,8 +414,8 @@ fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, ma
     forecast_results <- bind_rows(
       forecast_results,
       tibble(target = "Season peak percentage",
-             bin_start_incl = format(round(j, 1), nsmall = 1),
-             value = sum((max_ili == j))/length(max_ili))
+             bin_start_incl = trimws(format(round(j, 1), nsmall = 1)),
+             value = sum(near(max_ili, j))/length(max_ili))
     )
   }
   forecast_results <- bind_rows(
@@ -479,7 +428,7 @@ fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, ma
   # Season peak week
   abv_max <- sim_output[apply(sim_output, 1, max, na.rm = T) > season_max_ili, , drop = FALSE]
   below_max <- sim_output[apply(sim_output, 1, max, na.rm = T) < season_max_ili, , drop = FALSE]
-  at_max <- sim_output[apply(sim_output, 1, max, na.rm = T) == season_max_ili, , drop = FALSE]
+  at_max <- sim_output[near(apply(sim_output, 1, max, na.rm = T), season_max_ili), , drop = FALSE]
 
   peaks <- c(
     unlist(apply(abv_max,  1, function(x) which(x == max(x, na.rm = TRUE)) + current_week)),
@@ -491,8 +440,8 @@ fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, ma
     forecast_results <- bind_rows(
       forecast_results,
       tibble(target = "Season peak week",
-             bin_start_incl = format(round(j, 1), nsmall = 1),
-             value = sum((peaks == j))/length(peaks))
+             bin_start_incl = trimws(format(round(j, 1), nsmall = 1)),
+             value = sum(near(peaks, j))/length(peaks))
     )
   }
 
@@ -510,14 +459,15 @@ fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, ma
                    location = location,
                    ILI = x)
     try(create_onset(temp, region = location, year = 2017)$bin_start_incl, silent = TRUE)
-  })
+  }) %>%
+    trimws()
 
   for (j in 40:(max_week + 20)) {
     forecast_results <- bind_rows(
       forecast_results,
       tibble(target = "Season onset",
-             bin_start_incl = format(round(j, 1), nsmall = 1),
-             value = sum(onsets == format(round(j, 1), nsmall = 1))/length(onsets))
+             bin_start_incl = trimws(format(round(j, 1), nsmall = 1)),
+             value = sum(onsets == trimws(format(round(j, 1), nsmall = 1)))/length(onsets))
     )
   }
   forecast_results <- bind_rows(
@@ -549,7 +499,9 @@ fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, ma
              TRUE ~ trimws(format(round(as.numeric(bin_start_incl) + 0.1, 1),
                            nsmall = 1))
              ),
-           forecast_week = last(pred_data$week)
+           forecast_week = last(pred_data$week),
+           bin_start_incl = trimws(bin_start_incl),
+           bin_end_notincl = trimws(bin_end_notincl)
     )
 
   return(forecast_results)
