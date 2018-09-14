@@ -11,12 +11,12 @@ source("R/utils.R")
 source('R/EpiDataAPI.R')
 
 # Save current MMWR week in format Epidata wants
-this_week <- as.numeric(paste0(MMWRweek(Sys.Date())[[1]], MMWRweek(Sys.Date())[[2]] ))
+current_week <- as.numeric(paste0(MMWRweek(Sys.Date())[[1]], MMWRweek(Sys.Date())[[2]] ))
 
 # Fetch wILI data from EpiData API -------
 ili_orig <- Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
                                  'hhs6', 'hhs7', 'hhs8', 'hhs9', 'hhs10'),
-                            list(Epidata$range(201401, this_week)),
+                            list(Epidata$range(201401, current_week)),
                             lag = 0)$epidata %>%
   modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
   bind_rows() %>%
@@ -41,6 +41,38 @@ ili_orig <- Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
   rename(ILI = wili) %>%
   select(-ili)
 
+# Save ILINet values for previous 26 weeks for each week's publication available
+ili_init_pub_list <- list()
+
+for(i in c(201340:201352, 201401:201453, 201501:201552, 201601:201652, 
+           201701:201752, 201801:current_week)) {
+  ili_init_pub_list[[paste(i)]] <- pull_initpub_epidata(i) %>%
+    mutate(year = as.integer(substr(epiweek, 1, 4)),
+           week = as.integer(substr(epiweek, 5, 6)),
+           season = ifelse(week >= 40,
+                           paste0(year, "/", year + 1),
+                           paste0(year - 1, "/", year)),
+           location = case_when(
+             region == "nat" ~ "US National",
+             region == "hhs1" ~ "HHS Region 1",
+             region == "hhs2" ~ "HHS Region 2",
+             region == "hhs3" ~ "HHS Region 3",
+             region == "hhs4" ~ "HHS Region 4",
+             region == "hhs5" ~ "HHS Region 5",
+             region == "hhs6" ~ "HHS Region 6",
+             region == "hhs7" ~ "HHS Region 7",
+             region == "hhs8" ~ "HHS Region 8",
+             region == "hhs9" ~ "HHS Region 9",
+             region == "hhs10" ~ "HHS Region 10"
+           )) %>%
+    rename(ILI = wili) %>%
+    select(-ili)
+}
+
+ili_init_pub <- bind_rows(ili_init_pub_list)
+
+
+# ILI currently ------
 ili_current <- bind_rows(
   pull_curr_epidata(199740, 200139),
   pull_curr_epidata(200140, 200439),
@@ -48,7 +80,7 @@ ili_current <- bind_rows(
   pull_curr_epidata(200740, 201039),
   pull_curr_epidata(201040, 201339),
   pull_curr_epidata(201340, 201639),
-  pull_curr_epidata(201640, this_week)) %>%
+  pull_curr_epidata(201640, current_week)) %>%
   mutate(year = as.integer(substr(epiweek, 1, 4)),
          week = as.integer(substr(epiweek, 5, 6)),
          season = ifelse(week >= 40,
@@ -70,7 +102,7 @@ ili_current <- bind_rows(
   rename(ILI = wili) %>%
   select(-ili)
   
-save(ili_orig, ili_current, 
+save(ili_orig, ili_current, ili_init_pub_list, ili_init_pub, 
      file = "Data/ili.Rdata")
 
 # Fetch virologic data from CDC -----
