@@ -45,7 +45,7 @@ ili_orig <- Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
 ili_init_pub_list <- list()
 
 for(i in c(201340:201352, 201401:201453, 201501:201552, 201601:201652, 
-           201701:201752, 201801:current_week)) {
+           201701:201752, 201801:201824)) {
   ili_init_pub_list[[paste(i)]] <- pull_initpub_epidata(i) %>%
     mutate(year = as.integer(substr(epiweek, 1, 4)),
            week = as.integer(substr(epiweek, 5, 6)),
