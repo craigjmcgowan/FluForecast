@@ -13,6 +13,7 @@ source("R/utils.R")
 load("Data/ili.Rdata")
 load("Data/virologic.Rdata")
 load("Data/Gtrends.Rdata")
+# load("Data/temp_forecasts.Rdata")
 
 # Combine datasets together
 flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location) %>%
@@ -48,8 +49,6 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
 ## Scale up to evaluate lots of different model options
 
 
-forecasts <- list()
-
 # Predictions for 2017-2018 season - simple model, just Fourier terms, no covariates
 # Train model based on prior data
 model_fits <- filter(flu_data_merge, year < 2018, season != "2017/2018") %>%
@@ -64,41 +63,57 @@ model_fits <- filter(flu_data_merge, year < 2018, season != "2017/2018") %>%
                    ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 8),
                                 seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))))
 
-this_model <- "Test Model"
+forecasts <- list()
+
+this_season <- "2017/2018"
 start_time <- Sys.time()
 for(this_week in 43:70) {
+  
+  epiweek <- case_when(
+    this_season == "2014/2015" & this_week > 53 ~ 
+      as.numeric(paste0(substr(this_season, 6, 9), this_week - 53)),
+    this_week > 52 ~ 
+      as.numeric(paste0(substr(this_season, 6, 9), this_week - 52)),
+    TRUE ~ as.numeric(paste0(substr(this_season, 1, 4), this_week))
+  )
+
+  dup_weeks <- unique(ili_init_pub_list[[paste(epiweek)]]$epiweek)
+  
   # Create forecast for given week
-  forecasts[["2017/2018"]][[this_model]][[paste0("EW", this_week)]] <- filter(
-    flu_data_merge, season != "2017/2018" | order_week %in% 40:this_week
-    ) %>%
-    # Nest by location
-    nest(-location) %>%
-    # Create time series of ILI
-    mutate(pred_data = map(data,
-                      ~ mutate(.x,
-                               ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
-    select(-data) %>%
-    left_join(select(model_fits, location, fit), by = "location") %>%
-    # Fit ARIMA model based on most recent data using prior fit
-    mutate(pred_fit = map2(pred_data, fit,
-                          ~ Arima(.x$ILI, xreg = fourier(.x$ILI, K = 8), model = .y))) %>%
-    # Create predicted results
-    mutate(pred_results = pmap(
-      list(pred_fit, pred_data, location),
-      ~ fit_to_forecast(object = ..1,
-                        xreg = fourier(..2$ILI, K = 8,
-                                       h = 35 - nrow(filter(..2, season == "2017/2018"))),
-                        pred_data = ..2,
-                        location = ..3,
-                        max_week = 52,
-                        npaths = 500))) %>%
-    select(location, pred_results) %>%
-    unnest() %>%
-    normalize_probs()
+  forecasts[["2017/2018"]][[this_model]][[paste0("EW", this_week)]] <-
+    filter(flu_data_merge, season != "2017/2018" | order_week %in% 40:this_week) %>%
+      left_join(select(ili_init_pub_list[[paste(epiweek)]], ILI, epiweek, location),
+                by = c("epiweek", "location")) %>%
+      mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
+      select(-ILI.x, -ILI.y) %>%
+      # Nest by location
+      nest(-location) %>%
+      # Create time series of ILI
+      mutate(pred_data = map(data,
+                        ~ mutate(.x,
+                                 ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
+      select(-data) %>%
+      left_join(select(model_fits, location, fit), by = "location") %>%
+      # Fit ARIMA model based on most recent data using prior fit
+      mutate(pred_fit = map2(pred_data, fit,
+                            ~ Arima(.x$ILI, xreg = fourier(.x$ILI, K = 8), model = .y))) %>%
+      # Create predicted results
+      mutate(pred_results = pmap(
+        list(pred_fit, pred_data, location),
+        ~ fit_to_forecast(object = ..1,
+                          xreg = fourier(..2$ILI, K = 8,
+                                         h = 35 - nrow(filter(..2, season == "2017/2018"))),
+                          pred_data = ..2,
+                          location = ..3,
+                          max_week = 52,
+                          npaths = 500))) %>%
+      select(location, pred_results) %>%
+      unnest() %>%
+      normalize_probs()
 }
 Sys.time()-start_time
 save(forecasts, file = "Data/temp_forecasts.Rdata")
-load("Data/temp_forecasts.Rdata")
+
 
 # Create truth to score models against
 nested_truth <- ili_current %>%

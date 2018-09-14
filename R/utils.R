@@ -10,6 +10,21 @@ pull_curr_epidata <- function(start, end) {
     bind_rows()
 }
 
+# Helper function for reading in weekly publications of EpiData -----
+pull_initpub_epidata <- function(issue) {
+  
+  start_week <- ifelse(as.numeric(substr(issue - 26, 5, 6)) < 52,
+                       issue - 26,
+                       issue + 26 - 100) # Converts number to prior year, halfway through
+  
+  Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
+                       'hhs6', 'hhs7', 'hhs8', 'hhs9', 'hhs10'),
+                  list(Epidata$range(start_week, issue)),
+                  issues = list(issue))$epidata %>%
+    modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
+    bind_rows()
+}
+
 
 # calculate ratio of two sets of Google Trends data -------
 US_flu_ratio <- function(gdata1, gdata2) {
