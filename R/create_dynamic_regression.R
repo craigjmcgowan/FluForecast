@@ -16,6 +16,7 @@ load("Data/ili.Rdata")
 load("Data/virologic.Rdata")
 load("Data/Gtrends.Rdata")
 # load("Data/temp_forecasts.Rdata")
+# load("Data/temp_models.Rdata")
 
 # Combine datasets together
 flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location) %>%
@@ -53,31 +54,49 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
 
 # Predictions for 2017-2018 season - simple model, just Fourier terms, no covariates
 # Train model based on prior data
-model_fits <- filter(flu_data_merge, year < 2018, season != "2017/2018") %>%
-  # Nest by location
-  nest(-location) %>%
+start_time <- Sys.time()
+model_fits <- tibble(season = c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
+                                "2015/2016", "2016/2017", "2017/2018")) %>%
+  mutate(train_data = map(season,
+                          ~ filter(flu_data_merge, year <= as.numeric(substr(., 6, 9)),
+                                   season != paste0(substr(., 6, 9), "/",
+                                                    as.numeric(substr(., 6, 9)) + 1),
+                                   season != .))) %>%
+  unnest() %>%
+  # Nest by season and location
+  nest(-season, -location) %>%
   # Create time series of ILI
   mutate(data = map(data,
                    ~ mutate(.x,
                             ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
   # Fit model
-  mutate(fit = map(data,
-                   ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 8),
+  mutate(fit_5 = map(data,
+                   ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 5),
                                 seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))),
-         model = "Test Model",
-         season = "2017/2018")
+         fit_6 = map(data,
+                     ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 6),
+                                  seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))),
+         fit_7 = map(data,
+                     ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 7),
+                                  seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))),
+         fit_8 = map(data,
+                     ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 8),
+                                  seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))),
+         fit_9 = map(data,
+                     ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 9),
+                                  seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))))# %>%
+  
 
-forecasts <- list()
-
+Sys.time() - start_time
+save(model_fits, file = "Data/temp_models.Rdata")
 this_season <- "2017/2018"
 this_model <- "Test Model"
 
 # Set up data for model fitting in parallel
-model_data <- expand.grid(model = c("Test Model"),
-                          season = c("2017/2018"),
-                          week = c(43:70),
-                          location = unique(flu_data_merge$location),
-                          stringsAsFactors = FALSE) %>%
+model_data <- crossing(model = c("Test Model"),
+                       season = c("2017/2018"),
+                       week = c(43:70),
+                       location = unique(flu_data_merge$location)) %>%
   mutate(epiweek = case_when(
       season == "2014/2015" & week > 53 ~ 
         as.numeric(paste0(substr(season, 6, 9), 
@@ -104,6 +123,7 @@ model_data <- expand.grid(model = c("Test Model"),
   # Set up grouping for parallel
   mutate(group = rep(1:4, length.out = nrow(.)))
 
+# Create clusters and load necessary libraries and functions ------
 cluster <- create_cluster(cores = detectCores())
 
 by_group <- model_data %>%
@@ -115,7 +135,7 @@ by_group %>%
   cluster_assign_value("sample_predictive_trajectories_arima", 
                        sample_predictive_trajectories_arima)
   
-# Run code to create forecasts in parallel
+# Run code to create forecasts in parallel ------
 start_time <- Sys.time()
 forecasts <- by_group %>%
   # Fit ARIMA model based on most recent data using prior fit
@@ -135,32 +155,8 @@ forecasts <- by_group %>%
   as.tibble() %>%
   ungroup()
 
-Sys.time() - start_time
 
-
-forecasts2 <- forecasts %>% ungroup() %>%
-  select(season, model, location, week, pred_results) %>%
-  unnest()
-  mutate(pred_results = map2(pred_results, location,
-                             ~ mutate(.x, location = .y) %>%
-                               normalize_probs())) %>%
-  select(season, model, location, week, pred_results) 
-
-test1 <- model_data$pred_data[[1]]
-test2 <- model_data$pred_data[[2]]
-
-  select(location, pred_results) %>%
-  unnest() %>%
-  normalize_probs()
-names(forecasts2)
-test <- forecasts2$test_results[[1]]
-
-
-Sys.time()-start_time
-save(forecasts, forecasts_list, file = "Data/temp_forecasts.Rdata")
-
-
-# Create truth to score models against
+# Create truth for all seasons -------
 nested_truth <- ili_current %>%
   filter(year >= 2010, season != "2009/2010") %>%
   select(season, location, week, ILI) %>%
@@ -169,10 +165,40 @@ nested_truth <- ili_current %>%
                       ~ create_truth(fluview = FALSE, year = substr(.x, 1, 4),
                                      weekILI = .y)),
          eval_period = pmap(list(data, truth, season),
-                             ~ create_eval_period(..1, ..2, ..3)),
+                            ~ create_eval_period(..1, ..2, ..3)),
          exp_truth = map(truth,
                          ~ expand_truth(.))) %>%
   select(-data)
+
+
+# Normalize probabilities and score forecasts --------
+forecasts2 <- forecasts %>% ungroup() %>%
+  select(season, model, location, week, pred_results) %>%
+  mutate(pred_results = map2(pred_results, location,
+                             ~ mutate(.x, location = .y) %>%
+                               normalize_probs())) %>%
+  select(season, model, week, pred_results) %>%
+  unnest() %>%
+  nest(-season, -model, -week) %>%
+  left_join(nested_truth, by = "season") %>%
+  mutate(scores = map2(data, exp_truth,
+                       ~ score_entry(.x, .y)),
+         eval_scores = pmap(list(scores, eval_period, season),
+                            ~ create_eval_scores(..1, ..2, ..3))) 
+  
+forecasts3 <- forecasts2 %>%
+  select(season, model, eval_scores) %>%
+  unnest() %>%
+  group_by(season, model, location, target) %>%
+  summarize(avg_score = mean(score))
+str(forecasts2$data[[1]])
+  
+  
+save(forecasts, file = "Data/temp_forecasts_df.Rdata")
+summary(forecasts)
+
+# Create truth to score models against
+
 
 # Create nested df of forecasts and score
 forecasts_df <- bind_rows(map(modify_depth(forecasts, 2, bind_rows), 
@@ -180,12 +206,7 @@ forecasts_df <- bind_rows(map(modify_depth(forecasts, 2, bind_rows),
                           .id = "season") %>%
   mutate(forecast_week = as.numeric(forecast_week)) %>%
   mutate(extra_week = forecast_week) %>%
-  nest(-season, -team, -extra_week) %>%
-  left_join(nested_truth, by = "season") %>%
-  mutate(scores = map2(data, exp_truth,
-                       ~ score_entry(.x, .y)),
-         eval_scores = pmap(list(scores, eval_period, season),
-                            ~ create_eval_scores(..1, ..2, ..3))) 
+  nest(-season, -team, -extra_week) 
   
 
 
