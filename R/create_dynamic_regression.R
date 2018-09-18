@@ -16,9 +16,29 @@ load("Data/ili.Rdata")
 load("Data/virologic.Rdata")
 load("Data/Gtrends.Rdata")
 # load("Data/temp_forecasts.Rdata")
-# load("Data/temp_models.Rdata")
+# load("fourier_fits.Rdata")
+load("Data/past_truth.Rdata")
 
-# Combine datasets together
+# Create clusters for use later in program
+cluster <- create_cluster(cores = detectCores() - 1)
+
+# Create truth for all seasons -------
+# nested_truth <- ili_current %>%
+#   filter(year >= 2010, season != "2009/2010") %>%
+#   select(season, location, week, ILI) %>%
+#   nest(-season) %>%
+#   mutate(truth = map2(season, data,
+#                       ~ create_truth(fluview = FALSE, year = substr(.x, 1, 4),
+#                                      weekILI = .y)),
+#          eval_period = pmap(list(data, truth, season),
+#                             ~ create_eval_period(..1, ..2, ..3)),
+#          exp_truth = map(truth,
+#                          ~ expand_truth(.))) %>%
+#   select(-data)
+# save(nested_truth, file = "Data/past_truth.Rdata")
+
+
+# Combine datasets together -------
 flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location) %>%
   inner_join(select(virologic_combined, location, season, year, week, h1_per_samples,
                    h3_per_samples, b_per_samples),
@@ -40,22 +60,10 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
 ## Number of Fourier terms
 ## Structure of ARIMA errors
 ## What virologic/Gtrend data to include
-## If/how to include estimates of backfill
+## If/how to include estimates of backfill\
 
-## Evaluate based on CDC log score
-
-
-## Plan of action:
-
-## Set up model of some kind to produce CDC-style forecast sequentially for each week of the season
-## Set up way to score it
-## Scale up to evaluate lots of different model options
-
-
-# Predictions for 2017-2018 season - simple model, just Fourier terms, no covariates
-# Train model based on prior data
-start_time <- Sys.time()
-model_fits <- tibble(season = c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
+#### Number of Fourier terms #####
+fourier_model_fits <- tibble(season = c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
                                 "2015/2016", "2016/2017", "2017/2018")) %>%
   mutate(train_data = map(season,
                           ~ filter(flu_data_merge, year <= as.numeric(substr(., 6, 9)),
@@ -84,19 +92,17 @@ model_fits <- tibble(season = c("2010/2011", "2011/2012", "2012/2013", "2013/201
                                   seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))),
          fit_9 = map(data,
                      ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 9),
-                                  seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))))# %>%
-  
-
-Sys.time() - start_time
-save(model_fits, file = "Data/temp_models.Rdata")
-this_season <- "2017/2018"
-this_model <- "Test Model"
+                                  seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI)))) %>%
+  select(-data) %>%
+  gather(key = "model", value = "fit", fit_5:fit_9)
 
 # Set up data for model fitting in parallel
-model_data <- crossing(model = c("Test Model"),
-                       season = c("2017/2018"),
-                       week = c(43:70),
+fourier_model_data <- crossing(model = c("fit_5"),# "fit_6", "fit_7", "fit_8", "fit_9"),
+                       season = "2014/2015",#c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
+                                  # "2015/2016", "2016/2017", "2017/2018"),
+                       week = c(43:71),
                        location = unique(flu_data_merge$location)) %>%
+  filter(week < 71 | season == "2014/2015") %>%
   mutate(epiweek = case_when(
       season == "2014/2015" & week > 53 ~ 
         as.numeric(paste0(substr(season, 6, 9), 
@@ -118,61 +124,54 @@ model_data <- crossing(model = c("Test Model"),
                        mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
                        select(-ILI.x, -ILI.y) %>%
                        mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
-  left_join(select(model_fits, -data), by = c("season", "location", "model")) %>%
-  mutate(xreg = map(pred_data, ~ fourier(.$ILI, K = 8))) %>%
+  left_join(fourier_model_fits, by = c("season", "location", "model")) %>%
+  # Set up Fourier data for forecasting
+  mutate(xreg = map2(pred_data, model,
+                     ~ fourier(.x$ILI, K = as.numeric(str_extract(.y, "[0-9]")))),
+         max_week = ifelse(season == "2014/2015", 53, 52)) %>%
   # Set up grouping for parallel
-  mutate(group = rep(1:4, length.out = nrow(.)))
+  mutate(group = rep(1:length(cluster), length.out = nrow(.)))
 
-# Create clusters and load necessary libraries and functions ------
-cluster <- create_cluster(cores = detectCores())
 
-by_group <- model_data %>%
+# Set up party_df and load necessary libraries and functions 
+fourier_by_group <- fourier_model_data %>%
   partition(group, cluster = cluster)
 
-by_group %>%
+fourier_by_group %>%
   cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek")) %>%
   cluster_assign_value("fit_to_forecast", fit_to_forecast) %>%
   cluster_assign_value("sample_predictive_trajectories_arima", 
                        sample_predictive_trajectories_arima)
   
-# Run code to create forecasts in parallel ------
+# Run code to create forecasts in parallel 
 start_time <- Sys.time()
-forecasts <- by_group %>%
+
+fourier_forecasts <- fourier_by_group %>%
   # Fit ARIMA model based on most recent data using prior fit
   mutate(pred_fit = pmap(list(pred_data, fit, xreg),
                         ~ Arima(..1$ILI, xreg = ..3, model = ..2))) %>%
   # Create predicted results
   mutate(pred_results = pmap(
-    list(pred_fit, pred_data, location, season),
-    ~ fit_to_forecast(object = ..1,
-                      xreg = fourier(..2$ILI, K = 8,
-                                     h = 35 - nrow(filter(..2, season == ..4))),
-                      pred_data = ..2,
-                      location = ..3,
-                      max_week = 52,
-                      npaths = 500))) %>%
+        list(pred_fit, pred_data, location, season, model, max_week),
+        ~ fit_to_forecast(object = ..1,
+                          xreg = fourier(..2$ILI, K = as.numeric(str_extract(..5, "[0-9]")),
+                                         h = ..6 - 17 - nrow(..2[..2$season == ..4, ])),
+                          pred_data = ..2,
+                          location = ..3,
+                          season = ..4,
+                          max_week = ..6,
+                          npaths = 500))) %>%
   collect() %>%
   as.tibble() %>%
   ungroup()
 
+Sys.time() - start_time
 
-# Create truth for all seasons -------
-nested_truth <- ili_current %>%
-  filter(year >= 2010, season != "2009/2010") %>%
-  select(season, location, week, ILI) %>%
-  nest(-season) %>%
-  mutate(truth = map2(season, data,
-                      ~ create_truth(fluview = FALSE, year = substr(.x, 1, 4),
-                                     weekILI = .y)),
-         eval_period = pmap(list(data, truth, season),
-                            ~ create_eval_period(..1, ..2, ..3)),
-         exp_truth = map(truth,
-                         ~ expand_truth(.))) %>%
-  select(-data)
+# save(forecasts, file = "Data/all_fourier_forecasts.Rdata")
 
 
 # Normalize probabilities and score forecasts --------
-forecasts2 <- forecasts %>% ungroup() %>%
+fourier_scores <- fourier_forecasts %>%
   select(season, model, location, week, pred_results) %>%
   mutate(pred_results = map2(pred_results, location,
                              ~ mutate(.x, location = .y) %>%
@@ -184,38 +183,14 @@ forecasts2 <- forecasts %>% ungroup() %>%
   mutate(scores = map2(data, exp_truth,
                        ~ score_entry(.x, .y)),
          eval_scores = pmap(list(scores, eval_period, season),
-                            ~ create_eval_scores(..1, ..2, ..3))) 
-  
-forecasts3 <- forecasts2 %>%
+                            ~ create_eval_scores(..1, ..2, ..3))) %>%
   select(season, model, eval_scores) %>%
   unnest() %>%
-  group_by(season, model, location, target) %>%
+  group_by(season, model, location) %>%
   summarize(avg_score = mean(score))
-str(forecasts2$data[[1]])
-  
-  
-save(forecasts, file = "Data/temp_forecasts_df.Rdata")
-summary(forecasts)
-
-# Create truth to score models against
 
 
-# Create nested df of forecasts and score
-forecasts_df <- bind_rows(map(modify_depth(forecasts, 2, bind_rows), 
-                              bind_rows, .id = "team"),
-                          .id = "season") %>%
-  mutate(forecast_week = as.numeric(forecast_week)) %>%
-  mutate(extra_week = forecast_week) %>%
-  nest(-season, -team, -extra_week) 
-  
 
-
-scores <- forecasts_df %>%
-  select(season, team, eval_scores) %>%
-  unnest() %>%
-  group_by(season, team) %>%
-  summarize(mean_score = mean(score),
-            skill = exp(mean_score))
 
 
 

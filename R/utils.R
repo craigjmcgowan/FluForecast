@@ -373,24 +373,24 @@ sample_predictive_trajectories_arima <- function (object,
 }
 
 # Turn fitted forecast model into a CDC-style forecast ------
-fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, max_week = 52, ...){
+fit_to_forecast <- function(object, xreg, pred_data, location, season, 
+                            npaths = 1000, max_week = 52, ...){
 
   # Simulate output
   sim_output <- sample_predictive_trajectories_arima(
     object, 
-    h = max_week - 17 - nrow(filter(pred_data, season == "2017/2018")),
+    h = max_week - 17 - nrow(pred_data[pred_data$season == season, ]),
     xreg = xreg,
     npaths = npaths
   )
   
-  
   # Calculate forecast probabilities
   current_week <- ifelse(last(pred_data$week) < 40, last(pred_data$week) + max_week,
                          last(pred_data$week))
-  season_max_ili <- filter(pred_data, season == "2017/2018") %>% pull(ILI) %>%
+  season_max_ili <- pred_data[pred_data$season == season, ] %>% pull(ILI) %>%
     max() %>% round(1)
   
-  season_max_week <- filter(pred_data, season == "2017/2018") %>%
+  season_max_week <- pred_data[pred_data$season == season, ] %>%
     mutate(ILI = as.numeric(ILI)) %>%
     filter(ILI == max(ILI)) %>%
     mutate(week = ifelse(week < 40, week + max_week, week)) %>%
@@ -462,9 +462,9 @@ fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, ma
 
   # Onset week
   calc_onset <- rbind(
-    matrix(filter(pred_data, season == "2017/2018") %>%
+    matrix(pred_data[pred_data$season == season, ] %>%
              mutate(ILI = as.numeric(ILI)) %>% pull(ILI),
-           nrow = filter(pred_data, season == "2017/2018") %>% nrow(),
+           nrow = nrow(pred_data[pred_data$season == season, ]),
            ncol = npaths),
     t(sim_output)
   ) %>% as.tibble()
@@ -473,7 +473,8 @@ fit_to_forecast <- function(object, xreg, pred_data, location, npaths = 1000, ma
     temp <- tibble(week = 40:(max_week + 22),
                    location = location,
                    ILI = x)
-    try(create_onset(temp, region = location, year = 2017)$bin_start_incl, silent = TRUE)
+    try(create_onset(temp, region = location, 
+                     year = as.numeric(substr(season, 1, 4)))$bin_start_incl, silent = TRUE)
   }) %>%
     trimws()
 
