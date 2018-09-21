@@ -60,7 +60,7 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
 ## What virologic/Gtrend data to include
 ## If/how to include estimates of backfill\
 
-#### Number of Fourier terms #####
+##### Number of Fourier terms #####
 load("Data/fourier_fits.Rdata")
 # fourier_model_fits <- tibble(season = c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
 #                                 "2015/2016", "2016/2017", "2017/2018")) %>%
@@ -130,8 +130,46 @@ fourier_by_group %>%
   cluster_assign_value("sample_predictive_trajectories_arima", 
                        sample_predictive_trajectories_arima)
 
-
-
+# Create forecasts for Fourier terms
+fourier_forecasts <- fourier_by_group %>%
+  mutate(
+    pred_data = pmap(list(season, week, location, epiweek), 
+                     ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
+                              season != paste0(substr(..1, 6, 9), "/",
+                                               as.numeric(substr(..1, 6, 9)) + 1),
+                              season != ..1 | order_week %in% 40:..2,
+                              location == ..3) %>%
+                       left_join(select(ili_init_pub_list[[paste(..4)]],
+                                        ILI, epiweek, location),
+                                 by = c("epiweek", "location")) %>%
+                       mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
+                       select(-ILI.x, -ILI.y) %>%
+                       mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))),
+    # Set up Fourier data for forecasting
+    xreg = map2(pred_data, model,
+                ~ fourier(.x$ILI, K = as.numeric(str_extract(.y, "[0-9]")))),
+    max_week = ifelse(season == "2014/2015", 53, 52),
+    # Fit models
+    pred_fit = pmap(list(pred_data, fit, xreg),
+                    ~ Arima(..1$ILI, xreg = ..3, model = ..2)),
+    pred_results = pmap(
+      list(pred_fit, pred_data, location, season, model, max_week),
+      ~ fit_to_forecast(object = ..1,
+                        xreg = fourier(..2$ILI, K = as.numeric(str_extract(..5, "[0-9]")),
+                                       h = ..6 - 17 - nrow(..2[..2$season == ..4, ])),
+                        pred_data = ..2,
+                        location = ..3,
+                        season = ..4,
+                        max_week = ..6,
+                        npaths = 250)
+      )
+    ) %>%
+  collect() %>%
+  as.tibble()
+  
+save(fourier_forecasts, file = "Data/fourier_forecasts.Rdata") 
+  
+  
 # Normalize probabilities and score forecasts 
 fourier_scores <- fourier_forecasts %>% ungroup() %>%
   select(season, model, location, week, pred_results) %>%
@@ -162,7 +200,7 @@ best_k_cv <- fourier_scores %>%
 
 save(best_k_cv, file = "Data/CV_Fourier_terms.Rdata")
 
-### ARIMA structure for error terms ####
+##### ARIMA structure for error terms #####
 
 load("Data/CV_Fourier_terms.Rdata")
 load("Data/arima_fits.Rdata")
@@ -322,7 +360,7 @@ best_arima_cv <- arima_scores %>%
 
 save(best_arima_cv, file = "Data/CV_ARIMA_terms.Rdata")
 
-### Additional covariates ###
+##### Additional covariates #####
 load("data/CV_Fourier_terms.Rdata")
 load("Data/CV_ARIMA_terms.Rdata")
 
@@ -332,9 +370,10 @@ load("Data/CV_ARIMA_terms.Rdata")
 # Flu % only
 # Gtrends and flu %
 
-covar_model_fits <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
-                                            "2013/2014", "2014/2015", "2015/2016",
-                                            "2016/2017", "2017/2018"),
+covar_model_fits <- crossing(season = "2017/2018",
+                               # c("2010/2011", "2011/2012", "2012/2013",
+                               #              "2013/2014", "2014/2015", "2015/2016",
+                               #              "2016/2017", "2017/2018"),
                              model = c("ARIMA only", "Gtrends", "FluVirus", 
                                        "Gtrends & FluVirus")) %>%
   mutate(train_data = map(season,
@@ -367,17 +406,30 @@ covar_model_fits <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
                              ..1$hits),
-                lambda = BoxCox.lambda()
+                lambda = BoxCox.lambda(..1$ILI))
       ),
-    model == "FluVirus" ~ ,
-    model == "Gtrends & FluVirus" ~ 
-  ))
-  
+    model == "FluVirus" ~ 
+      pmap(
+        list(data, arima_1, arima_2, arima_3, K),
+        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+                             ..1$h1_per_samples, ..1$h3_per_samples,
+                             ..1$b_per_samples),
+                lambda = BoxCox.lambda(..1$ILI))
+      ),
+    model == "Gtrends & FluVirus" ~
+      pmap(
+        list(data, arima_1, arima_2, arima_3, K),
+        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+                             ..1$hits, ..1$h1_per_samples, 
+                             ..1$h3_per_samples, ..1$b_per_samples),
+                lambda = BoxCox.lambda(..1$ILI))
+      )
+    ))
 
-test <- flu_data_merge %>%
-  filter(season != "2017/2018") %>%
-  mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))
--BoxCox.lambda(test$ILI)
+save(covar_model_fits, file = "Data/covar_model_fits.Rdata")
+summary(test_fit)
 test1 <- cbind(as.data.frame(fourier(test$ILI, K = 5)), test$hits)
 # snaive_gtrend <- snaive(flu_data_merge$ILI)
 # autoplot(snaive_gtrend)
