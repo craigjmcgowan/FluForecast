@@ -17,7 +17,7 @@ load("Data/virologic.Rdata")
 load("Data/Gtrends.Rdata")
 
 # Create clusters for use later in program
-cluster <- create_cluster(cores = detectCores())
+cluster <- create_cluster(cores = detectCores()-1)
 
 # Create truth for all seasons -------
 load("Data/past_truth.Rdata")
@@ -79,19 +79,19 @@ load("Data/fourier_fits.Rdata")
 #   # Fit model
 #   mutate(fit_5 = map(data,
 #                    ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 5),
-#                                 seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))),
+#                                 seasonal = FALSE, lambda = BoxCox.lambda(.$ILI))),
 #          fit_6 = map(data,
 #                      ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 6),
-#                                   seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))),
+#                                   seasonal = FALSE, lambda = BoxCox.lambda(.$ILI))),
 #          fit_7 = map(data,
 #                      ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 7),
-#                                   seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))),
+#                                   seasonal = FALSE, lambda = BoxCox.lambda(.$ILI))),
 #          fit_8 = map(data,
 #                      ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 8),
-#                                   seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI))),
+#                                   seasonal = FALSE, lambda = BoxCox.lambda(.$ILI))),
 #          fit_9 = map(data,
 #                      ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 9),
-#                                   seasonal = FALSE, lambda = -BoxCox.lambda(.$ILI)))) %>%
+#                                   seasonal = FALSE, lambda = BoxCox.lambda(.$ILI)))) %>%
 #   select(-data) %>%
 #   gather(key = "model", value = "fit", fit_5:fit_9)
 # 
@@ -165,61 +165,62 @@ save(best_k_cv, file = "Data/CV_Fourier_terms.Rdata")
 ### ARIMA structure for error terms ####
 
 load("Data/CV_Fourier_terms.Rdata")
-# load("Data/arima_fits.Rdata")
+load("Data/arima_fits.Rdata")
 
-arima_model_fit_data <- crossing(season = "2010/2011",
-                                #    c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
-                                # "2015/2016", "2016/2017", "2017/2018"),
-                                arima_1 = 0:3,
-                                arima_2 = 0:1,
-                                arima_3 = 0:3) %>%
-  mutate(train_data = map(season,
-                          ~ filter(flu_data_merge, year <= as.numeric(substr(., 6, 9)),
-                                   season != paste0(substr(., 6, 9), "/",
-                                                    as.numeric(substr(., 6, 9)) + 1),
-                                   season != .))) %>%
-  unnest() %>%
-  # Nest by season and location
-  nest(-season, -location, -arima_1, -arima_2, -arima_3) %>%
-  # Create time series of ILI
-  mutate(data = map(data,
-                   ~ mutate(.x,
-                            ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
-  # Merge best Fourier K value by location
-  left_join(best_k_cv, by = "location") %>%
-  # Set up for parallel
-  mutate(group = rep(1:length(cluster), length.out = nrow(.)))
-
-# Set up clusters
-arima_fit_parallel <- arima_model_fit_data %>%
-  partition(group, cluster = cluster)
-arima_fit_parallel %>%
-  cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek")) 
-
-# Fit ARIMA models
-arima_model_fits <- arima_fit_parallel %>%
-  mutate(fit = pmap(
-    list(data, arima_1, arima_2, arima_3, K),
-    ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-            xreg = fourier(..1$ILI, K = ..5),
-            lambda = -BoxCox.lambda(..1$ILI))
-    )) %>%
-  select(-data) %>%
-  collect() %>%
-  as.tibble() %>%
-  ungroup()
-
-save(arima_model_fits, file = "Data/arima_fits.Rdata")
+# arima_model_fit_data <- crossing(season = c("2010/2011", "2011/2012", "2012/2013", 
+#                                             "2013/2014", "2014/2015", "2015/2016", 
+#                                             "2016/2017", "2017/2018"),
+#                                 arima_1 = 0:3,
+#                                 arima_2 = 0:1,
+#                                 arima_3 = 0:3) %>%
+#   mutate(train_data = map(season,
+#                           ~ filter(flu_data_merge, year <= as.numeric(substr(., 6, 9)),
+#                                    season != paste0(substr(., 6, 9), "/",
+#                                                     as.numeric(substr(., 6, 9)) + 1),
+#                                    season != .))) %>%
+#   unnest() %>%
+#   # Nest by season and location
+#   nest(-season, -location, -arima_1, -arima_2, -arima_3) %>%
+#   # Create time series of ILI
+#   mutate(data = map(data,
+#                    ~ mutate(.x,
+#                             ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
+#   # Merge best Fourier K value by location
+#   left_join(best_k_cv, by = "location") %>%
+#   # Set up for parallel
+#   mutate(group = rep(1:length(cluster), length.out = nrow(.)))
+# 
+# # Set up clusters
+# arima_fit_parallel <- arima_model_fit_data %>%
+#   partition(group, cluster = cluster)
+# arima_fit_parallel %>%
+#   cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek")) 
+# 
+# # Fit ARIMA models
+# arima_model_fits <- arima_fit_parallel %>%
+#   mutate(fit = pmap(
+#     list(data, arima_1, arima_2, arima_3, K),
+#     ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#             xreg = fourier(..1$ILI, K = ..5),
+#             lambda = BoxCox.lambda(..1$ILI))
+#     )) %>%
+#   select(-data) %>%
+#   collect() %>%
+#   as.tibble() %>%
+#   ungroup()
+# 
+# save(arima_model_fits, file = "Data/arima_fits.Rdata")
 
 
 # Set up data for forecast creation in parallel
-arima_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
-                                              "2013/2014", "2014/2015", "2015/2016",
-                                              "2016/2017", "2017/2018"),
+arima_model_data_setup <- crossing(season = "2014/2015",
+                                     # c("2010/2011", "2011/2012", "2012/2013",
+                                     #          "2013/2014", "2014/2015", "2015/2016",
+                                     #          "2016/2017", "2017/2018"),
                              arima_1 = 0:3,
                              arima_2 = 0:1,
                              arima_3 = 0:3,
-                             week = c(43:71),
+                             week = 50, #c(43:71),
                              location = unique(flu_data_merge$location)) %>%
   filter(week < 71 | season == "2014/2015") %>%
   mutate(epiweek = case_when(
@@ -251,8 +252,8 @@ arima_model_data_parallel %>%
 
 # Create forecasts for different ARIMA structures
 start_time <- Sys.time()
-arima_forecasts_1011 <- arima_model_data_parallel %>%
-  filter(season == "2010/2011") %>%
+arima_forecasts <- arima_model_data_parallel %>%
+  # filter(season == "2010/2011") %>%
   mutate(pred_data = pmap(list(season, week, location, epiweek), 
                    ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
                             season != paste0(substr(..1, 6, 9), "/",
@@ -325,7 +326,59 @@ save(best_arima_cv, file = "Data/CV_ARIMA_terms.Rdata")
 load("data/CV_Fourier_terms.Rdata")
 load("Data/CV_ARIMA_terms.Rdata")
 
+# Models to test:
+# No covariates
+# Google Trends data only
+# Flu % only
+# Gtrends and flu %
 
+covar_model_fits <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
+                                            "2013/2014", "2014/2015", "2015/2016",
+                                            "2016/2017", "2017/2018"),
+                             model = c("ARIMA only", "Gtrends", "FluVirus", 
+                                       "Gtrends & FluVirus")) %>%
+  mutate(train_data = map(season,
+                          ~ filter(flu_data_merge, year <= as.numeric(substr(., 6, 9)),
+                                   season != paste0(substr(., 6, 9), "/",
+                                                    as.numeric(substr(., 6, 9)) + 1),
+                                   season != .))) %>%
+  unnest() %>%
+  # Nest by season and location
+  nest(-season, -location, -model) %>%
+  # Create time series of ILI
+  mutate(data = map(data,
+                   ~ mutate(.x,
+                            ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
+  # Merge best Fourier K value and ARIMA structure by location
+  left_join(best_k_cv, by = "location") %>%
+  left_join(best_arima_cv, by = "location") %>%
+  # Fit models
+  mutate(fit = case_when(
+    model == "ARIMA only" ~ 
+      pmap(
+        list(data, arima_1, arima_2, arima_3, K),
+        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+                xreg = fourier(..1$ILI, K = ..5),
+                lambda = BoxCox.lambda(..1$ILI))
+      ),
+    model == "Gtrends" ~ 
+      pmap(
+        list(data, arima_1, arima_2, arima_3, K),
+        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+                             ..1$hits),
+                lambda = BoxCox.lambda()
+      ),
+    model == "FluVirus" ~ ,
+    model == "Gtrends & FluVirus" ~ 
+  ))
+  
+
+test <- flu_data_merge %>%
+  filter(season != "2017/2018") %>%
+  mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))
+-BoxCox.lambda(test$ILI)
+test1 <- cbind(as.data.frame(fourier(test$ILI, K = 5)), test$hits)
 # snaive_gtrend <- snaive(flu_data_merge$ILI)
 # autoplot(snaive_gtrend)
 # checkresiduals(snaive_gtrend)
