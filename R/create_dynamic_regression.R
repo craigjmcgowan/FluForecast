@@ -196,8 +196,7 @@ fourier_forecasts <- fourier_forecasts %>% ungroup() %>%
 save(fourier_forecasts, file = "Data/fourier_forecasts.Rdata") 
  
 # Normalize probabilities and score forecasts 
-fourier_scores <- fourier_forecasts %>% ungroup() %>%
-  select(season, model, location, week, pred_results) %>%
+fourier_scores <- fourier_forecasts %>% 
   mutate(pred_results = map2(pred_results, location,
                              ~ mutate(.x, location = .y) %>%
                                normalize_probs())) %>%
@@ -345,18 +344,17 @@ arima_forecasts <- arima_model_data_parallel %>%
                       location = ..3,
                       season = ..4,
                       max_week = ..5,
-                      npaths = 100))) %>%
+                      npaths = 250))) %>%
   collect() %>%
   as.tibble() %>%
-  ungroup()
+  ungroup() %>%
+  select(season, arima_1:arima_3, location, week, pred_results)
 
-Sys.time() - start_time
 
 save(arima_forecasts, file = "Data/arima_forecasts.Rdata")
 
 # Normalize probabilities and score forecasts 
 arima_scores <- arima_forecasts %>%
-  select(season, arima_1:arima_3, location, week, pred_results) %>%
   mutate(pred_results = map2(pred_results, location,
                              ~ mutate(.x, location = .y) %>%
                                normalize_probs())) %>%
@@ -378,7 +376,7 @@ best_arima_cv <- arima_scores %>%
   group_by(location, arima_1, arima_2, arima_3) %>%
   summarize(avg_score = mean(score)) %>%
   group_by(location) %>%
-  filter(avg_score == min(avg_score)) %>%
+  filter(avg_score == max(avg_score)) %>%
   ungroup() %>%
   select(location, arima_1:arima_3)
 
@@ -639,16 +637,110 @@ covar_scores <- covar_forecasts %>% ungroup() %>%
   select(season, model, eval_scores) %>%
   unnest() 
 
-save(arima_scores, file = "Data/CV_ARIMA_Scores.Rdata")
+save(covar_scores, file = "Data/CV_covar_Scores.Rdata")
 
 # Determine best ARIMA model for each region
 best_covar_cv <- covar_scores %>%
   group_by(location, model) %>%
   summarize(avg_score = mean(score)) %>%
   group_by(location) %>%
-  filter(avg_score == min(avg_score)) %>%
+  filter(avg_score == max(avg_score)) %>%
   ungroup() %>%
   select(location, model)
 
-save(best_arima_cv, file = "Data/CV_ARIMA_terms.Rdata")
+save(best_covar_cv, file = "Data/CV_covar_terms.Rdata")
 
+
+
+
+
+
+
+# snaive_gtrend <- snaive(flu_data_merge$ILI)
+# autoplot(snaive_gtrend)
+# checkresiduals(snaive_gtrend)
+# gglagplot(flu_data_merge$ILI)
+# ggsubseriesplot(flu_data_merge$ILI)
+# ggseasonplot(gtrend_US_ts)
+# ?auto.arima
+# ggAcf(flu_data_merge$ILI)
+# diff(diff(flu_data_merge$ILI, 52), 1) %>% autoplot()
+# mstl(ili_US_ts) %>%
+#   forecast(method = "arima", bootstrap = TRUE) %>%
+#   autoplot()
+# ma2x52 <- ma(ili_US_ts, order = 52, centre = TRUE)
+# autoplot(ili_US_ts) +
+#   autolayer(ma2x52)
+# decompose(flu_data_merge$ILI) %>%
+#   autoplot()
+# seasonal::seas(ili_US_ts, x11 = "")
+# autoplot(gtrend_ILI_no2009$ILI)
+# 
+# BoxCox.lambda(ili_US_ts)
+# 
+# plots <- list()
+# for (i in 1:6) {
+#   fit <- auto.arima(flu_data_merge$ILI,
+#                       xreg = fourier(flu_data_merge$ILI, K = i),
+#                     seasonal = FALSE,
+#                     lambda = -1)
+#   plots[[paste(i)]] <- autoplot(forecast(fit,
+#                                          xreg = )) +
+#     xlab(paste("k=",i,"   AICC=",round(fit[["aicc"]],2))) +
+#     ylab("")
+# }
+# 
+# forecast(fit, xreg = fourier(gtrend_observed$ILI, K = 1, h = 30)) %>%
+#   autoplot()
+# 
+# checkresiduals(fit)
+# gridExtra::grid.arrange(
+#   plots[[1]],plots[[2]],plots[[3]],
+#   plots[[4]],plots[[5]],plots[[6]],
+#   nrow=3)
+# 
+# ggplot(data = gtrend_ILI_no2009, aes(x = hits, y = ILI)) +
+#   geom_point()
+# ?simulate.Arima
+# 
+# 
+# fit <- auto.arima(gtrend_observed$ILI,
+#                   xreg = cbind(fourier(gtrend_observed$ILI, K = 4),
+#                                gtrend_observed$hits),
+#                   seasonal = FALSE,
+#                   lambda = -1)
+# 
+# test <- sample_predictive_trajectories_arima(
+#   fit,
+#   h = 52,
+#   xreg = cbind(fourier(gtrend_observed$ILI, K = 4, h = 52),
+#                snaive(ts(gtrend_observed$hits, frequency = 52, start = c(2006, 40)), h = 52)$mean)
+# )
+# ?snaive()
+# hist(test[, 4])
+# dim(test)
+# (fit <- auto.arima(gtrend_observed$ILI, lambda = 0
+#                    xreg = cbind(fourier(ili_US_ts, 3),
+#                                 gtrend_ILI_merge[1:618, c("hits", "h1_per_samples",
+#                                                        "h3_per_samples")]),
+#                    lambda = -1))
+# (fit)
+# 
+# checkresiduals(fit)
+# 
+# BoxCox(ili_US_ts, -1) %>% autoplot()
+# 
+# forecast(fit, 
+#          xreg = cbind(fourier(ili_US_ts, 3, 24),
+#                            snaive(ts(gtrend_ILI_merge$hits[1:723], frequency = 52, start = c(2004, 40)))$mean[1:24],
+#                            snaive(ts(gtrend_ILI_merge$h1_per_samples[1:723], frequency = 52, start = c(2004, 40)))$mean[1:24],
+#                            snaive(ts(gtrend_ILI_merge$h3_per_samples[1:723], frequency = 52, start = c(2004, 40)))$mean[1:24]),
+#          bootstrap = TRUE) %>%
+#   autoplot()
+# 
+# forecast(fit, level = 80) %>% autoplot()
+# 
+# 
+# ## For future Google Trends - compare the 1 wk known value to what was observed at the same
+# # week last year. Adjust the 2, 3, 4 seasonal naive values by the ratio of the two 1 wk values
+>>>>>>> c4102c6aac3ee17dae5abfb2ad68ba2cee545e53

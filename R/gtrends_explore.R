@@ -4,6 +4,7 @@ library(MMWRweek)
 library(gtrendsR)
 library(lubridate)
 
+<<<<<<< HEAD
 load("Data/Gtrends.Rdata")
 load("Data/virologic.Rdata")
 load("Data/ili.Rdata")
@@ -29,6 +30,32 @@ ggplot(mutate(gtrend_US_flu_merge, order_week = week_inorder(week, season)) %>%
 
 # Convert to ts() object
 gtrend_US_ts <- ts(gtrend_US_flu_merge$hits, frequency = 52, start = c(2004, 40))
+=======
+
+# Try overall US
+US_flu_1014<- gtrends(keyword = "influenza",
+                      geo = "US",
+                      time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2014, 40)))$interest_over_time
+
+US_flu_1418 <- gtrends(keyword = "influenza",
+                       geo = "US")$interest_over_time
+
+US_flu_merge <- inner_join(US_flu_1014 %>%
+                             select(date, old_hits = hits) %>%
+                             filter(date %within% interval(MMWRweek2Date(2013, 42), 
+                                                           MMWRweek2Date(2014, 18))),
+                           US_flu_1418 %>%
+                             select(date, new_hits = hits) %>%
+                             filter(date %within% interval(MMWRweek2Date(2013, 42), 
+                                                           MMWRweek2Date(2014, 18))),
+                           by = "date") %>%
+  mutate(ratio = old_hits / new_hits,
+         logratio = log2(ratio)) 
+
+ggplot(US_flu_merge) +
+  geom_line(aes(x = date, y = old_hits), color = "red") +
+  geom_line(aes(x = date, y = new_hits), color = "blue")
+>>>>>>> c4102c6aac3ee17dae5abfb2ad68ba2cee545e53
 
 ggplot(US_flu_merge) +
   geom_line(aes(x = date, y = ratio), color = "black") +
@@ -38,11 +65,19 @@ ggplot(US_flu_merge) +
 # Explore trends by state - 1 state in each region ------------
 
 # Region 1 - Massachusetts
+<<<<<<< HEAD
 MA_flu_1014<- gtrends(keyword = "flu",
                       geo = "US-MA",
                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2014, 40)))$interest_over_time
 
 MA_flu_1418 <- gtrends(keyword = "flu",
+=======
+MA_flu_1014<- gtrends(keyword = "influenza",
+                      geo = "US-MA",
+                      time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2014, 40)))$interest_over_time
+
+MA_flu_1418 <- gtrends(keyword = "influenza",
+>>>>>>> c4102c6aac3ee17dae5abfb2ad68ba2cee545e53
                        geo = "US-MA")$interest_over_time
 
 MA_flu_merge <- full_join(MA_flu_1014 %>%
@@ -58,9 +93,12 @@ MA_flu_merge <- full_join(MA_flu_1014 %>%
          logratio = log2(ratio)) %>%
   filter(!is.na(ratio))
 
+<<<<<<< HEAD
 ggplot(MA_flu_1418) +
   geom_line(aes(x = date, y = hits))
 
+=======
+>>>>>>> c4102c6aac3ee17dae5abfb2ad68ba2cee545e53
 ggplot(MA_flu_merge) +
   geom_line(aes(x = date, y = old_hits), color = "red") +
   geom_line(aes(x = date, y = new_hits), color = "blue")
