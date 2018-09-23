@@ -19,24 +19,20 @@ load("Data/Gtrends.Rdata")
 # Create clusters for use later in program
 cluster <- create_cluster(cores = detectCores())
 
-# Create truth for all seasons -------
-load("Data/past_truth.Rdata")
-# nested_truth <- ili_current %>%
-#   filter(year >= 2010, season != "2009/2010") %>%
-#   select(season, location, week, ILI) %>%
-#   nest(-season) %>%
-#   mutate(truth = map2(season, data,
-#                       ~ create_truth(fluview = FALSE, year = substr(.x, 1, 4),
-#                                      weekILI = .y)),
-#          eval_period = pmap(list(data, truth, season),
-#                             ~ create_eval_period(..1, ..2, ..3)),
-#          exp_truth = map(truth,
-#                          ~ expand_truth(.))) %>%
-#   select(-data)
-# save(nested_truth, file = "Data/past_truth.Rdata")
+# Create truth for all seasons and combine datasets -------
+nested_truth <- ili_current %>%
+  filter(year >= 2010, season != "2009/2010") %>%
+  select(season, location, week, ILI) %>%
+  nest(-season) %>%
+  mutate(truth = map2(season, data,
+                      ~ create_truth(fluview = FALSE, year = substr(.x, 1, 4),
+                                     weekILI = .y)),
+         eval_period = pmap(list(data, truth, season),
+                            ~ create_eval_period(..1, ..2, ..3)),
+         exp_truth = map(truth,
+                         ~ expand_truth(.))) %>%
+  select(-data)
 
-
-# Combine datasets together -------
 flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location) %>%
   inner_join(select(virologic_combined, location, season, year, week, h1_per_samples,
                    h3_per_samples, b_per_samples),
@@ -52,6 +48,9 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
     week < 40 ~ week + 52,
     TRUE ~ week
   ))
+
+save(nested_truth, flu_data_merge, file = "Data/truth_and_data.Rdata")
+
 
 ### Decisions to make ###
 
