@@ -330,7 +330,7 @@ for(i in 40:72) {
 
 # Create forecasts for 2016/2017 ------
 train_ili_1617 <- ili_current %>%
-  filter(year <= 2017, season != "2016/2017")
+  filter(year <= 2016, season != "2016/2017")
 
 virologic_1617 <- virologic_combined %>%
   filter(season == "2016/2017") %>%
@@ -407,13 +407,13 @@ subtype_functions_1718 <- modify_depth(
   function(dens) approxfun(dens$x, dens$y, rule = 2)
 )
 
-for(i in 49:72) {
+for(i in 40:72) {
   temp <- create_subtype_forecast(
     functions = subtype_functions_1718,
     virologic = virologic_1718,
     pub_week = i,
     season = "2017/2018",
-    prob_no_onset = filter(prob_no_onset, season = "2017/2018")
+    prob_no_onset = filter(prob_no_onset, season == "2017/2018")
   )
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")

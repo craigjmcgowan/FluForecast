@@ -8,7 +8,7 @@ load("Data/pseudo_onsets_2003_2006.Rdata")
 
 # Load functions 
 source("R/create_historical_forecast.R")
-source("R/week_order_functions.R")
+source("R/utils.R")
 
 # Create data.frame of probability of no onset based on prior years -----
 onsets <- ili_current %>%
@@ -22,7 +22,8 @@ onsets <- ili_current %>%
 # Weight probability of no onset by virus % in seasons w/o onset
 prob_no_onset <- onsets %>%
   group_by(location) %>%
-  summarize(prob_no_onset = sum(bin_start_incl == "none") / n())
+  arrange(season, .by_group = T) %>%
+  mutate(prob_no_onset = lag(cumsum(bin_start_incl == "none") / row_number(), default = 0))
 
 
 # Create forecasts for 2010/2011 ------
@@ -47,7 +48,7 @@ for(i in 40:72) {
     functions = historical_functions_1011,
     pub_week = i,
     season = "2010/2011",
-    prob_no_onset = prob_no_onset
+    prob_no_onset = filter(prob_no_onset, season == "2010/2011")
   )
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
@@ -56,6 +57,7 @@ for(i in 40:72) {
             path = paste0("Forecasts/2010-2011/Historical Average/EW", j, ".csv"))
   
 }
+
 # Create forecasts for 2011/2012 ------
 train_ili_1112 <- ili_current %>%
   filter(year <= 2011, season != "2011/2012")
@@ -78,7 +80,7 @@ for(i in 40:72) {
     functions = historical_functions_1112,
     pub_week = i,
     season = "2011/2012",
-    prob_no_onset = prob_no_onset
+    prob_no_onset = filter(prob_no_onset, season == "2011/2012")
   )
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
@@ -111,7 +113,7 @@ for(i in 40:72) {
     functions = historical_functions_1213,
     pub_week = i,
     season = "2012/2013",
-    prob_no_onset = prob_no_onset
+    prob_no_onset = filter(prob_no_onset, season == "2012/2013")
   )
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
@@ -130,7 +132,8 @@ dir.create("Forecasts/2013-2014/Historical Average/",
            showWarnings = FALSE)
 
 # Create target densities and functions
-historical_densities_1314 <- create_historical_densities(train_ili_1314)
+historical_densities_1314 <- create_historical_densities(train_ili_1314,
+                                                         pseudo_onsets)
 
 historical_functions_1314 <- modify_depth(
   historical_densities_1314, 2,
@@ -142,7 +145,7 @@ for(i in 40:72) {
     functions = historical_functions_1314,
     pub_week = i,
     season = "2013/2014",
-    prob_no_onset = prob_no_onset
+    prob_no_onset = filter(prob_no_onset, season == "2013/2014")
   )
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
@@ -161,7 +164,8 @@ dir.create("Forecasts/2014-2015/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
-historical_densities_1415 <- create_historical_densities(train_ili_1415)
+historical_densities_1415 <- create_historical_densities(train_ili_1415,
+                                                         pseudo_onsets)
 
 historical_functions_1415 <- modify_depth(
   historical_densities_1415, 2,
@@ -173,7 +177,7 @@ for(i in 40:73) {
     functions = historical_functions_1415,
     pub_week = i,
     season = "2014/2015",
-    prob_no_onset = prob_no_onset
+    prob_no_onset = filter(prob_no_onset, season == "2014/2015")
   )
   
   j <- str_pad(ifelse(i > 53, i - 53, i), 2, pad = "0")
@@ -192,7 +196,8 @@ dir.create("Forecasts/2015-2016/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
-historical_densities_1516 <- create_historical_densities(train_ili_1516)
+historical_densities_1516 <- create_historical_densities(train_ili_1516,
+                                                         pseudo_onsets)
 
 historical_functions_1516 <- modify_depth(
   historical_densities_1516, 2,
@@ -204,7 +209,7 @@ for(i in 40:72) {
     functions = historical_functions_1516,
     pub_week = i,
     season = "2015/2016",
-    prob_no_onset = prob_no_onset
+    prob_no_onset = filter(prob_no_onset, season == "2015/2016")
   )
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
@@ -223,7 +228,8 @@ dir.create("Forecasts/2016-2017/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
-historical_densities_1617 <- create_historical_densities(train_ili_1617)
+historical_densities_1617 <- create_historical_densities(train_ili_1617,
+                                                         pseudo_onsets)
 
 historical_functions_1617 <- modify_depth(
   historical_densities_1617, 2,
@@ -235,7 +241,7 @@ for(i in 40:72) {
     functions = historical_functions_1617,
     pub_week = i,
     season = "2016/2017",
-    prob_no_onset = prob_no_onset
+    prob_no_onset = filter(prob_no_onset, season == "2016/2017")
   )
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
@@ -254,7 +260,8 @@ dir.create("Forecasts/2017-2018/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
-historical_densities_1718 <- create_historical_densities(train_ili_1718)
+historical_densities_1718 <- create_historical_densities(train_ili_1718,
+                                                         pseudo_onsets)
 
 historical_functions_1718 <- modify_depth(
   historical_densities_1718, 2,
@@ -266,7 +273,7 @@ for(i in 40:72) {
     functions = historical_functions_1718,
     pub_week = i,
     season = "2017/2018",
-    prob_no_onset = prob_no_onset
+    prob_no_onset = filter(prob_no_onset, season == "2017/2018")
   )
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")

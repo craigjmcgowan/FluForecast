@@ -91,7 +91,7 @@ create_historical_forecast <- function(functions, pub_week,
   pred <- tibble()
 
   for(this_location in names(functions[["Season onset"]])) {
-    
+  
     # Seasonal targets -----
     onset <- tibble()
     pkwk <- tibble()
