@@ -168,7 +168,6 @@ eval_period_1718 <- create_eval_period(ILI_1718, truth_1718, "2017/2018")
 
 
 # Score entries -----
-source("R/calc_scores_helper.R")
 eval_scores_1011 <- calc_scores(forecasts_1011, exp_truth_1011, 
                                 season = "2010/2011", exclude = FALSE, 
                                 eval = TRUE, eval_period = eval_period_1011)
