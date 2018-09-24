@@ -5,7 +5,6 @@ library(forecast)
 library(lubridate)
 library(FluSight)
 library(MMWRweek)
-library(parallel)
 library(multidplyr)
 
 # Load functions
@@ -17,39 +16,40 @@ load("Data/virologic.Rdata")
 load("Data/Gtrends.Rdata")
 
 # Create clusters for use later in program
-cluster <- create_cluster(cores = detectCores())
+cluster <- create_cluster(cores = parallel::detectCores())
 
 # Create truth for all seasons and combine datasets -------
-nested_truth <- ili_current %>%
-  filter(year >= 2010, season != "2009/2010") %>%
-  select(season, location, week, ILI) %>%
-  nest(-season) %>%
-  mutate(truth = map2(season, data,
-                      ~ create_truth(fluview = FALSE, year = substr(.x, 1, 4),
-                                     weekILI = .y)),
-         eval_period = pmap(list(data, truth, season),
-                            ~ create_eval_period(..1, ..2, ..3)),
-         exp_truth = map(truth,
-                         ~ expand_truth(.))) %>%
-  select(-data)
-
-flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location) %>%
-  inner_join(select(virologic_combined, location, season, year, week, h1_per_samples,
-                   h3_per_samples, b_per_samples),
-            by = c("location", "season", "year", "week")) %>%
-  inner_join(gtrend_US_flu_merge,
-            by = c("season", "year", "week")) %>%
-  # Remove 2008/2009 and 2009/2010 seasons due to pandemic activity
-  filter(!season %in% c("2008/2009", "2009/2010")) %>%
-  # Remove week 33 in 2014 so all seasons have 52 weeks - minimal activity
-  filter(!(year == 2014 & week == 33)) %>%
-  mutate(order_week = case_when(
-    week < 40 & season == "2014/2015" ~ week + 53,
-    week < 40 ~ week + 52,
-    TRUE ~ week
-  ))
-
-save(nested_truth, flu_data_merge, file = "Data/truth_and_data.Rdata")
+load("Data/truth_and_data.Rdata")
+# nested_truth <- ili_current %>%
+#   filter(year >= 2010, season != "2009/2010") %>%
+#   select(season, location, week, ILI) %>%
+#   nest(-season) %>%
+#   mutate(truth = map2(season, data,
+#                       ~ create_truth(fluview = FALSE, year = substr(.x, 1, 4),
+#                                      weekILI = .y)),
+#          eval_period = pmap(list(data, truth, season),
+#                             ~ create_eval_period(..1, ..2, ..3)),
+#          exp_truth = map(truth,
+#                          ~ expand_truth(.))) %>%
+#   select(-data)
+# 
+# flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location) %>%
+#   inner_join(select(virologic_combined, location, season, year, week, h1_per_samples,
+#                    h3_per_samples, b_per_samples),
+#             by = c("location", "season", "year", "week")) %>%
+#   inner_join(gtrend_US_flu_merge,
+#             by = c("season", "year", "week")) %>%
+#   # Remove 2008/2009 and 2009/2010 seasons due to pandemic activity
+#   filter(!season %in% c("2008/2009", "2009/2010")) %>%
+#   # Remove week 33 in 2014 so all seasons have 52 weeks - minimal activity
+#   filter(!(year == 2014 & week == 33)) %>%
+#   mutate(order_week = case_when(
+#     week < 40 & season == "2014/2015" ~ week + 53,
+#     week < 40 ~ week + 52,
+#     TRUE ~ week
+#   ))
+# 
+# save(nested_truth, flu_data_merge, file = "Data/truth_and_data.Rdata")
 
 
 ### Decisions to make ###
@@ -268,19 +268,18 @@ load("Data/arima_fits.Rdata")
 #   collect() %>%
 #   as.tibble() %>%
 #   ungroup()
-
-save(arima_model_fits, file = "Data/arima_fits.Rdata")
+# 
+# save(arima_model_fits, file = "Data/arima_fits.Rdata")
 
 
 # Set up data for forecast creation in parallel
-arima_model_data_setup <- crossing(season = "2014/2015",
-                                     # c("2010/2011", "2011/2012", "2012/2013",
-                                     #          "2013/2014", "2014/2015", "2015/2016",
-                                     #          "2016/2017", "2017/2018"),
+arima_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
+                                              "2013/2014", "2014/2015", "2015/2016",
+                                              "2016/2017", "2017/2018"),
                              arima_1 = 0:3,
                              arima_2 = 0:1,
                              arima_3 = 0:3,
-                             week = 50, #c(43:71),
+                             week = c(43:71),
                              location = unique(flu_data_merge$location)) %>%
   filter(week < 71 | season == "2014/2015") %>%
   mutate(epiweek = case_when(
@@ -295,81 +294,91 @@ arima_model_data_setup <- crossing(season = "2014/2015",
   left_join(select(arima_model_fits, -group), 
             by = c("location", "season", "arima_1", "arima_2", "arima_3")) %>%
   # Set up grouping for parallel
-  mutate(group = rep(1:length(cluster), length.out = nrow(.)))
+  mutate(group = rep(1:4, length.out = nrow(.)))
   
 
-arima_model_data_parallel <- arima_model_data_setup %>%
-  partition(group, cluster = cluster)
-
-arima_model_data_parallel %>%
-  cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek")) %>% 
-  cluster_assign_value("flu_data_merge", flu_data_merge) %>%
-  cluster_assign_value("ili_init_pub_list", ili_init_pub_list) %>%
-  cluster_assign_value("fit_to_forecast", fit_to_forecast) %>%
-  cluster_assign_value("sample_predictive_trajectories_arima", 
-                       sample_predictive_trajectories_arima)
-
-
-# Create forecasts for different ARIMA structures
+# Create and score forecasts in single-season parallel chunks
+# Clear forecasts from memory after each season
+arima_scores <- tibble()
 start_time <- Sys.time()
-arima_forecasts <- arima_model_data_parallel %>%
-  # filter(season == "2010/2011") %>%
-  mutate(pred_data = pmap(list(season, week, location, epiweek), 
-                   ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
-                            season != paste0(substr(..1, 6, 9), "/",
-                                             as.numeric(substr(..1, 6, 9)) + 1),
-                            season != ..1 | order_week %in% 40:..2,
-                            location == ..3) %>%
-                     left_join(select(ili_init_pub_list[[paste(..4)]], 
-                                      ILI, epiweek, location),
-                               by = c("epiweek", "location")) %>%
-                     mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
-                     select(-ILI.x, -ILI.y) %>%
-                     mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
-  # Set up Fourier data for forecasting
-  mutate(xreg = map2(pred_data, K,
-                     ~ fourier(.x$ILI, K = .y)),
-         max_week = ifelse(season == "2014/2015", 53, 52)) %>%
-  # Fit ARIMA model based on most recent data using prior fit
-  mutate(pred_fit = pmap(list(pred_data, fit, xreg),
-                         ~ Arima(..1$ILI, xreg = ..3, model = ..2))) %>%
-  # Create predicted results
-  mutate(pred_results = pmap(
-    list(pred_fit, pred_data, location, season, max_week, K),
-    ~ fit_to_forecast(object = ..1,
-                      xreg = fourier(..2$ILI, K = ..6,
-                                     h = ..5 - 17 - nrow(..2[..2$season == ..4, ])),
-                      pred_data = ..2,
-                      location = ..3,
-                      season = ..4,
-                      max_week = ..5,
-                      npaths = 250))) %>%
-  collect() %>%
-  as.tibble() %>%
-  ungroup() %>%
-  select(season, arima_1:arima_3, location, week, pred_results)
+for(this_season in c("2010/2011", "2011/2012")) {
 
+  for_cluster <- create_cluster(cores = parallel::detectCores())
 
-save(arima_forecasts, file = "Data/arima_forecasts.Rdata")
+  arima_model_data_parallel <- arima_model_data_setup %>%
+    filter(season == this_season) %>%
+    partition(group, cluster = for_cluster)
+  
+  arima_model_data_parallel %>%
+    cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek")) %>% 
+    cluster_assign_value("flu_data_merge", flu_data_merge) %>%
+    cluster_assign_value("ili_init_pub_list", ili_init_pub_list) %>%
+    cluster_assign_value("fit_to_forecast", fit_to_forecast) %>%
+    cluster_assign_value("sample_predictive_trajectories_arima", 
+                         sample_predictive_trajectories_arima)
+  
+  
+  # Create forecasts for different ARIMA structures
+  arima_forecasts <- arima_model_data_parallel %>%
+    mutate(pred_data = pmap(list(season, week, location, epiweek), 
+                     ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
+                              season != paste0(substr(..1, 6, 9), "/",
+                                               as.numeric(substr(..1, 6, 9)) + 1),
+                              season != ..1 | order_week %in% 40:..2,
+                              location == ..3) %>%
+                       left_join(select(ili_init_pub_list[[paste(..4)]], 
+                                        ILI, epiweek, location),
+                                 by = c("epiweek", "location")) %>%
+                       mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
+                       select(-ILI.x, -ILI.y) %>%
+                       mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
+    # Set up Fourier data for forecasting
+    mutate(xreg = map2(pred_data, K,
+                       ~ fourier(.x$ILI, K = .y)),
+           max_week = ifelse(season == "2014/2015", 53, 52)) %>%
+    # Fit ARIMA model based on most recent data using prior fit
+    mutate(pred_fit = pmap(list(pred_data, fit, xreg),
+                           ~ Arima(..1$ILI, xreg = ..3, model = ..2))) %>%
+    # Create predicted results
+    mutate(pred_results = pmap(
+      list(pred_fit, pred_data, location, season, max_week, K),
+      ~ fit_to_forecast(object = ..1,
+                        xreg = fourier(..2$ILI, K = ..6,
+                                       h = ..5 - 17 - nrow(..2[..2$season == ..4, ])),
+                        pred_data = ..2,
+                        location = ..3,
+                        season = ..4,
+                        max_week = ..5,
+                        npaths = 250)
+      )) %>%
+    collect() %>%
+    as.tibble() %>%
+    ungroup() %>%
+    select(season, arima_1:arima_3, location, week, pred_results)
+ 
+  # Normalize probabilities and score forecasts 
+  arima_scores <- arima_forecasts %>%
+    mutate(pred_results = map2(pred_results, location,
+                               ~ mutate(.x, location = .y) %>%
+                                 normalize_probs())) %>%
+    select(season, arima_1:arima_3, week, pred_results) %>%
+    unnest() %>%
+    nest(-season, -arima_1, -arima_2, -arima_3, -week) %>%
+    left_join(nested_truth, by = "season") %>%
+    mutate(scores = map2(data, exp_truth,
+                         ~ score_entry(.x, .y)),
+           eval_scores = pmap(list(scores, eval_period, season),
+                              ~ create_eval_scores(..1, ..2, ..3))) %>%
+    select(season, arima_1:arima_3, eval_scores) %>%
+    unnest() %>%
+    bind_rows(arima_scores)
+  
+  save(arima_scores, file = "Data/CV_ARIMA_Scores.Rdata")
+  
+  rm(for_cluster, arima_forecasts, arima_model_data_parallel)
 
-# Normalize probabilities and score forecasts 
-arima_scores <- arima_forecasts %>%
-  mutate(pred_results = map2(pred_results, location,
-                             ~ mutate(.x, location = .y) %>%
-                               normalize_probs())) %>%
-  select(season, arima_1:arima_3, week, pred_results) %>%
-  unnest() %>%
-  nest(-season, -arima_1, -arima_2, -arima_3, -week) %>%
-  left_join(nested_truth, by = "season") %>%
-  mutate(scores = map2(data, exp_truth,
-                       ~ score_entry(.x, .y)),
-         eval_scores = pmap(list(scores, eval_period, season),
-                            ~ create_eval_scores(..1, ..2, ..3))) %>%
-  select(season, arima_1:arima_3, eval_scores) %>%
-  unnest() 
-
-save(arima_scores, file = "Data/CV_ARIMA_Scores.Rdata")
-
+}
+Sys.time() - start_time
 # Determine best ARIMA model for each region
 best_arima_cv <- arima_scores %>%
   group_by(location, arima_1, arima_2, arima_3) %>%
@@ -377,7 +386,7 @@ best_arima_cv <- arima_scores %>%
   group_by(location) %>%
   filter(avg_score == max(avg_score)) %>%
   ungroup() %>%
-  select(location, arima_1:arima_3)
+  select(location, arima_1:arima_3, avg_score)
 
 save(best_arima_cv, file = "Data/CV_ARIMA_terms.Rdata")
 
@@ -459,15 +468,22 @@ covar_model_data_setup <- crossing(season = "2017/2018",
                                    week = 50, #c(43:71),
                                    location = unique(flu_data_merge$location)) %>%
   filter(week < 71 | season == "2014/2015") %>%
-  mutate(epiweek = case_when(
-    season == "2014/2015" & week > 53 ~ 
-      as.numeric(paste0(substr(season, 6, 9), 
-                        str_pad(week - 53, 2, "left", "0"))),
-    week > 52 ~ 
-      as.numeric(paste0(substr(season, 6, 9), 
-                        str_pad(week - 52, 2, "left", "0"))),
-    TRUE ~ as.numeric(paste0(substr(season, 1, 4), str_pad(week, 2, "left", "0")))
-  )) %>%
+  mutate(
+    epiweek = case_when(
+      season == "2014/2015" & week > 53 ~ 
+        as.numeric(paste0(substr(season, 6, 9), 
+                          str_pad(week - 53, 2, "left", "0"))),
+      week > 52 ~ 
+        as.numeric(paste0(substr(season, 6, 9), 
+                          str_pad(week - 52, 2, "left", "0"))),
+      TRUE ~ as.numeric(paste0(substr(season, 1, 4), str_pad(week, 2, "left", "0")))
+    ),
+    prev_season = case_when(
+      season == "2010/2011" ~ "2007/2008",
+      TRUE ~ paste0(as.numeric(substr(season, 1, 4)) - 1, "/",
+                    substr(season, 1, 4))
+    )
+  ) %>%
   left_join(covar_model_fits, 
             by = c("location", "season", "model")) #%>%
   # Set up grouping for parallel
@@ -533,22 +549,24 @@ covar_forecasts <- covar_model_parallel %>%
                     ~ Arima(..1$ILI, xreg = ..3, model = ..2)),
     # Create data frame of xreg terms for forecasting
     gtrend_forecast = pmap(
-      list(pred_data, season, week, max_week),
+      list(pred_data, location, season, prev_season, week, max_week),
       ~ tibble(hits = c(flu_data_merge %>%
-                          filter(season == ..2, order_week == ..3 + 1) %>%
-                          slice(1) %>%
+                          filter(location == ..2, season == ..3, 
+                                 order_week == ..5 + 1) %>%
                           pull(hits),
-                        snaive(ts(..1$hits, 
-                                  frequency = 52, 
-                                  start = c(2004, 40)))$mean[2:(..4 - 17 - 
-                                                                  nrow(..1[..1$season == ..2, ]))] *
-                          flu_data_merge %>%
-                            filter(season == ..2, order_week == ..3 + 1) %>%
-                            slice(1) %>%
+                        flu_data_merge %>%
+                          filter(location == ..2, season == ..4, 
+                                 order_week > ..5 + 1, 
+                                 order_week < ..6 + 23) %>%
+                          pull(hits) *
+                          mean(flu_data_merge %>%
+                            filter(location == ..2, season == ..3, 
+                                   order_week <= ..5 + 1) %>%
                             pull(hits) / 
-                          snaive(ts(..1$hits, 
-                                    frequency = 52, 
-                                    start = c(2004, 40)))$mean[1]))
+                            flu_data_merge %>%
+                              filter(location == ..2, season == ..4, 
+                                     order_week <= ..5 + 1) %>%
+                              pull(hits))))
     ),
     h1_per_forecast = pmap(
       list(pred_data, season, max_week),
@@ -613,12 +631,11 @@ covar_forecasts <- covar_model_parallel %>%
                         location = ..4,
                         season = ..5,
                         max_week = ..6,
-                        npaths = 20)
+                        npaths = 250)
     )
   )# %>%
   # collect() %>%
   # as.tibble()
-
 
 covar_scores <- covar_forecasts %>% ungroup() %>%
   select(season, model, location, week, pred_results) %>%
@@ -645,9 +662,11 @@ best_covar_cv <- covar_scores %>%
   group_by(location) %>%
   filter(avg_score == max(avg_score)) %>%
   ungroup() %>%
-  select(location, model)
+  select(location, model, avg_score)
 
 save(best_covar_cv, file = "Data/CV_covar_terms.Rdata")
+
+
 
 
 
