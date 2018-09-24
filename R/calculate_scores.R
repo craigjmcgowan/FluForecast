@@ -3,7 +3,7 @@ library(tidyverse)
 library(FluSight)
 library(cdcfluview)
 
-source("R/read_forecasts.R")
+source("R/utils.R")
 
 # Read in retrospective forecasts -------
 forecasts_1011 <- read_forecasts("Forecasts/2010-2011")
@@ -201,20 +201,14 @@ eval_scores_1718 <- calc_scores(forecasts_1718, exp_truth_1718,
                                 season = "2017/2018", exclude = FALSE, 
                                 eval = TRUE, eval_period = eval_period_1718)
 
+all_eval_scores <- bind_rows(eval_scores_1011, eval_scores_1112, 
+                             eval_scores_1213, eval_scores_1314,
+                             eval_scores_1415, eval_scores_1516, 
+                             eval_scores_1617, eval_scores_1718)
+
 # Save scores -----
 save(eval_scores_1011, eval_scores_1112, eval_scores_1213, eval_scores_1314,
      eval_scores_1415, eval_scores_1516, eval_scores_1617, eval_scores_1718,
+     all_eval_scores,
      file = "model_scores.Rdata")
 
-
-overall_avg <- function(scores, this_location = NULL) {
-  if (is.null(this_location)) this_location = unique(scores$location)
-  scores %>%
-    filter(location %in% this_location) %>%
-    group_by(team) %>%
-    summarize(score = mean(score, na.rm = T)) %>%
-    mutate(skill = exp(score)) %>%
-    arrange(desc(score))
-}
-
-overall_avg(eval_scores_1718)
