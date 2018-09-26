@@ -1,0 +1,127 @@
+component_model_id,season,target,weight
+Historical Average,2010/2011,1 wk ahead,0.563720091077794
+Subtype Historical Average,2010/2011,1 wk ahead,0.436279908922206
+Historical Average,2011/2012,1 wk ahead,0.544350231614674
+Subtype Historical Average,2011/2012,1 wk ahead,0.455649768385326
+Historical Average,2012/2013,1 wk ahead,0.520399730560535
+Subtype Historical Average,2012/2013,1 wk ahead,0.479600269439465
+Historical Average,2013/2014,1 wk ahead,0.885830908636869
+Subtype Historical Average,2013/2014,1 wk ahead,0.114169091363131
+Historical Average,2014/2015,1 wk ahead,0.886511891106907
+Subtype Historical Average,2014/2015,1 wk ahead,0.113488108893093
+Historical Average,2015/2016,1 wk ahead,0.530769685002475
+Subtype Historical Average,2015/2016,1 wk ahead,0.469230314997525
+Historical Average,2016/2017,1 wk ahead,0.5358988293955
+Subtype Historical Average,2016/2017,1 wk ahead,0.4641011706045
+Historical Average,2017/2018,1 wk ahead,0.0254495586631306
+Subtype Historical Average,2017/2018,1 wk ahead,0.974550441336869
+Historical Average,2010/2011,2 wk ahead,0.557718908415785
+Subtype Historical Average,2010/2011,2 wk ahead,0.442281091584215
+Historical Average,2011/2012,2 wk ahead,0.539127743915652
+Subtype Historical Average,2011/2012,2 wk ahead,0.460872256084348
+Historical Average,2012/2013,2 wk ahead,0.515256257729366
+Subtype Historical Average,2012/2013,2 wk ahead,0.484743742270634
+Historical Average,2013/2014,2 wk ahead,0.882307240614414
+Subtype Historical Average,2013/2014,2 wk ahead,0.117692759385586
+Historical Average,2014/2015,2 wk ahead,0.887130968695152
+Subtype Historical Average,2014/2015,2 wk ahead,0.112869031304848
+Historical Average,2015/2016,2 wk ahead,0.526037330019998
+Subtype Historical Average,2015/2016,2 wk ahead,0.473962669980002
+Historical Average,2016/2017,2 wk ahead,0.531388521452961
+Subtype Historical Average,2016/2017,2 wk ahead,0.468611478547039
+Historical Average,2017/2018,2 wk ahead,0.0265463871878224
+Subtype Historical Average,2017/2018,2 wk ahead,0.973453612812178
+Historical Average,2010/2011,3 wk ahead,0.556462377910366
+Subtype Historical Average,2010/2011,3 wk ahead,0.443537622089634
+Historical Average,2011/2012,3 wk ahead,0.535454263390505
+Subtype Historical Average,2011/2012,3 wk ahead,0.464545736609495
+Historical Average,2012/2013,3 wk ahead,0.513066273619252
+Subtype Historical Average,2012/2013,3 wk ahead,0.486933726380748
+Historical Average,2013/2014,3 wk ahead,0.877467352580433
+Subtype Historical Average,2013/2014,3 wk ahead,0.122532647419567
+Historical Average,2014/2015,3 wk ahead,0.886300714566599
+Subtype Historical Average,2014/2015,3 wk ahead,0.113699285433401
+Historical Average,2015/2016,3 wk ahead,0.522726116969209
+Subtype Historical Average,2015/2016,3 wk ahead,0.477273883030791
+Historical Average,2016/2017,3 wk ahead,0.528470108568245
+Subtype Historical Average,2016/2017,3 wk ahead,0.471529891431755
+Historical Average,2017/2018,3 wk ahead,0.029327150802585
+Subtype Historical Average,2017/2018,3 wk ahead,0.970672849197415
+Historical Average,2010/2011,4 wk ahead,0.560716682187662
+Subtype Historical Average,2010/2011,4 wk ahead,0.439283317812338
+Historical Average,2011/2012,4 wk ahead,0.538518652894824
+Subtype Historical Average,2011/2012,4 wk ahead,0.461481347105176
+Historical Average,2012/2013,4 wk ahead,0.518570143967043
+Subtype Historical Average,2012/2013,4 wk ahead,0.481429856032957
+Historical Average,2013/2014,4 wk ahead,0.879799523123195
+Subtype Historical Average,2013/2014,4 wk ahead,0.120200476876805
+Historical Average,2014/2015,4 wk ahead,0.888934941292453
+Subtype Historical Average,2014/2015,4 wk ahead,0.111065058707547
+Historical Average,2015/2016,4 wk ahead,0.525557722994656
+Subtype Historical Average,2015/2016,4 wk ahead,0.474442277005344
+Historical Average,2016/2017,4 wk ahead,0.531880517976591
+Subtype Historical Average,2016/2017,4 wk ahead,0.468119482023409
+Historical Average,2017/2018,4 wk ahead,0.0323898931832715
+Subtype Historical Average,2017/2018,4 wk ahead,0.967610106816728
+Historical Average,2010/2011,Season onset,4.96515096589354e-05
+Subtype Historical Average,2010/2011,Season onset,0.999950348490341
+Historical Average,2011/2012,Season onset,4.58619221785798e-06
+Subtype Historical Average,2011/2012,Season onset,0.999995413807782
+Historical Average,2012/2013,Season onset,0.000192264968642283
+Subtype Historical Average,2012/2013,Season onset,0.999807735031358
+Historical Average,2013/2014,Season onset,0.200453730569777
+Subtype Historical Average,2013/2014,Season onset,0.799546269430223
+Historical Average,2014/2015,Season onset,0.0586644502654375
+Subtype Historical Average,2014/2015,Season onset,0.941335549734563
+Historical Average,2015/2016,Season onset,3.74442053651886e-05
+Subtype Historical Average,2015/2016,Season onset,0.999962555794635
+Historical Average,2016/2017,Season onset,3.9355777946338e-05
+Subtype Historical Average,2016/2017,Season onset,0.999960644222054
+Historical Average,2017/2018,Season onset,1.02250478696569e-05
+Subtype Historical Average,2017/2018,Season onset,0.99998977495213
+Historical Average,2010/2011,Season peak percentage,0.796955297671096
+Subtype Historical Average,2010/2011,Season peak percentage,0.203044702328904
+Historical Average,2011/2012,Season peak percentage,0.711284676934935
+Subtype Historical Average,2011/2012,Season peak percentage,0.288715323065065
+Historical Average,2012/2013,Season peak percentage,0.894791091707245
+Subtype Historical Average,2012/2013,Season peak percentage,0.105208908292755
+Historical Average,2013/2014,Season peak percentage,0.999964582581717
+Subtype Historical Average,2013/2014,Season peak percentage,3.54174182827899e-05
+Historical Average,2014/2015,Season peak percentage,0.999986826265129
+Subtype Historical Average,2014/2015,Season peak percentage,1.31737348706417e-05
+Historical Average,2015/2016,Season peak percentage,0.723606478096949
+Subtype Historical Average,2015/2016,Season peak percentage,0.276393521903051
+Historical Average,2016/2017,Season peak percentage,0.725330832958988
+Subtype Historical Average,2016/2017,Season peak percentage,0.274669167041012
+Historical Average,2017/2018,Season peak percentage,2.20670092162808e-05
+Subtype Historical Average,2017/2018,Season peak percentage,0.999977932990784
+Historical Average,2010/2011,Season peak week,7.52647319001715e-05
+Subtype Historical Average,2010/2011,Season peak week,0.9999247352681
+Historical Average,2011/2012,Season peak week,0.000499172167161694
+Subtype Historical Average,2011/2012,Season peak week,0.999500827832838
+Historical Average,2012/2013,Season peak week,4.88589910378093e-05
+Subtype Historical Average,2012/2013,Season peak week,0.999951141008962
+Historical Average,2013/2014,Season peak week,0.783827121078465
+Subtype Historical Average,2013/2014,Season peak week,0.216172878921535
+Historical Average,2014/2015,Season peak week,0.0264936096534915
+Subtype Historical Average,2014/2015,Season peak week,0.973506390346508
+Historical Average,2015/2016,Season peak week,3.8699339480323e-05
+Subtype Historical Average,2015/2016,Season peak week,0.99996130066052
+Historical Average,2016/2017,Season peak week,3.64417223649824e-05
+Subtype Historical Average,2016/2017,Season peak week,0.999963558277635
+Historical Average,2017/2018,Season peak week,1.11683390187055e-05
+Subtype Historical Average,2017/2018,Season peak week,0.999988831660981
+Historical Average,2018/2019,1 wk ahead,0.566095968550259
+Subtype Historical Average,2018/2019,1 wk ahead,0.433904031449741
+Historical Average,2018/2019,2 wk ahead,0.561749018320171
+Subtype Historical Average,2018/2019,2 wk ahead,0.438250981679829
+Historical Average,2018/2019,3 wk ahead,0.559223140360337
+Subtype Historical Average,2018/2019,3 wk ahead,0.440776859639663
+Historical Average,2018/2019,4 wk ahead,0.563080164860234
+Subtype Historical Average,2018/2019,4 wk ahead,0.436919835139766
+Historical Average,2018/2019,Season onset,5.47106945089971e-05
+Subtype Historical Average,2018/2019,Season onset,0.999945289305491
+Historical Average,2018/2019,Season peak percentage,0.810021853923005
+Subtype Historical Average,2018/2019,Season peak percentage,0.189978146076995
+Historical Average,2018/2019,Season peak week,0.000117987695427387
+Subtype Historical Average,2018/2019,Season peak week,0.999882012304573
