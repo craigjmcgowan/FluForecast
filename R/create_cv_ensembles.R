@@ -6,7 +6,7 @@ source("R/utils.R")
 
 # List forecast files to be weighted
 model_files <- list.files(path = "Forecasts", recursive = TRUE, full.names = T)
-model_files <- model_files[!grepl('Ens', model_files)]
+model_files <- model_files[!grepl('ens', model_files)]
 
 # List weighting schemes to be calculated
 weight_files <- list.files("Weights")
@@ -32,7 +32,11 @@ for(j in 1:length(weight_files)) {
       `Model.Week` = week_reset(`Model.Week`, season),
       ew = paste0("EW", str_pad(`Model.Week`, 2, "left", 0))
     ) %>%
-      select(-`Model.Week`)
+      select(-`Model.Week`) %>%
+      # Ad hoc correction to make weights for EW20 in 2014/2015
+      bind_rows(., filter(., season == "2014/2015",
+                          ew == "EW19") %>%
+                  mutate(ew = "EW20"))
   }
   
   ## loop through each season and each season-week to make stacked forecasts
@@ -53,7 +57,7 @@ for(j in 1:length(weight_files)) {
                     paste0("EW", str_pad(1:20, 2, "left", pad = 0)))
 
     for (k in 1:length(week_names)) {
-      
+  
       this_week <- week_names[k]
       message(paste(stacked_name, "::", this_week, "::", Sys.time()))
       
