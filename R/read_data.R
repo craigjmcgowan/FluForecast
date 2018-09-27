@@ -39,15 +39,17 @@ ili_orig <- Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
            region == "hhs10" ~ "HHS Region 10"
          )) %>%
   rename(ILI = wili) %>%
-  select(-ili)
+  select(-ili) %>%
+  # Make ILI always > 0
+  mutate(ILI = case_when(near(ILI, 0) ~ 0.1,
+                         TRUE ~ ILI))
 
 # Save ILINet values for previous 26 weeks for each week's publication available
 ili_init_pub_list <- list()
 
-for(i in #c(201040:201052, 201101:201152, 201201:201252, 
-           c(201340:201352,
-           201401:201453, 201501:201552, 201601:201652, 201701:201752,
-           201801:201824)) {
+for(i in c(201040:201052, 201101:201152, 201201:201252, 201301:201338,
+           201340:201352, 201401:201453, 201501:201552, 201601:201652, 
+           201701:201752, 201801:201824)) {
   ili_init_pub_list[[paste(i)]] <- pull_initpub_epidata(i) %>%
     mutate(year = as.integer(substr(epiweek, 1, 4)),
            week = as.integer(substr(epiweek, 5, 6)),
@@ -68,7 +70,10 @@ for(i in #c(201040:201052, 201101:201152, 201201:201252,
              region == "hhs10" ~ "HHS Region 10"
            )) %>%
     rename(ILI = wili) %>%
-    select(-ili)
+    select(-ili) %>%
+    # Make ILI always > 0
+    mutate(ILI = case_when(near(ILI, 0) ~ 0.1,
+                           TRUE ~ ILI))
 }
 
 ili_init_pub <- bind_rows(ili_init_pub_list)
@@ -102,8 +107,11 @@ ili_current <- bind_rows(
              region == "hhs10" ~ "HHS Region 10"
          )) %>%
   rename(ILI = wili) %>%
-  select(-ili)
-  
+  select(-ili) %>%
+  # Make ILI always > 0
+  mutate(ILI = case_when(near(ILI, 0) ~ 0.1,
+                         TRUE ~ ILI))
+
 save(ili_orig, ili_current, ili_init_pub_list, ili_init_pub, 
      file = "Data/ili.Rdata")
 
