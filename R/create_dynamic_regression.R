@@ -293,9 +293,12 @@ fourier_model_data <- crossing(model = c("fit_1", "fit_2", "fit_3", "fit_4",
 
 
 # Set up party_df and load necessary libraries and functions
-load("Data/fourier_forecasts.Rdata")
-for (this_season in unique(fourier_model_data$season)) {
-  
+# load("Data/fourier_scores.Rdata")
+fourier_scores <- tibble()
+start_time <- Sys.time()
+for (this_season in c("2010/2011", "2011/2012", "2012/2013", "2013/2014", 
+                      "2014/2015", "2015/2016", "2016/2017", "2017/2018")) {
+
   fourier_cluster <- create_cluster(cores = parallel::detectCores())
   
   fourier_by_group <- fourier_model_data %>%
@@ -350,32 +353,32 @@ for (this_season in unique(fourier_model_data$season)) {
   fourier_forecasts_temp <- fourier_forecasts_temp %>% ungroup() %>%
     select(season, model, location, week, pred_results) 
   
-  fourier_forecasts <- bind_rows(fourier_forecasts,
-                                 fourier_forecasts_temp)
+  save(fourier_forecasts_temp, 
+       file = paste0("Data/fourier_forecasts_", 
+                                             substr(this_season, 1, 4), ".Rdata")) 
+
+  # Normalize probabilities and score forecasts 
+  fourier_scores <- fourier_forecasts_temp %>% 
+    mutate(pred_results = map2(pred_results, location,
+                               ~ mutate(.x, location = .y) %>%
+                                 normalize_probs())) %>%
+    select(season, model, week, pred_results) %>%
+    unnest() %>%
+    nest(-season, -model, -week) %>%
+    left_join(nested_truth, by = "season") %>%
+    mutate(scores = map2(data, exp_truth,
+                         ~ score_entry(.x, .y)),
+           eval_scores = pmap(list(scores, eval_period, season),
+                              ~ create_eval_scores(..1, ..2, ..3))) %>%
+    select(season, model, eval_scores) %>%
+    unnest() %>%
+    bind_rows(fourier_scores)
   
-  rm(fourier_cluster, fourier_by_group, fourier_forecasts_temp)
+  save(fourier_scores, file = "Data/CV_Fourier_Scores.Rdata")
+  
+  rm(fourier_forecasts_temp, fourier_by_group, fourier_cluster)
 }
-
-save(fourier_forecasts, file = "Data/fourier_forecasts.Rdata") 
-
-  
-# Normalize probabilities and score forecasts 
-fourier_scores <- fourier_forecasts %>% 
-  mutate(pred_results = map2(pred_results, location,
-                             ~ mutate(.x, location = .y) %>%
-                               normalize_probs())) %>%
-  select(season, model, week, pred_results) %>%
-  unnest() %>%
-  nest(-season, -model, -week) %>%
-  left_join(nested_truth, by = "season") %>%
-  mutate(scores = map2(data, exp_truth,
-                       ~ score_entry(.x, .y)),
-         eval_scores = pmap(list(scores, eval_period, season),
-                            ~ create_eval_scores(..1, ..2, ..3))) %>%
-  select(season, model, eval_scores) %>%
-  unnest() 
-
-save(fourier_scores, file = "Data/CV_Fourier_Scores.Rdata")
+Sys.time() - start_time
 
 # Determine best K value for each region
 best_k_cv <- fourier_scores %>%
@@ -391,6 +394,7 @@ save(best_k_cv, file = "Data/CV_Fourier_terms.Rdata")
 ##### ARIMA structure for error terms #####
 
 load("Data/CV_Fourier_terms.Rdata")
+load("Data/CV_Transform_terms.Rdata")
 load("Data/arima_fits.Rdata")
 # arima_model_fit_data <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
 #                                             "2013/2014", "2014/2015", "2015/2016",
@@ -414,7 +418,13 @@ load("Data/arima_fits.Rdata")
 #   left_join(best_transform_cv, by = "location") %>%
 #   left_join(best_k_cv, by = "location") %>%
 #   # Set up for parallel
-#   mutate(group = rep(1:length(cluster), length.out = nrow(.)))
+#   mutate(group = rep(1:length(cluster), length.out = nrow(.)),
+#          lambda = unlist(map(data,
+#                              ~ BoxCox.lambda(.$ILI))),
+#          lambda = case_when(model == "no_trans" ~ NA_real_,
+#                             model == "log" ~ 0,
+#                             model == "Box_Cox" ~ lambda)) %>%
+#   select(-model)
 # 
 # # Set up clusters
 # arima_fit_parallel <- arima_model_fit_data %>%
@@ -426,17 +436,20 @@ load("Data/arima_fits.Rdata")
 # arima_model_fits <- arima_fit_parallel %>%
 #   mutate(fit = pmap(
 #     list(data, arima_1, arima_2, arima_3, K, lambda),
-#     ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#     ~ try(Arima(..1$ILI, order = c(..2, ..3, ..4),
 #             xreg = fourier(..1$ILI, K = ..5),
-#             lambda = ..6)
+#             lambda = ..6), silent = TRUE)
 #     )) %>%
 #   select(-data) %>%
 #   collect() %>%
 #   as.tibble() %>%
-#   ungroup()
+#   ungroup() %>%
+#   filter(!grepl("Error", fit))
+# 
+# arima_model_fits <- arima_model_fits%>%
+#   filter(!grepl("Error", fit))
 # 
 # save(arima_model_fits, file = "Data/arima_fits.Rdata")
-
 
 # Set up data for forecast creation in parallel
 arima_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
@@ -457,7 +470,7 @@ arima_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/20
                         str_pad(week - 52, 2, "left", "0"))),
     TRUE ~ as.numeric(paste0(substr(season, 1, 4), str_pad(week, 2, "left", "0")))
   )) %>%
-  left_join(select(arima_model_fits, -group), 
+  right_join(select(arima_model_fits, -group), 
             by = c("location", "season", "arima_1", "arima_2", "arima_3")) %>%
   # Set up grouping for parallel
   mutate(group = rep(1:4, length.out = nrow(.)))
@@ -465,10 +478,10 @@ arima_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/20
 
 # Create and score forecasts in single-season parallel chunks
 # Clear forecasts from memory after each season
-load("Data/CV_arima_scores.Rdata")
-start_time <- Sys.time()
-for(this_season in c("2014/2015", "2015/2016")) {
 
+start_time <- Sys.time()
+for(this_season in c("2015/2016", "2016/2017", "2017/2018")) {
+  
   for_cluster <- create_cluster(cores = parallel::detectCores())
 
   arima_model_data_parallel <- arima_model_data_setup %>%
@@ -536,19 +549,41 @@ for(this_season in c("2014/2015", "2015/2016")) {
            eval_scores = pmap(list(scores, eval_period, season),
                               ~ create_eval_scores(..1, ..2, ..3))) %>%
     select(season, arima_1:arima_3, eval_scores) %>%
-    unnest() %>%
-    bind_rows(arima_scores)
+    unnest() 
   
-  save(arima_scores, file = "Data/CV_ARIMA_Scores.Rdata")
+  save(arima_scores, file = paste0("Data/CV_ARIMA_Scores_", substr(this_season, 1, 4),
+                                   ".Rdata"))
   
   rm(for_cluster, arima_forecasts, arima_model_data_parallel)
 
 }
 Sys.time() - start_time
+
+load("Data/CV_ARIMA_Scores_2010.Rdata")
+arima_scores_1011 <- arima_scores
+load("Data/CV_ARIMA_Scores_2011.Rdata")
+arima_scores_1112 <- arima_scores
+load("Data/CV_ARIMA_Scores_2012.Rdata")
+arima_scores_1213 <- arima_scores
+load("Data/CV_ARIMA_Scores_2013.Rdata")
+arima_scores_1314 <- arima_scores
+load("Data/CV_ARIMA_Scores_2014.Rdata")
+arima_scores_1415 <- arima_scores
+load("Data/CV_ARIMA_Scores_2015.Rdata")
+arima_scores_1516 <- arima_scores
+load("Data/CV_ARIMA_Scores_2016.Rdata")
+arima_scores_1617 <- arima_scores
+load("Data/CV_ARIMA_Scores_2017.Rdata")
+arima_scores_1718 <- arima_scores
+
 # Determine best ARIMA model for each region
-best_arima_cv <- arima_scores %>%
+best_arima_cv <- bind_rows(arima_scores_1011, arima_scores_1112,
+                           arima_scores_1213, arima_scores_1314,
+                           arima_scores_1415, arima_scores_1516,
+                           arima_scores_1617, arima_scores_1718)%>%
   group_by(location, arima_1, arima_2, arima_3) %>%
-  summarize(avg_score = mean(score)) %>%
+  summarize(avg_score = mean(score),
+            skill = exp(avg_score)) %>%
   group_by(location) %>%
   filter(avg_score == max(avg_score)) %>%
   ungroup() %>%
@@ -566,13 +601,323 @@ load("Data/CV_ARIMA_terms.Rdata")
 # Google Trends data only
 # Flu % only
 # Gtrends and flu %
+load("Data/covar_fits.Rdata")
+# covar_model_fits <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
+#                                         "2013/2014", "2014/2015", "2015/2016",
+#                                         "2016/2017", "2017/2018"),
+#                              model = c("ARIMA only", "Gtrends", "FluVirus", 
+#                                        "Gtrends & FluVirus")) %>%
+#   mutate(train_data = map(season,
+#                           ~ filter(flu_data_merge, year <= as.numeric(substr(., 6, 9)),
+#                                    season != paste0(substr(., 6, 9), "/",
+#                                                     as.numeric(substr(., 6, 9)) + 1),
+#                                    season != .))) %>%
+#   unnest() %>%
+#   # Nest by season and location
+#   nest(-season, -location, -model) %>%
+#   # Create time series of ILI
+#   mutate(data = map(data,
+#                    ~ mutate(.x,
+#                             ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
+#   # Merge best lambda, Fourier K value, and ARIMA structure by location
+#   left_join(rename(best_transform_cv, transform = model), by = "location") %>%
+#   mutate(lambda = unlist(map(data,
+#                              ~ BoxCox.lambda(.$ILI))),
+#          lambda = case_when(transform == "no_trans" ~ NA_real_,
+#                             transform == "log" ~ 0,
+#                             transform == "Box_Cox" ~ lambda)) %>%
+#   left_join(best_k_cv, by = "location") %>%
+#   left_join(best_arima_cv, by = "location") %>%
+#   # Fit models
+#   mutate(fit = case_when(
+#     model == "ARIMA only" ~ 
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = fourier(..1$ILI, K = ..5),
+#                 lambda = ..6)
+#       ),
+#     model == "Gtrends" ~ 
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$hits),
+#                 lambda = ..6)
+#       ),
+#     model == "FluVirus" ~ 
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$h1_per_samples, ..1$h3_per_samples,
+#                              ..1$b_per_samples),
+#                 lambda = ..6)
+#       ),
+#     model == "Gtrends & FluVirus" ~
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$hits, ..1$h1_per_samples, 
+#                              ..1$h3_per_samples, ..1$b_per_samples),
+#                 lambda = ..6)
+#       )
+#     ))
+# 
+# save(covar_model_fits, file = "Data/covar_fits.Rdata")
 
-covar_model_fits <- crossing(season = "2017/2018",
-                               # c("2010/2011", "2011/2012", "2012/2013",
-                               #              "2013/2014", "2014/2015", "2015/2016",
-                               #              "2016/2017", "2017/2018"),
-                             model = c("ARIMA only", "Gtrends", "FluVirus", 
-                                       "Gtrends & FluVirus")) %>%
+# Set up data for forecast creation in parallel
+covar_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
+                                            "2013/2014", "2014/2015", "2015/2016",
+                                            "2016/2017", "2017/2018"),
+                                   model = c("ARIMA only", "Gtrends", "FluVirus", 
+                                             "Gtrends & FluVirus"),
+                                   week = c(43:71),
+                                   location = unique(flu_data_merge$location)) %>%
+  filter(week < 71 | season == "2014/2015") %>%
+  mutate(
+    epiweek = case_when(
+      season == "2014/2015" & week > 53 ~ 
+        as.numeric(paste0(substr(season, 6, 9), 
+                          str_pad(week - 53, 2, "left", "0"))),
+      week > 52 ~ 
+        as.numeric(paste0(substr(season, 6, 9), 
+                          str_pad(week - 52, 2, "left", "0"))),
+      TRUE ~ as.numeric(paste0(substr(season, 1, 4), str_pad(week, 2, "left", "0")))
+    ),
+    prev_season = case_when(
+      season == "2010/2011" ~ "2007/2008",
+      TRUE ~ paste0(as.numeric(substr(season, 1, 4)) - 1, "/",
+                    substr(season, 1, 4))
+    )
+  ) %>%
+  inner_join(covar_model_fits, 
+            by = c("location", "season", "model")) %>%
+  # Set up grouping for parallel
+  mutate(group = rep(1:4, length.out = nrow(.)))
+
+start_time <- Sys.time()
+for (this_season in unique(covar_model_data_setup$season)) {
+  
+  cluster <- create_cluster(cores = parallel::detectCores())
+  
+  # Set up dataset for forecasting in parallel
+  covar_model_parallel <- covar_model_data_setup %>%
+    filter(season == this_season) %>%
+    partition(group, cluster = cluster)
+  
+  covar_model_parallel %>%
+    cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek")) %>% 
+    cluster_assign_value("flu_data_merge", flu_data_merge) %>%
+    cluster_assign_value("ili_init_pub_list", ili_init_pub_list) %>%
+    cluster_assign_value("fit_to_forecast", fit_to_forecast) %>%
+    cluster_assign_value("sample_predictive_trajectories_arima", 
+                         sample_predictive_trajectories_arima)
+  
+  # Create forecasts in parallel
+  # For Gtrends - take next observed value since it would have been known at the time
+  #   and for future values use seasonal naive adjusted by ratio of current year's 1 wk
+  #   ahead value to the same value 1 year ago
+  # For virus percentages, just carry forward most recent cumulative percentage into 
+  #   the future. This will be unstable early in the season but will become more
+  #   stable and informative as the season goes on
+  
+  covar_forecasts <- covar_model_parallel %>%
+    mutate(
+      pred_data = pmap(list(season, week, location, epiweek), 
+                       ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
+                                season != paste0(substr(..1, 6, 9), "/",
+                                                 as.numeric(substr(..1, 6, 9)) + 1),
+                                season != ..1 | order_week %in% 40:..2,
+                                location == ..3) %>%
+                         left_join(select(ili_init_pub_list[[paste(..4)]],
+                                          ILI, epiweek, location),
+                                   by = c("epiweek", "location")) %>%
+                         mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
+                         select(-ILI.x, -ILI.y) %>%
+                         mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))),
+      # Set up Fourier data for forecasting
+      xreg = case_when(
+        model == "ARIMA only" ~ 
+          map2(pred_data, K,
+               ~ as.data.frame(fourier(.x$ILI, K = .y))),
+        model == "Gtrends" ~
+          pmap(list(pred_data, K), 
+               ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
+                       ..1$hits)),
+        model == "FluVirus" ~ 
+          pmap(list(pred_data, K),
+               ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
+                       ..1$h1_per_samples, ..1$h3_per_samples,
+                       ..1$b_per_samples)),
+        model == "Gtrends & FluVirus" ~ 
+          pmap(list(pred_data, K),
+               ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
+                     ..1$hits, ..1$h1_per_samples, 
+                     ..1$h3_per_samples, ..1$b_per_samples))
+        ),
+      max_week = ifelse(season == "2014/2015", 53, 52),
+      # Fit models
+      pred_fit = pmap(list(pred_data, fit, xreg),
+                      ~ Arima(..1$ILI, xreg = ..3, model = ..2)),
+      # Create data frame of xreg terms for forecasting
+      gtrend_forecast = pmap(
+        list(pred_data, location, season, prev_season, week, max_week),
+        ~ tibble(hits = c(flu_data_merge %>%
+                            filter(location == ..2, season == ..3, 
+                                   order_week == ..5 + 1) %>%
+                            pull(hits),
+                          flu_data_merge %>%
+                            filter(location == ..2, season == ..4, 
+                                   order_week > ..5 + 1, 
+                                   order_week < ..6 + 23) %>%
+                            pull(hits) *
+                            mean(flu_data_merge %>%
+                              filter(location == ..2, season == ..3, 
+                                     order_week <= ..5 + 1) %>%
+                              pull(hits) / 
+                              flu_data_merge %>%
+                                filter(location == ..2, season == ..4, 
+                                       order_week <= ..5 + 1) %>%
+                                pull(hits))))
+      ),
+      h1_per_forecast = pmap(
+        list(pred_data, season, max_week),
+        ~ rep(last(..1$h1_per_samples), ..3 - 17 - 
+                nrow(..1[..1$season == ..2, ]))
+      ),
+      h3_per_forecast = pmap(
+        list(pred_data, season, max_week),
+        ~ rep(last(..1$h3_per_samples), ..3 - 17 - 
+                nrow(..1[..1$season == ..2, ]))
+      ),
+      b_per_forecast = pmap(
+        list(pred_data, season, max_week),
+        ~ rep(last(..1$b_per_samples), ..3 - 17 - 
+                nrow(..1[..1$season == ..2, ]))
+      ),
+      forecast_xreg = case_when(
+        model == "ARIMA only" ~ 
+          pmap(list(pred_data, K, max_week, season),
+               ~ as.data.frame(fourier(..1$ILI, K = ..2,
+                                       h = ..3 - 17 - 
+                                         nrow(..1[..1$season == ..4, ])))),
+        model == "Gtrends" ~
+          pmap(list(pred_data, K, max_week, season, gtrend_forecast),
+               ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
+                                             h = ..3 - 17 - 
+                                               nrow(..1[..1$season == ..4, ]))),
+                       data.frame(hits = ..5)) %>%
+                 rename(`..1$hits` = hits)),
+        model == "FluVirus" ~
+          pmap(list(pred_data, K, max_week, season, 
+                    h1_per_forecast, h3_per_forecast, b_per_forecast),
+               ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
+                                             h = ..3 - 17 - 
+                                               nrow(..1[..1$season == ..4, ]))),
+                       data.frame(h1_per_samples = ..5,
+                                  h3_per_samples = ..6, 
+                                  b_per_samples = ..7)) %>%
+                 rename(`..1$h1_per_samples` = h1_per_samples,
+                        `..1$h3_per_samples` = h3_per_samples,
+                        `..1$b_per_samples` = b_per_samples)),
+        model == "Gtrends & FluVirus" ~
+          pmap(list(pred_data, K, max_week, season, gtrend_forecast,
+                    h1_per_forecast, h3_per_forecast, b_per_forecast),
+               ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
+                                             h = ..3 - 17 - 
+                                               nrow(..1[..1$season == ..4, ]))),
+                       data.frame(hits = ..5, 
+                                  h1_per_samples = ..6,
+                                  h3_per_samples = ..7, 
+                                  b_per_samples = ..8)) %>%
+                 rename(`..1$hits` = hits,
+                        `..1$h1_per_samples` = h1_per_samples,
+                        `..1$h3_per_samples` = h3_per_samples,
+                        `..1$b_per_samples` = b_per_samples))
+      ),
+      pred_results = pmap(
+        list(pred_fit, pred_data, forecast_xreg, location, season, max_week),
+        ~ fit_to_forecast(object = ..1,
+                          xreg = ..3,
+                          pred_data = ..2,
+                          location = ..4,
+                          season = ..5,
+                          max_week = ..6,
+                          npaths = 250)
+      )
+    ) %>%
+    collect() %>%
+    as.tibble()
+  
+  covar_scores <- covar_forecasts %>% ungroup() %>%
+    select(season, model, location, week, pred_results) %>%
+    mutate(pred_results = map2(pred_results, location,
+                               ~ mutate(.x, location = .y) %>%
+                                 normalize_probs())) %>%
+    select(season, model, week, pred_results) %>%
+    unnest() %>%
+    nest(-season, -model, -week) %>%
+    left_join(nested_truth, by = "season") %>%
+    mutate(scores = map2(data, exp_truth,
+                         ~ score_entry(.x, .y)),
+           eval_scores = pmap(list(scores, eval_period, season),
+                              ~ create_eval_scores(..1, ..2, ..3))) %>%
+    select(season, model, eval_scores) %>%
+    unnest() 
+  
+  save(covar_scores, file = paste0("Data/CV_covar_Scores_", 
+                                  substr(this_season, 1, 4), ".Rdata"))
+  
+  rm(covar_forcasts, covar_model_parallel, cluster)
+  
+}
+Sys.time() - start_time
+
+load("Data/CV_covar_Scores_2010.Rdata")
+covar_scores_1011 <- covar_scores
+load("Data/CV_covar_Scores_2011.Rdata")
+covar_scores_1112 <- covar_scores
+load("Data/CV_covar_Scores_2012.Rdata")
+covar_scores_1213 <- covar_scores
+load("Data/CV_covar_Scores_2013.Rdata")
+covar_scores_1314 <- covar_scores
+load("Data/CV_covar_Scores_2014.Rdata")
+covar_scores_1415 <- covar_scores
+load("Data/CV_covar_Scores_2015.Rdata")
+covar_scores_1516 <- covar_scores
+load("Data/CV_covar_Scores_2016.Rdata")
+covar_scores_1617 <- covar_scores
+load("Data/CV_covar_Scores_2017.Rdata")
+covar_scores_1718 <- covar_scores
+
+
+
+
+# Determine best ARIMA model for each region
+best_covar_cv <- bind_rows(covar_scores_1011, covar_scores_1112, covar_scores_1213,
+                           covar_scores_1314, covar_scores_1415, covar_scores_1516,
+                           covar_scores_1617, covar_scores_1718) %>%
+  group_by(location, model) %>%
+  summarize(avg_score = mean(score)) %>%
+  group_by(location) %>%
+  filter(avg_score == max(avg_score)) %>%
+  ungroup() %>%
+  select(location, model)
+
+save(best_covar_cv, file = "Data/CV_covar_terms.Rdata")
+
+##### Create final fits and build forecasts #####
+load("Data/CV_Transform_terms.Rdata")
+load("data/CV_Fourier_terms.Rdata")
+load("Data/CV_ARIMA_terms.Rdata")
+load("Data/CV_covar_terms.Rdata")
+
+# Set up model fits
+final_fits <- tibble(season = c("2010/2011", "2011/2012", "2012/2013",
+                                  "2013/2014", "2014/2015", "2015/2016",
+                                  "2016/2017", "2017/2018")) %>%
   mutate(train_data = map(season,
                           ~ filter(flu_data_merge, year <= as.numeric(substr(., 6, 9)),
                                    season != paste0(substr(., 6, 9), "/",
@@ -580,15 +925,21 @@ covar_model_fits <- crossing(season = "2017/2018",
                                    season != .))) %>%
   unnest() %>%
   # Nest by season and location
-  nest(-season, -location, -model) %>%
+  nest(-season, -location) %>%
   # Create time series of ILI
   mutate(data = map(data,
-                   ~ mutate(.x,
-                            ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
+                    ~ mutate(.x,
+                             ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
   # Merge best lambda, Fourier K value, and ARIMA structure by location
-  left_join(best_transform_cv, by = "location") %>%
+  left_join(rename(best_transform_cv, transform = model), by = "location") %>%
+  mutate(lambda = unlist(map(data,
+                             ~ BoxCox.lambda(.$ILI))),
+         lambda = case_when(transform == "no_trans" ~ NA_real_,
+                            transform == "log" ~ 0,
+                            transform == "Box_Cox" ~ lambda)) %>%
   left_join(best_k_cv, by = "location") %>%
   left_join(best_arima_cv, by = "location") %>%
+  left_join(best_covar_cv, by = "location") %>%
   # Fit models
   mutate(fit = case_when(
     model == "ARIMA only" ~ 
@@ -624,18 +975,14 @@ covar_model_fits <- crossing(season = "2017/2018",
                              ..1$h3_per_samples, ..1$b_per_samples),
                 lambda = ..6)
       )
-    ))
-
-# Set up data for forecast creation in parallel
-covar_model_data_setup <- crossing(season = "2017/2018",
-                                   # c("2010/2011", "2011/2012", "2012/2013",
-                                   #          "2013/2014", "2014/2015", "2015/2016",
-                                   #          "2016/2017", "2017/2018"),
-                                   model = c("ARIMA only", "Gtrends", "FluVirus", 
-                                             "Gtrends & FluVirus"),
-                                   week = 50, #c(43:71),
-                                   location = unique(flu_data_merge$location)) %>%
-  filter(week < 71 | season == "2014/2015") %>%
+  ))
+  
+final_forecast_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
+                                             "2013/2014", "2014/2015", "2015/2016",
+                                             "2016/2017", "2017/2018"),
+                                      week = c(40:73),
+                                      location = unique(flu_data_merge$location)) %>%
+  filter(week < 73 | season == "2014/2015") %>%
   mutate(
     epiweek = case_when(
       season == "2014/2015" & week > 53 ~ 
@@ -652,184 +999,158 @@ covar_model_data_setup <- crossing(season = "2017/2018",
                     substr(season, 1, 4))
     )
   ) %>%
-  left_join(covar_model_fits, 
-            by = c("location", "season", "model")) #%>%
-  # Set up grouping for parallel
-  # mutate(group = rep(1:length(cluster), length.out = nrow(.)))
+  inner_join(final_fits, 
+             by = c("location", "season")) 
 
-# Set up dataset for forecasting in parallel
-covar_model_parallel <- covar_model_data_setup %>%
-  partition(group, cluster = cluster)
 
-covar_model_parallel %>%
-  cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek")) %>% 
-  cluster_assign_value("flu_data_merge", flu_data_merge) %>%
-  cluster_assign_value("ili_init_pub_list", ili_init_pub_list) %>%
-  cluster_assign_value("fit_to_forecast", fit_to_forecast) %>%
-  cluster_assign_value("sample_predictive_trajectories_arima", 
-                       sample_predictive_trajectories_arima)
+# Create and save forecast files
+for(this_season in unique(final_forecast_data_setup$season)) {
+  
+  # Create folder if needed
+  season_path <- paste0("Forecasts/", substr(this_season, 1, 4), "-",
+                        substr(this_season, 6, 9), "/Dynamic Harmonic Model/")
 
-# Create forecasts in parallel
-# For Gtrends - take next observed value since it would have been known at the time
-#   and for future values use seasonal naive adjusted by ratio of current year's 1 wk
-#   ahead value to the same value 1 year ago
-# For virus percentages, just carry forward most recent cumulative percentage into 
-#   the future. This will be unstable early in the season but will become more
-#   stable and informative as the season goes on
+  dir.create(season_path, showWarnings = FALSE)
+  
+  for(this_week in unique(final_forecast_data_setup$week[final_forecast_data_setup$season == this_season])) {
 
-covar_forecasts <- covar_model_parallel %>%
-  mutate(
-    pred_data = pmap(list(season, week, location, epiweek), 
-                     ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
-                              season != paste0(substr(..1, 6, 9), "/",
-                                               as.numeric(substr(..1, 6, 9)) + 1),
-                              season != ..1 | order_week %in% 40:..2,
-                              location == ..3) %>%
-                       left_join(select(ili_init_pub_list[[paste(..4)]],
-                                        ILI, epiweek, location),
-                                 by = c("epiweek", "location")) %>%
-                       mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
-                       select(-ILI.x, -ILI.y) %>%
-                       mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))),
-    # Set up Fourier data for forecasting
-    xreg = case_when(
-      model == "ARIMA only" ~ 
-        map2(pred_data, K,
-             ~ as.data.frame(fourier(.x$ILI, K = .y))),
-      model == "Gtrends" ~
-        pmap(list(pred_data, K), 
-             ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
-                     ..1$hits)),
-      model == "FluVirus" ~ 
-        pmap(list(pred_data, K),
-             ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
-                     ..1$h1_per_samples, ..1$h3_per_samples,
-                     ..1$b_per_samples)),
-      model == "Gtrends & FluVirus" ~ 
-        pmap(list(pred_data, K),
-             ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
-                   ..1$hits, ..1$h1_per_samples, 
-                   ..1$h3_per_samples, ..1$b_per_samples))
-      ),
-    max_week = ifelse(season == "2014/2015", 53, 52),
-    # Fit models
-    pred_fit = pmap(list(pred_data, fit, xreg),
-                    ~ Arima(..1$ILI, xreg = ..3, model = ..2)),
-    # Create data frame of xreg terms for forecasting
-    gtrend_forecast = pmap(
-      list(pred_data, location, season, prev_season, week, max_week),
-      ~ tibble(hits = c(flu_data_merge %>%
-                          filter(location == ..2, season == ..3, 
-                                 order_week == ..5 + 1) %>%
-                          pull(hits),
-                        flu_data_merge %>%
-                          filter(location == ..2, season == ..4, 
-                                 order_week > ..5 + 1, 
-                                 order_week < ..6 + 23) %>%
-                          pull(hits) *
-                          mean(flu_data_merge %>%
-                            filter(location == ..2, season == ..3, 
-                                   order_week <= ..5 + 1) %>%
-                            pull(hits) / 
+    temp <- final_forecast_data_setup %>%
+      filter(season == this_season, week == this_week) %>%
+      mutate(
+        pred_data = pmap(list(season, week, location, epiweek), 
+                         ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
+                                  season != paste0(substr(..1, 6, 9), "/",
+                                                   as.numeric(substr(..1, 6, 9)) + 1),
+                                  season != ..1 | order_week %in% 40:..2,
+                                  location == ..3) %>%
+                           left_join(select(ili_init_pub_list[[paste(..4)]],
+                                            ILI, epiweek, location),
+                                     by = c("epiweek", "location")) %>%
+                           mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
+                           select(-ILI.x, -ILI.y) %>%
+                           mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))),
+        # Set up Fourier data for forecasting
+        xreg = case_when(
+          model == "ARIMA only" ~ 
+            map2(pred_data, K,
+                 ~ as.data.frame(fourier(.x$ILI, K = .y))),
+          model == "Gtrends" ~
+            pmap(list(pred_data, K), 
+                 ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
+                         ..1$hits)),
+          model == "FluVirus" ~ 
+            pmap(list(pred_data, K),
+                 ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
+                         ..1$h1_per_samples, ..1$h3_per_samples,
+                         ..1$b_per_samples)),
+          model == "Gtrends & FluVirus" ~ 
+            pmap(list(pred_data, K),
+                 ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
+                         ..1$hits, ..1$h1_per_samples, 
+                         ..1$h3_per_samples, ..1$b_per_samples))
+        ),
+        max_week = ifelse(season == "2014/2015", 53, 52),
+        # Fit models
+        pred_fit = pmap(list(pred_data, fit, xreg),
+                        ~ Arima(..1$ILI, xreg = ..3, model = ..2)),
+        # Create data frame of xreg terms for forecasting
+        gtrend_forecast = pmap(
+          list(pred_data, location, season, prev_season, week, max_week),
+          ~ tibble(hits = c(flu_data_merge %>%
+                              filter(location == ..2, season == ..3, 
+                                     order_week == ..5 + 1) %>%
+                              pull(hits),
                             flu_data_merge %>%
                               filter(location == ..2, season == ..4, 
-                                     order_week <= ..5 + 1) %>%
-                              pull(hits))))
-    ),
-    h1_per_forecast = pmap(
-      list(pred_data, season, max_week),
-      ~ rep(last(..1$h1_per_samples), ..3 - 17 - 
-              nrow(..1[..1$season == ..2, ]))
-    ),
-    h3_per_forecast = pmap(
-      list(pred_data, season, max_week),
-      ~ rep(last(..1$h3_per_samples), ..3 - 17 - 
-              nrow(..1[..1$season == ..2, ]))
-    ),
-    b_per_forecast = pmap(
-      list(pred_data, season, max_week),
-      ~ rep(last(..1$b_per_samples), ..3 - 17 - 
-              nrow(..1[..1$season == ..2, ]))
-    ),
-    forecast_xreg = case_when(
-      model == "ARIMA only" ~ 
-        pmap(list(pred_data, K, max_week, season),
-             ~ as.data.frame(fourier(..1$ILI, K = ..2,
-                                     h = ..3 - 17 - 
-                                       nrow(..1[..1$season == ..4, ])))),
-      model == "Gtrends" ~
-        pmap(list(pred_data, K, max_week, season, gtrend_forecast),
-             ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
-                                           h = ..3 - 17 - 
-                                             nrow(..1[..1$season == ..4, ]))),
-                     data.frame(hits = ..5)) %>%
-               rename(`..1$hits` = hits)),
-      model == "FluVirus" ~
-        pmap(list(pred_data, K, max_week, season, 
-                  h1_per_forecast, h3_per_forecast, b_per_forecast),
-             ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
-                                           h = ..3 - 17 - 
-                                             nrow(..1[..1$season == ..4, ]))),
-                     data.frame(h1_per_samples = ..5,
-                                h3_per_samples = ..6, 
-                                b_per_samples = ..7)) %>%
-               rename(`..1$h1_per_samples` = h1_per_samples,
-                      `..1$h3_per_samples` = h3_per_samples,
-                      `..1$b_per_samples` = b_per_samples)),
-      model == "Gtrends & FluVirus" ~
-        pmap(list(pred_data, K, max_week, season, gtrend_forecast,
-                  h1_per_forecast, h3_per_forecast, b_per_forecast),
-             ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
-                                           h = ..3 - 17 - 
-                                             nrow(..1[..1$season == ..4, ]))),
-                     data.frame(hits = ..5, 
-                                h1_per_samples = ..6,
-                                h3_per_samples = ..7, 
-                                b_per_samples = ..8)) %>%
-               rename(`..1$hits` = hits,
-                      `..1$h1_per_samples` = h1_per_samples,
-                      `..1$h3_per_samples` = h3_per_samples,
-                      `..1$b_per_samples` = b_per_samples))
-    ),
-    pred_results = pmap(
-      list(pred_fit, pred_data, forecast_xreg, location, season, max_week),
-      ~ fit_to_forecast(object = ..1,
-                        xreg = ..3,
-                        pred_data = ..2,
-                        location = ..4,
-                        season = ..5,
-                        max_week = ..6,
-                        npaths = 250)
-    )
-  )# %>%
-  # collect() %>%
-  # as.tibble()
-
-covar_scores <- covar_forecasts %>% ungroup() %>%
-  select(season, model, location, week, pred_results) %>%
-  mutate(pred_results = map2(pred_results, location,
-                             ~ mutate(.x, location = .y) %>%
-                               normalize_probs())) %>%
-  select(season, model, week, pred_results) %>%
-  unnest() %>%
-  nest(-season, -model, -week) %>%
-  left_join(nested_truth, by = "season") %>%
-  mutate(scores = map2(data, exp_truth,
-                       ~ score_entry(.x, .y)),
-         eval_scores = pmap(list(scores, eval_period, season),
-                            ~ create_eval_scores(..1, ..2, ..3))) %>%
-  select(season, model, eval_scores) %>%
-  unnest() 
-
-save(covar_scores, file = "Data/CV_covar_Scores.Rdata")
-
-# Determine best ARIMA model for each region
-best_covar_cv <- covar_scores %>%
-  group_by(location, model) %>%
-  summarize(avg_score = mean(score)) %>%
-  group_by(location) %>%
-  filter(avg_score == max(avg_score)) %>%
-  ungroup() %>%
-  select(location, model, avg_score)
-
-save(best_covar_cv, file = "Data/CV_covar_terms.Rdata")
+                                     order_week > ..5 + 1, 
+                                     order_week < ..6 + 23) %>%
+                              pull(hits) *
+                              mean(flu_data_merge %>%
+                                     filter(location == ..2, season == ..3, 
+                                            order_week <= ..5 + 1) %>%
+                                     pull(hits) / 
+                                     flu_data_merge %>%
+                                     filter(location == ..2, season == ..4, 
+                                            order_week <= ..5 + 1) %>%
+                                     pull(hits))))
+        ),
+        h1_per_forecast = pmap(
+          list(pred_data, season, max_week),
+          ~ rep(last(..1$h1_per_samples), ..3 - 17 - 
+                  nrow(..1[..1$season == ..2, ]))
+        ),
+        h3_per_forecast = pmap(
+          list(pred_data, season, max_week),
+          ~ rep(last(..1$h3_per_samples), ..3 - 17 - 
+                  nrow(..1[..1$season == ..2, ]))
+        ),
+        b_per_forecast = pmap(
+          list(pred_data, season, max_week),
+          ~ rep(last(..1$b_per_samples), ..3 - 17 - 
+                  nrow(..1[..1$season == ..2, ]))
+        ),
+        forecast_xreg = case_when(
+          model == "ARIMA only" ~ 
+            pmap(list(pred_data, K, max_week, season),
+                 ~ as.data.frame(fourier(..1$ILI, K = ..2,
+                                         h = ..3 - 17 - 
+                                           nrow(..1[..1$season == ..4, ])))),
+          model == "Gtrends" ~
+            pmap(list(pred_data, K, max_week, season, gtrend_forecast),
+                 ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
+                                               h = ..3 - 17 - 
+                                                 nrow(..1[..1$season == ..4, ]))),
+                         data.frame(hits = ..5)) %>%
+                   rename(`..1$hits` = hits)),
+          model == "FluVirus" ~
+            pmap(list(pred_data, K, max_week, season, 
+                      h1_per_forecast, h3_per_forecast, b_per_forecast),
+                 ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
+                                               h = ..3 - 17 - 
+                                                 nrow(..1[..1$season == ..4, ]))),
+                         data.frame(h1_per_samples = ..5,
+                                    h3_per_samples = ..6, 
+                                    b_per_samples = ..7)) %>%
+                   rename(`..1$h1_per_samples` = h1_per_samples,
+                          `..1$h3_per_samples` = h3_per_samples,
+                          `..1$b_per_samples` = b_per_samples)),
+          model == "Gtrends & FluVirus" ~
+            pmap(list(pred_data, K, max_week, season, gtrend_forecast,
+                      h1_per_forecast, h3_per_forecast, b_per_forecast),
+                 ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
+                                               h = ..3 - 17 - 
+                                                 nrow(..1[..1$season == ..4, ]))),
+                         data.frame(hits = ..5, 
+                                    h1_per_samples = ..6,
+                                    h3_per_samples = ..7, 
+                                    b_per_samples = ..8)) %>%
+                   rename(`..1$hits` = hits,
+                          `..1$h1_per_samples` = h1_per_samples,
+                          `..1$h3_per_samples` = h3_per_samples,
+                          `..1$b_per_samples` = b_per_samples))
+        ),
+        pred_results = pmap(
+          list(pred_fit, pred_data, forecast_xreg, location, season, max_week),
+          ~ fit_to_forecast(object = ..1,
+                            xreg = ..3,
+                            pred_data = ..2,
+                            location = ..4,
+                            season = ..5,
+                            max_week = ..6,
+                            npaths = 10)
+        )
+      ) %>%
+      select(location, week, max_week, pred_results)
+      
+    EW <- case_when(temp$week[1] > temp$max_week[1] ~ 
+                      str_pad(temp$week[1] - temp$max_week[1], 2, side = "left", 0),
+                    TRUE ~ str_pad(temp$week[1], 2, "left", 0))
+    
+    temp %>%
+      unnest() %>%
+      select(-week, -max_week, -forecast_week) %>%
+      bind_rows(generate_point_forecasts(.)) %>%
+      select(location, target, type, unit, bin_start_incl, bin_end_notincl, value) %>%
+      write_csv(path = paste0(season_path, "/EW", EW, ".csv"))
+  }
+}
