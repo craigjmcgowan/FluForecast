@@ -452,7 +452,7 @@ fit_to_forecast <- function(object, xreg, pred_data, location, season,
   # Simulate output
   sim_output <- sample_predictive_trajectories_arima(
     object, 
-    h = max_week - 17 - nrow(pred_data[pred_data$season == season, ]),
+    h = max_week - 14 - nrow(pred_data[pred_data$season == season, ]),
     xreg = xreg,
     npaths = npaths
   )
@@ -543,7 +543,7 @@ fit_to_forecast <- function(object, xreg, pred_data, location, season,
   ) %>% as.tibble()
 
   onsets <- apply(calc_onset, 2, function(x) {
-    temp <- tibble(week = 40:(max_week + 22),
+    temp <- tibble(week = 40:(max_week + 25),
                    location = location,
                    ILI = x)
     try(create_onset(temp, region = location, 
@@ -593,6 +593,12 @@ fit_to_forecast <- function(object, xreg, pred_data, location, season,
            bin_end_notincl = trimws(bin_end_notincl)
     )
 
+  # Normalize probabilities so all targets sum to 1
+  forecast_results <- forecast_results %>%
+    group_by(target) %>%
+    mutate(value = value / sum(value)) %>%
+    ungroup()
+  
   return(forecast_results)
 }
 
