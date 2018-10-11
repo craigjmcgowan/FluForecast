@@ -101,8 +101,8 @@ save(ili_orig, ili_current, ili_init_pub_list, ili_backfill, ili_backfill_avg,
      file = "Data/ili.Rdata")
 
 # Fetch virologic data from CDC -----
-virologic_national <- who_nrevss(region = "national", years = c(1997:2017))
-virologic_region <- who_nrevss(region = "hhs", years = c(1997:2017))
+virologic_national <- who_nrevss(region = "national", years = c(1997:2018))
+virologic_region <- who_nrevss(region = "hhs", years = c(1997:2018))
 
 virologic_before_1516 <- bind_rows(
   virologic_national[[1]], virologic_region[[1]]
