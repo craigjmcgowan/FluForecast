@@ -21,22 +21,28 @@ options(mc.cores=parallel::detectCores()-1L)
 #   Equal weights
 #   Constant weights
 #   Week weights
+#   4-week weights
 #   Region weights
 #   Target-type weights
 #   Target weights
 #   Week, region weights
 #   Week, target-type weights
 #   Week, target weights
+#   4-week, region weights
+#   4-week, target-type weights
+#   4 week, target weights
 #   Region, target-type weights
 #   Region, target weights
 #   Week, region, target-type  weights
 #   Week, region, target weights
+#   4-week, region, target-type  weights
+#   4-week, region, target weights
 
 # Create equal weights ------
-nteams <- length(unique(all_eval_scores$team[!grepl('Ens', all_eval_scores$team)]))
+nteams <- length(unique(all_eval_scores$team[!grepl('ens', all_eval_scores$team)]))
 
 equal_weights_df <- crossing(component_model_id = 
-                               unique(all_eval_scores$team[!grepl('Ens', all_eval_scores$team)]),
+                               unique(all_eval_scores$team[!grepl('ens', all_eval_scores$team)]),
                              season = c(unique(all_eval_scores$season),
                                         paste0(substr(last(unique(all_eval_scores$season)),
                                                       6, 9), "/",
@@ -51,6 +57,17 @@ write.csv(equal_weights_df, "weights/equal-weights.csv", row.names = FALSE, quot
 target.types.list = list(
   "seasonal"=c("Season onset", "Season peak week", "Season peak percentage"),
   "weekly"=paste0(1:4," wk ahead")
+)
+## Specify 'months'
+month.types.list = list(
+  "October" = as.character(40:44),
+  "November" = as.character(45:48),
+  "December" = as.character(49:52),
+  "January" = as.character(53:56),
+  "February" = as.character(57:60),
+  "March" = as.character(61:64),
+  "April" = as.character(65:68),
+  "May" = as.character(69:72)
 )
 
 ## Specify portions of cv_apply indexer lists corresponding to 
@@ -68,20 +85,28 @@ weighting.scheme.partial.indexer.lists = list(
 
 week.partial.indexer.lists <- list(
   "week-based" = list(each = NULL, all = NULL, all = NULL),
+  "month-based" = list(subsets = month.types.list, all = NULL, all = NULL),
   "week-region-based" = list(each = NULL, each = NULL, all = NULL),
   "week-target-type-based" = list(each = NULL, all = NULL, 
                                   subsets = target.types.list),
   "week-target-based" = list(each = NULL, all = NULL, each = NULL),
+  "month-region-based" = list(subsets = month.types.list, each = NULL, all = NULL),
+  "month-target-type-based" = list(subsets = month.types.list, all = NULL, 
+                                  subsets = target.types.list),
+  "month-target-based" = list(subsets = month.types.list, all = NULL, each = NULL),
   "week-target-type-region-based" = list(each = NULL, each = NULL,
                                          subsets = target.types.list),
-  "week-target-region-based" = list(each = NULL, each = NULL, each = NULL)
+  "week-target-region-based" = list(each = NULL, each = NULL, each = NULL),
+  "month-target-type-region-based" = list(subsets = month.types.list, each = NULL,
+                                         subsets = target.types.list),
+  "month-target-region-based" = list(subsets = month.types.list,
+                                      each = NULL, each = NULL)
 )
-test <-all_full_scores %>%
-  filter(forecast_week == 20, forecast_week < 40, season == "2014/2015")
+
 # Set up variable with scores grouped by necessary variables
 cv_full_scores <- all_full_scores %>%
   # Remove ensemble models
-  filter(!grepl('Ens', team)) %>%
+  filter(!grepl('ens', team), !grepl('Ens', team)) %>%
   # Create ordered week variable
   mutate(order_week = case_when(season == "2014/2015" & forecast_week < 40 ~ 
                                   forecast_week + 53,
@@ -98,7 +123,7 @@ cv_full_scores <- all_full_scores %>%
 
 cv_eval_scores <- all_eval_scores %>%
   # Remove ensemble models
-  filter(!grepl('Ens', team)) %>%
+  filter(!grepl('ens', team), !grepl('Ens', team)) %>%
   # Create ordered week variable
   mutate(order_week = case_when(season == "2014/2015" & forecast_week < 40 ~ 
                                   forecast_week + 53,
@@ -164,6 +189,10 @@ target.types.df =
   dplyr::bind_rows(.id="target.type") %>>%
   dplyr::rename(target=value)
 
+month.types.df = 
+  lapply(month.types.list, tibble::as_tibble) %>>%
+  dplyr::bind_rows(.id="month") %>>%
+  dplyr::rename(`Model Week`=value)
 
 
 #### Generate the weight files: #####
@@ -243,6 +272,22 @@ for (weighting.scheme.i in seq_along(week.partial.indexer.lists)) {
         by = "target.type"
       ) %>>%
       dplyr::select(-target.type) %>>%
+      ## restore original column order:
+      magrittr::extract(names(combined.weight.df))
+  }
+  ## expand out months into weeks if applicable:
+  if ("Model Week" %in% names(combined.weight.df)) {
+    combined.weight.df <-
+      combined.weight.df %>>%
+      dplyr::rename(month=`Model Week`) %>>%
+      dplyr::mutate(month = as.character(month)) %>>%
+      dplyr::left_join(
+        dimnames(cv_full_scores)[["Model Week"]] %>>%
+        {tibble::tibble(month=., `Model Week`=.)} %>>%
+          dplyr::bind_rows(month.types.df),
+        by = "month"
+      ) %>>%
+      dplyr::select(-month) %>>%
       ## restore original column order:
       magrittr::extract(names(combined.weight.df))
   }

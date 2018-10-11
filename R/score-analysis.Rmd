@@ -33,6 +33,12 @@ all_eval_scores <- all_eval_scores %>%
     team == "ens-week-target-region-based-weights" ~ "Ens-WTRW",
     team == "ens-week-target-type-based-weights" ~ "Ens-WTTW",
     team == "ens-week-target-type-region-based-weights" ~ "Ens-WTTRW",
+    team == "ens-month-region-based-weights" ~ "Ens-MRW",
+    team == "ens-month-based-weights" ~ "Ens-MW",
+    team == "ens-month-target-based-weights" ~ "Ens-MTW",
+    team == "ens-month-target-region-based-weights" ~ "Ens-MTRW",
+    team == "ens-month-target-type-based-weights" ~ "Ens-MTTW",
+    team == "ens-month-target-type-region-based-weights" ~ "Ens-MTTRW",
     TRUE ~ team
   ))
 
@@ -96,20 +102,30 @@ scores_by_target_season_region <- all_eval_scores %>%
     mutate(team = reorder(team, avg_score))
 
 scores_by_week_season <- all_eval_scores %>%
-    group_by(team, target, season, forecast_week) %>%
-    summarize(
-        avg_score = mean(score),
-        min_score = min(score)) %>%
-    ungroup() %>%
-    mutate(team = reorder(team, avg_score))
+  mutate(plot_week = case_when(
+    season == "2014/2015" & forecast_week < 40 ~ forecast_week + 53,
+    forecast_week < 40 ~ forecast_week + 52,
+    TRUE ~ forecast_week
+  )) %>%
+  group_by(team, target, season, plot_week) %>%
+  summarize(
+      avg_score = mean(score),
+      min_score = min(score)) %>%
+  ungroup() %>%
+  mutate(team = reorder(team, avg_score))
 
 scores_by_week <- all_eval_scores %>%
-    group_by(team, target, forecast_week) %>%
-    summarize(
-        avg_score = mean(score),
-        min_score = min(score)) %>%
-    ungroup() %>%
-    mutate(team = reorder(team, avg_score))
+  mutate(plot_week = case_when(
+    season == "2014/2015" & forecast_week < 40 ~ forecast_week + 53,
+    forecast_week < 40 ~ forecast_week + 52,
+    TRUE ~ forecast_week
+  )) %>%
+  group_by(team, target, plot_week) %>%
+  summarize(
+      avg_score = mean(score),
+      min_score = min(score)) %>%
+  ungroup() %>%
+  mutate(team = reorder(team, avg_score))
 ```
 
 ```{r, include=FALSE}
@@ -279,18 +295,20 @@ ggplot(scores_by_season, aes(x=team, y=avg_score)) +
 ```
 
 ```{r}
-ggplot(scores_by_week, aes(x=forecast_week, y=exp(avg_score))) +
+ggplot(scores_by_week, aes(x=plot_week, y=exp(avg_score))) +
     geom_line(alpha=.5, aes(color=team)) + 
     geom_line(data=filter(scores_by_week, team=="Historical Average"), color="black", size=1, alpha=.8)+ 
     ylab("Forecast skill") +
     facet_wrap(~target)
 ```
 
+
 ```{r}
 ggplot(filter(scores_by_week_season, target=="Season onset"), 
-    aes(x=forecast_week, y=exp(avg_score))) +
+    aes(x=plot_week, y=exp(avg_score))) +
     geom_line(alpha=.5, aes(color=team)) + 
     ylab("Forecast skill") +
+    labs(main = "Weekly skill for onset week") +
     facet_wrap(~season)
 ```
 

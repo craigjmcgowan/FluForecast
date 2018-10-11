@@ -108,7 +108,6 @@ cv_apply_helper = function(train_data, test_data, indexer_list, fn, parallel_dim
   }
 }
 
-
 cv_apply = function(data, indexer_list, fn, parallel_dim_i=0L, ...) {
   ## If =data= is 1-D, convert it to an array so it will have non-NULL dim:
   if (is.null(dim(data))) {

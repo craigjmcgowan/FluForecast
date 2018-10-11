@@ -253,7 +253,7 @@ for(i in 40:72) {
 
 # Create forecasts for 2017/2018 ------
 train_ili_1718 <- ili_current %>%
-  filter(year <= 2018, season != "2018/2019")
+  filter(year <= 2017, season != "2017/2018")
 
 # Create directory to store forecasts
 dir.create("Forecasts/2017-2018/Historical Average",
@@ -280,5 +280,37 @@ for(i in 40:72) {
   
   write_csv(temp,
             path = paste0("Forecasts/2017-2018/Historical Average/EW", j, ".csv"))
+  
+}
+
+# Create forecasts for 2018/2019 ------
+train_ili_1819 <- ili_current %>%
+  filter(year <= 2018, season != "2018/2019")
+
+# Create directory to store forecasts
+dir.create("Forecasts/2018-2019/Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+historical_densities_1819 <- create_historical_densities(train_ili_1819,
+                                                         pseudo_onsets)
+
+historical_functions_1819 <- modify_depth(
+  historical_densities_1819, 2,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+i<-40
+for(i in 40:72) {
+  temp <- create_historical_forecast(
+    functions = historical_functions_1819,
+    pub_week = i,
+    season = "2018/2019",
+    prob_no_onset = filter(prob_no_onset, season == "2018/2019")
+  )
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("Forecasts/2018-2019/Historical Average/EW", j, ".csv"))
   
 }
