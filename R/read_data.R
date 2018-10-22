@@ -5,6 +5,7 @@ library(MMWRweek)
 library(gtrendsR)
 library(lubridate)
 library(FluSight)
+# library(epiforecast)
 
 # Load functions
 source("R/utils.R")
@@ -13,15 +14,25 @@ source('R/EpiDataAPI.R')
 # Save current MMWR week in format Epidata wants
 current_week <- as.numeric(paste0(MMWRweek(Sys.Date())[[1]], MMWRweek(Sys.Date())[[2]] ))
 
+pull_week <- case_when(
+  MMWRweek(Sys.Date())[3] == 7 & substr(current_week, 5, 6) == "01" ~ 
+    as.numeric(paste0(as.numeric(substr(current_week, 1, 4)) - 1, "52")),
+  MMWRweek(Sys.Date())[3] == 7 ~
+    current_week - 1,
+  substr(current_week, 5, 6) == "01" ~ 
+    as.numeric(paste0(as.numeric(substr(current_week, 1, 4)) - 1, "51")),
+  substr(current_week, 5, 6) == "02" ~ 
+    as.numeric(paste0(as.numeric(substr(current_week, 1, 4)) - 1, "52")),
+  TRUE ~ current_week - 2
+)
+
 # Fetch wILI data from EpiData API -------
 # Save ILINet values for previous 26 weeks for each week's publication available
 ili_init_pub_list <- list()
 
-pull_initpub_epidata(200740)
-
 for(i in c(201040:201052, 201101:201152, 201201:201252, 201301:201338,
-           201340:201352, 201401:201453, 201501:201552, 201601:201652, 
-           201701:201752, 201801:201840)) {
+           201340:201352, 201401:201453, 201501:201552, 201601:201652,
+           201701:201752, 201801:pull_week)) {
   ili_init_pub_list[[paste(i)]] <- pull_initpub_epidata(i) %>%
     mutate(year = as.integer(substr(epiweek, 1, 4)),
            week = as.integer(substr(epiweek, 5, 6)),
@@ -60,7 +71,7 @@ ili_current <- bind_rows(
   pull_curr_epidata(200740, 201039),
   pull_curr_epidata(201040, 201339),
   pull_curr_epidata(201340, 201639),
-  pull_curr_epidata(201640, current_week)) %>%
+  pull_curr_epidata(201640, pull_week)) %>%
   mutate(year = as.integer(substr(epiweek, 1, 4)),
          week = as.integer(substr(epiweek, 5, 6)),
          season = ifelse(week >= 40,
@@ -106,7 +117,10 @@ virologic_region <- who_nrevss(region = "hhs", years = c(1997:2018))
 
 virologic_before_1516 <- bind_rows(
   virologic_national[[1]], virologic_region[[1]]
-)
+) %>%
+  mutate_at(c("a_2009_h1n1", "a_h1", "a_h3", "a_subtyping_not_performed",
+              "a_unable_to_subtype", "b", "h3n2v"),
+            as.integer)
 
 virologic_ph_lab <- bind_rows(
   virologic_national[[2]], virologic_region[[2]]
@@ -125,70 +139,48 @@ virologic_combined <- bind_rows(
   rowwise() %>%
   mutate(pos_samples = sum(a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
            a_unable_to_subtype, b, bvic, byam, na.rm = TRUE),
-         h1_per_samples = (sum(a_h1, a_2009_h1n1, na.rm = TRUE) / 
-                             sum(a_h1, a_2009_h1n1, a_h3, na.rm = TRUE)) *
-           sum(a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
-               a_unable_to_subtype, na.rm = T) / pos_samples,
-         h3_per_samples = a_h3 / sum(a_h1, a_2009_h1n1, a_h3, na.rm = TRUE) *
-           sum(a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
-               a_unable_to_subtype, na.rm = T) / pos_samples,
-         b_per_samples = sum(b, bvic, byam, na.rm = T) / pos_samples) %>%
+         a_pos_samples = sum(a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed,
+                             a_unable_to_subtype, na.rm = TRUE),
+         b_pos_samples = sum(b, bvic, byam, na.rm = TRUE)) %>% #,
+         # h1_per_samples = (sum(a_h1, a_2009_h1n1, na.rm = TRUE) / 
+         #                     sum(a_h1, a_2009_h1n1, a_h3, na.rm = TRUE)) *
+         #   sum(a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
+         #       a_unable_to_subtype, na.rm = T) / pos_samples,
+         # h3_per_samples = a_h3 / sum(a_h1, a_2009_h1n1, a_h3, na.rm = TRUE) *
+         #   sum(a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
+         #       a_unable_to_subtype, na.rm = T) / pos_samples,
+         # b_per_samples = b_pos_samples / pos_samples) %>%
   ungroup() %>%
-  mutate_at(vars(c("h1_per_samples", "h3_per_samples", "b_per_samples")),
+  mutate_at(vars(c("a_2009_h1n1", "a_h1", "a_h3", "a_subtyping_not_performed",
+                   # "h1_per_samples", "h3_per_samples", "b_per_samples",
+                   "a_unable_to_subtype", "b", "bvic", "byam")),
             function(x) ifelse(is.na(x), 0, x)) %>%
-  select(location = region, season, year, week, a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
-         a_unable_to_subtype, b, bvic, byam, h1_per_samples, h3_per_samples, b_per_samples)
+  # Create cumulative influenza percentage measures
+  group_by(season, region) %>%
+  arrange(wk_date, .by_group = T) %>%
+  mutate(h1sum = cumsum(a_2009_h1n1) + cumsum(a_h1),
+         h3sum = cumsum(a_h3),
+         asum = cumsum(a_pos_samples),
+         bsum = cumsum(b_pos_samples),
+         # Subtype percentages of typed As
+         h1per_of_a = ifelse(is.na(h1sum / (h1sum + h3sum)), 0.5, 
+                             h1sum / (h1sum + h3sum)),
+         h3per_of_a = ifelse(is.na(h3sum / (h1sum + h3sum)), 0.5, 
+                             h3sum / (h1sum + h3sum)),
+         # Cumulative percentages of each type, assuming A type %s are representative
+         cum_bper = bsum / (asum + bsum),
+         cum_h1per = h1per_of_a * asum / (asum + bsum),
+         cum_h3per = h3per_of_a * asum / (asum + bsum)) %>%
+  # If no samples reported, make each type 33%
+  mutate(cum_h1per = ifelse(is.na(cum_h1per), 1/3, cum_h1per),
+         cum_h3per = ifelse(is.na(cum_h3per), 1/3, cum_h3per),
+         cum_bper = ifelse(is.na(cum_bper), 1/3, cum_bper)) %>% 
+  ungroup() %>%
+  select(location = region, season, year, week, a_h1, a_2009_h1n1, a_h3, 
+         a_subtyping_not_performed, a_unable_to_subtype, b, bvic, byam, 
+         h1per_of_a, h3per_of_a, cum_h1per, cum_h3per, cum_bper)
 
 save(virologic_combined,
      file = "Data/virologic.Rdata")
 
-# Fetch Google Trends data -----
-US_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US",
-                       time = paste(MMWRweek2Date(2004, 41), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                              TRUE ~ as.numeric(hits)))
 
-US_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US",
-                       time = paste(MMWRweek2Date(2006, 41), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                              TRUE ~ as.numeric(hits)))
-
-US_flu_1015 <- gtrends(keyword = "flu",
-                      geo = "US",
-                      time = paste(MMWRweek2Date(2010, 41), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                              TRUE ~ as.numeric(hits)))
-
-US_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                              TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-gratio_0607 <- US_flu_ratio(US_flu_0407, US_flu_0611)
-gratio_1011 <- US_flu_ratio(US_flu_0611, US_flu_1015)
-inv_gratio_1415 <- US_flu_ratio(US_flu_1419, US_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_US_flu_merge <- filter(US_flu_0407, !date %in% US_flu_0611$date) %>%
-  mutate(hits = hits / gratio_0607) %>%
-  bind_rows(US_flu_0611) %>%
-  filter(!date %in% US_flu_1015$date) %>%
-  mutate(hits = hits / gratio_1011) %>%
-  bind_rows(US_flu_1015) %>%
-  filter(!date %in% US_flu_1419$date) %>%
-  bind_rows(US_flu_1419 %>%
-              mutate(hits = hits / inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-
-save(gtrend_US_flu_merge, file = "Data/Gtrends.Rdata")
