@@ -3,7 +3,7 @@ require(FluSight)
 
 # Create subtype-specific densities
 # Make densities based on provided data -----
-create_subtype_densities <- function(ili_df, vir_ssn_per, pseudo_onsets) {
+create_subtype_densities <- function(ili_df, vir_ssn_per, pseudo_onsets = NULL) {
   
   # Only keep data from 2000/2001 season on, except 2009/2010
   train_ili <- filter(ili_df, season != "2009/2010",
@@ -20,8 +20,9 @@ create_subtype_densities <- function(ili_df, vir_ssn_per, pseudo_onsets) {
                     year = as.numeric(substr(.$season[1], 1, 4)))) %>%
     ungroup() %>%
     # Bind to pseudo-onsets
-    bind_rows(pseudo_onsets)
-  
+    when(is.null(pseudo_onsets) ~ select(., everything()),
+         ~ bind_rows(., pseudo_onsets))
+
   # Generate peaks from training data except 2008/2009 and 2009/2010 seasons
   train_peak <- train_ili %>%
     filter(season != "2008/2009", week >= 40 | week <= 20) %>%
@@ -44,7 +45,8 @@ create_subtype_densities <- function(ili_df, vir_ssn_per, pseudo_onsets) {
         as.numeric(bin_start_incl) < 40 ~ 
           as.numeric(bin_start_incl) + 52,
         TRUE ~ as.numeric(bin_start_incl))) %>%
-      left_join(vir_ssn_per, by = c("season", "location"))
+      left_join(vir_ssn_per, by = c("season", "location")) %>%
+      filter(!is.na(h1per))
     
     densities[["h1"]][["Season onset"]][[this_location]] <- 
       density(temp_onset$bin_start_incl, bw = "SJ",
@@ -63,20 +65,22 @@ create_subtype_densities <- function(ili_df, vir_ssn_per, pseudo_onsets) {
         as.numeric(bin_start_incl) < 40 ~ 
           as.numeric(bin_start_incl) + 52,
         TRUE ~ as.numeric(bin_start_incl))) %>%
-      left_join(vir_ssn_per, by = c("season", "location"))
+      left_join(vir_ssn_per, by = c("season", "location")) %>%
+      filter(!is.na(h1per))
     
     densities[["h1"]][["Season peak week"]][[this_location]] <- 
       density(temp_peak_wk$bin_start_incl, bw = "SJ",
               weights = temp_peak_wk$h1per / sum(temp_peak_wk$h1per))
     densities[["h3"]][["Season peak week"]][[this_location]] <- 
       density(temp_peak_wk$bin_start_incl, bw = "SJ",
-              weights = temp_peak_wk$h3per / sum(temp_peak_wk$h3per))
+              weights = temp_peak_wk$h3per / sum(temp_peak_wk$h3per)) 
     
     # Peak percentage densities
     temp_peak_per <- train_peak %>%
       mutate(bin_start_incl = as.numeric(bin_start_incl)) %>%
       filter(location == this_location, target == "Season peak percentage") %>%
-      left_join(vir_ssn_per, by = c("season", "location"))
+      left_join(vir_ssn_per, by = c("season", "location")) %>%
+      filter(!is.na(h1per))
     
     densities[["h1"]][["Season peak percentage"]][[this_location]] <- 
       density(temp_peak_per$bin_start_incl, bw = "SJ",
@@ -90,7 +94,8 @@ create_subtype_densities <- function(ili_df, vir_ssn_per, pseudo_onsets) {
     for(this_week in 40:77) {
       temp_ili <- filter(train_ili, location == this_location,
                          order_week == this_week) %>%
-        left_join(vir_ssn_per, by = c("season", "location"))
+        left_join(vir_ssn_per, by = c("season", "location")) %>%
+        filter(!is.na(h1per))
   
       densities[["h1"]][[paste(this_week)]][[this_location]] <-
         density(temp_ili$ILI, bw = "SJ",

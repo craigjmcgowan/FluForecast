@@ -1,4 +1,4 @@
-# Generate subtype-weighted historical average forecast
+# Generate historical average forecast
 library(tidyverse)
 library(FluSight)
 
@@ -299,7 +299,7 @@ historical_functions_1819 <- modify_depth(
   historical_densities_1819, 2,
   function(dens) approxfun(dens$x, dens$y, rule = 2)
 )
-i<-40
+
 for(i in 40:72) {
   temp <- create_historical_forecast(
     functions = historical_functions_1819,
