@@ -12,7 +12,7 @@ pull_curr_epidata <- function(start, end) {
 
 # Helper function for reading in weekly publications of EpiData -----
 pull_initpub_epidata <- function(issue) {
-  
+
   start_week <- ifelse(as.numeric(substr(issue - 26, 5, 6)) < 52,
                        issue - 26,
                        issue + 26 - 100) # Converts number to prior year, halfway through

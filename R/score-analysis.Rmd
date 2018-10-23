@@ -212,7 +212,8 @@ ggplot(filter(scores_by_target_season_region, target=="Season onset"),
 ```{r}
 M <- length(unique(all_eval_scores$team))
 Ens_labels <- c("CW", "EW", "RW", "RTW", "RTTW", "TW", "TTW", 
-                "WW", "WRW", "WTW", "WTRW", "WTTW", "WTTRW")
+                "WW", "WRW", "WTW", "WTRW", "WTTW", "WTTRW", 
+                "MW", "MRW", "MTW", "MTRW", "MTTW", "MTTRW")
 Ens_levels <- paste0("Ens-", Ens_labels)
 
 max_avg_scores_target <- scores_by_target %>%
