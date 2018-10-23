@@ -8,7 +8,7 @@ library(MMWRweek)
 # Load functions
 source("R/utils.R")
 
-# Load data
+##### Load data ######
 load("Data/ili.Rdata")
 load("Data/virologic.Rdata")
 load("Data/Gtrends.Rdata")
@@ -20,6 +20,29 @@ load("Data/CV_Transform_terms.Rdata")
 load("data/CV_Fourier_terms.Rdata")
 load("Data/CV_ARIMA_terms.Rdata")
 load("Data/CV_covar_terms.Rdata")
+
+##### Subtype-weighted historical average model (Kudu) #####
+for(this_season in c("2010-2011", "2011-2012", "2012-2013", "2013-2014",
+                     "2014-2015", "2015-2016", "2016-2017", "2017-2018")) {
+  subtype_files <- list.files(paste0("Forecasts/", this_season,
+                                     "/Subtype Historical Average"))
+
+  for(i in seq_along(subtype_files)) {
+    
+    print_week <- sub(pattern = ".csv", replacement = "", subtype_files[i])
+    
+    print_year <- ifelse(as.numeric(substr(print_week, 3, 4)) < 40,
+                         substr(this_season, 6, 9),
+                         substr(this_season, 1, 4))
+    
+    read_csv(paste0("Forecasts/", this_season, "/Subtype Historical Average/", 
+                    subtype_files[i])) %>%
+      select(location, target, type, unit, bin_start_incl, bin_end_notincl, value) %>%
+      write_csv(paste0("../cdc-flusight-ensemble/model-forecasts/component-models/Protea_Kudu/",
+                       print_week, "-", print_year, "-Protea_Kudu.csv"))
+  }
+  
+}
 
 ##### Dynamic Harmonic Model (Springbok) #####
 load("Data/Final_CV_fits.Rdata")
