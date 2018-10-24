@@ -22,7 +22,6 @@ source("R/gtrends_pull_data.R")
 
 set.seed(4321) # For reproducibility of backfill sample
 
-
 flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location) %>%
   inner_join(select(virologic_combined, location, season, year, week, cum_h1per,
                    cum_h3per),
@@ -143,7 +142,8 @@ kudu_pred <- create_subtype_forecast(
     pub_week = order_week,
     season = "2018/2019",
     prob_no_onset = filter(prob_no_onset, season == "2018/2019")
-  )
+  ) %>%
+  select(location, target, type, unit, bin_start_incl, bin_end_notincl, value)
   
 EW_paste <- str_pad(EW, 2, pad = "0")
   
