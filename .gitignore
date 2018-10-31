@@ -2,7 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-README.Rmd
 *forecasts*.Rdata
 *fits.Rdata
 R/fsn-calculate-weights.R

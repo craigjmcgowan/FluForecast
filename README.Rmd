@@ -1,0 +1,162 @@
+---
+output: rmarkdown::github_document
+---
+
+```{r setup, message=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, fig.retina=2, echo = FALSE)
+options(width=120)
+
+library(tidyverse)
+library(FluSight)
+
+```
+
+```{r load data}
+load("Data/ili.Rdata")
+
+last_week <- last(ili_current$week)
+last_year <- last(ili_current$year)
+
+```
+
+
+# Protea Analytics Influenza Forecasts
+Prediction model for the CDC FluSight influenza forecasting challenge
+
+This repo contains all documents related to the Protea Analytics entries for the US Centers for Disease Control and Prevention's 2018-2019 [FluSight influenza forecasting challenge](http://predict.cdc.gov), including conceptual documents, model fitting code, validation forecasts, and prospective forecasts submitted to CDC. Protea is also participating in the [FluSight Network](http://flusightnetwork.io/), a collaborative effort to build a weighted forecasting ensemble using data from multiple forecasting teams.
+
+### Current forecasts
+Forecasts are based on data from MMWR week `r last_week`, which encompasses from `r format(MMWRweek::MMWRweek2Date(last_year, last_week, 1), "%b %d, %Y")` to `r format(MMWRweek::MMWRweek2Date(last_year, last_week, 7), "%b %d, %Y")`. For interactive forecasts, please visit the [CDC](http://predict.cdc.gov) or [FluSight Network](http://flusightnetwork.io/) pages. The forecasts below illustrate the forecasts for weighted percentage of outpatient visits due to influenza-like illness (ILI) over the next four weeks, with 80% prediction intervals.
+
+```{r current forecasts}
+recent_entries <- bind_rows(
+  read_entry(paste0("Forecasts/2018-2019/Dynamic Harmonic Model/EW",
+                    str_pad(last_week, 2, "left", "0"), ".csv")) %>%
+    mutate(Model = "Springbok"),
+  read_entry(paste0("Forecasts/2018-2019/ens-month-target-type-based-weights/EW",
+                    str_pad(last_week, 2, "left", "0"), ".csv")) %>%
+    mutate(Model = "Cheetah"),
+  read_entry(paste0("Forecasts/2018-2019/Historical Average/EW",
+                    str_pad(last_week, 2, "left", "0"), ".csv")) %>%
+    mutate(Model = "Steenbok"),
+  read_entry(paste0("Forecasts/2018-2019/Subtype Historical Average/EW",
+                    str_pad(last_week, 2, "left", "0"), ".csv")) %>%
+    mutate(Model = "Kudu")
+) %>%
+  mutate(Model = factor(Model, levels = c("Cheetah", "Springbok", "Kudu", "Steenbok")))
+
+# Pull observed values for that region into data frame for graphing
+plot_truth <- ili_current %>%
+  filter(season == "2018/2019") %>%
+  mutate(week = ifelse(week < 40, week + 52, week)) %>%
+  filter(location == "US National") %>%
+  select(location, week, ILI)
+
+plot_model_truth <- bind_rows(
+  mutate(plot_truth, Model = "Springbok"),
+  mutate(plot_truth, Model = "Cheetah"),
+  mutate(plot_truth, Model = "Kudu"),
+  mutate(plot_truth, Model = "Steenbok")
+) %>%
+  mutate(Model = factor(Model, levels = c("Cheetah", "Springbok", "Kudu", "Steenbok"))) %>%
+  rename(value = ILI)
+
+# Forecast data to plot
+plot_points <- recent_entries %>%
+  filter(type == "Point", location == "US National",
+             target %in% c("1 wk ahead", "2 wk ahead", 
+                           "3 wk ahead", "4 wk ahead")) %>%
+  select(target, value, Model) %>%
+  # Note week is the week BEING forecast, NOT the week forecast received
+  mutate(week = last_week + as.numeric(gsub(" wk ahead", "", target)),
+         week = ifelse(week < 40, week + 52, week)) %>%
+  select(-target) %>%
+  # Attach forecast bins to point prediction of last observed value
+  bind_rows(tibble(Model = factor(c("Cheetah", "Springbok", "Kudu", "Steenbok")),
+                   week = last_week,
+                   value = last(plot_truth$ILI)))
+  
+  # Labels for x-axis of graph
+wk_label <- c("40", "42", "44", "46", "48", "50", "52", "2", "4", "6",
+              "8", "10", "12", "14", "16", "18", "20", "22", "24")
+wk_label <- wk_label[ifelse(as.numeric(wk_label) >= 40, as.numeric(wk_label),
+                            as.numeric(wk_label) + 52) <= max(plot_points$week)]
+  
+# Determine confidence bands
+bounds <- recent_entries %>%
+    # Select forecasts for week ahead targets
+    filter(location == "US National" & type == "Bin" & 
+             target %in% c("1 wk ahead", "2 wk ahead", "3 wk ahead", "4 wk ahead")) %>%
+    # Determine upper and lower bounds for each target
+    group_by(Model, target) %>%
+    # Calculate cumulative probability for each bin
+    mutate(cumprob = cumsum(value)) %>%
+    # Only keep the rows within the 80% confidence range
+    filter(row_number() %in% 
+             c(max(which(cumprob < 0.1)), min(which(cumprob > 0.9)))) %>%
+    # Create lower and upper bounds as min and max of the remaining probabilities
+    mutate(lower = min(as.numeric(bin_start_incl)),
+           upper = max(as.numeric(bin_start_incl)),
+           week = last_week + as.numeric(gsub(" wk ahead", "", target))) %>%
+    ungroup() %>%
+    # Only keep one copy of each week's upper and lower bound
+    select(Model, week, lower, upper) %>%
+    distinct() %>%
+    # Attach forecast bins to point prediction of last observed value
+    bind_rows(tibble(Model = factor(c("Cheetah", "Springbok", "Kudu", "Steenbok")),
+                         week = last_week,
+                         lower = last(plot_truth$ILI),
+                         upper = last(plot_truth$ILI)))
+
+# Create plot
+ggplot(plot_points) +
+  # Add shading for 80% CI for average
+  geom_ribbon(data = bounds, aes(x = week, ymin = lower, ymax = upper, fill = Model),
+              alpha = 0.3) +
+  # Add point prediction lines for each team
+  geom_line(aes(week, value, color = Model)) +
+  # Add observed values
+  geom_line(data = plot_model_truth, aes(week, value), color = "black") +
+  # Add horizontal line of baseline
+  geom_segment(aes(x = 40, xend = last_week + 4,
+                   y = 2.2, yend = 2.2),
+               linetype = 3)  +
+  theme_minimal() +
+  ylab("Weighted ILI %") +
+    scale_x_continuous(name = "MMWR Week", 
+                       breaks = seq(40, max(plot_points$week), 2),
+                       labels = wk_label) +
+    scale_y_continuous(breaks = seq(0, ceiling(max(3, max(plot_points$value, na.rm=T),
+                                                   max(bounds$upper, na.rm=T))), 1),
+                       limits = c(0, ceiling(max(3, max(plot_points$value, na.rm=T), 
+                                                 max(bounds$upper, na.rm=T),
+                                                 bounds$upper[bounds$week == last_week + 2] + 0.75)))) +
+  facet_wrap( ~ Model)
+
+```
+
+
+### Models
+
+**Cheetah** - Cheetah is a weighted ensemble of the three other forecasts, based on leave-one-season-out cross validation of forecasts from the 2010-2011 through 2017-2018 seasons. Separate model weights are estimated for each month and target type (seasonal - onset, peak week, peak percentage; weekly - 1 to 4 weeks ahead). Weights were fit using a degenerate expectation maximization algorithm.
+
+
+This model is being submitted to both CDC and the FluSight Network ensemble. Forecasts from this model can be found [here](tree/master/CDC%20Submissions/2018-2019).
+
+
+**Springbok** - Springbok is a dynamic harmonic regression model, using Fourier terms to capture the seasonality of the ILI trend along with ARIMA errors for short-term correlation. Region specific models include some combination of cumulative influenza subtype prevalence, national Google trends data, regional Google trends data, and estimates of ILI backfill as predictors in the model.
+
+
+This model is being submitted to both CDC and the FluSight Network ensemble. Forecasts from this model can be found [here](tree/master/CDC%20Submissions/2018-2019).
+
+
+**Kudu** - Kudu is a historical average model weighted by the cumulative influenza A subtype prevelance. Separate Gaussian kernel density estimates based on previous ILI data were fit for H1N1 and H3N2 dominant seasons by weighting observed ILI values by the cumulative prevalence of that subtype in the season. Predictions are created by weighting those two kernel density estimates by the observed cumulative prevalence of the influenza A subtypes to date.
+
+
+This model is being submitted to the FluSight Network ensemble only. Forecasts from this model can be found [here](tree/master/Forecasts/2018-2019/Subtype%20Historical%20Average).
+
+
+**Steenbok** - Steenbok is a simple historical average model. A Gaussian kernel density estimate based on previous ILI data is used to create predictions for the upcoming season.
+
+
+This model is not submitted to either the CDC or FluSight Network and is only used as a component of the Cheetah model. Forecasts from this model can be found [here](tree/master/Forecasts/2018-2019/Historical%20Average).
