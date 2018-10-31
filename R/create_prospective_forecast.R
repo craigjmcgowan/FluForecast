@@ -13,8 +13,8 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 41
-epiweek <- 201841
+EW <- 42
+epiweek <- 201842
 
 ##### Update data #####
 source("R/read_data.R")
@@ -122,7 +122,7 @@ dir.create("Forecasts/2018-2019/Subtype Historical Average/",
            showWarnings = FALSE)
 
 kudu_flusight_path <- 
-  "../cdc-flusight-ensemble/model-forecasts/component-models/Protea_Kudu" 
+  "../cdc-flusight-ensemble/model-forecasts/real-time-component-models/Protea_Kudu" 
 
 # Create target densities and functions
 subtype_densities_1819 <- create_subtype_densities(
@@ -292,7 +292,9 @@ fits <- filter(flu_data_merge, year <= 2018,
 springbok_path <- "Forecasts/2018-2019/Dynamic Harmonic Model/"
 
 springbok_flusight_path <- 
-  "../cdc-flusight-ensemble/model-forecasts/component-models/Protea_Springbok" 
+  "../cdc-flusight-ensemble/model-forecasts/real-time-component-models/Protea_Springbok" 
+
+cdc_path <- "CDC Submissions/2018-2019"
 
 set.seed(4321)
 springbok_fit <- fits %>%
@@ -582,9 +584,14 @@ write_csv(springbok_pred,
           path = paste0(springbok_flusight_path, "/EW", EW_paste,
                         "-", substr(epiweek, 1, 4), "-Protea_Springbok.csv"))
 
+write_csv(springbok_pred, 
+          path = paste0(cdc_path, "/", this_week,
+                        "-Protea_Springbok-", Sys.Date(), ".csv"))
+
 ##### Cheetah #####
 
-cheetah_flusight_path <- "../cdc-flusight-ensemble/model-forecasts/component-models/Protea_Cheetah"
+cheetah_flusight_path <- 
+  "../cdc-flusight-ensemble/model-forecasts/real-time-component-models/Protea_Cheetah"
 
 # List forecast files to be weighted
 model_files <- list.files(path = "Forecasts/2018-2019", recursive = TRUE, full.names = T)
@@ -599,6 +606,7 @@ weight_types <- sub(
       replacement = "",
       weight_files)
 )
+
 
 for(j in 1:length(weight_files)) {
   stacking_weights <- read.csv(paste0("weights/", weight_files[j]), 
@@ -658,6 +666,11 @@ for(j in 1:length(weight_files)) {
     write.csv(stacked_entry, 
               file = paste0(cheetah_flusight_path, "/", this_week,
                             "-", substr(epiweek, 1, 4), "-Protea_Cheetah.csv"),
+              row.names = FALSE, quote = FALSE)
+    
+    write.csv(stacked_entry, 
+              file = paste0(cdc_path, "/", this_week,
+                            "-Protea_Cheetah-", Sys.Date(), ".csv"),
               row.names = FALSE, quote = FALSE)
   }
 }
