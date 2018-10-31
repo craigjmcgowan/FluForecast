@@ -675,4 +675,5 @@ for(j in 1:length(weight_files)) {
   }
 }
 
-
+# Recreate README with updated forecasts
+rmarkdown::render("README.Rmd")
