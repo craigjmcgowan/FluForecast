@@ -585,7 +585,7 @@ write_csv(springbok_pred,
                         "-", substr(epiweek, 1, 4), "-Protea_Springbok.csv"))
 
 write_csv(springbok_pred, 
-          path = paste0(cdc_path, "/", this_week,
+          path = paste0(cdc_path, "/EW", EW_paste,
                         "-Protea_Springbok-", Sys.Date(), ".csv"))
 
 ##### Cheetah #####
