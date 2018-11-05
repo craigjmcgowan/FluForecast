@@ -13,8 +13,8 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 42
-epiweek <- 201842
+EW <- 43
+epiweek <- 201843
 
 ##### Update data #####
 source("R/read_data.R")
@@ -653,7 +653,8 @@ for(j in 1:length(weight_files)) {
     model_id = word(files_to_stack, start = 3, end = 3, sep = "/"),
     stringsAsFactors = FALSE)
   
-  stacked_entry <- stack_forecasts(file_df, wt_sub_subset)
+  stacked_entry <- stack_forecasts(file_df, wt_sub_subset) %>%
+    select(location, target, type, unit, bin_start_incl, bin_end_notincl, value)
   stacked_file_name <- paste0(
     "Forecasts/2018-2019/ens-",
     stacked_name, "/", this_week, ".csv"
