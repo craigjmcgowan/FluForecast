@@ -66,17 +66,22 @@ load("Data/truth_and_data.Rdata")
 #     week < 40 ~ week + 52,
 #     TRUE ~ week
 #   )) %>%
-#   # Replace missing backfill data with random draw from same season/week observed values
-#   mutate(
-#     sim_backfill = map2_dbl(location, week,
-#                         ~ sample(ili_backfill$backfill[ili_backfill$location == .x &
-#                                                          ili_backfill$week == .y], 1)),
-#     backfill = case_when(
-#       !is.na(backfill) ~ backfill,
-#       TRUE ~ sim_backfill
-#       )
-#     ) %>%
-#   select(-sim_backfill)
+#   # Replace missing backfill data with Gaussian random draw from same season/week observed values
+  # mutate(
+  #   sim_backfill = map2_dbl(location, week, 
+  #                           ~ rnorm(1, 
+  #                              ili_backfill_avg$avg_backfill[
+  #                                ili_backfill_avg$location == .x &
+  #                                  ili_backfill_avg$week == .y],
+  #                              ili_backfill_avg$sd_backfill[
+  #                                ili_backfill_avg$location == .x &
+  #                                  ili_backfill_avg$week == .y])),
+  #   backfill = case_when(
+  #     !is.na(backfill) ~ backfill,
+  #     TRUE ~ sim_backfill
+  #     )
+  #   ) %>%
+  # select(-sim_backfill)
 # 
 # save(nested_truth, flu_data_merge, file = "Data/truth_and_data.Rdata")
 

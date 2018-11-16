@@ -106,7 +106,8 @@ ili_backfill <- left_join(
 
 ili_backfill_avg <- ili_backfill %>%
   group_by(location, week) %>%
-  summarize(avg_backfill = mean(backfill))
+  summarize(avg_backfill = mean(backfill),
+            sd_backfill = sd(backfill))
 
 save(ili_orig, ili_current, ili_init_pub_list, ili_backfill, ili_backfill_avg,
      file = "Data/ili.Rdata")
