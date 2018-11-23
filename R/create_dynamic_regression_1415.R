@@ -21,7 +21,7 @@ cluster <- create_cluster(cores = parallel::detectCores())
 
 # Create truth for all seasons and combine datasets -------
 load("Data/truth_and_data.Rdata")
-# set.seed(4321)
+# set.seed()
 # nested_truth <- ili_current %>%
 #   filter(year >= 2010, !season %in% c("2009/2010", "2018/2019")) %>%
 #   select(season, location, week, ILI) %>%
@@ -607,7 +607,7 @@ best_arima_cv <- bind_rows(arima_scores_1011, arima_scores_1112,
   group_by(location) %>%
   filter(avg_score == max(avg_score)) %>%
   ungroup() %>%
-  select(location, arima_1:arima_3, avg_score)
+  select(location, arima_1:arima_3)
 
 save(best_arima_cv, file = "Data/CV_ARIMA_terms_1415.Rdata")
 
@@ -1159,7 +1159,7 @@ best_covar_cv <- bind_rows(covar_scores_1011, covar_scores_1112,
   arrange(location, desc(avg_score)) %>%
   group_by(location) %>%
   filter(avg_score == max(avg_score)) %>%
-  ungroup()
+  ungroup() %>%
   select(location, model)
-
+  
 save(best_covar_cv, file = "Data/CV_covar_terms_1415.Rdata")

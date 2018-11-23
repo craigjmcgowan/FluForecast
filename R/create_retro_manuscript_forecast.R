@@ -68,6 +68,19 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
     week < 40 ~ week + 52,
     TRUE ~ week
   ))
+
+nested_truth <- ili_current %>%
+  filter(year >= 2010, !season %in% c("2009/2010", "2018/2019")) %>%
+  select(season, location, week, ILI) %>%
+  nest(-season) %>%
+  mutate(truth = map2(season, data,
+                      ~ create_truth(fluview = FALSE, year = substr(.x, 1, 4),
+                                     weekILI = .y)),
+         eval_period = pmap(list(data, truth, season),
+                            ~ create_eval_period(..1, ..2, ..3)),
+         exp_truth = map(truth,
+                         ~ expand_truth(.))) %>%
+  select(-data)
   
 
 ##### 2014-2015 #####
@@ -196,18 +209,31 @@ fits <- filter(flu_data_merge, year <= 2014,
                              ..1$cum_h3per, ..1$backfill),
                 lambda = ..6)
       )
-  ))
+  )) %>%
+  select(-data)
 
-# Create and save forecast files
-springbok_path <- "Forecasts/2018-2019/Dynamic Harmonic Model/"
 
-springbok_flusight_path <- 
-  "../cdc-flusight-ensemble/model-forecasts/real-time-component-models/Protea_Springbok" 
-
-cdc_path <- "CDC Submissions/2018-2019"
-
-set.seed(4321)
-springbok_fit <- fits %>%
+forecasts_1415 <- crossing(season = "2014/2015",
+                           week = 40:71,
+                           location = unique(flu_data_merge$location)) %>%
+  filter(week < 71 | season == "2014/2015") %>%
+  mutate(
+    epiweek = case_when(
+      season == "2014/2015" & week > 53 ~ 
+        as.numeric(paste0(substr(season, 6, 9), 
+                          str_pad(week - 53, 2, "left", "0"))),
+      week > 52 ~ 
+        as.numeric(paste0(substr(season, 6, 9), 
+                          str_pad(week - 52, 2, "left", "0"))),
+      TRUE ~ as.numeric(paste0(substr(season, 1, 4), str_pad(week, 2, "left", "0")))
+    ),
+    prev_season = case_when(
+      season == "2010/2011" ~ "2007/2008",
+      TRUE ~ paste0(as.numeric(substr(season, 1, 4)) - 1, "/",
+                    substr(season, 1, 4))
+    )
+  ) %>%
+  inner_join(fits, by = "location") %>%
   mutate(
     pred_data = pmap(list(season, week, location, epiweek), 
                      ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
@@ -332,14 +358,14 @@ springbok_fit <- fits %>%
               nrow(..1[..1$season == ..2, ]))
     ),
     backfill = pmap(
-      list(data, week, max_week, season),
+      list(pred_data, week, max_week, season),
       function(data, week, max_week, season) {
         out <- numeric()
         for(i in week:(max_week + 24)) {
           
           temp <- data[data$order_week == i &
                            !data$season %in% c("2004/2005", "2005/2006", "2006/2007",
-                                               "2008/2009"), ]
+                                               "2008/2009", "2014/2015"), ]
           
           out <- c(out, predict(lm(backfill ~ year, 
                                    data = temp),
@@ -480,111 +506,23 @@ springbok_fit <- fits %>%
                         npaths = 1000)
     )
   ) %>%
-  select(location, week, max_week, pred_results)
+  select(location, week, pred_results) 
 
-springbok_pred <- springbok_fit %>%
+prospective_scores_1415 <- forecasts_1415 %>% 
+  select(location, week, pred_results) %>%
+  mutate(pred_results = map2(pred_results, location,
+                             ~ mutate(.x, location = .y) %>%
+                               normalize_probs()),
+         season = "2014/2015") %>%
+  select(-location) %>%
   unnest() %>%
-  select(-week, -max_week, -forecast_week) %>%
-  bind_rows(generate_point_forecasts(.)) %>%
-  select(location, target, type, unit, bin_start_incl, bin_end_notincl, value)
+  nest(-week, -season) %>%
+  left_join(nested_truth, by = "season") %>%
+  mutate(scores = map2(data, exp_truth,
+                       ~ score_entry(.x, .y)),
+         eval_scores = pmap(list(scores, eval_period, season),
+                            ~ create_eval_scores(..1, ..2, ..3))) %>%
+  select(season, eval_scores) %>%
+  unnest() 
 
-write_csv(springbok_pred,path = paste0(springbok_path, "/EW", EW_paste, ".csv"))
-
-write_csv(springbok_pred, 
-          path = paste0(springbok_flusight_path, "/EW", EW_paste,
-                        "-", substr(epiweek, 1, 4), "-Protea_Springbok.csv"))
-
-write_csv(springbok_pred, 
-          path = paste0(cdc_path, "/EW", EW_paste,
-                        "-Protea_Springbok-", Sys.Date(), ".csv"))
-
-##### Cheetah #####
-
-cheetah_flusight_path <- 
-  "../cdc-flusight-ensemble/model-forecasts/real-time-component-models/Protea_Cheetah"
-
-# List forecast files to be weighted
-model_files <- list.files(path = "Forecasts/2018-2019", recursive = TRUE, full.names = T)
-model_files <- model_files[!grepl('ens', model_files)]
-
-# List weighting schemes to be calculated
-weight_files <- list.files(path = "Weights")
-weight_types <- sub(
-  pattern = "-weights.csv", 
-  replacement = "",
-  sub(pattern = "Weights/",
-      replacement = "",
-      weight_files)
-)
-
-
-for(j in 1:length(weight_files)) {
-  stacking_weights <- read.csv(paste0("weights/", weight_files[j]), 
-                               stringsAsFactors=FALSE) %>%
-    filter(season == "2018/2019")
-  stacked_name <- sub(pattern = ".csv", replacement = "", weight_files[j])
-  
-  # If weights by week included, reset to MMWR week
-  if (any(grepl("Model.Week", names(stacking_weights)))) {
-    stacking_weights <- mutate(
-      stacking_weights,
-      `Model.Week` = week_reset(`Model.Week`, season),
-      ew = paste0("EW", str_pad(`Model.Week`, 2, "left", 0))
-    ) %>%
-      select(-`Model.Week`) 
-  }
-  
-  wt_subset <- select(stacking_weights, -season)
-    
-  dir.create(file.path("Forecasts/2018-2019",
-                       paste0("ens-", stacked_name)), 
-             showWarnings = FALSE)
-  
-  ## identify the "EWXX-YYYY" combos for files given season
-  # first_year <- 2018
-  # first_year_season_weeks <- 40:52
-  # week_names <- c(paste0("EW", first_year_season_weeks),
-  #                 paste0("EW", str_pad(1:20, 2, "left", pad = 0)))
-    
-  this_week <- paste0("EW", EW)
-  
-  if (any(grepl("ew", names(wt_subset)))) {
-    wt_sub_subset <- filter(wt_subset, ew == this_week) %>%
-      select(-ew)
-  } else {
-    wt_sub_subset <- wt_subset
-  }
-  
-  ## stack models, save ensemble file
-  files_to_stack <- model_files[grepl(this_week, model_files)]
-  
-  file_df <- data.frame(
-    file = files_to_stack, 
-    model_id = word(files_to_stack, start = 3, end = 3, sep = "/"),
-    stringsAsFactors = FALSE)
-  
-  stacked_entry <- stack_forecasts(file_df, wt_sub_subset) %>%
-    select(location, target, type, unit, bin_start_incl, bin_end_notincl, value)
-  stacked_file_name <- paste0(
-    "Forecasts/2018-2019/ens-",
-    stacked_name, "/", this_week, ".csv"
-  )
-  write.csv(stacked_entry, file=stacked_file_name, 
-            row.names = FALSE, quote = FALSE)
-  
-  # Save Cheetah model to FSN path as well
-  if(stacked_name == "month-target-type-based-weights") {
-    write.csv(stacked_entry, 
-              file = paste0(cheetah_flusight_path, "/", this_week,
-                            "-", substr(epiweek, 1, 4), "-Protea_Cheetah.csv"),
-              row.names = FALSE, quote = FALSE)
-    
-    write.csv(stacked_entry, 
-              file = paste0(cdc_path, "/", this_week,
-                            "-Protea_Cheetah-", Sys.Date(), ".csv"),
-              row.names = FALSE, quote = FALSE)
-  }
-}
-
-# Recreate README with updated forecasts
-rmarkdown::render("README.Rmd")
+save(prospective_scores_1415, file = "Data/prospective_scores_1415.Rdata")
