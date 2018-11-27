@@ -13,8 +13,8 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 45
-epiweek <- 201845
+EW <- 46
+epiweek <- 201846
 
 ##### Update data #####
 source("R/read_data.R")
