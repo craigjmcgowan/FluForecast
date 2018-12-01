@@ -95,7 +95,6 @@ load("Data/truth_and_data.Rdata")
 ## If/how to include estimates of backfill\
 
 ##### Transform data #####
-load("Data/transform_fits.Rdata")
 transform_model_fit_data <- tibble(
   season = c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
              "2014/2015")
@@ -135,8 +134,6 @@ transform_model_fits <- transform_fits_by_group %>%
   ungroup() %>%
   select(-data) %>%
   gather(key = "model", value = "fit", no_trans, log, Box_Cox)
-
-save(transform_model_fits, file = "Data/transform_fits.Rdata")
 
 # Set up data for model fitting in parallel
 transform_model_data <- crossing(model = c("no_trans", "log", "Box_Cox"),
@@ -212,8 +209,6 @@ transform_forecasts <- transform_forecasts %>% ungroup() %>%
   select(season, model, location, week, pred_results)
 
 
-save(transform_forecasts, file = "Data/transform_forecasts.Rdata") 
-
 # Normalize probabilities and score forecasts 
 transform_scores <- transform_forecasts %>% 
   mutate(pred_results = map2(pred_results, location,
@@ -230,7 +225,7 @@ transform_scores <- transform_forecasts %>%
   select(season, model, eval_scores) %>%
   unnest() 
 
-save(transform_scores, file = "Data/CV_Transform_Scores.Rdata")
+save(transform_scores, file = "Data/CV_Transform_Scores_1516.Rdata")
 
 # Determine best K value for each region
 best_transform_cv <- transform_scores %>%
@@ -240,7 +235,7 @@ best_transform_cv <- transform_scores %>%
   ungroup() %>%
   select(location, transform = model)
 
-save(best_transform_cv, file = "Data/CV_Transform_terms_1415.Rdata")
+save(best_transform_cv, file = "Data/CV_Transform_terms_1516.Rdata")
 
 ##### Number of Fourier terms #####
 load("Data/fourier_fits.Rdata")
