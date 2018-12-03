@@ -112,9 +112,9 @@ bounds <- recent_entries %>%
 ggplot(plot_points) +
   # Add shading for 80% CI for average
   geom_ribbon(data = bounds, aes(x = week, ymin = lower, ymax = upper, fill = Model),
-              alpha = 0.3) +
+              alpha = 0.3, show.legend = FALSE) +
   # Add point prediction lines for each team
-  geom_line(aes(week, value, color = Model)) +
+  geom_line(aes(week, value, color = Model), show.legend = FALSE) +
   # Add observed values
   geom_line(data = plot_model_truth, aes(week, value), color = "black") +
   # Add horizontal line of baseline
