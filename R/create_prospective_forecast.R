@@ -19,6 +19,7 @@ epiweek <- 201847
 ##### Update data #####
 source("R/read_data.R")
 source("R/gtrends_pull_data.R")
+source("R/save_who_nrevss.R")
 
 set.seed(4321) # For reproducibility of backfill sample
 
