@@ -43,6 +43,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 * Comparisons across seasons and locations and targets
 
+* Compare to seasonal ARIMA forecast - illustrate improvement over baseline model
+
 * Check Nick's papers for potential comparisons and graphs that could be made
 
 * Comparisons to CDC results using relevant scoring rules
