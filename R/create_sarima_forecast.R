@@ -19,79 +19,15 @@ load("Data/state_gtrend.Rdata")
 # Create clusters for use later in program
 cluster <- create_cluster(cores = parallel::detectCores())
 
-# Create truth for all seasons and combine datasets -------
+# Load truth and data for all seasons -------
 load("Data/truth_and_data.Rdata")
-# nested_truth <- ili_current %>%
-#   filter(year >= 2010, season != "2009/2010") %>%
-#   select(season, location, week, ILI) %>%
-#   nest(-season) %>%
-#   mutate(truth = map2(season, data,
-#                       ~ create_truth(fluview = FALSE, year = substr(.x, 1, 4),
-#                                      weekILI = .y)),
-#          eval_period = pmap(list(data, truth, season),
-#                             ~ create_eval_period(..1, ..2, ..3)),
-#          exp_truth = map(truth,
-#                          ~ expand_truth(.))) %>%
-#   select(-data)
-# 
-# flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location) %>%
-#   inner_join(select(virologic_combined, location, season, year, week, cum_h1per,
-#                    cum_h3per, cum_bper),
-#             by = c("location", "season", "year", "week")) %>%
-#   # Add Google Trends data by location
-#   right_join(bind_rows(mutate(gtrend_US_flu_merge, location = "US National"),
-#                       mutate(gtrend_MA_flu_merge, location = "HHS Region 1"),
-#                       mutate(gtrend_NY_flu_merge, location = "HHS Region 2"),
-#                       mutate(gtrend_PA_flu_merge, location = "HHS Region 3"),
-#                       mutate(gtrend_FL_flu_merge, location = "HHS Region 4"),
-#                       mutate(gtrend_IL_flu_merge, location = "HHS Region 5"),
-#                       mutate(gtrend_TX_flu_merge, location = "HHS Region 6"),
-#                       mutate(gtrend_MO_flu_merge, location = "HHS Region 7"),
-#                       mutate(gtrend_CO_flu_merge, location = "HHS Region 8"),
-#                       mutate(gtrend_CA_flu_merge, location = "HHS Region 9"),
-#                       mutate(gtrend_WA_flu_merge, location = "HHS Region 10")) %>%
-#               rename(region_hits = hits) %>%
-#               select(-date),
-#             by = c("location", "season", "year", "week")) %>%
-#   right_join(gtrend_US_flu_merge,
-#             by = c("season", "year", "week")) %>%
-#   full_join(select(ili_backfill, -orig_ILI, -final_ILI),
-#             by = c("location", "season", "year", "week")) %>%
-#   # Remove 2008/2009 and 2009/2010 seasons due to pandemic activity
-#   filter(!season %in% c("2008/2009", "2009/2010")) %>%
-#   # Remove week 33 in 2014 so all seasons have 52 weeks - minimal activity
-#   filter(!(year == 2014 & week == 33)) %>%
-#   mutate(order_week = case_when(
-#     week < 40 & season == "2014/2015" ~ week + 53,
-#     week < 40 ~ week + 52,
-#     TRUE ~ week
-#   )) %>%
-#   # Replace missing backfill data with Gaussian random draw from same season/week observed values
-  # mutate(
-  #   sim_backfill = map2_dbl(location, week, 
-  #                           ~ rnorm(1, 
-  #                              ili_backfill_avg$avg_backfill[
-  #                                ili_backfill_avg$location == .x &
-  #                                  ili_backfill_avg$week == .y],
-  #                              ili_backfill_avg$sd_backfill[
-  #                                ili_backfill_avg$location == .x &
-  #                                  ili_backfill_avg$week == .y])),
-  #   backfill = case_when(
-  #     !is.na(backfill) ~ backfill,
-  #     TRUE ~ sim_backfill
-  #     )
-  #   ) %>%
-  # select(-sim_backfill)
-# 
-# save(nested_truth, flu_data_merge, file = "Data/truth_and_data.Rdata")
-
 
 
 ### Fit region-specific SARIMA model for each test season ###
 
 season_arima_fits <- tibble()
 
-for(this_season in c("2014/2015")) {#, "2015/2016", "2016/2017", "2017/2018")) {
+for(this_season in c("2014/2015", "2015/2016", "2016/2017", "2017/2018")) {
   
   temp_data <- filter(ili_current, year <= as.numeric(substr(this_season, 1, 4)),
                       season != this_season) %>%
@@ -101,7 +37,7 @@ for(this_season in c("2014/2015")) {#, "2015/2016", "2016/2017", "2017/2018")) {
            !(season %in% c("2008/2009", "2009/2010"))) %>%
     select(location, ILI) %>%
     nest(-location) %>%
-    mutate(ILI = ifelse(ILI == 0, log(0.1), log(ILI)),
+    mutate(ILI = ifelse(ILI == 0, log(0.1), log(ILI)), # Log transform ILI
            ILI_ts = map(data,
                         ~ ts(.$ILI, frequency = 52, start = c(1999, 40))),
            group = rep(1:4, length.out = nrow(.)),
@@ -129,11 +65,8 @@ for(this_season in c("2014/2015")) {#, "2015/2016", "2016/2017", "2017/2018")) {
   rm(temp_data, temp_party, temp_fits)
 }
 
-
+# Save fits
 saveRDS(season_arima_fits, file = "Data/seasonal_arima_fits.Rds")
-
-season_arima_fits <- readRDS("Data/seasonal_arima_fits.Rds")
-
 
 # Set up data for model fitting in parallel
 sarima_model_data <- crossing(season = c("2014/2015"), # "2015/2016", "2016/2017", "2017/2018"),
@@ -166,7 +99,7 @@ sarima_by_group %>%
   cluster_assign_value("sample_predictive_trajectories_arima", 
                        sample_predictive_trajectories_arima)
 
-# Create forecasts for different transformations
+# Create forecasts for different SARIMA models
 sarima_forecasts <- sarima_by_group %>%
   mutate(
     pred_data = pmap(list(season, week, location, epiweek), 
@@ -192,7 +125,7 @@ sarima_forecasts <- sarima_by_group %>%
                         location = ..3,
                         season = ..4,
                         max_week = ..5,
-                        npaths = 250)
+                        npaths = 1000)
     )
   ) %>%
   collect() %>%
