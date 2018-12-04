@@ -426,7 +426,7 @@ create_eval_scores <- function(scores, bounds, season, ...) {
 # Simulate predicted trajectories from ARIMA models ------
 sample_predictive_trajectories_arima <- function (object,
                                                   h = ifelse(object$arma[5] > 1, 2 * object$arma[5]),
-                                                  xreg = NULL,
+                                                  xreg = c(),
                                                   lambda = object$lambda,
                                                   npaths = 5000,
                                                   ...) {
@@ -446,7 +446,7 @@ sample_predictive_trajectories_arima <- function (object,
 }
 
 # Turn fitted forecast model into a CDC-style forecast ------
-fit_to_forecast <- function(object, xreg, pred_data, location, season, 
+fit_to_forecast <- function(object, xreg = c(), pred_data, location, season, 
                             npaths = 1000, max_week = 52, ...){
 
   # Simulate output
