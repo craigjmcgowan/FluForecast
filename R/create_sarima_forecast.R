@@ -29,16 +29,15 @@ season_arima_fits <- tibble()
 
 for(this_season in c("2014/2015", "2015/2016", "2016/2017", "2017/2018")) {
   
-  temp_data <- filter(ili_current, year <= as.numeric(substr(this_season, 1, 4)),
+  temp_data <- filter(flu_data_merge, year <= as.numeric(substr(this_season, 1, 4)),
                       season != this_season) %>%
     # Remove week 53s and 2008/2009 and 2009/2010 seasons
-    filter(!(season %in% c("1997/1998", "2003/2004", "2008/2009", "2014/2015") &
-               week == 53),
+    filter(!(season %in% c("2014/2015") & week == 33),
            !(season %in% c("2008/2009", "2009/2010"))) %>%
     select(location, ILI) %>%
+    mutate(ILI = ifelse(ILI == 0, log(0.1), log(ILI))) %>% # Log transform ILI
     nest(-location) %>%
-    mutate(ILI = ifelse(ILI == 0, log(0.1), log(ILI)), # Log transform ILI
-           ILI_ts = map(data,
+    mutate(ILI_ts = map(data,
                         ~ ts(.$ILI, frequency = 52, start = c(1999, 40))),
            group = rep(1:4, length.out = nrow(.)),
            season = this_season)
