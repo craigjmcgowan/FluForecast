@@ -144,24 +144,46 @@ $(document).ready(function () {
 </div>
 <div id="methods" class="section level1">
 <h1>Methods</h1>
-<ul>
-<li><p>Development of harmonic model</p></li>
-<li><p>CV steps</p></li>
-<li><p>Development of ‘prospective’ forecasts</p></li>
-<li><p>Scoring rules</p></li>
-</ul>
+<div id="forecast-structure" class="section level2">
+<h2>Forecast structure</h2>
+<p>Weekly forecasts were structured according to the template used by the FluSight challenge (Biggerstaff et al 2018, McGowan et al 2019). Within each week, forecasts were generated for each of seven targets in eleven locations. Forecast locations included the United States as a whole and each of the 10 Health and Human Services Regions, which each encompasses several US states. Forecast targets could be generally grouped into seasonal targets and short-term targets. Seasonal targets included season peak percentage, defined as the maximum wILI% value, season peak week, defined as the week when the maximum wILI% occurred, and season onset, defined as the first week where the wILI% value matched or exceed the location-specific baseline value and remained at or above for three consecutive weeks. Short-term targets included forecasts of wILI% values 1, 2, 3, and 4 weeks ahead of the most recently published data. Possible outcomes for each target are grouped into bins, and the forecasts assign a probability of occurrance to each possible outcome for each target. (Table 1)</p>
+</div>
+<div id="development-of-harmonic-model-only---ignore-subtype-hist-avg-and-ensemble" class="section level2">
+<h2>Development of harmonic model only - ignore subtype hist avg and ensemble</h2>
+<p>Let <span class="math inline">\(y_{lt}\)</span> be the observed wILI% value for location <span class="math inline">\(l\)</span> at MMWR week <span class="math inline">\(t\)</span>. Models for all locations were of the general form</p>
+<span class="math display">\[\begin{aligned}
+g(y_{lt}) = a_l + \sum_{k=1}^{K_l}[\alpha_k]
+\end{aligned}\]</span>
+</div>
+<div id="cv-steps-in-fitting" class="section level2">
+<h2>CV steps in fitting</h2>
+</div>
+<div id="development-of-prospective-forecasts" class="section level2">
+<h2>Development of ‘prospective’ forecasts</h2>
+</div>
+<div id="scoring-rules" class="section level2">
+<h2>Scoring rules</h2>
+</div>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
 <ul>
 <li><p>Summary results from each test season</p></li>
 <li><p>Comparisons across seasons and locations and targets</p></li>
+<li><p>Compare to seasonal ARIMA forecast - illustrate improvement over baseline model</p></li>
 <li><p>Check Nick’s papers for potential comparisons and graphs that could be made</p></li>
 <li><p>Comparisons to CDC results using relevant scoring rules</p></li>
 </ul>
 </div>
 <div id="discussion" class="section level1">
 <h1>Discussion</h1>
+<ul>
+<li><p>New modeling approach compared to previous literature</p></li>
+<li><p>Strong performance compared to existing models</p></li>
+<li><p>Submitted as true prospective model during 18/19 season and can evaluate further then (slash maybe wait until season is over)</p></li>
+<li><p>Strengths - fairly simple mathematical model, easy to implement with existing software</p></li>
+<li><p>Limitations - current analysis assumes Google Trend data are</p></li>
+</ul>
 </div>
 
 

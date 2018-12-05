@@ -1,0 +1,10 @@
+\begin{table}[]
+\begin{tabular}{cc}
+\hline
+\textbf{Model component}                                                    & \textbf{Options evaluated in cross-validation}                                                                                                                      \\ \hline
+\begin{tabular}[c]{@{}c@{}}Link function \\ $g_l()$\end{tabular}            & \begin{tabular}[c]{@{}c@{}}1. Identity\\ 2. Natural logarithm\\ 3. Box-Cox transformation\end{tabular}                                                              \\
+\begin{tabular}[c]{@{}c@{}}Number of \\ Fourier terms \\ $K_l$\end{tabular} & $1, 2, \dots, 12$                                                                                                                                                   \\
+\begin{tabular}[c]{@{}c@{}}ARIMA process \\ $N_l$\end{tabular}              & \begin{tabular}[c]{@{}c@{}}AR term: 0, 1, 2, 3\\ I term: 0, 1\\ MA term: 0, 1, 2, 3\end{tabular}                                                                    \\
+\begin{tabular}[c]{@{}c@{}}Covariates \\ $\boldsymbol{X}_l$\end{tabular}    & \begin{tabular}[c]{@{}c@{}}All combinations of:\\ 1. National or regional Google Trends\\ 2. Cumulative H1 and H3 subtype prevalence\\ 3. ILI backfill\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
