@@ -22,7 +22,6 @@ cluster <- create_cluster(cores = parallel::detectCores())
 # Load truth and data for all seasons -------
 load("Data/truth_and_data.Rdata")
 
-
 ### Fit region-specific SARIMA model for each test season ###
 
 season_arima_fits <- tibble()
@@ -68,7 +67,8 @@ for(this_season in c("2014/2015", "2015/2016", "2016/2017", "2017/2018")) {
 saveRDS(season_arima_fits, file = "Data/seasonal_arima_fits.Rds")
 
 # Set up data for model fitting in parallel
-sarima_model_data <- crossing(season = c("2014/2015"), # "2015/2016", "2016/2017", "2017/2018"),
+sarima_model_data <- crossing(season = c("2014/2015", "2015/2016", 
+                                         "2016/2017", "2017/2018"),
                               week = c(43:71),
                               location = unique(flu_data_merge$location)) %>%
   filter(week < 71 | season == "2014/2015") %>%
