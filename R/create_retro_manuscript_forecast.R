@@ -525,4 +525,4 @@ prospective_scores_1415 <- forecasts_1415 %>%
   select(season, eval_scores) %>%
   unnest() 
 
-save(prospective_scores_1415, file = "Data/prospective_scores_1415.Rdata")
+saveRDS(prospective_scores_1415, file = "Data/prospective_scores_1415.Rds")

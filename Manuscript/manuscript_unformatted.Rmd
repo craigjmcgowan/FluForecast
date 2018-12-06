@@ -9,8 +9,10 @@ output: pdf_document
 library(tidyverse)
 library(FluSight)
 library(cdcfluview)
+library(pander)
 
 knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_knit$set(root.dir = "../")
 ```
 
 # Abstract
@@ -56,9 +58,66 @@ We considered several potential covariates for inclusion in the test model for e
 
 # Results
 
+```{r load scores}
+scores <- bind_rows(
+  readRDS("Data/histavg_scores.Rds"),
+  readRDS("Data/sarima_scores.Rds") %>%
+    mutate(model = "SARIMA"),
+  bind_rows(
+    readRDS("Data/prospective_scores_1415.Rds")#,
+    # readRDS("Data/prospective_scores_1516.Rds"),
+    # readRDS("Data/prospective_scores_1617.Rds"),
+    # readRDS("Data/prospective_scores_1718.Rds")
+  ) %>%
+    mutate(model = "Springbok")
+) %>%
+  mutate(target_type = ifelse(target %in% c("Season onset", "Season peak percentage",
+                                            "Season peak week"),
+                              "Seasonal", "Short-term"))
+```
+
+
 * Summary results from each test season
 
+
+```{r overall scores across seasons}
+scores %>%
+  group_by(season, model) %>%
+  summarize(mean_skill = exp(mean(score))) %>%
+  spread(key = "model", value = "mean_skill") %>%
+  pander()
+```
+
 * Comparisons across seasons and locations and targets
+
+```{r target season comparison}
+
+loc_tt_scores <- scores %>%
+  group_by(model, location, target_type) %>%
+  summarize(mean_skill = exp(mean(score))) %>%
+  ungroup() %>%
+  left_join(., filter(., model == "Historical Average") %>%
+              select(hist_skill = mean_skill, target_type, location),
+            by = c("location", "target_type")) %>%
+  mutate(diff = mean_skill - hist_skill)
+
+
+ggplot(loc_tt_scores, aes(x = location, y = model)) + 
+  geom_tile(aes(fill = diff)) +
+  geom_text(aes(label = round(mean_skill, 2))) +
+  scale_fill_gradient2(low = "tomato", mid = "white", high = "steelblue",
+                      midpoint = 0, 
+                      limits = c(-max(abs(min(loc_tt_scores$diff)),
+                                      max(loc_tt_scores$diff)),
+                                 max(abs(min(loc_tt_scores$diff)),
+                                     max(loc_tt_scores$diff)))) +
+  facet_wrap(~target_type, nrow = 2) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(x = "", y = "", fill = "Diff. from\nHist. Avg.")
+```
+
+
 
 * Compare to seasonal ARIMA forecast - illustrate improvement over baseline model
 
