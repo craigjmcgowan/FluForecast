@@ -80,9 +80,9 @@ temp <- flu_data_merge %>%
          fourier_mod_2 = map(data,
                              ~ glm(log_ILI ~ cos1 + sin1 + cos2 + sin2,
                                   data = .)),
-         nat_sarima_mod = map(data,
-                           ~ Arima(.x$log_ILI_ts, order = c(2, 0, 2),
-                                   seasonal = c(2, 1, 0))),
+         # nat_sarima_mod = map(data,
+         #                   ~ Arima(.x$log_ILI_ts, order = c(2, 0, 2),
+         #                           seasonal = c(2, 1, 0))),
          nat_arima_mod = map2(data, xreg,
                              ~ Arima(.x$log_ILI_ts, order = c(0, 1, 3),
                                      xreg = .y)),
@@ -90,15 +90,15 @@ temp <- flu_data_merge %>%
                             ~ predict(..1, ..2, type='response')),
          log_pred_four_2 = pmap(list(fourier_mod_2, data),
                             ~ predict(..1, ..2, type='response')),
-         log_pred_sarima = pmap(list(nat_sarima_mod),
-                                ~ fitted(..1)),
+         # log_pred_sarima = pmap(list(nat_sarima_mod),
+         #                        ~ fitted(..1)),
          log_pred_arima = pmap(list(nat_arima_mod, xreg),
                                ~ fitted(..1, xreg = ..2))) %>%
-  select(-fourier_mod_1, -fourier_mod_2, -nat_sarima_mod, -nat_arima_mod) %>%
+  select(-fourier_mod_1, -fourier_mod_2, -nat_arima_mod) %>% #, -nat_sarima_mod) %>%
   unnest() %>%
   mutate(pred_four_1 = exp(log_pred_four_1),
          pred_four_2 = exp(log_pred_four_2),
-         pred_nat_s = exp(as.numeric(log_pred_sarima)),
+         # pred_nat_s = exp(as.numeric(log_pred_sarima)),
          pred_nat_arima = exp(as.numeric(log_pred_arima)))
 
 ggplot(temp) +
@@ -110,14 +110,16 @@ ggplot(temp) +
   facet_wrap(~ location) +
   theme_minimal()
 
-ggplot(filter(temp, location == "US National")) +
+p <- ggplot(filter(temp, location == "US National")) +
   geom_line(aes(x = date, y = ILI)) +
-  geom_line(aes(x = date, y = pred_nat_s), color = "red") +
-  geom_line(aes(x = date, y = pred_nat_arima), color = "blue") +
-  facet_wrap(~ season, scales = "free") + 
+  facet_wrap(~ season, scales = "free_x") + 
   theme_minimal()
 
-?geom_smooth
+p
 
-?predict.glm
-?map2
+p + geom_line(aes(x = date, y = pred_four_1), color = "red")
+
+p + geom_line(aes(x = date, y = pred_four_2), color = "red")
+
+p + geom_line(aes(x = date, y = pred_four_2), color = "red") +
+  geom_line(aes(x = date, y = pred_nat_arima), color = "blue")
