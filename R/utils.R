@@ -10,6 +10,17 @@ pull_curr_epidata <- function(start, end) {
     bind_rows()
 }
 
+# Helper functions for reading in EpiData from wk 28 for scoring-------
+pull_scoring_epidata <- function(year) {
+  Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
+                       'hhs6', 'hhs7', 'hhs8', 'hhs9', 'hhs10'),
+                  list(Epidata$range(as.numeric(paste0(year - 1, 40)),
+                                     as.numeric(paste0(year, 25)))),
+                  issues = as.numeric(paste0(year, 28)))$epidata %>%
+    modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
+    bind_rows()
+}
+
 # Helper function for reading in weekly publications of EpiData -----
 pull_initpub_epidata <- function(issue) {
 

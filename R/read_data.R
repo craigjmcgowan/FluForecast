@@ -109,8 +109,41 @@ ili_backfill_avg <- ili_backfill %>%
   summarize(avg_backfill = mean(backfill),
             sd_backfill = sd(backfill))
 
+# Save week 28 data from each year if available to serve as scoring truth
+ili_wk_28 <- bind_rows(
+  pull_scoring_epidata(2015),
+  pull_scoring_epidata(2016),
+  pull_scoring_epidata(2017),
+  pull_scoring_epidata(2018)
+  ) %>%
+  mutate(year = as.integer(substr(epiweek, 1, 4)),
+         week = as.integer(substr(epiweek, 5, 6)),
+         season = ifelse(week >= 40,
+                         paste0(year, "/", year + 1),
+                         paste0(year - 1, "/", year)),
+         location = case_when(
+           region == "nat" ~ "US National",
+           region == "hhs1" ~ "HHS Region 1",
+           region == "hhs2" ~ "HHS Region 2",
+           region == "hhs3" ~ "HHS Region 3",
+           region == "hhs4" ~ "HHS Region 4",
+           region == "hhs5" ~ "HHS Region 5",
+           region == "hhs6" ~ "HHS Region 6",
+           region == "hhs7" ~ "HHS Region 7",
+           region == "hhs8" ~ "HHS Region 8",
+           region == "hhs9" ~ "HHS Region 9",
+           region == "hhs10" ~ "HHS Region 10"
+         )) %>%
+  rename(ILI = wili) %>%
+  select(-ili) %>%
+  # Make ILI always > 0
+  mutate(ILI = case_when(near(ILI, 0) ~ 0.1,
+                         TRUE ~ ILI))
+
 save(ili_orig, ili_current, ili_init_pub_list, ili_backfill, ili_backfill_avg,
-     file = "Data/ili.Rdata")
+     ili_wk_28, file = "Data/ili.Rdata")
+
+
 
 # Fetch virologic data from CDC -----
 virologic_national <- who_nrevss(region = "national", years = c(1997:2018))

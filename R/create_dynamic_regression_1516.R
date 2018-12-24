@@ -238,9 +238,10 @@ best_transform_cv <- transform_scores %>%
 save(best_transform_cv, file = "Data/CV_Transform_terms_1516.Rdata")
 
 ##### Number of Fourier terms #####
-load("Data/fourier_fits.Rdata")
-load("Data/CV_Transform_terms_1415.Rdata")
-fourier_model_fits <- tibble(season = c("2010/2011", "2011/2012", "2012/2013", "2013/2014")) %>%
+# load("Data/fourier_fits_1516.Rdata")
+load("Data/CV_Transform_terms_1516.Rdata")
+fourier_model_fits <- tibble(season = c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
+                                        "2014/2015")) %>%
   mutate(train_data = map(season,
                           ~ filter(flu_data_merge, year <= as.numeric(substr(., 6, 9)),
                                    season != paste0(substr(., 6, 9), "/",
@@ -300,13 +301,14 @@ fourier_model_fits <- tibble(season = c("2010/2011", "2011/2012", "2012/2013", "
   select(-data) %>%
   gather(key = "model", value = "fit", fit_1:fit_12)
 
-save(fourier_model_fits, file = "Data/fourier_fits.Rdata")
+save(fourier_model_fits, file = "Data/fourier_fits_1516.Rdata")
 
 # Set up data for model fitting in parallel
 fourier_model_data <- crossing(model = c("fit_1", "fit_2", "fit_3", "fit_4",
                                          "fit_5", "fit_6", "fit_7", "fit_8", 
                                          "fit_9", "fit_10", "fit_11", "fit_12"),
-                       season = c("2010/2011", "2011/2012", "2012/2013", "2013/2014"),
+                       season = c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
+                                  "2014/2015"),
                        week = c(43:71),
                        location = unique(flu_data_merge$location)) %>%
   filter(week < 71 | season == "2014/2015") %>%
@@ -328,7 +330,8 @@ fourier_model_data <- crossing(model = c("fit_1", "fit_2", "fit_3", "fit_4",
 # load("Data/fourier_scores.Rdata")
 fourier_scores <- tibble()
 start_time <- Sys.time()
-for (this_season in c("2010/2011", "2011/2012", "2012/2013", "2013/2014")) {
+for (this_season in c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
+                      "2014/2015")) {
 
   fourier_cluster <- create_cluster(cores = parallel::detectCores())
   
@@ -405,7 +408,7 @@ for (this_season in c("2010/2011", "2011/2012", "2012/2013", "2013/2014")) {
     unnest() %>%
     bind_rows(fourier_scores)
   
-  save(fourier_scores, file = "Data/CV_Fourier_Scores.Rdata")
+  save(fourier_scores, file = "Data/CV_Fourier_Scores_1516.Rdata")
   
   rm(fourier_forecasts_temp, fourier_by_group, fourier_cluster)
 }
@@ -419,15 +422,15 @@ best_k_cv <- fourier_scores %>%
   ungroup() %>%
   select(location, K)
 
-save(best_k_cv, file = "Data/CV_Fourier_terms_1415.Rdata")
+save(best_k_cv, file = "Data/CV_Fourier_terms_1516.Rdata")
 
 ##### ARIMA structure for error terms #####
 
-load("Data/CV_Fourier_terms_1415.Rdata")
-load("Data/CV_Transform_terms_1415.Rdata")
-# load("Data/arima_fits.Rdata")
+load("Data/CV_Fourier_terms_1516.Rdata")
+load("Data/CV_Transform_terms_1516.Rdata")
+load("Data/arima_fits_1516.Rdata")
 arima_model_fit_data <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
-                                            "2013/2014"),
+                                            "2013/2014", "2014/2015"),
                                 arima_1 = 0:3,
                                 arima_2 = 0:1,
                                 arima_3 = 0:3) %>%
@@ -448,12 +451,12 @@ arima_model_fit_data <- crossing(season = c("2010/2011", "2011/2012", "2012/2013
   left_join(best_k_cv, by = "location") %>%
   # Set up for parallel
   mutate(group = rep(1:length(cluster), length.out = nrow(.)),
-         lambda = unlist(map(data,
-                             ~ BoxCox.lambda(.$ILI))),
-         lambda = case_when(model == "no_trans" ~ NA_real_,
-                            model == "log" ~ 0,
-                            model == "Box_Cox" ~ lambda)) %>%
-  select(-model)
+         lambda = map_dbl(data,
+                          ~ BoxCox.lambda(.$ILI)),
+         lambda = case_when(transform == "no_trans" ~ NA_real_,
+                            transform == "log" ~ 0,
+                            transform == "Box_Cox" ~ lambda)) %>%
+  select(-transform)
 
 # Set up clusters
 arima_fit_parallel <- arima_model_fit_data %>%
@@ -478,11 +481,11 @@ arima_model_fits <- arima_fit_parallel %>%
 arima_model_fits <- arima_model_fits%>%
   filter(!grepl("Error", fit))
 
-save(arima_model_fits, file = "Data/arima_fits.Rdata")
+save(arima_model_fits, file = "Data/arima_fits_1516.Rdata")
 
 # Set up data for forecast creation in parallel
 arima_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
-                                              "2013/2014"),
+                                              "2013/2014", "2014/2015"),
                              arima_1 = 0:3,
                              arima_2 = 0:1,
                              arima_3 = 0:3,
@@ -508,7 +511,8 @@ arima_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/20
 # Clear forecasts from memory after each season
 
 start_time <- Sys.time()
-for(this_season in c("2012/2013", "2013/2014")) {
+for(this_season in c( "2012/2013", "2013/2014",
+                     "2014/2015")) {
   
   for_cluster <- create_cluster(cores = parallel::detectCores())
 
@@ -595,10 +599,13 @@ load("Data/CV_ARIMA_Scores_2012.Rdata")
 arima_scores_1213 <- arima_scores
 load("Data/CV_ARIMA_Scores_2013.Rdata")
 arima_scores_1314 <- arima_scores
+load("Data/CV_ARIMA_Scores_2014.Rdata")
+arima_scores_1415 <- arima_scores
 
 # Determine best ARIMA model for each region
 best_arima_cv <- bind_rows(arima_scores_1011, arima_scores_1112,
-                           arima_scores_1213, arima_scores_1314)%>%
+                           arima_scores_1213, arima_scores_1314,
+                           arima_scores_1415)%>%
   group_by(location, arima_1, arima_2, arima_3) %>%
   summarize(avg_score = mean(score)) %>%
   group_by(location) %>%
@@ -606,12 +613,12 @@ best_arima_cv <- bind_rows(arima_scores_1011, arima_scores_1112,
   ungroup() %>%
   select(location, arima_1:arima_3)
 
-save(best_arima_cv, file = "Data/CV_ARIMA_terms_1415.Rdata")
+save(best_arima_cv, file = "Data/CV_ARIMA_terms_1516.Rdata")
 
 ##### Additional covariates #####
-load("Data/CV_Transform_terms_1415.Rdata")
-load("data/CV_Fourier_terms_1415.Rdata")
-load("Data/CV_ARIMA_terms_1415.Rdata")
+load("Data/CV_Transform_terms_1516.Rdata")
+load("data/CV_Fourier_terms_1516.Rdata")
+load("Data/CV_ARIMA_terms_1516.Rdata")
 
 # Models to test:
 # No covariates
@@ -629,7 +636,7 @@ load("Data/CV_ARIMA_terms_1415.Rdata")
 
 load("Data/covar_fits.Rdata")
 covar_model_fits <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
-                                        "2013/2014"),
+                                        "2013/2014", "2014/2015"),
                              model = c("ARIMA only", "National Gtrends", "FluVirus",
                                        "Backfill", "National Gtrends & Backfill",
                                        "FluVirus & Backfill",
@@ -653,7 +660,7 @@ covar_model_fits <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
                    ~ mutate(.x,
                             ILI = ts(ILI, frequency = 52, start = c(2006, 40))))) %>%
   # Merge best lambda, Fourier K value, and ARIMA structure by location
-  left_join(rename(best_transform_cv, transform = model), by = "location") %>%
+  left_join(best_transform_cv, by = "location") %>%
   mutate(lambda = unlist(map(data,
                              ~ BoxCox.lambda(.$ILI))),
          lambda = case_when(transform == "no_trans" ~ NA_real_,
@@ -767,11 +774,11 @@ covar_model_fits <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
       )
     ))
 
-save(covar_model_fits, file = "Data/covar_fits.Rdata")
+save(covar_model_fits, file = "Data/covar_fits_1516.Rdata")
 
 # Set up data for forecast creation in parallel
 covar_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
-                                              "2013/2014"),
+                                              "2013/2014", "2014/2015"),
                                    model = c("ARIMA only", "National Gtrends", "FluVirus", 
                                              "Backfill", "National Gtrends & Backfill",
                                              "FluVirus & Backfill",
@@ -1146,10 +1153,13 @@ load("Data/CV_covar_Scores_2012.Rdata")
 covar_scores_1213 <- covar_scores
 load("Data/CV_covar_Scores_2013.Rdata")
 covar_scores_1314 <- covar_scores
+load("Data/CV_covar_Scores_2014.Rdata")
+covar_scores_1415 <- covar_scores
 
 # Determine best covariates for each region
 best_covar_cv <- bind_rows(covar_scores_1011, covar_scores_1112,
-                                  covar_scores_1213, covar_scores_1314) %>%
+                           covar_scores_1213, covar_scores_1314,
+                           covar_scores_1415) %>%
   filter(location != "HHS Region 10" | season != "2010/2011") %>%
   group_by(location, model) %>%
   summarize(avg_score = mean(score)) %>%
@@ -1159,4 +1169,4 @@ best_covar_cv <- bind_rows(covar_scores_1011, covar_scores_1112,
   ungroup() %>%
   select(location, model)
   
-save(best_covar_cv, file = "Data/CV_covar_terms_1415.Rdata")
+save(best_covar_cv, file = "Data/CV_covar_terms_1516.Rdata")
