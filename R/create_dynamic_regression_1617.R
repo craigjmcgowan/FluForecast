@@ -627,12 +627,12 @@ best_arima_cv <- bind_rows(arima_scores_1011, arima_scores_1112,
   ungroup() %>%
   select(location, arima_1:arima_3)
 
-save(best_arima_cv, file = "Data/CV_ARIMA_terms_1516.Rdata")
+save(best_arima_cv, file = "Data/CV_ARIMA_terms_1617.Rdata")
 
 ##### Additional covariates #####
-load("Data/CV_Transform_terms_1516.Rdata")
-load("data/CV_Fourier_terms_1516.Rdata")
-load("Data/CV_ARIMA_terms_1516.Rdata")
+load("Data/CV_Transform_terms_1617.Rdata")
+load("data/CV_Fourier_terms_1617.Rdata")
+load("Data/CV_ARIMA_terms_1617.Rdata")
 
 # Models to test:
 # No covariates
@@ -648,7 +648,7 @@ load("Data/CV_ARIMA_terms_1516.Rdata")
 # National Gtrends, flu, and backfill
 # Regional Gtrends, flu, and backfill
 
-load("Data/covar_fits.Rdata")
+load("Data/covar_fits_1617.Rdata")
 covar_model_fits <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
                                         "2013/2014", "2014/2015", "2015/2016"),
                              model = c("ARIMA only", "National Gtrends", "FluVirus",
@@ -788,7 +788,7 @@ covar_model_fits <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
       )
     ))
 
-save(covar_model_fits, file = "Data/covar_fits_1516.Rdata")
+save(covar_model_fits, file = "Data/covar_fits_1617.Rdata")
 
 # Set up data for forecast creation in parallel
 covar_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",

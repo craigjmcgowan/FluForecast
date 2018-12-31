@@ -134,11 +134,11 @@ truth <- nested_truth %>%
   select(season, truth) %>%
   unnest() %>%
   mutate(true = 1)
-# 
-# exp_truth <- nested_truth %>%
-#   select(season, exp_truth) %>%
-#   unnest() %>%
-#   mutate(true = 1)
+
+exp_truth <- nested_truth %>%
+  select(season, exp_truth) %>%
+  unnest() %>%
+  mutate(true = 1)
 
 all_forecasts <- bind_rows(
   mutate(readRDS("Data/prospective_forecasts_1415.Rds"), 
@@ -161,7 +161,8 @@ all_forecasts <- bind_rows(
                    week = case_when(forecast_week < 40 & season == "2014/2015" ~ 
                                       forecast_week + 53,
                                     forecast_week < 40 ~ forecast_week + 52,
-                                    TRUE ~ forecast_week))) %>%
+                                    TRUE ~ forecast_week)) %>%
+              filter(type == "Bin")) %>%
   mutate(challenge = "Influenza")
 
 eval_forecasts <- all_forecasts %>%
@@ -182,31 +183,53 @@ eval_forecasts <- all_forecasts %>%
                           TRUE ~ 0)) %>%
   select(-true.x, -true.y)
 
-# eval_forecasts_exp <- all_forecasts %>%
-#   # Attach evaluation period and filter to only forecasts in eval period
-#   left_join(select(nested_truth, season, eval_period) %>%
-#               unnest(),
-#             by = c("season", "target", "location")) %>%
-#   filter(week >= start_week, week <= end_week) %>%
-#   # Attach truth and create indicator
-#   left_join(filter(exp_truth, target %in% c("Season onset", "Season peak week",
-#                                         "Season peak percentage")) %>%
-#               select(-forecast_week),
-#             by = c("season", "location", "target", "bin_start_incl")) %>%
-#   left_join(filter(exp_truth, !target %in% c("Season onset", "Season peak week",
-#                                         "Season peak percentage")),
-#             by = c("season", "location", "target", "forecast_week", "bin_start_incl")) %>%
-#   mutate(true = case_when(true.x == 1 | true.y == 1  ~ 1,
-#                           TRUE ~ 0)) %>%
-#   select(-true.x, -true.y)
-#   
+eval_forecasts_exp <- all_forecasts %>%
+  # Attach evaluation period and filter to only forecasts in eval period
+  left_join(select(nested_truth, season, eval_period) %>%
+              unnest(),
+            by = c("season", "target", "location")) %>%
+  filter(week >= start_week, week <= end_week) %>%
+  # Attach truth and create indicator
+  left_join(filter(exp_truth, target %in% c("Season onset", "Season peak week",
+                                        "Season peak percentage")) %>%
+              select(-forecast_week),
+            by = c("season", "location", "target", "bin_start_incl")) %>%
+  left_join(filter(exp_truth, !target %in% c("Season onset", "Season peak week",
+                                        "Season peak percentage")),
+            by = c("season", "location", "target", "forecast_week", "bin_start_incl")) %>%
+  mutate(true = case_when(true.x == 1 | true.y == 1  ~ 1,
+                          TRUE ~ 0)) %>%
+  select(-true.x, -true.y)
+
   
 ```
 
 
 ```{r calibration plots}
 forecast_calibration(eval_forecasts, percent_bin = 0.1, ssn_group = TRUE,
-                     tgt_group = TRUE) %>%
+                     tgt_group = TRUE, team_group = T) %>%
+  ggplot() + 
+  geom_point(aes(x = mean_pred_prob, y = percent, color = team),
+               size = 1.4) +
+  geom_errorbar(aes(x = mean_pred_prob, ymin = lower, ymax = upper,
+                    width = width/4, color = team)) +
+  # Add reference line
+  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  # Make graph pretty
+  scale_x_continuous(limits = c(-0.02, 1.02), breaks = c(0, 0.5, 1)) + 
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(x = "Predicted probability",
+       y = "Observed probability",
+       color = "Season") +
+  theme_minimal() +
+  facet_grid(target ~ season)
+
+
+```
+
+```{r expand calibration plots}
+forecast_calibration(eval_forecasts_exp, percent_bin = 0.1, exact = FALSE,
+                     ssn_group = TRUE, tgt_group = TRUE) %>%
   ggplot() + 
   geom_point(aes(x = mean_pred_prob, y = percent),
                size = 1.4) +
@@ -235,11 +258,11 @@ eval_forecasts %>%
   summarize(encompass_true = any(true == 1)) %>%
   ungroup() %>%
   group_by(season, team, target) %>%
-  summarize(mean(encompass_true))
+  summarize(mean = mean(encompass_true)) %>%
+  spread(key = "team", value = "mean") %>%
+  arrange(season, target)
 
 ```
-
-Need to fix empirical comparisons for Historical Average
 
 * Comparisons to CDC results using relevant scoring rules
 
