@@ -50,7 +50,7 @@ Models for each location were fit using a sequential cross-validation process in
 
 To determine $g_l()$ for a particular test season, we used data from 2010/2011 season through the prior to that test season as cross-validation seasons. For each CV season, we fit a location-specific SARIMA model in `R` using the `auto.arima` function from the `forecast` package for each possible link function $g_l()$ to the training data prior to the CV season. We generated weekly probabilistic forecasts for the CV season by sampling from the predicted trajectory using bootstrapped errors. Forecasts were scored using the scoring rules for the FluSight challenge (see 'Scoring Rules' below) and averaged across all CV seasons. The link function with the highest average score across the CV seasons was selected for each location. Values and/or structures for $K_l$, $N_l$, and $X_l$ were determined sequentially in an analogous fashion, incorporating decisions made for prior model components (e.g. CV models to determine $N_l$ incorporated previously calculated values for $g_l()$ and $K_l$).
 
-We considered several potential covariates for inclusion in the test model for each location. 
+We considered several potential covariates for inclusion in the test model for each location, including cumulative virus subtype percentage, national Google Trends (GT), regional GT, and observed revisions to initially published ILINet values. 
 
 ## Development of 'prospective' forecasts
 
@@ -64,8 +64,8 @@ scores <- bind_rows(
   readRDS("Data/sarima_scores.Rds") %>%
     mutate(model = "SARIMA"),
   bind_rows(
-    readRDS("Data/prospective_scores_1415.Rds")#,
-    # readRDS("Data/prospective_scores_1516.Rds"),
+    readRDS("Data/prospective_scores_1415.Rds"),
+    readRDS("Data/prospective_scores_1516.Rds")#,
     # readRDS("Data/prospective_scores_1617.Rds"),
     # readRDS("Data/prospective_scores_1718.Rds")
   ) %>%
@@ -119,9 +119,127 @@ ggplot(loc_tt_scores, aes(x = location, y = model)) +
 
 
 
-* Compare to seasonal ARIMA forecast - illustrate improvement over baseline model
+* Compare to seasonal ARIMA forecast and historical average - illustrate improvement over baseline model
 
-* Check Nick's papers for potential comparisons and graphs that could be made
+* Comparisons using MAE?
+
+* Investigate calibration using tools from CDC paper?
+
+```{r load forecasts}
+source("R/forecast_calibration.R")
+
+nested_truth <- readRDS("Data/nested_truth_1415_1718.Rds") 
+
+truth <- nested_truth %>%
+  select(season, truth) %>%
+  unnest() %>%
+  mutate(true = 1)
+# 
+# exp_truth <- nested_truth %>%
+#   select(season, exp_truth) %>%
+#   unnest() %>%
+#   mutate(true = 1)
+
+all_forecasts <- bind_rows(
+  mutate(readRDS("Data/prospective_forecasts_1415.Rds"), 
+         season = "2014/2015",
+         team = "DH"),
+  mutate(readRDS("Data/prospective_forecasts_1516.Rds"),
+         season = "2015/2016",
+         team = "DH")#,
+  # mutate(readRDS("Data/prospective_forecasts_1617.Rds"), 
+  #        season = "2016/2017"),
+  # mutate(readRDS("Data/prospective_forecasts_1718.Rds"),
+  #        season = "2018/2018"))
+) %>%
+  unnest() %>%
+  bind_rows(mutate(readRDS("Data/sarima_forecasts.Rds"),
+                   team = "SARIMA") %>%
+              unnest()) %>%
+  bind_rows(mutate(readRDS("Data/hist_avg_forecasts.Rds"),
+                   team = "Hist Avg",
+                   week = case_when(forecast_week < 40 & season == "2014/2015" ~ 
+                                      forecast_week + 53,
+                                    forecast_week < 40 ~ forecast_week + 52,
+                                    TRUE ~ forecast_week))) %>%
+  mutate(challenge = "Influenza")
+
+eval_forecasts <- all_forecasts %>%
+  # Attach evaluation period and filter to only forecasts in eval period
+  left_join(select(nested_truth, season, eval_period) %>%
+              unnest(),
+            by = c("season", "target", "location")) %>%
+  filter(week >= start_week, week <= end_week) %>%
+  # Attach truth and create indicator
+  left_join(filter(truth, target %in% c("Season onset", "Season peak week",
+                                        "Season peak percentage")) %>%
+              select(-forecast_week),
+            by = c("season", "location", "target", "bin_start_incl")) %>%
+  left_join(filter(truth, !target %in% c("Season onset", "Season peak week",
+                                        "Season peak percentage")),
+            by = c("season", "location", "target", "forecast_week", "bin_start_incl")) %>%
+  mutate(true = case_when(true.x == 1 | true.y == 1  ~ 1,
+                          TRUE ~ 0)) %>%
+  select(-true.x, -true.y)
+
+# eval_forecasts_exp <- all_forecasts %>%
+#   # Attach evaluation period and filter to only forecasts in eval period
+#   left_join(select(nested_truth, season, eval_period) %>%
+#               unnest(),
+#             by = c("season", "target", "location")) %>%
+#   filter(week >= start_week, week <= end_week) %>%
+#   # Attach truth and create indicator
+#   left_join(filter(exp_truth, target %in% c("Season onset", "Season peak week",
+#                                         "Season peak percentage")) %>%
+#               select(-forecast_week),
+#             by = c("season", "location", "target", "bin_start_incl")) %>%
+#   left_join(filter(exp_truth, !target %in% c("Season onset", "Season peak week",
+#                                         "Season peak percentage")),
+#             by = c("season", "location", "target", "forecast_week", "bin_start_incl")) %>%
+#   mutate(true = case_when(true.x == 1 | true.y == 1  ~ 1,
+#                           TRUE ~ 0)) %>%
+#   select(-true.x, -true.y)
+#   
+  
+```
+
+
+```{r calibration plots}
+forecast_calibration(eval_forecasts, percent_bin = 0.1, ssn_group = TRUE,
+                     tgt_group = TRUE) %>%
+  ggplot() + 
+  geom_point(aes(x = mean_pred_prob, y = percent),
+               size = 1.4) +
+  geom_errorbar(aes(x = mean_pred_prob, ymin = lower, ymax = upper,
+                    width = width/4)) +
+  # Add reference line
+  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  # Make graph pretty
+  scale_x_continuous(limits = c(-0.02, 1.02), breaks = c(0, 0.5, 1)) + 
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(x = "Predicted probability",
+       y = "Observed probability",
+       color = "Season") +
+  theme_minimal() +
+  facet_grid(target ~ season)
+
+
+```
+
+* Investigate empirical coverage of 80% prediction intervals?
+
+```{r}
+eval_forecasts %>%
+  group_by(season, team, location, target, week) %>%
+  filter(cumsum(value) >= 0.1, cumsum(value) <= 0.9) %>%
+  summarize(encompass_true = any(true == 1)) %>%
+  ungroup() %>%
+  group_by(season, team, target) %>%
+  summarize(mean(encompass_true))
+
+```
+
+Need to fix empirical comparisons for Historical Average
 
 * Comparisons to CDC results using relevant scoring rules
 
@@ -133,6 +251,8 @@ ggplot(loc_tt_scores, aes(x = location, y = model)) +
 
 * Submitted as true prospective model during 18/19 season and can evaluate further then (slash maybe wait until season is over)
 
+* Hopefully fairly strong performance independent of scoring metric, as well as decent calibration
+
 * Strengths - fairly simple mathematical model, easy to implement with existing software
 
-* Limitations - current analysis assumes Google Trend data are 
+* Limitations - current analysis assumes Google Trend data are free of backfill, relies on provided sample of GT data. Assumes virologic data are free of backfill which we know not to be true, but using cumulative percentage should minimize that (and can investigate truth of that statement following 18/19 season)

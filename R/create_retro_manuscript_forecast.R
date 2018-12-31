@@ -80,6 +80,8 @@ nested_truth <- ili_wk_28 %>%
          exp_truth = map(truth,
                          ~ expand_truth(.))) %>%
   select(-data)
+
+# saveRDS(nested_truth, "Data/nested_truth_1415_1718.Rds")
   
 
 ##### 2014-2015 #####
@@ -506,6 +508,8 @@ forecasts_1415 <- crossing(season = "2014/2015",
     )
   ) %>%
   select(location, week, pred_results) 
+
+saveRDS(forecasts_1415, file = "Data/prospective_forecasts_1415.Rds")
 
 prospective_scores_1415 <- forecasts_1415 %>% 
   select(location, week, pred_results) %>%
@@ -951,6 +955,8 @@ forecasts_1516 <- crossing(season = "2015/2016",
     )
   ) %>%
   select(location, week, pred_results) 
+
+saveRDS(forecasts_1516, file = "Data/prospective_forecasts_1516.Rds")
 
 prospective_scores_1516 <- forecasts_1516 %>% 
   select(location, week, pred_results) %>%
