@@ -12,7 +12,9 @@ source("R/utils.R")
 source('R/EpiDataAPI.R')
 
 # Save current MMWR week in format Epidata wants
-current_week <- as.numeric(paste0(MMWRweek(Sys.Date())[[1]], MMWRweek(Sys.Date())[[2]] ))
+current_week <- as.numeric(paste0(MMWRweek(Sys.Date())[[1]], 
+                                  str_pad(MMWRweek(Sys.Date())[[2]], width = 2,
+                                          side = "left", pad = "0")))
 
 pull_week <- case_when(
   MMWRweek(Sys.Date())[3] == 7 & substr(current_week, 5, 6) == "01" ~ 
