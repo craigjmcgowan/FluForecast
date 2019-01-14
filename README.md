@@ -8,7 +8,7 @@ This repo contains all documents related to the Protea Analytics entries for the
 
 ### Current forecasts
 
-Forecasts are based on data from MMWR week 52, which encompasses Dec 23, 2018 to Dec 29, 2018. For interactive forecasts, please visit the [CDC](http://predict.cdc.gov) or [FluSight Network](http://flusightnetwork.io/) pages. The plots below illustrate the forecasts for weighted percentage of outpatient visits due to influenza-like illness (ILI) over the four weeks following the most recent data publication, with 80% prediction intervals.
+Forecasts are based on data from MMWR week 1, which encompasses Dec 30, 2018 to Jan 05, 2019. For interactive forecasts, please visit the [CDC](http://predict.cdc.gov) or [FluSight Network](http://flusightnetwork.io/) pages. The plots below illustrate the forecasts for weighted percentage of outpatient visits due to influenza-like illness (ILI) over the four weeks following the most recent data publication, with 80% prediction intervals.
 
 <img src="README_files/figure-markdown_github/current forecasts-1.png" width="672" />
 

@@ -13,8 +13,8 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 52
-epiweek <- 201852
+EW <- 01
+epiweek <- 201901
 
 ##### Update data #####
 source("R/read_data.R")
@@ -287,6 +287,7 @@ fits <- filter(flu_data_merge, year <= 2018,
   mutate(season = "2018/2019",
          prev_season = "2017/2018",
          week = EW,
+         order_week = if_else(EW < 40, EW + 52, EW),
          epiweek = epiweek)
 
 # Create and save forecast files
@@ -300,7 +301,7 @@ cdc_path <- "CDC Submissions/2018-2019"
 set.seed(4321)
 springbok_fit <- fits %>%
   mutate(
-    pred_data = pmap(list(season, week, location, epiweek), 
+    pred_data = pmap(list(season, order_week, location, epiweek), 
                      ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
                               season != paste0(substr(..1, 6, 9), "/",
                                                as.numeric(substr(..1, 6, 9)) + 1),
@@ -373,7 +374,7 @@ springbok_fit <- fits %>%
                     ~ Arima(..1$ILI, xreg = ..3, model = ..2)),
     # Create data frame of xreg terms for forecasting
     gtrend_forecast = pmap(
-      list(pred_data, location, season, prev_season, week, max_week),
+      list(pred_data, location, season, prev_season, order_week, max_week),
       ~ tibble(hits = c(flu_data_merge %>%
                           filter(location == ..2, season == ..3, 
                                  order_week == ..5 + 1) %>%
@@ -393,7 +394,7 @@ springbok_fit <- fits %>%
                                  pull(hits))))
     ),
     reg_gtrend_forecast = pmap(
-      list(pred_data, location, season, prev_season, week, max_week),
+      list(pred_data, location, season, prev_season, order_week, max_week),
       ~ tibble(region_hits = c(flu_data_merge %>%
                                  filter(location == ..2, season == ..3, 
                                         order_week == ..5 + 1) %>%
@@ -423,10 +424,10 @@ springbok_fit <- fits %>%
               nrow(..1[..1$season == ..2, ]))
     ),
     backfill = pmap(
-      list(data, week, max_week, season),
-      function(data, week, max_week, season) {
+      list(data, order_week, max_week, season),
+      function(data, order_week, max_week, season) {
         out <- numeric()
-        for(i in week:(max_week + 24)) {
+        for(i in order_week:(max_week + 24)) {
           
           temp <- data[data$order_week == i &
                            !data$season %in% c("2004/2005", "2005/2006", "2006/2007",
@@ -434,7 +435,10 @@ springbok_fit <- fits %>%
           
           out <- c(out, predict(lm(backfill ~ year, 
                                    data = temp),
-                                data.frame(year = as.numeric(substr(season, 1, 4)))))
+                                data.frame(year = case_when(
+                                  i <= max_week ~ as.numeric(substr(season, 1, 4)),
+                                  TRUE ~ as.numeric(substr(season, 6, 9))
+                                  ))))
         }
         out
       } 
@@ -637,7 +641,7 @@ for(j in 1:length(weight_files)) {
   # week_names <- c(paste0("EW", first_year_season_weeks),
   #                 paste0("EW", str_pad(1:20, 2, "left", pad = 0)))
     
-  this_week <- paste0("EW", EW)
+  this_week <- paste0("EW", EW_paste)
   
   if (any(grepl("ew", names(wt_subset)))) {
     wt_sub_subset <- filter(wt_subset, ew == this_week) %>%
