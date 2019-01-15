@@ -17,6 +17,8 @@ load("Data/ili.Rdata")
 last_week <- last(ili_current$week)
 last_year <- last(ili_current$year)
 
+last_plot_week <- ifelse(last_week < 40, last_week + 52, last_week)
+
 ```
 
 
@@ -68,13 +70,13 @@ plot_points <- recent_entries %>%
                            "3 wk ahead", "4 wk ahead")) %>%
   select(target, value, Model) %>%
   # Note week is the week BEING forecast, NOT the week forecast received
-  mutate(week = last_week + as.numeric(gsub(" wk ahead", "", target)),
-         week = ifelse(week < 40, week + 52, week)) %>%
+  mutate(week = last_week + as.numeric(gsub(" wk ahead", "", target))) %>%
   select(-target) %>%
   # Attach forecast bins to point prediction of last observed value
   bind_rows(tibble(Model = factor(c("Cheetah", "Springbok", "Kudu", "Steenbok")),
                    week = last_week,
-                   value = last(plot_truth$ILI)))
+                   value = last(plot_truth$ILI))) %>%
+  mutate(week = ifelse(week < 40, week + 52, week))
   
   # Labels for x-axis of graph
 wk_label <- c("40", "42", "44", "46", "48", "50", "52", "2", "4", "6",
@@ -106,7 +108,8 @@ bounds <- recent_entries %>%
     bind_rows(tibble(Model = factor(c("Cheetah", "Springbok", "Kudu", "Steenbok")),
                          week = last_week,
                          lower = last(plot_truth$ILI),
-                         upper = last(plot_truth$ILI)))
+                         upper = last(plot_truth$ILI))) %>%
+    mutate(week = ifelse(week < 40, week + 52, week))
 
 # Create plot
 ggplot(plot_points) +
@@ -118,7 +121,7 @@ ggplot(plot_points) +
   # Add observed values
   geom_line(data = plot_model_truth, aes(week, value), color = "black") +
   # Add horizontal line of baseline
-  geom_segment(aes(x = 40, xend = last_week + 4,
+  geom_segment(aes(x = 40, xend = last_plot_week + 4,
                    y = 2.2, yend = 2.2),
                linetype = 3)  +
   theme_minimal() +
