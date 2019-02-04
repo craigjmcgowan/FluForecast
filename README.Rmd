@@ -16,9 +16,6 @@ library(FluSight)
 ```{r load data}
 load("Data/ili.Rdata")
 
-last_week <- last(ili_current$week)
-last_year <- last(ili_current$year)
-
 ```
 
 
@@ -46,14 +43,13 @@ for(this_season in c("2010-2011", "2011-2012", "2012-2013", "2013-2014",
                      "2014-2015", "2015-2016", "2016-2017", "2017-2018")) {
   
   training_files <- list.files(path = file.path("Forecasts", this_season,
-                                                "ens-month-target-type-region-based-weights"),
+                                                "ens-month-target-type-based-weights"),
                                full.names = TRUE)
-  
   
   for(j in seq_along(training_files)) {
     training_points <- read_csv(training_files[j]) %>%
       filter(type == "Point", target == "1 wk ahead") %>%
-      mutate(week = as.numeric(substr(training_files[j], 66, 67)) + 1,
+      mutate(week = as.numeric(substr(training_files[j], 59, 60)) + 1,
              season = this_season,
              order_week = case_when(
                this_season == "2014-2015" & week < 40 ~ week + 53,
@@ -119,6 +115,7 @@ ggplot(data = filter(training_plot_data, location == "US National")) +
 ## Current performance in 2018/2019
 
 ```{r forecast data set up}
+# Load prospective forecasts from 2018/2019
 forecast_files <- list.files(path = "CDC Submissions", pattern = "Protea_Cheetah",
                              full.names = TRUE, recursive = TRUE)
 

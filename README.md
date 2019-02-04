@@ -24,7 +24,7 @@ As previous research has illustrated the value of ensemble approaches to forecas
 
 The final model is a weighted ensemble of the three other forecasts based on leave-one-season-out cross validation of forecasts from the 2010-2011 through 2017-2018 seasons, with separate model weights estimated for each month using a degenerate expectation maximization algorithm. From the final forecast, I can generate point forecasts with corresponding prediction intervals, as well as purely probabilistic forecasts.
 
-The plot below illustrates the accuracy of the 1-week ahead forecasts on the training data from 2010-2011 through 2017-2018 for national-level forecasts. Mean absolute error (MAE) ranges from 0.15 to 0.32. Overall, the training forecasts track the training data well, illustrating the potential for these forecasts in real-time.
+The plot below illustrates the accuracy of the 1-week ahead forecasts on the training data from 2010-2011 through 2017-2018 for national-level forecasts. Mean absolute error (MAE) ranges from 0.15 to 0.31. Overall, the training forecasts track the training data well, illustrating the potential for these forecasts in real-time.
 
 <img src="README_files/figure-markdown_github/train_plot-1.png" alt="Observed training data and predicted 1 week ahead forecasts during the training period, US National" width="672" />
 <p class="caption">
