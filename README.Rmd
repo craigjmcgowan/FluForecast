@@ -8,6 +8,8 @@ options(width=120)
 
 library(tidyverse)
 library(FluSight)
+library(MMWRweek)
+# install_github::("jarad/FluSight")
 
 ```
 
@@ -20,143 +22,247 @@ last_year <- last(ili_current$year)
 ```
 
 
-# Protea Analytics Influenza Forecasts
-Prediction model for the CDC FluSight influenza forecasting challenge
+# Influenza Forecasting - The Data Incubator Capstone Proposal
 
-This repo contains all documents related to the Protea Analytics entries for the US Centers for Disease Control and Prevention's 2018-2019 [FluSight influenza forecasting challenge](http://predict.cdc.gov), including conceptual documents, model fitting code, validation forecasts, and prospective forecasts submitted to CDC. Protea is also participating in the [FluSight Network](http://flusightnetwork.io/), a collaborative effort to build a weighted forecasting ensemble using data from multiple forecasting teams.
+## Introduction
+Seasonal influenza results in a large disease burden each winter in the United States, with millions of hours of lost productivity, millions of doctor visits, and thousands of fatalities. A better understanding of the dynamics of each season's influenza epidemic can help public health officials, health care administrators, and businesses better prepare for the impact. To address this, my capstone project will use data from the Centers for Disease Control and Prevention (CDC) and Google Trends to create short-term predictions of influenza activity at multiple geographical resolutions.
 
-### Current forecasts
-Forecasts are based on data from MMWR week `r last_week`, which encompasses `r format(MMWRweek::MMWRweek2Date(last_year, last_week, 1), "%b %d, %Y")` to `r format(MMWRweek::MMWRweek2Date(last_year, last_week, 7), "%b %d, %Y")`. For interactive forecasts, please visit the [CDC](http://predict.cdc.gov) or [FluSight Network](http://flusightnetwork.io/) pages. The plots below illustrate the forecasts for weighted percentage of outpatient visits due to influenza-like illness (ILI) over the four weeks following the most recent data publication, with 80% prediction intervals.
+## Project goal
+Upon completion of The Data Incubator, I will have completed models to forecast influenza activity 1 to 4 weeks ahead at three resolutions - the United States as a whole, the 10 Health and Human Services (HHS) Regions (each composing multiple states), and those individual states for which influenza data are available (all except Florida as of this proposal). By creating a web application to host these forecasts, potential users will be able to access the forecasts that are of interest to them. 
 
-```{r current forecasts}
-recent_entries <- bind_rows(
-  read_entry(paste0("Forecasts/2018-2019/Dynamic Harmonic Model/EW",
-                    str_pad(last_week, 2, "left", "0"), ".csv")) %>%
-    mutate(Model = "Springbok"),
-  read_entry(paste0("Forecasts/2018-2019/ens-month-target-type-based-weights/EW",
-                    str_pad(last_week, 2, "left", "0"), ".csv")) %>%
-    mutate(Model = "Cheetah"),
-  read_entry(paste0("Forecasts/2018-2019/Historical Average/EW",
-                    str_pad(last_week, 2, "left", "0"), ".csv")) %>%
-    mutate(Model = "Steenbok"),
-  read_entry(paste0("Forecasts/2018-2019/Subtype Historical Average/EW",
-                    str_pad(last_week, 2, "left", "0"), ".csv")) %>%
-    mutate(Model = "Kudu")
-) %>%
-  mutate(Model = factor(Model, levels = c("Cheetah", "Springbok", "Kudu", "Steenbok")))
+## Data sources and acquisition
+The main data source for my project, and the target value of interest for my forecasts, comes from the CDC's US Outpatient Influenza-like-illness Surveillance Network, or ILINet. Each week, ~3500 outpatient providers report their total number of patients as well as the number of patients they have seen with influenza like illness (ILI), defined as a fever > 100&deg; and cough or sore throat. From this, the percentage of outpatient visits due to ILI is calculated. Weekly ILINet data are available at the national, regional, and state level going back to at least the beginning of the 2010/2011 influenza season. Of note, late reports by providers to CDC can result in revisions, known as *backfill*, to initially reported ILINet values; for example, a value originally reported as 3.2% could increase to 3.5% or decrease to 2.9% in later reports. In addition to ILINet data, I make use of CDC's virologic surveillance data collected through the WHO/NRVESS surveillance system, which gathers data on which influenza virus strains are circulating in a given week. Both CDC data sources are publicly available through CDC's FluView API, which is accessed via R using the `cdcfluview` package. Finally, I use Google Trends data on the prevalence of searches for 'flu', accessed using the `gtrendsR` package. 
+
+## Model structure
+As previous research has illustrated the value of ensemble approaches to forecasting infectious diseases, I use a weighted ensemble of three separate models. The first model included is a naive historical average model. A Gaussian kernel density estimate based on previous ILINet data is used to create predictions for each week of the upcoming season. The second model is a historical average model weighted by the cumulative influenza A virus subtype prevelance observed. Separate Gaussian kernel density estimates based on previous ILI data were fit for H1N1 and H3N2 dominant seasons by weighting observed ILI values by the cumulative prevalence of that virus subtype in the season. Predictions are created by weighting those two kernel density estimates by the observed cumulative prevalence of the influenza A virus subtypes to date in the current season. Finally, the third model is a dynamic harmonic regression model, using Fourier terms to capture the seasonality of the ILI trend along with ARIMA errors for short-term correlation. Region specific models include some combination of cumulative influenza subtype prevalence, national Google trends data, regional Google trends data, and estimates of ILI backfill as predictors in the model. The specific model structure is fit via cross validation of forecasts from the 2010-2011 through 2017-2018 seasons, with training forecasts based solely on data that would have been available at the time of the forecast. Prediction intervals for the dynamic harmonic regression model were calculated via bootstrapping.
+
+The final model is a weighted ensemble of the three other forecasts based on leave-one-season-out cross validation of forecasts from the 2010-2011 through 2017-2018 seasons, with separate model weights estimated for each month using a degenerate expectation maximization algorithm. From the final forecast, I can generate both probabilistic and point forecasts.
+
+```{r training data setup}
+# Read training data CSVs and extract 1 wk ahead point forecasts
+training_points <- tibble()
+
+for(this_season in c("2010-2011", "2011-2012", "2012-2013", "2013-2014",
+                     "2014-2015", "2015-2016", "2016-2017", "2017-2018")) {
+  
+  training_files <- list.files(path = file.path("Forecasts", this_season,
+                                                "ens-month-target-type-region-based-weights"),
+                               full.names = TRUE)
+  
+  
+  for(j in seq_along(training_files)) {
+    training_points <- read_csv(training_files[j]) %>%
+      filter(type == "Point", target == "1 wk ahead") %>%
+      mutate(week = as.numeric(substr(training_files[j], 66, 67)) + 1,
+             season = this_season,
+             order_week = case_when(
+               this_season == "2014-2015" & week < 40 ~ week + 53,
+               week < 40 ~ week + 52,
+               TRUE ~ week
+             ),
+             year = case_when(
+               week < 40 ~ as.numeric(substr(season, 6, 9)),
+               TRUE ~ as.numeric(substr(season, 1, 4))
+             )) %>%
+      select(season, location, year, week, order_week, value) %>%
+      bind_rows(training_points, .)
+  }
+}
+
+
+training_data <- ili_current %>%
+  select(season, location, week, ILI) %>%
+  mutate(season = str_replace(season, "/", "-"),
+         order_week = case_when(
+           season == "2014-2015" & week < 40 ~ week + 53,
+           week < 40 ~ week + 52,
+           TRUE ~ as.numeric(week)
+         )) %>%
+  filter(season %in% c("2010-2011", "2011-2012", "2012-2013", "2013-2014",
+                       "2014-2015", "2015-2016", "2016-2017", "2017-2018")) %>%
+  inner_join(training_points, by = c("season", "location", "week", "order_week")) %>%
+  mutate(date = MMWRweek2Date(year, week)) 
+
+training_plot_data <- training_data %>%
+  gather(key = "data_source", value = "value", ILI, value) %>%
+  mutate(data_source = case_when(
+    data_source == "ILI" ~ "Observed activity",
+    data_source == "value" ~ "1 wk predicted activity"
+  ))
+
+mae_1wk <- training_data %>%
+  mutate(ae = abs(ILI - value),
+         date = as.Date(paste0(substr(season, 6, 9), "-04-10"))) %>%
+  group_by(date, season, location) %>%
+  summarize(MAE = round(mean(ae), 2))
+```
+
+The plot below illustrates the accuracy of the 1-week ahead forecasts on the training data from 2010-2011 through 2017-2018 for national-level forecasts. Mean absolute error (MAE) ranges from `r filter(mae_1wk, location == "US National") %>% pull(MAE) %>% min()` to `r filter(mae_1wk, location == "US National") %>% pull(MAE) %>% max()`. Overall, the training forecasts track the training data well, illustrating the potential for these forecasts in real-time.
+
+```{r train_plot, fig.cap = "Observed training data and predicted 1 week ahead forecasts during the training period, US National"}
+ggplot(data = filter(training_plot_data, location == "US National")) +
+  facet_wrap(~ season, scales = "free_x",
+             ncol = 4) +
+  geom_line(aes(x = date, y = value, color = data_source)) +
+  geom_text(data = filter(mae_1wk, location == "US National"),
+            aes(x = date, y = 6.5, label = paste0("MAE=", round(MAE, 2))),
+            size = 3) +
+  scale_color_manual(values = c("red", "black")) +
+  labs(x = "Date", y = "Percent outpatient visits due to ILI",
+       color = "") + 
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+```
+
+
+## Current performance in 2018/2019
+
+```{r forecast data set up}
+forecast_files <- list.files(path = "CDC Submissions", pattern = "Protea_Cheetah",
+                             full.names = TRUE, recursive = TRUE)
+
+forecasts <- lapply(forecast_files, read_entry) %>%
+  bind_rows(.) %>%
+  filter(target %in%  c("1 wk ahead", "2 wk ahead",  "3 wk ahead", "4 wk ahead")) %>%
+  mutate(
+    year = case_when(
+      forecast_week < 40 ~ 2019,
+      forecast_week >= 40 ~ 2018
+    ),
+    forecast_date = case_when(
+      forecast_week < 40 ~ MMWRweek2Date(year, forecast_week),
+      forecast_week >= 40 ~ MMWRweek2Date(year, forecast_week)
+    ),
+    location = factor(location, levels = c("US National", "HHS Region 1", "HHS Region 2",
+                                           "HHS Region 3", "HHS Region 4", 
+                                           "HHS Region 5", "HHS Region 6",
+                                           "HHS Region 7", "HHS Region 8",
+                                           "HHS Region 9", "HHS Region 10"))
+  )
 
 # Pull observed values for that region into data frame for graphing
 plot_truth <- ili_current %>%
   filter(season == "2018/2019") %>%
-  mutate(week = ifelse(week < 40, week + 52, week)) %>%
-  filter(location == "US National") %>%
-  select(location, week, ILI)
+  mutate(
+    date = case_when(
+      week < 40 ~ MMWRweek2Date(as.numeric(substr(season, 6, 9)), week),
+      week >= 40 ~ MMWRweek2Date(as.numeric(substr(season, 1, 4)), week)
+    ),
+    week = ifelse(week < 40, week + 52, week),
+    location = factor(location, levels = c("US National", "HHS Region 1", "HHS Region 2",
+                                           "HHS Region 3", "HHS Region 4", 
+                                           "HHS Region 5", "HHS Region 6",
+                                           "HHS Region 7", "HHS Region 8",
+                                           "HHS Region 9", "HHS Region 10"))
+  ) %>%
+  select(location, week, ILI, date)
 
 plot_model_truth <- bind_rows(
-  mutate(plot_truth, Model = "Springbok"),
-  mutate(plot_truth, Model = "Cheetah"),
-  mutate(plot_truth, Model = "Kudu"),
-  mutate(plot_truth, Model = "Steenbok")
-) %>%
-  mutate(Model = factor(Model, levels = c("Cheetah", "Springbok", "Kudu", "Steenbok"))) %>%
+  mutate(plot_truth, forecast_date = MMWRweek2Date(2018, 42)),
+  mutate(plot_truth, forecast_date = MMWRweek2Date(2018, 46)),
+  mutate(plot_truth, forecast_date = MMWRweek2Date(2018, 50)),
+  mutate(plot_truth, forecast_date = MMWRweek2Date(2019, 2))
+) %>% 
+  mutate(future_ILI = ifelse(date > forecast_date, "Future ILI", "Past ILI"),
+         future_ILI = factor(future_ILI, levels = c("Past ILI", "Future ILI"))) %>%
+  # Add second instance of last past value with "Future" tag to connect graphs
+  group_by(location, forecast_date, future_ILI) %>%
+  bind_rows(filter(., future_ILI == "Past ILI") %>%
+              slice(n()) %>%
+              ungroup() %>%
+              mutate(future_ILI = "Future ILI",
+                     future_ILI = factor(future_ILI, 
+                                         levels = c("Past ILI", "Future ILI")))) %>%
+  ungroup() %>%
   rename(value = ILI)
 
 # Forecast data to plot
-plot_points <- recent_entries %>%
-  filter(type == "Point", location == "US National",
-             target %in% c("1 wk ahead", "2 wk ahead", 
-                           "3 wk ahead", "4 wk ahead")) %>%
-  select(target, value, Model) %>%
+plot_points <- forecasts %>%
+  filter(type == "Point", forecast_week %in% c(42, 46, 50, 2)) %>%
+  select(year, location, target, value, forecast_week, forecast_date) %>%
   # Note week is the week BEING forecast, NOT the week forecast received
-  mutate(week = last_week + as.numeric(gsub(" wk ahead", "", target)),
-         week = ifelse(week < 40, week + 52, week)) %>%
-  select(-target) %>%
+  mutate(
+    target_week = forecast_week + as.numeric(gsub(" wk ahead", "", target)),
+    target_year = ifelse(target_week > 52 | target_week < 40, 2019, 2018),
+    date = MMWRweek2Date(target_year, ifelse(target_week > 52, target_week - 52, target_week))
+  ) %>%
+  select(-target, -target_week, -target_year)  %>%
   # Attach forecast bins to point prediction of last observed value
-  bind_rows(tibble(Model = factor(c("Cheetah", "Springbok", "Kudu", "Steenbok")),
-                   week = last_week,
-                   value = last(plot_truth$ILI)))
-  
-  # Labels for x-axis of graph
-wk_label <- c("40", "42", "44", "46", "48", "50", "52", "2", "4", "6",
-              "8", "10", "12", "14", "16", "18", "20", "22", "24")
-wk_label <- wk_label[ifelse(as.numeric(wk_label) >= 40, as.numeric(wk_label),
-                            as.numeric(wk_label) + 52) <= max(plot_points$week)]
+  bind_rows(filter(plot_model_truth, date %in% .$forecast_date,
+                   date == forecast_date) %>%
+              select(-future_ILI, -week) %>%
+              distinct())
   
 # Determine confidence bands
-bounds <- recent_entries %>%
+bounds <- forecasts %>%
     # Select forecasts for week ahead targets
-    filter(location == "US National" & type == "Bin" & 
-             target %in% c("1 wk ahead", "2 wk ahead", "3 wk ahead", "4 wk ahead")) %>%
+    filter(type == "Bin", forecast_week %in% c(42, 46, 50, 2)) %>%
     # Determine upper and lower bounds for each target
-    group_by(Model, target) %>%
+    group_by(location, forecast_week, target) %>%
     # Calculate cumulative probability for each bin
     mutate(cumprob = cumsum(value)) %>%
     # Only keep the rows within the 80% confidence range
     filter(row_number() %in% 
              c(max(which(cumprob < 0.1)), min(which(cumprob > 0.9)))) %>%
     # Create lower and upper bounds as min and max of the remaining probabilities
-    mutate(lower = min(as.numeric(bin_start_incl)),
-           upper = max(as.numeric(bin_start_incl)),
-           week = last_week + as.numeric(gsub(" wk ahead", "", target))) %>%
+    mutate(
+      lower = min(as.numeric(bin_start_incl)),
+      upper = max(as.numeric(bin_start_incl)),
+      target_week = forecast_week + as.numeric(gsub(" wk ahead", "", target)),
+      target_year = ifelse(target_week > 52 | target_week < 40, 2019, 2018),
+      date = MMWRweek2Date(target_year, 
+                           ifelse(target_week > 52, target_week - 52, target_week))
+    ) %>%
     ungroup() %>%
     # Only keep one copy of each week's upper and lower bound
-    select(Model, week, lower, upper) %>%
+    select(location, forecast_week, forecast_date, date, lower, upper) %>%
     distinct() %>%
     # Attach forecast bins to point prediction of last observed value
-    bind_rows(tibble(Model = factor(c("Cheetah", "Springbok", "Kudu", "Steenbok")),
-                         week = last_week,
-                         lower = last(plot_truth$ILI),
-                         upper = last(plot_truth$ILI)))
+    bind_rows(filter(plot_model_truth, date %in% .$forecast_date) %>%
+                mutate(lower = value,
+                       upper = value) %>%
+                select(-future_ILI, -value, -week))
 
+# MAE prospective
+mae_pros <- forecasts %>%
+  filter(type == "Point") %>%
+  mutate(target_week = forecast_week + as.numeric(gsub(" wk ahead", "", target)),
+         target_week = ifelse(target_week < 40, target_week + 52, target_week)) %>%
+  select(location, target, target_week, value) %>%
+  left_join(plot_truth, by = c("location", "target_week" = "week")) %>%
+  mutate(ae = abs(ILI - value)) %>%
+  group_by(location, target) %>%
+  summarize(MAE = round(mean(ae, na.rm = TRUE), 2)) %>%
+  ungroup()
+```
+
+During the ongoing 2018/2019 influenza season, I have used the model described above to make weekly prospective forecasts of influenza activity at the national and regional level. Snapshots of prospective forecasts for national level influenza activity made based on data from four dates are illustrated in the plot below. Performance of the 1 and 2 week ahead forecasts is quite good, reflected in MAE values of `r filter(mae_pros, location == "US National", target == "1 wk ahead") %>% pull(MAE)` and `r filter(mae_pros, location == "US National", target == "2 wk ahead") %>% pull(MAE)`, respectively. Forecasts of influenza 3 and 4 weeks ahead are less accurate, with MAE values of `r filter(mae_pros, location == "US National", target == "3 wk ahead") %>% pull(MAE)` and `r filter(mae_pros, location == "US National", target == "4 wk ahead") %>% pull(MAE)`, though it remains to be seen whether they will predict the season's second inflection point correctly. 
+
+```{r all predictions US data}
 # Create plot
-ggplot(plot_points) +
+ggplot(filter(plot_points, location == "US National")) +
   # Add shading for 80% CI for average
-  geom_ribbon(data = bounds, aes(x = week, ymin = lower, ymax = upper, fill = Model),
+  geom_ribbon(data = filter(bounds, location == "US National"),
+              aes(x = date, ymin = lower, ymax = upper, fill = "80% prediction interval"),
               alpha = 0.3) +
   # Add point prediction lines for each team
-  geom_line(aes(week, value, color = Model)) +
+  geom_line(aes(date, value, color = "Predicted values")) +
   # Add observed values
-  geom_line(data = plot_model_truth, aes(week, value), color = "black") +
-  # Add horizontal line of baseline
-  geom_segment(aes(x = 40, xend = last_week + 4,
-                   y = 2.2, yend = 2.2),
-               linetype = 3)  +
+  geom_line(data = filter(plot_model_truth, location == "US National"),
+            aes(date, value, linetype = future_ILI), color = "black") +
+  # Make pretty
   theme_minimal() +
-  ylab("Weighted ILI %") +
-    scale_x_continuous(name = "MMWR Week", 
-                       breaks = seq(40, max(plot_points$week), 2),
-                       labels = wk_label) +
-    scale_y_continuous(breaks = seq(0, ceiling(max(3, max(plot_points$value, na.rm=T),
-                                                   max(bounds$upper, na.rm=T))), 1),
-                       limits = c(0, ceiling(max(3, max(plot_points$value, na.rm=T), 
-                                                 max(bounds$upper, na.rm=T),
-                                                 bounds$upper[bounds$week == last_week + 2] + 0.75)))) +
-  facet_wrap( ~ Model)
+  theme(legend.position = "bottom") +
+  labs(x = "Date", y = "Percent outpatient visits due to ILI",
+       linetype = "", color = "", fill = "") +
+  guides(linetype = guide_legend(order = 1),
+         color = guide_legend(order = 2),
+         fill = guide_legend(order = 3)) +
+  facet_wrap( ~ forecast_date)
 
 ```
 
 
-### Models
-
-**Cheetah** - Cheetah is a weighted ensemble of the three other forecasts, based on leave-one-season-out cross validation of forecasts from the 2010-2011 through 2017-2018 seasons. Separate model weights are estimated for each month and target type (seasonal - onset, peak week, peak percentage; weekly - 1 to 4 weeks ahead). Weights were fit using a degenerate expectation maximization algorithm.
-
-
-This model is being submitted to both CDC and the FluSight Network ensemble. Forecasts from this model can be found [here](CDC%20Submissions/2018-2019).
-
-
-**Springbok** - Springbok is a dynamic harmonic regression model, using Fourier terms to capture the seasonality of the ILI trend along with ARIMA errors for short-term correlation. Region specific models include some combination of cumulative influenza subtype prevalence, national Google trends data, regional Google trends data, and estimates of ILI backfill as predictors in the model.
-
-
-This model is being submitted to both CDC and the FluSight Network ensemble. Forecasts from this model can be found [here](CDC%20Submissions/2018-2019).
-
-
-**Kudu** - Kudu is a historical average model weighted by the cumulative influenza A subtype prevelance. Separate Gaussian kernel density estimates based on previous ILI data were fit for H1N1 and H3N2 dominant seasons by weighting observed ILI values by the cumulative prevalence of that subtype in the season. Predictions are created by weighting those two kernel density estimates by the observed cumulative prevalence of the influenza A subtypes to date.
-
-
-This model is being submitted to the FluSight Network ensemble only. Forecasts from this model can be found [here](Forecasts/2018-2019/Subtype%20Historical%20Average).
-
-
-**Steenbok** - Steenbok is a simple historical average model. A Gaussian kernel density estimate based on previous ILI data is used to create predictions for the upcoming season.
-
-
-This model is not submitted to either the CDC or FluSight Network and is only used as a component of the Cheetah model. Forecasts from this model can be found [here](Forecasts/2018-2019/Historical%20Average).
+## Future work @ TDI
+As a Fellow at The Data Incubator, I plan on expanding the work I have already done to include forecasts of ILI for individual states. Patterns of influenza activity are not uniform across the entire nation and one state can be having a severe season while another has a mild season. By creating forecasts at the state level, I can provide more relevant insights to public health and health care officials. The general public can also benefit from such forecasts, as they can help influence health-care seeking behavior if influenza activity is predicted to be high. To help disseminate forecasts and make them easily accessible, I plan to build an interactive web application allowing users to view forecasts for any level of spatial resoluation at any point in the influeza season, as well as access metrics of forecast performance based on observed data.
