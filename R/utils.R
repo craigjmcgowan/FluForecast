@@ -40,6 +40,66 @@ US_flu_ratio <- function(gdata1, gdata2) {
     mean()
 }
 
+# Helper function for pulling in Google Trends data for a region
+fetch_gtrend <- function(location) {
+  require(gtrendsR)
+  
+  # Fix location to be in gtrend format if it isn't already
+  if(!location %in% c("US", state.abb, paste0("US-", state.abb)))
+    stop("Invalid location provided. Must be 'US' or a two-digit state abbreviation")
+  
+  if(location %in% state.abb)
+    location <- paste0("US-", location)
+  
+  flu_0407 <- gtrends(keyword = "flu",
+                         geo = location,
+                         time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
+    mutate(hits = case_when(hits == "<1" ~ 1,
+                            TRUE ~ as.numeric(hits)))
+  
+  flu_0611 <- gtrends(keyword = "flu",
+                         geo = location,
+                         time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
+    mutate(hits = case_when(hits == "<1" ~ 1,
+                            TRUE ~ as.numeric(hits)))
+  
+  flu_1015 <- gtrends(keyword = "flu",
+                         geo = location,
+                         time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
+    mutate(hits = case_when(hits == "<1" ~ 1,
+                            TRUE ~ as.numeric(hits)))
+  
+  flu_1419 <- gtrends(keyword = "flu",
+                         geo = location)$interest_over_time %>%
+    mutate(hits = case_when(hits == "<1" ~ 1,
+                            TRUE ~ as.numeric(hits)))
+  
+  # Set up ratios to normalize all Gtrends data to scale from 2010-2015
+  gratio_0607 <- US_flu_ratio(flu_0407, flu_0611)
+  gratio_1011 <- US_flu_ratio(flu_0611, flu_1015)
+  inv_gratio_1415 <- US_flu_ratio(flu_1419, flu_1015)
+  
+  # Merge Gtrends data and rescale to 2010-2015 scale
+  filter(flu_0407, !date %in% flu_0611$date) %>%
+    mutate(hits = hits / gratio_0607) %>%
+    bind_rows(flu_0611) %>%
+    filter(!date %in% flu_1015$date) %>%
+    mutate(hits = hits / gratio_1011) %>%
+    bind_rows(flu_1015) %>%
+    filter(!date %in% flu_1419$date) %>%
+    bind_rows(flu_1419 %>%
+                mutate(hits = hits / inv_gratio_1415)) %>%
+    select(date, hits) %>%
+    do({tz(.$date) <- "America/New_York"; .}) %>%
+    mutate(week = MMWRweek(date)[[2]],
+           year = MMWRweek(date)[[1]],
+           season = ifelse(week >= 40,
+                           paste0(year, "/", year + 1),
+                           paste0(year - 1, "/", year)),
+           hits = case_when(near(hits, 0) ~ 1,
+                            TRUE ~ hits))
+}
+
 # Functions to keep weeks in order and reset them --------
 week_inorder <- function(week, season){
   case_when(as.numeric(week) < 40 & 
@@ -673,3 +733,4 @@ stack_forecasts <- function(files, stacking_weights) {
   ensemble_entry <- bind_rows(corrected_point_ests, ensemble_entry)
   return(ensemble_entry)
 }
+
