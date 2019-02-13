@@ -98,8 +98,6 @@ create_historical_densities <- function(ili_df, pseudo_onsets = c(),
     }
   }
   
-  errors <- map_depth(densities, 2, is.character)
-  
   return(densities)
 }
 

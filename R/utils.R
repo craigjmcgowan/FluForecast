@@ -170,7 +170,7 @@ create_pseudo_onset <- function(weekILI) {
 
 # Functions to read forecasts from directory into a list --------
 
-read_forecasts <- function(dir, these_weeks = NULL) {
+read_forecasts <- function(dir, challenge = 'ilinet', these_weeks = NULL) {
   
   teams <- list.dirs(path = dir, recursive = F)
   
@@ -210,7 +210,7 @@ read_forecasts <- function(dir, these_weeks = NULL) {
       
       tryCatch(
         {
-          verify_entry(subs[[team_name]][[week]])
+          verify_entry(subs[[team_name]][[week]], challenge = challenge)
         },
         error = function(cond) {
           message(paste("Errors in verifying submission for", team_name))
