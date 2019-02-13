@@ -507,7 +507,8 @@ sample_predictive_trajectories_arima <- function (object,
 
 # Turn fitted forecast model into a CDC-style forecast ------
 fit_to_forecast <- function(object, xreg, pred_data, location, season, 
-                            npaths = 1000, max_week = 52, ...){
+                            npaths = 1000, max_week = 52, 
+                            challenge = "ilinet", ...){
 
   # Simulate output
   sim_output <- sample_predictive_trajectories_arima(
@@ -594,37 +595,39 @@ fit_to_forecast <- function(object, xreg, pred_data, location, season,
   }
 
   # Onset week
-  calc_onset <- rbind(
-    matrix(pred_data[pred_data$season == season, ] %>%
-             mutate(ILI = as.numeric(ILI)) %>% pull(ILI),
-           nrow = nrow(pred_data[pred_data$season == season, ]),
-           ncol = npaths),
-    t(sim_output)
-  ) %>% as.tibble()
-
-  onsets <- apply(calc_onset, 2, function(x) {
-    temp <- tibble(week = 40:(max_week + 25),
-                   location = location,
-                   ILI = x)
-    try(create_onset(temp, region = location, 
-                     year = as.numeric(substr(season, 1, 4)))$bin_start_incl, silent = TRUE)
-  }) %>%
-    trimws()
-
-  for (j in 40:(max_week + 20)) {
+  if(challenge == "ilinet") {
+    calc_onset <- rbind(
+      matrix(pred_data[pred_data$season == season, ] %>%
+               mutate(ILI = as.numeric(ILI)) %>% pull(ILI),
+             nrow = nrow(pred_data[pred_data$season == season, ]),
+             ncol = npaths),
+      t(sim_output)
+    ) %>% as.tibble()
+  
+    onsets <- apply(calc_onset, 2, function(x) {
+      temp <- tibble(week = 40:(max_week + 25),
+                     location = location,
+                     ILI = x)
+      try(create_onset(temp, region = location, 
+                       year = as.numeric(substr(season, 1, 4)))$bin_start_incl, silent = TRUE)
+    }) %>%
+      trimws()
+  
+    for (j in 40:(max_week + 20)) {
+      forecast_results <- bind_rows(
+        forecast_results,
+        tibble(target = "Season onset",
+               bin_start_incl = trimws(format(round(j, 1), nsmall = 1)),
+               value = sum(onsets == trimws(format(round(j, 1), nsmall = 1)))/length(onsets))
+      )
+    }
     forecast_results <- bind_rows(
       forecast_results,
       tibble(target = "Season onset",
-             bin_start_incl = trimws(format(round(j, 1), nsmall = 1)),
-             value = sum(onsets == trimws(format(round(j, 1), nsmall = 1)))/length(onsets))
+             bin_start_incl = "none",
+             value = sum((onsets == "none"))/length(onsets))
     )
   }
-  forecast_results <- bind_rows(
-    forecast_results,
-    tibble(target = "Season onset",
-           bin_start_incl = "none",
-           value = sum((onsets == "none"))/length(onsets))
-  )
 
   # Format in CDC style
   forecast_results <- forecast_results %>%
