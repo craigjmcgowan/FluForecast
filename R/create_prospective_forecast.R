@@ -13,12 +13,13 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 46
-epiweek <- 201846
+EW <- 05
+epiweek <- 201905
 
 ##### Update data #####
 source("R/read_data.R")
 source("R/gtrends_pull_data.R")
+source("R/save_who_nrevss.R")
 
 set.seed(4321) # For reproducibility of backfill sample
 
@@ -194,7 +195,8 @@ fits <- filter(flu_data_merge, year <= 2018,
         list(data, arima_1, arima_2, arima_3, K, lambda),
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$hits),
+                             ..1$hits) %>%
+                  as.matrix(),
                 lambda = ..6)
       ),
     model == "Regional Gtrends" ~
@@ -202,7 +204,8 @@ fits <- filter(flu_data_merge, year <= 2018,
         list(data, arima_1, arima_2, arima_3, K, lambda),
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$region_hits),
+                             ..1$region_hits) %>%
+                  as.matrix(),
                 lambda = ..6)
       ),
     model == "FluVirus" ~
@@ -210,7 +213,8 @@ fits <- filter(flu_data_merge, year <= 2018,
         list(data, arima_1, arima_2, arima_3, K, lambda),
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$cum_h1per, ..1$cum_h3per),
+                             ..1$cum_h1per, ..1$cum_h3per) %>%
+                  as.matrix(),
                 lambda = ..6)
       ),
     model == "Backfill" ~
@@ -218,7 +222,8 @@ fits <- filter(flu_data_merge, year <= 2018,
         list(data, arima_1, arima_2, arima_3, K, lambda),
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$backfill),
+                             ..1$backfill) %>%
+                  as.matrix(),
                 lambda = ..6)
       ),
     model == "FluVirus & Backfill" ~
@@ -227,7 +232,8 @@ fits <- filter(flu_data_merge, year <= 2018,
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
                              ..1$cum_h1per, ..1$cum_h3per,
-                             ..1$backfill),
+                             ..1$backfill) %>%
+                  as.matrix(),
                 lambda = ..6)
       ),
     model == "National Gtrends & FluVirus" ~
@@ -236,7 +242,8 @@ fits <- filter(flu_data_merge, year <= 2018,
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
                              ..1$hits, ..1$cum_h1per,
-                             ..1$cum_h3per),
+                             ..1$cum_h3per) %>%
+                  as.matrix(),
                 lambda = ..6)
       ),
     model == "Regional Gtrends & FluVirus" ~
@@ -245,7 +252,8 @@ fits <- filter(flu_data_merge, year <= 2018,
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
                              ..1$region_hits, ..1$cum_h1per,
-                             ..1$cum_h3per),
+                             ..1$cum_h3per) %>%
+                  as.matrix(),
                 lambda = ..6)
       ),
     model == "National Gtrends & Backfill" ~
@@ -253,7 +261,8 @@ fits <- filter(flu_data_merge, year <= 2018,
         list(data, arima_1, arima_2, arima_3, K, lambda),
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$hits, ..1$backfill),
+                             ..1$hits, ..1$backfill) %>%
+                  as.matrix(),
                 lambda = ..6)
       ),
     model == "Regional Gtrends & Backfill" ~
@@ -261,7 +270,8 @@ fits <- filter(flu_data_merge, year <= 2018,
         list(data, arima_1, arima_2, arima_3, K, lambda),
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$region_hits, ..1$backfill),
+                             ..1$region_hits, ..1$backfill) %>%
+                  as.matrix(),
                 lambda = ..6)
       ),
     model == "National Gtrends, FluVirus, & Backfill" ~
@@ -270,7 +280,8 @@ fits <- filter(flu_data_merge, year <= 2018,
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
                              ..1$hits, ..1$cum_h1per,
-                             ..1$cum_h3per, ..1$backfill),
+                             ..1$cum_h3per, ..1$backfill) %>%
+                  as.matrix(),
                 lambda = ..6)
       ),
     model == "Regional Gtrends, FluVirus, & Backfill" ~
@@ -279,13 +290,15 @@ fits <- filter(flu_data_merge, year <= 2018,
         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
                              ..1$region_hits, ..1$cum_h1per,
-                             ..1$cum_h3per, ..1$backfill),
+                             ..1$cum_h3per, ..1$backfill) %>%
+                  as.matrix(),
                 lambda = ..6)
       )
   )) %>%
   mutate(season = "2018/2019",
          prev_season = "2017/2018",
          week = EW,
+         order_week = if_else(EW < 40, EW + 52, EW),
          epiweek = epiweek)
 
 # Create and save forecast files
@@ -299,7 +312,7 @@ cdc_path <- "CDC Submissions/2018-2019"
 set.seed(4321)
 springbok_fit <- fits %>%
   mutate(
-    pred_data = pmap(list(season, week, location, epiweek), 
+    pred_data = pmap(list(season, order_week, location, epiweek), 
                      ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
                               season != paste0(substr(..1, 6, 9), "/",
                                                as.numeric(substr(..1, 6, 9)) + 1),
@@ -315,56 +328,67 @@ springbok_fit <- fits %>%
     xreg = case_when(
       model == "ARIMA only" ~ 
         map2(pred_data, K,
-             ~ as.data.frame(fourier(.x$ILI, K = .y))),
+             ~ fourier(.x$ILI, K = .y)),
       model == "National Gtrends" ~
         pmap(list(pred_data, K), 
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
-                     ..1$hits)),
+                     ..1$hits) %>%
+               as.matrix()),
       model == "Regional Gtrends" ~
         pmap(list(pred_data, K), 
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
-                     ..1$region_hits)),
+                     ..1$region_hits) %>%
+               as.matrix()),
       model == "FluVirus" ~ 
         pmap(list(pred_data, K),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
-                     ..1$cum_h1per, ..1$cum_h3per)),
+                     ..1$cum_h1per, ..1$cum_h3per) %>%
+               as.matrix()),
       model == "Backfill" ~ 
         pmap(list(pred_data, K),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
-                     ..1$backfill)),
+                     ..1$backfill) %>%
+               as.matrix()),
       model == "National Gtrends & Backfill" ~
         pmap(list(pred_data, K), 
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
-                     ..1$hits, ..1$backfill)),
+                     ..1$hits, ..1$backfill) %>%
+               as.matrix()),
       model == "Regional Gtrends & Backfill" ~
         pmap(list(pred_data, K), 
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
-                     ..1$region_hits, ..1$backfill)),
+                     ..1$region_hits, ..1$backfill) %>%
+               as.matrix()),
       model == "FluVirus & Backfill" ~ 
         pmap(list(pred_data, K),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
                      ..1$cum_h1per, ..1$cum_h3per,
-                     ..1$backfill)),
+                     ..1$backfill) %>%
+               as.matrix()),
       model == "National Gtrends & FluVirus" ~ 
         pmap(list(pred_data, K),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
                      ..1$hits, ..1$cum_h1per, 
-                     ..1$cum_h3per)),
+                     ..1$cum_h3per) %>%
+               as.matrix()),
       model == "Regional Gtrends & FluVirus" ~ 
         pmap(list(pred_data, K),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
                      ..1$region_hits, ..1$cum_h1per, 
-                     ..1$cum_h3per)),
+                     ..1$cum_h3per) %>%
+               as.matrix()),
       model == "National Gtrends, FluVirus, & Backfill" ~ 
         pmap(list(pred_data, K),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
                      ..1$hits, ..1$cum_h1per, 
-                     ..1$cum_h3per, ..1$backfill)),
+                     ..1$cum_h3per, ..1$backfill) %>%
+               as.matrix()),
       model == "Regional Gtrends, FluVirus, & Backfill" ~ 
         pmap(list(pred_data, K),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2)),
                      ..1$region_hits, ..1$cum_h1per, 
-                     ..1$cum_h3per, ..1$backfill))
+                     ..1$cum_h3per, ..1$backfill) %>%
+               as.matrix())
     ),
     max_week = ifelse(season == "2014/2015", 53, 52),
     # Fit models
@@ -372,7 +396,7 @@ springbok_fit <- fits %>%
                     ~ Arima(..1$ILI, xreg = ..3, model = ..2)),
     # Create data frame of xreg terms for forecasting
     gtrend_forecast = pmap(
-      list(pred_data, location, season, prev_season, week, max_week),
+      list(pred_data, location, season, prev_season, order_week, max_week),
       ~ tibble(hits = c(flu_data_merge %>%
                           filter(location == ..2, season == ..3, 
                                  order_week == ..5 + 1) %>%
@@ -392,7 +416,7 @@ springbok_fit <- fits %>%
                                  pull(hits))))
     ),
     reg_gtrend_forecast = pmap(
-      list(pred_data, location, season, prev_season, week, max_week),
+      list(pred_data, location, season, prev_season, order_week, max_week),
       ~ tibble(region_hits = c(flu_data_merge %>%
                                  filter(location == ..2, season == ..3, 
                                         order_week == ..5 + 1) %>%
@@ -422,10 +446,10 @@ springbok_fit <- fits %>%
               nrow(..1[..1$season == ..2, ]))
     ),
     backfill = pmap(
-      list(data, week, max_week, season),
-      function(data, week, max_week, season) {
+      list(data, order_week, max_week, season),
+      function(data, order_week, max_week, season) {
         out <- numeric()
-        for(i in week:(max_week + 24)) {
+        for(i in order_week:(max_week + 24)) {
           
           temp <- data[data$order_week == i &
                            !data$season %in% c("2004/2005", "2005/2006", "2006/2007",
@@ -433,7 +457,10 @@ springbok_fit <- fits %>%
           
           out <- c(out, predict(lm(backfill ~ year, 
                                    data = temp),
-                                data.frame(year = as.numeric(substr(season, 1, 4)))))
+                                data.frame(year = case_when(
+                                  i <= max_week ~ as.numeric(substr(season, 1, 4)),
+                                  TRUE ~ as.numeric(substr(season, 6, 9))
+                                  ))))
         }
         out
       } 
@@ -441,30 +468,32 @@ springbok_fit <- fits %>%
     forecast_xreg = case_when(
       model == "ARIMA only" ~ 
         pmap(list(pred_data, K, max_week, season),
-             ~ as.data.frame(fourier(..1$ILI, K = ..2,
-                                     h = ..3 - 14 - 
-                                       nrow(..1[..1$season == ..4, ])))),
+             ~ fourier(..1$ILI, K = ..2,
+                       h = ..3 - 14 - nrow(..1[..1$season == ..4, ]))),
       model == "Backfill" ~
         pmap(list(pred_data, K, max_week, season, backfill),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
                                            h = ..3 - 14 - 
                                              nrow(..1[..1$season == ..4, ]))),
                      data.frame(backfill = ..5)) %>%
-               rename(`..1$backfill` = backfill)),
+               rename(`..1$backfill` = backfill) %>%
+               as.matrix()),
       model == "National Gtrends" ~
         pmap(list(pred_data, K, max_week, season, gtrend_forecast),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
                                            h = ..3 - 14 - 
                                              nrow(..1[..1$season == ..4, ]))),
                      data.frame(hits = ..5)) %>%
-               rename(`..1$hits` = hits)),
+               rename(`..1$hits` = hits) %>%
+               as.matrix()),
       model == "Regional Gtrends" ~
         pmap(list(pred_data, K, max_week, season, reg_gtrend_forecast),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
                                            h = ..3 - 14 - 
                                              nrow(..1[..1$season == ..4, ]))),
                      data.frame(region_hits = ..5)) %>%
-               rename(`..1$region_hits` = region_hits)),
+               rename(`..1$region_hits` = region_hits) %>%
+               as.matrix()),
       model == "FluVirus" ~
         pmap(list(pred_data, K, max_week, season, 
                   h1_per_forecast, h3_per_forecast),
@@ -474,7 +503,8 @@ springbok_fit <- fits %>%
                      data.frame(h1_per_samples = ..5,
                                 h3_per_samples = ..6)) %>%
                rename(`..1$cum_h1per` = h1_per_samples,
-                      `..1$cum_h3per` = h3_per_samples)),
+                      `..1$cum_h3per` = h3_per_samples) %>%
+               as.matrix()),
       model == "National Gtrends & Backfill" ~
         pmap(list(pred_data, K, max_week, season, gtrend_forecast, backfill),
              ~ cbind(as.data.frame(fourier(..1$ILI, K = ..2,
@@ -483,7 +513,8 @@ springbok_fit <- fits %>%
                      data.frame(hits = ..5,
                                 backfill = ..6)) %>%
                rename(`..1$hits` = hits,
-                      `..1$backfill` = backfill)),
+                      `..1$backfill` = backfill) %>%
+               as.matrix()),
       
       model == "Regional Gtrends & Backfill" ~
         pmap(list(pred_data, K, max_week, season, reg_gtrend_forecast, backfill),
@@ -493,7 +524,8 @@ springbok_fit <- fits %>%
                      data.frame(region_hits = ..5,
                                 backfill = ..6)) %>%
                rename(`..1$region_hits` = region_hits,
-                      `..1$backfill` = backfill)),
+                      `..1$backfill` = backfill) %>%
+               as.matrix()),
       model == "FluVirus & Backfill" ~
         pmap(list(pred_data, K, max_week, season, 
                   h1_per_forecast, h3_per_forecast, backfill),
@@ -505,7 +537,8 @@ springbok_fit <- fits %>%
                                 backfill = ..7)) %>%
                rename(`..1$cum_h1per` = h1_per_samples,
                       `..1$cum_h3per` = h3_per_samples,
-                      `..1$backfill` = backfill)),
+                      `..1$backfill` = backfill) %>%
+               as.matrix()),
       model == "National Gtrends & FluVirus" ~
         pmap(list(pred_data, K, max_week, season, gtrend_forecast,
                   h1_per_forecast, h3_per_forecast),
@@ -517,7 +550,8 @@ springbok_fit <- fits %>%
                                 h3_per_samples = ..7)) %>%
                rename(`..1$hits` = hits,
                       `..1$cum_h1per` = h1_per_samples,
-                      `..1$cum_h3per` = h3_per_samples)),
+                      `..1$cum_h3per` = h3_per_samples) %>%
+               as.matrix()),
       model == "Regional Gtrends & FluVirus" ~
         pmap(list(pred_data, K, max_week, season, reg_gtrend_forecast,
                   h1_per_forecast, h3_per_forecast),
@@ -529,7 +563,8 @@ springbok_fit <- fits %>%
                                 h3_per_samples = ..7)) %>%
                rename(`..1$region_hits` = region_hits,
                       `..1$cum_h1per` = h1_per_samples,
-                      `..1$cum_h3per` = h3_per_samples)),
+                      `..1$cum_h3per` = h3_per_samples) %>%
+               as.matrix()),
       model == "National Gtrends, FluVirus, & Backfill" ~
         pmap(list(pred_data, K, max_week, season, gtrend_forecast,
                   h1_per_forecast, h3_per_forecast, backfill),
@@ -543,7 +578,8 @@ springbok_fit <- fits %>%
                rename(`..1$hits` = hits,
                       `..1$cum_h1per` = h1_per_samples,
                       `..1$cum_h3per` = h3_per_samples,
-                      `..1$backfill` = backfill)),
+                      `..1$backfill` = backfill) %>%
+               as.matrix()),
       model == "Regional Gtrends, FluVirus, & Backfill" ~
         pmap(list(pred_data, K, max_week, season, reg_gtrend_forecast,
                   h1_per_forecast, h3_per_forecast, backfill),
@@ -557,7 +593,8 @@ springbok_fit <- fits %>%
                rename(`..1$region_hits` = region_hits,
                       `..1$cum_h1per` = h1_per_samples,
                       `..1$cum_h3per` = h3_per_samples,
-                      `..1$backfill` = backfill))
+                      `..1$backfill` = backfill) %>%
+               as.matrix())
     ),
     pred_results = pmap(
       list(pred_fit, pred_data, forecast_xreg, location, season, max_week),
@@ -636,7 +673,7 @@ for(j in 1:length(weight_files)) {
   # week_names <- c(paste0("EW", first_year_season_weeks),
   #                 paste0("EW", str_pad(1:20, 2, "left", pad = 0)))
     
-  this_week <- paste0("EW", EW)
+  this_week <- paste0("EW", EW_paste)
   
   if (any(grepl("ew", names(wt_subset)))) {
     wt_sub_subset <- filter(wt_subset, ew == this_week) %>%
