@@ -1,0 +1,3471 @@
+location,target,type,unit,bin_start_incl,bin_end_notincl,value
+Delaware,1 wk ahead,Bin,percent,0.0,0.1,0.044
+Delaware,1 wk ahead,Bin,percent,0.1,0.2,0.262
+Delaware,1 wk ahead,Bin,percent,0.2,0.3,0.506
+Delaware,1 wk ahead,Bin,percent,0.3,0.4,0.124
+Delaware,1 wk ahead,Bin,percent,0.4,0.5,0.03
+Delaware,1 wk ahead,Bin,percent,0.5,0.6,0.01
+Delaware,1 wk ahead,Bin,percent,0.6,0.7,0.008
+Delaware,1 wk ahead,Bin,percent,0.7,0.8,0.008
+Delaware,1 wk ahead,Bin,percent,0.8,0.9,0
+Delaware,1 wk ahead,Bin,percent,0.9,1.0,0.002
+Delaware,1 wk ahead,Bin,percent,1.0,1.1,0
+Delaware,1 wk ahead,Bin,percent,1.1,1.2,0
+Delaware,1 wk ahead,Bin,percent,1.2,1.3,0
+Delaware,1 wk ahead,Bin,percent,1.3,1.4,0
+Delaware,1 wk ahead,Bin,percent,1.4,1.5,0
+Delaware,1 wk ahead,Bin,percent,1.5,1.6,0.002
+Delaware,1 wk ahead,Bin,percent,1.6,1.7,0
+Delaware,1 wk ahead,Bin,percent,1.7,1.8,0
+Delaware,1 wk ahead,Bin,percent,1.8,1.9,0
+Delaware,1 wk ahead,Bin,percent,1.9,2.0,0
+Delaware,1 wk ahead,Bin,percent,2.0,2.1,0
+Delaware,1 wk ahead,Bin,percent,2.1,2.2,0
+Delaware,1 wk ahead,Bin,percent,2.2,2.3,0
+Delaware,1 wk ahead,Bin,percent,2.3,2.4,0
+Delaware,1 wk ahead,Bin,percent,2.4,2.5,0
+Delaware,1 wk ahead,Bin,percent,2.5,2.6,0
+Delaware,1 wk ahead,Bin,percent,2.6,2.7,0
+Delaware,1 wk ahead,Bin,percent,2.7,2.8,0
+Delaware,1 wk ahead,Bin,percent,2.8,2.9,0
+Delaware,1 wk ahead,Bin,percent,2.9,3.0,0
+Delaware,1 wk ahead,Bin,percent,3.0,3.1,0
+Delaware,1 wk ahead,Bin,percent,3.1,3.2,0
+Delaware,1 wk ahead,Bin,percent,3.2,3.3,0
+Delaware,1 wk ahead,Bin,percent,3.3,3.4,0
+Delaware,1 wk ahead,Bin,percent,3.4,3.5,0
+Delaware,1 wk ahead,Bin,percent,3.5,3.6,0
+Delaware,1 wk ahead,Bin,percent,3.6,3.7,0
+Delaware,1 wk ahead,Bin,percent,3.7,3.8,0
+Delaware,1 wk ahead,Bin,percent,3.8,3.9,0
+Delaware,1 wk ahead,Bin,percent,3.9,4.0,0.004
+Delaware,1 wk ahead,Bin,percent,4.0,4.1,0
+Delaware,1 wk ahead,Bin,percent,4.1,4.2,0
+Delaware,1 wk ahead,Bin,percent,4.2,4.3,0
+Delaware,1 wk ahead,Bin,percent,4.3,4.4,0
+Delaware,1 wk ahead,Bin,percent,4.4,4.5,0
+Delaware,1 wk ahead,Bin,percent,4.5,4.6,0
+Delaware,1 wk ahead,Bin,percent,4.6,4.7,0
+Delaware,1 wk ahead,Bin,percent,4.7,4.8,0
+Delaware,1 wk ahead,Bin,percent,4.8,4.9,0
+Delaware,1 wk ahead,Bin,percent,4.9,5.0,0
+Delaware,1 wk ahead,Bin,percent,5.0,5.1,0
+Delaware,1 wk ahead,Bin,percent,5.1,5.2,0
+Delaware,1 wk ahead,Bin,percent,5.2,5.3,0
+Delaware,1 wk ahead,Bin,percent,5.3,5.4,0
+Delaware,1 wk ahead,Bin,percent,5.4,5.5,0
+Delaware,1 wk ahead,Bin,percent,5.5,5.6,0
+Delaware,1 wk ahead,Bin,percent,5.6,5.7,0
+Delaware,1 wk ahead,Bin,percent,5.7,5.8,0
+Delaware,1 wk ahead,Bin,percent,5.8,5.9,0
+Delaware,1 wk ahead,Bin,percent,5.9,6.0,0
+Delaware,1 wk ahead,Bin,percent,6.0,6.1,0
+Delaware,1 wk ahead,Bin,percent,6.1,6.2,0
+Delaware,1 wk ahead,Bin,percent,6.2,6.3,0
+Delaware,1 wk ahead,Bin,percent,6.3,6.4,0
+Delaware,1 wk ahead,Bin,percent,6.4,6.5,0
+Delaware,1 wk ahead,Bin,percent,6.5,6.6,0
+Delaware,1 wk ahead,Bin,percent,6.6,6.7,0
+Delaware,1 wk ahead,Bin,percent,6.7,6.8,0
+Delaware,1 wk ahead,Bin,percent,6.8,6.9,0
+Delaware,1 wk ahead,Bin,percent,6.9,7.0,0
+Delaware,1 wk ahead,Bin,percent,7.0,7.1,0
+Delaware,1 wk ahead,Bin,percent,7.1,7.2,0
+Delaware,1 wk ahead,Bin,percent,7.2,7.3,0
+Delaware,1 wk ahead,Bin,percent,7.3,7.4,0
+Delaware,1 wk ahead,Bin,percent,7.4,7.5,0
+Delaware,1 wk ahead,Bin,percent,7.5,7.6,0
+Delaware,1 wk ahead,Bin,percent,7.6,7.7,0
+Delaware,1 wk ahead,Bin,percent,7.7,7.8,0
+Delaware,1 wk ahead,Bin,percent,7.8,7.9,0
+Delaware,1 wk ahead,Bin,percent,7.9,8.0,0
+Delaware,1 wk ahead,Bin,percent,8.0,8.1,0
+Delaware,1 wk ahead,Bin,percent,8.1,8.2,0
+Delaware,1 wk ahead,Bin,percent,8.2,8.3,0
+Delaware,1 wk ahead,Bin,percent,8.3,8.4,0
+Delaware,1 wk ahead,Bin,percent,8.4,8.5,0
+Delaware,1 wk ahead,Bin,percent,8.5,8.6,0
+Delaware,1 wk ahead,Bin,percent,8.6,8.7,0
+Delaware,1 wk ahead,Bin,percent,8.7,8.8,0
+Delaware,1 wk ahead,Bin,percent,8.8,8.9,0
+Delaware,1 wk ahead,Bin,percent,8.9,9.0,0
+Delaware,1 wk ahead,Bin,percent,9.0,9.1,0
+Delaware,1 wk ahead,Bin,percent,9.1,9.2,0
+Delaware,1 wk ahead,Bin,percent,9.2,9.3,0
+Delaware,1 wk ahead,Bin,percent,9.3,9.4,0
+Delaware,1 wk ahead,Bin,percent,9.4,9.5,0
+Delaware,1 wk ahead,Bin,percent,9.5,9.6,0
+Delaware,1 wk ahead,Bin,percent,9.6,9.7,0
+Delaware,1 wk ahead,Bin,percent,9.7,9.8,0
+Delaware,1 wk ahead,Bin,percent,9.8,9.9,0
+Delaware,1 wk ahead,Bin,percent,9.9,10.0,0
+Delaware,1 wk ahead,Bin,percent,10.0,10.1,0
+Delaware,1 wk ahead,Bin,percent,10.1,10.2,0
+Delaware,1 wk ahead,Bin,percent,10.2,10.3,0
+Delaware,1 wk ahead,Bin,percent,10.3,10.4,0
+Delaware,1 wk ahead,Bin,percent,10.4,10.5,0
+Delaware,1 wk ahead,Bin,percent,10.5,10.6,0
+Delaware,1 wk ahead,Bin,percent,10.6,10.7,0
+Delaware,1 wk ahead,Bin,percent,10.7,10.8,0
+Delaware,1 wk ahead,Bin,percent,10.8,10.9,0
+Delaware,1 wk ahead,Bin,percent,10.9,11.0,0
+Delaware,1 wk ahead,Bin,percent,11.0,11.1,0
+Delaware,1 wk ahead,Bin,percent,11.1,11.2,0
+Delaware,1 wk ahead,Bin,percent,11.2,11.3,0
+Delaware,1 wk ahead,Bin,percent,11.3,11.4,0
+Delaware,1 wk ahead,Bin,percent,11.4,11.5,0
+Delaware,1 wk ahead,Bin,percent,11.5,11.6,0
+Delaware,1 wk ahead,Bin,percent,11.6,11.7,0
+Delaware,1 wk ahead,Bin,percent,11.7,11.8,0
+Delaware,1 wk ahead,Bin,percent,11.8,11.9,0
+Delaware,1 wk ahead,Bin,percent,11.9,12.0,0
+Delaware,1 wk ahead,Bin,percent,12.0,12.1,0
+Delaware,1 wk ahead,Bin,percent,12.1,12.2,0
+Delaware,1 wk ahead,Bin,percent,12.2,12.3,0
+Delaware,1 wk ahead,Bin,percent,12.3,12.4,0
+Delaware,1 wk ahead,Bin,percent,12.4,12.5,0
+Delaware,1 wk ahead,Bin,percent,12.5,12.6,0
+Delaware,1 wk ahead,Bin,percent,12.6,12.7,0
+Delaware,1 wk ahead,Bin,percent,12.7,12.8,0
+Delaware,1 wk ahead,Bin,percent,12.8,12.9,0
+Delaware,1 wk ahead,Bin,percent,12.9,13.0,0
+Delaware,1 wk ahead,Bin,percent,13.0,100.0,0
+Delaware,2 wk ahead,Bin,percent,0.0,0.1,0.022
+Delaware,2 wk ahead,Bin,percent,0.1,0.2,0.258
+Delaware,2 wk ahead,Bin,percent,0.2,0.3,0.41
+Delaware,2 wk ahead,Bin,percent,0.3,0.4,0.15
+Delaware,2 wk ahead,Bin,percent,0.4,0.5,0.066
+Delaware,2 wk ahead,Bin,percent,0.5,0.6,0.024
+Delaware,2 wk ahead,Bin,percent,0.6,0.7,0.026
+Delaware,2 wk ahead,Bin,percent,0.7,0.8,0.01
+Delaware,2 wk ahead,Bin,percent,0.8,0.9,0.004
+Delaware,2 wk ahead,Bin,percent,0.9,1.0,0.006
+Delaware,2 wk ahead,Bin,percent,1.0,1.1,0
+Delaware,2 wk ahead,Bin,percent,1.1,1.2,0.008
+Delaware,2 wk ahead,Bin,percent,1.2,1.3,0
+Delaware,2 wk ahead,Bin,percent,1.3,1.4,0
+Delaware,2 wk ahead,Bin,percent,1.4,1.5,0.002
+Delaware,2 wk ahead,Bin,percent,1.5,1.6,0
+Delaware,2 wk ahead,Bin,percent,1.6,1.7,0
+Delaware,2 wk ahead,Bin,percent,1.7,1.8,0
+Delaware,2 wk ahead,Bin,percent,1.8,1.9,0.002
+Delaware,2 wk ahead,Bin,percent,1.9,2.0,0
+Delaware,2 wk ahead,Bin,percent,2.0,2.1,0
+Delaware,2 wk ahead,Bin,percent,2.1,2.2,0.002
+Delaware,2 wk ahead,Bin,percent,2.2,2.3,0.002
+Delaware,2 wk ahead,Bin,percent,2.3,2.4,0
+Delaware,2 wk ahead,Bin,percent,2.4,2.5,0
+Delaware,2 wk ahead,Bin,percent,2.5,2.6,0
+Delaware,2 wk ahead,Bin,percent,2.6,2.7,0
+Delaware,2 wk ahead,Bin,percent,2.7,2.8,0
+Delaware,2 wk ahead,Bin,percent,2.8,2.9,0
+Delaware,2 wk ahead,Bin,percent,2.9,3.0,0
+Delaware,2 wk ahead,Bin,percent,3.0,3.1,0
+Delaware,2 wk ahead,Bin,percent,3.1,3.2,0.002
+Delaware,2 wk ahead,Bin,percent,3.2,3.3,0
+Delaware,2 wk ahead,Bin,percent,3.3,3.4,0
+Delaware,2 wk ahead,Bin,percent,3.4,3.5,0
+Delaware,2 wk ahead,Bin,percent,3.5,3.6,0
+Delaware,2 wk ahead,Bin,percent,3.6,3.7,0
+Delaware,2 wk ahead,Bin,percent,3.7,3.8,0
+Delaware,2 wk ahead,Bin,percent,3.8,3.9,0
+Delaware,2 wk ahead,Bin,percent,3.9,4.0,0
+Delaware,2 wk ahead,Bin,percent,4.0,4.1,0
+Delaware,2 wk ahead,Bin,percent,4.1,4.2,0
+Delaware,2 wk ahead,Bin,percent,4.2,4.3,0
+Delaware,2 wk ahead,Bin,percent,4.3,4.4,0
+Delaware,2 wk ahead,Bin,percent,4.4,4.5,0
+Delaware,2 wk ahead,Bin,percent,4.5,4.6,0
+Delaware,2 wk ahead,Bin,percent,4.6,4.7,0
+Delaware,2 wk ahead,Bin,percent,4.7,4.8,0
+Delaware,2 wk ahead,Bin,percent,4.8,4.9,0.002
+Delaware,2 wk ahead,Bin,percent,4.9,5.0,0
+Delaware,2 wk ahead,Bin,percent,5.0,5.1,0
+Delaware,2 wk ahead,Bin,percent,5.1,5.2,0
+Delaware,2 wk ahead,Bin,percent,5.2,5.3,0
+Delaware,2 wk ahead,Bin,percent,5.3,5.4,0.002
+Delaware,2 wk ahead,Bin,percent,5.4,5.5,0
+Delaware,2 wk ahead,Bin,percent,5.5,5.6,0
+Delaware,2 wk ahead,Bin,percent,5.6,5.7,0
+Delaware,2 wk ahead,Bin,percent,5.7,5.8,0
+Delaware,2 wk ahead,Bin,percent,5.8,5.9,0
+Delaware,2 wk ahead,Bin,percent,5.9,6.0,0
+Delaware,2 wk ahead,Bin,percent,6.0,6.1,0
+Delaware,2 wk ahead,Bin,percent,6.1,6.2,0
+Delaware,2 wk ahead,Bin,percent,6.2,6.3,0
+Delaware,2 wk ahead,Bin,percent,6.3,6.4,0
+Delaware,2 wk ahead,Bin,percent,6.4,6.5,0
+Delaware,2 wk ahead,Bin,percent,6.5,6.6,0
+Delaware,2 wk ahead,Bin,percent,6.6,6.7,0
+Delaware,2 wk ahead,Bin,percent,6.7,6.8,0
+Delaware,2 wk ahead,Bin,percent,6.8,6.9,0
+Delaware,2 wk ahead,Bin,percent,6.9,7.0,0
+Delaware,2 wk ahead,Bin,percent,7.0,7.1,0
+Delaware,2 wk ahead,Bin,percent,7.1,7.2,0
+Delaware,2 wk ahead,Bin,percent,7.2,7.3,0
+Delaware,2 wk ahead,Bin,percent,7.3,7.4,0
+Delaware,2 wk ahead,Bin,percent,7.4,7.5,0
+Delaware,2 wk ahead,Bin,percent,7.5,7.6,0
+Delaware,2 wk ahead,Bin,percent,7.6,7.7,0
+Delaware,2 wk ahead,Bin,percent,7.7,7.8,0
+Delaware,2 wk ahead,Bin,percent,7.8,7.9,0
+Delaware,2 wk ahead,Bin,percent,7.9,8.0,0
+Delaware,2 wk ahead,Bin,percent,8.0,8.1,0
+Delaware,2 wk ahead,Bin,percent,8.1,8.2,0
+Delaware,2 wk ahead,Bin,percent,8.2,8.3,0
+Delaware,2 wk ahead,Bin,percent,8.3,8.4,0
+Delaware,2 wk ahead,Bin,percent,8.4,8.5,0
+Delaware,2 wk ahead,Bin,percent,8.5,8.6,0
+Delaware,2 wk ahead,Bin,percent,8.6,8.7,0
+Delaware,2 wk ahead,Bin,percent,8.7,8.8,0.002
+Delaware,2 wk ahead,Bin,percent,8.8,8.9,0
+Delaware,2 wk ahead,Bin,percent,8.9,9.0,0
+Delaware,2 wk ahead,Bin,percent,9.0,9.1,0
+Delaware,2 wk ahead,Bin,percent,9.1,9.2,0
+Delaware,2 wk ahead,Bin,percent,9.2,9.3,0
+Delaware,2 wk ahead,Bin,percent,9.3,9.4,0
+Delaware,2 wk ahead,Bin,percent,9.4,9.5,0
+Delaware,2 wk ahead,Bin,percent,9.5,9.6,0
+Delaware,2 wk ahead,Bin,percent,9.6,9.7,0
+Delaware,2 wk ahead,Bin,percent,9.7,9.8,0
+Delaware,2 wk ahead,Bin,percent,9.8,9.9,0
+Delaware,2 wk ahead,Bin,percent,9.9,10.0,0
+Delaware,2 wk ahead,Bin,percent,10.0,10.1,0
+Delaware,2 wk ahead,Bin,percent,10.1,10.2,0
+Delaware,2 wk ahead,Bin,percent,10.2,10.3,0
+Delaware,2 wk ahead,Bin,percent,10.3,10.4,0
+Delaware,2 wk ahead,Bin,percent,10.4,10.5,0
+Delaware,2 wk ahead,Bin,percent,10.5,10.6,0
+Delaware,2 wk ahead,Bin,percent,10.6,10.7,0
+Delaware,2 wk ahead,Bin,percent,10.7,10.8,0
+Delaware,2 wk ahead,Bin,percent,10.8,10.9,0
+Delaware,2 wk ahead,Bin,percent,10.9,11.0,0
+Delaware,2 wk ahead,Bin,percent,11.0,11.1,0
+Delaware,2 wk ahead,Bin,percent,11.1,11.2,0
+Delaware,2 wk ahead,Bin,percent,11.2,11.3,0
+Delaware,2 wk ahead,Bin,percent,11.3,11.4,0
+Delaware,2 wk ahead,Bin,percent,11.4,11.5,0
+Delaware,2 wk ahead,Bin,percent,11.5,11.6,0
+Delaware,2 wk ahead,Bin,percent,11.6,11.7,0
+Delaware,2 wk ahead,Bin,percent,11.7,11.8,0
+Delaware,2 wk ahead,Bin,percent,11.8,11.9,0
+Delaware,2 wk ahead,Bin,percent,11.9,12.0,0
+Delaware,2 wk ahead,Bin,percent,12.0,12.1,0
+Delaware,2 wk ahead,Bin,percent,12.1,12.2,0
+Delaware,2 wk ahead,Bin,percent,12.2,12.3,0
+Delaware,2 wk ahead,Bin,percent,12.3,12.4,0
+Delaware,2 wk ahead,Bin,percent,12.4,12.5,0
+Delaware,2 wk ahead,Bin,percent,12.5,12.6,0
+Delaware,2 wk ahead,Bin,percent,12.6,12.7,0
+Delaware,2 wk ahead,Bin,percent,12.7,12.8,0
+Delaware,2 wk ahead,Bin,percent,12.8,12.9,0
+Delaware,2 wk ahead,Bin,percent,12.9,13.0,0
+Delaware,2 wk ahead,Bin,percent,13.0,100.0,0
+Delaware,3 wk ahead,Bin,percent,0.0,0.1,0.018
+Delaware,3 wk ahead,Bin,percent,0.1,0.2,0.21
+Delaware,3 wk ahead,Bin,percent,0.2,0.3,0.326
+Delaware,3 wk ahead,Bin,percent,0.3,0.4,0.204
+Delaware,3 wk ahead,Bin,percent,0.4,0.5,0.118
+Delaware,3 wk ahead,Bin,percent,0.5,0.6,0.044
+Delaware,3 wk ahead,Bin,percent,0.6,0.7,0.026
+Delaware,3 wk ahead,Bin,percent,0.7,0.8,0.008
+Delaware,3 wk ahead,Bin,percent,0.8,0.9,0.006
+Delaware,3 wk ahead,Bin,percent,0.9,1.0,0.01
+Delaware,3 wk ahead,Bin,percent,1.0,1.1,0.002
+Delaware,3 wk ahead,Bin,percent,1.1,1.2,0.002
+Delaware,3 wk ahead,Bin,percent,1.2,1.3,0.002
+Delaware,3 wk ahead,Bin,percent,1.3,1.4,0
+Delaware,3 wk ahead,Bin,percent,1.4,1.5,0.002
+Delaware,3 wk ahead,Bin,percent,1.5,1.6,0.004
+Delaware,3 wk ahead,Bin,percent,1.6,1.7,0.002
+Delaware,3 wk ahead,Bin,percent,1.7,1.8,0
+Delaware,3 wk ahead,Bin,percent,1.8,1.9,0
+Delaware,3 wk ahead,Bin,percent,1.9,2.0,0.002
+Delaware,3 wk ahead,Bin,percent,2.0,2.1,0
+Delaware,3 wk ahead,Bin,percent,2.1,2.2,0
+Delaware,3 wk ahead,Bin,percent,2.2,2.3,0
+Delaware,3 wk ahead,Bin,percent,2.3,2.4,0
+Delaware,3 wk ahead,Bin,percent,2.4,2.5,0.002
+Delaware,3 wk ahead,Bin,percent,2.5,2.6,0
+Delaware,3 wk ahead,Bin,percent,2.6,2.7,0
+Delaware,3 wk ahead,Bin,percent,2.7,2.8,0
+Delaware,3 wk ahead,Bin,percent,2.8,2.9,0.006
+Delaware,3 wk ahead,Bin,percent,2.9,3.0,0
+Delaware,3 wk ahead,Bin,percent,3.0,3.1,0
+Delaware,3 wk ahead,Bin,percent,3.1,3.2,0.002
+Delaware,3 wk ahead,Bin,percent,3.2,3.3,0
+Delaware,3 wk ahead,Bin,percent,3.3,3.4,0
+Delaware,3 wk ahead,Bin,percent,3.4,3.5,0
+Delaware,3 wk ahead,Bin,percent,3.5,3.6,0
+Delaware,3 wk ahead,Bin,percent,3.6,3.7,0
+Delaware,3 wk ahead,Bin,percent,3.7,3.8,0
+Delaware,3 wk ahead,Bin,percent,3.8,3.9,0
+Delaware,3 wk ahead,Bin,percent,3.9,4.0,0
+Delaware,3 wk ahead,Bin,percent,4.0,4.1,0
+Delaware,3 wk ahead,Bin,percent,4.1,4.2,0
+Delaware,3 wk ahead,Bin,percent,4.2,4.3,0
+Delaware,3 wk ahead,Bin,percent,4.3,4.4,0
+Delaware,3 wk ahead,Bin,percent,4.4,4.5,0
+Delaware,3 wk ahead,Bin,percent,4.5,4.6,0
+Delaware,3 wk ahead,Bin,percent,4.6,4.7,0
+Delaware,3 wk ahead,Bin,percent,4.7,4.8,0
+Delaware,3 wk ahead,Bin,percent,4.8,4.9,0
+Delaware,3 wk ahead,Bin,percent,4.9,5.0,0
+Delaware,3 wk ahead,Bin,percent,5.0,5.1,0
+Delaware,3 wk ahead,Bin,percent,5.1,5.2,0
+Delaware,3 wk ahead,Bin,percent,5.2,5.3,0
+Delaware,3 wk ahead,Bin,percent,5.3,5.4,0
+Delaware,3 wk ahead,Bin,percent,5.4,5.5,0
+Delaware,3 wk ahead,Bin,percent,5.5,5.6,0
+Delaware,3 wk ahead,Bin,percent,5.6,5.7,0
+Delaware,3 wk ahead,Bin,percent,5.7,5.8,0
+Delaware,3 wk ahead,Bin,percent,5.8,5.9,0
+Delaware,3 wk ahead,Bin,percent,5.9,6.0,0
+Delaware,3 wk ahead,Bin,percent,6.0,6.1,0
+Delaware,3 wk ahead,Bin,percent,6.1,6.2,0
+Delaware,3 wk ahead,Bin,percent,6.2,6.3,0
+Delaware,3 wk ahead,Bin,percent,6.3,6.4,0
+Delaware,3 wk ahead,Bin,percent,6.4,6.5,0
+Delaware,3 wk ahead,Bin,percent,6.5,6.6,0
+Delaware,3 wk ahead,Bin,percent,6.6,6.7,0
+Delaware,3 wk ahead,Bin,percent,6.7,6.8,0
+Delaware,3 wk ahead,Bin,percent,6.8,6.9,0
+Delaware,3 wk ahead,Bin,percent,6.9,7.0,0
+Delaware,3 wk ahead,Bin,percent,7.0,7.1,0
+Delaware,3 wk ahead,Bin,percent,7.1,7.2,0.002
+Delaware,3 wk ahead,Bin,percent,7.2,7.3,0
+Delaware,3 wk ahead,Bin,percent,7.3,7.4,0
+Delaware,3 wk ahead,Bin,percent,7.4,7.5,0
+Delaware,3 wk ahead,Bin,percent,7.5,7.6,0
+Delaware,3 wk ahead,Bin,percent,7.6,7.7,0
+Delaware,3 wk ahead,Bin,percent,7.7,7.8,0
+Delaware,3 wk ahead,Bin,percent,7.8,7.9,0
+Delaware,3 wk ahead,Bin,percent,7.9,8.0,0
+Delaware,3 wk ahead,Bin,percent,8.0,8.1,0
+Delaware,3 wk ahead,Bin,percent,8.1,8.2,0
+Delaware,3 wk ahead,Bin,percent,8.2,8.3,0
+Delaware,3 wk ahead,Bin,percent,8.3,8.4,0
+Delaware,3 wk ahead,Bin,percent,8.4,8.5,0
+Delaware,3 wk ahead,Bin,percent,8.5,8.6,0
+Delaware,3 wk ahead,Bin,percent,8.6,8.7,0
+Delaware,3 wk ahead,Bin,percent,8.7,8.8,0
+Delaware,3 wk ahead,Bin,percent,8.8,8.9,0
+Delaware,3 wk ahead,Bin,percent,8.9,9.0,0
+Delaware,3 wk ahead,Bin,percent,9.0,9.1,0
+Delaware,3 wk ahead,Bin,percent,9.1,9.2,0
+Delaware,3 wk ahead,Bin,percent,9.2,9.3,0
+Delaware,3 wk ahead,Bin,percent,9.3,9.4,0
+Delaware,3 wk ahead,Bin,percent,9.4,9.5,0
+Delaware,3 wk ahead,Bin,percent,9.5,9.6,0
+Delaware,3 wk ahead,Bin,percent,9.6,9.7,0
+Delaware,3 wk ahead,Bin,percent,9.7,9.8,0
+Delaware,3 wk ahead,Bin,percent,9.8,9.9,0
+Delaware,3 wk ahead,Bin,percent,9.9,10.0,0
+Delaware,3 wk ahead,Bin,percent,10.0,10.1,0
+Delaware,3 wk ahead,Bin,percent,10.1,10.2,0
+Delaware,3 wk ahead,Bin,percent,10.2,10.3,0
+Delaware,3 wk ahead,Bin,percent,10.3,10.4,0
+Delaware,3 wk ahead,Bin,percent,10.4,10.5,0
+Delaware,3 wk ahead,Bin,percent,10.5,10.6,0
+Delaware,3 wk ahead,Bin,percent,10.6,10.7,0
+Delaware,3 wk ahead,Bin,percent,10.7,10.8,0
+Delaware,3 wk ahead,Bin,percent,10.8,10.9,0
+Delaware,3 wk ahead,Bin,percent,10.9,11.0,0
+Delaware,3 wk ahead,Bin,percent,11.0,11.1,0
+Delaware,3 wk ahead,Bin,percent,11.1,11.2,0
+Delaware,3 wk ahead,Bin,percent,11.2,11.3,0
+Delaware,3 wk ahead,Bin,percent,11.3,11.4,0
+Delaware,3 wk ahead,Bin,percent,11.4,11.5,0
+Delaware,3 wk ahead,Bin,percent,11.5,11.6,0
+Delaware,3 wk ahead,Bin,percent,11.6,11.7,0
+Delaware,3 wk ahead,Bin,percent,11.7,11.8,0
+Delaware,3 wk ahead,Bin,percent,11.8,11.9,0
+Delaware,3 wk ahead,Bin,percent,11.9,12.0,0
+Delaware,3 wk ahead,Bin,percent,12.0,12.1,0
+Delaware,3 wk ahead,Bin,percent,12.1,12.2,0
+Delaware,3 wk ahead,Bin,percent,12.2,12.3,0
+Delaware,3 wk ahead,Bin,percent,12.3,12.4,0
+Delaware,3 wk ahead,Bin,percent,12.4,12.5,0
+Delaware,3 wk ahead,Bin,percent,12.5,12.6,0
+Delaware,3 wk ahead,Bin,percent,12.6,12.7,0
+Delaware,3 wk ahead,Bin,percent,12.7,12.8,0
+Delaware,3 wk ahead,Bin,percent,12.8,12.9,0
+Delaware,3 wk ahead,Bin,percent,12.9,13.0,0
+Delaware,3 wk ahead,Bin,percent,13.0,100.0,0.002
+Delaware,4 wk ahead,Bin,percent,0.0,0.1,0.02
+Delaware,4 wk ahead,Bin,percent,0.1,0.2,0.146
+Delaware,4 wk ahead,Bin,percent,0.2,0.3,0.26
+Delaware,4 wk ahead,Bin,percent,0.3,0.4,0.238
+Delaware,4 wk ahead,Bin,percent,0.4,0.5,0.15
+Delaware,4 wk ahead,Bin,percent,0.5,0.6,0.06
+Delaware,4 wk ahead,Bin,percent,0.6,0.7,0.032
+Delaware,4 wk ahead,Bin,percent,0.7,0.8,0.026
+Delaware,4 wk ahead,Bin,percent,0.8,0.9,0.016
+Delaware,4 wk ahead,Bin,percent,0.9,1.0,0.004
+Delaware,4 wk ahead,Bin,percent,1.0,1.1,0.006
+Delaware,4 wk ahead,Bin,percent,1.1,1.2,0.006
+Delaware,4 wk ahead,Bin,percent,1.2,1.3,0.004
+Delaware,4 wk ahead,Bin,percent,1.3,1.4,0.008
+Delaware,4 wk ahead,Bin,percent,1.4,1.5,0.004
+Delaware,4 wk ahead,Bin,percent,1.5,1.6,0.002
+Delaware,4 wk ahead,Bin,percent,1.6,1.7,0.002
+Delaware,4 wk ahead,Bin,percent,1.7,1.8,0
+Delaware,4 wk ahead,Bin,percent,1.8,1.9,0
+Delaware,4 wk ahead,Bin,percent,1.9,2.0,0
+Delaware,4 wk ahead,Bin,percent,2.0,2.1,0
+Delaware,4 wk ahead,Bin,percent,2.1,2.2,0.002
+Delaware,4 wk ahead,Bin,percent,2.2,2.3,0
+Delaware,4 wk ahead,Bin,percent,2.3,2.4,0
+Delaware,4 wk ahead,Bin,percent,2.4,2.5,0
+Delaware,4 wk ahead,Bin,percent,2.5,2.6,0
+Delaware,4 wk ahead,Bin,percent,2.6,2.7,0
+Delaware,4 wk ahead,Bin,percent,2.7,2.8,0.004
+Delaware,4 wk ahead,Bin,percent,2.8,2.9,0
+Delaware,4 wk ahead,Bin,percent,2.9,3.0,0
+Delaware,4 wk ahead,Bin,percent,3.0,3.1,0
+Delaware,4 wk ahead,Bin,percent,3.1,3.2,0.002
+Delaware,4 wk ahead,Bin,percent,3.2,3.3,0
+Delaware,4 wk ahead,Bin,percent,3.3,3.4,0
+Delaware,4 wk ahead,Bin,percent,3.4,3.5,0
+Delaware,4 wk ahead,Bin,percent,3.5,3.6,0
+Delaware,4 wk ahead,Bin,percent,3.6,3.7,0
+Delaware,4 wk ahead,Bin,percent,3.7,3.8,0
+Delaware,4 wk ahead,Bin,percent,3.8,3.9,0
+Delaware,4 wk ahead,Bin,percent,3.9,4.0,0
+Delaware,4 wk ahead,Bin,percent,4.0,4.1,0
+Delaware,4 wk ahead,Bin,percent,4.1,4.2,0
+Delaware,4 wk ahead,Bin,percent,4.2,4.3,0
+Delaware,4 wk ahead,Bin,percent,4.3,4.4,0
+Delaware,4 wk ahead,Bin,percent,4.4,4.5,0
+Delaware,4 wk ahead,Bin,percent,4.5,4.6,0
+Delaware,4 wk ahead,Bin,percent,4.6,4.7,0
+Delaware,4 wk ahead,Bin,percent,4.7,4.8,0
+Delaware,4 wk ahead,Bin,percent,4.8,4.9,0.002
+Delaware,4 wk ahead,Bin,percent,4.9,5.0,0.002
+Delaware,4 wk ahead,Bin,percent,5.0,5.1,0
+Delaware,4 wk ahead,Bin,percent,5.1,5.2,0
+Delaware,4 wk ahead,Bin,percent,5.2,5.3,0
+Delaware,4 wk ahead,Bin,percent,5.3,5.4,0.002
+Delaware,4 wk ahead,Bin,percent,5.4,5.5,0
+Delaware,4 wk ahead,Bin,percent,5.5,5.6,0
+Delaware,4 wk ahead,Bin,percent,5.6,5.7,0
+Delaware,4 wk ahead,Bin,percent,5.7,5.8,0
+Delaware,4 wk ahead,Bin,percent,5.8,5.9,0
+Delaware,4 wk ahead,Bin,percent,5.9,6.0,0
+Delaware,4 wk ahead,Bin,percent,6.0,6.1,0
+Delaware,4 wk ahead,Bin,percent,6.1,6.2,0
+Delaware,4 wk ahead,Bin,percent,6.2,6.3,0
+Delaware,4 wk ahead,Bin,percent,6.3,6.4,0
+Delaware,4 wk ahead,Bin,percent,6.4,6.5,0
+Delaware,4 wk ahead,Bin,percent,6.5,6.6,0
+Delaware,4 wk ahead,Bin,percent,6.6,6.7,0
+Delaware,4 wk ahead,Bin,percent,6.7,6.8,0
+Delaware,4 wk ahead,Bin,percent,6.8,6.9,0
+Delaware,4 wk ahead,Bin,percent,6.9,7.0,0
+Delaware,4 wk ahead,Bin,percent,7.0,7.1,0
+Delaware,4 wk ahead,Bin,percent,7.1,7.2,0
+Delaware,4 wk ahead,Bin,percent,7.2,7.3,0
+Delaware,4 wk ahead,Bin,percent,7.3,7.4,0
+Delaware,4 wk ahead,Bin,percent,7.4,7.5,0
+Delaware,4 wk ahead,Bin,percent,7.5,7.6,0
+Delaware,4 wk ahead,Bin,percent,7.6,7.7,0
+Delaware,4 wk ahead,Bin,percent,7.7,7.8,0
+Delaware,4 wk ahead,Bin,percent,7.8,7.9,0
+Delaware,4 wk ahead,Bin,percent,7.9,8.0,0
+Delaware,4 wk ahead,Bin,percent,8.0,8.1,0
+Delaware,4 wk ahead,Bin,percent,8.1,8.2,0
+Delaware,4 wk ahead,Bin,percent,8.2,8.3,0
+Delaware,4 wk ahead,Bin,percent,8.3,8.4,0
+Delaware,4 wk ahead,Bin,percent,8.4,8.5,0
+Delaware,4 wk ahead,Bin,percent,8.5,8.6,0
+Delaware,4 wk ahead,Bin,percent,8.6,8.7,0
+Delaware,4 wk ahead,Bin,percent,8.7,8.8,0
+Delaware,4 wk ahead,Bin,percent,8.8,8.9,0
+Delaware,4 wk ahead,Bin,percent,8.9,9.0,0
+Delaware,4 wk ahead,Bin,percent,9.0,9.1,0
+Delaware,4 wk ahead,Bin,percent,9.1,9.2,0
+Delaware,4 wk ahead,Bin,percent,9.2,9.3,0
+Delaware,4 wk ahead,Bin,percent,9.3,9.4,0
+Delaware,4 wk ahead,Bin,percent,9.4,9.5,0
+Delaware,4 wk ahead,Bin,percent,9.5,9.6,0
+Delaware,4 wk ahead,Bin,percent,9.6,9.7,0
+Delaware,4 wk ahead,Bin,percent,9.7,9.8,0
+Delaware,4 wk ahead,Bin,percent,9.8,9.9,0
+Delaware,4 wk ahead,Bin,percent,9.9,10.0,0
+Delaware,4 wk ahead,Bin,percent,10.0,10.1,0
+Delaware,4 wk ahead,Bin,percent,10.1,10.2,0
+Delaware,4 wk ahead,Bin,percent,10.2,10.3,0
+Delaware,4 wk ahead,Bin,percent,10.3,10.4,0
+Delaware,4 wk ahead,Bin,percent,10.4,10.5,0
+Delaware,4 wk ahead,Bin,percent,10.5,10.6,0
+Delaware,4 wk ahead,Bin,percent,10.6,10.7,0
+Delaware,4 wk ahead,Bin,percent,10.7,10.8,0
+Delaware,4 wk ahead,Bin,percent,10.8,10.9,0
+Delaware,4 wk ahead,Bin,percent,10.9,11.0,0
+Delaware,4 wk ahead,Bin,percent,11.0,11.1,0
+Delaware,4 wk ahead,Bin,percent,11.1,11.2,0
+Delaware,4 wk ahead,Bin,percent,11.2,11.3,0
+Delaware,4 wk ahead,Bin,percent,11.3,11.4,0
+Delaware,4 wk ahead,Bin,percent,11.4,11.5,0
+Delaware,4 wk ahead,Bin,percent,11.5,11.6,0
+Delaware,4 wk ahead,Bin,percent,11.6,11.7,0
+Delaware,4 wk ahead,Bin,percent,11.7,11.8,0
+Delaware,4 wk ahead,Bin,percent,11.8,11.9,0
+Delaware,4 wk ahead,Bin,percent,11.9,12.0,0
+Delaware,4 wk ahead,Bin,percent,12.0,12.1,0
+Delaware,4 wk ahead,Bin,percent,12.1,12.2,0
+Delaware,4 wk ahead,Bin,percent,12.2,12.3,0
+Delaware,4 wk ahead,Bin,percent,12.3,12.4,0
+Delaware,4 wk ahead,Bin,percent,12.4,12.5,0
+Delaware,4 wk ahead,Bin,percent,12.5,12.6,0
+Delaware,4 wk ahead,Bin,percent,12.6,12.7,0
+Delaware,4 wk ahead,Bin,percent,12.7,12.8,0
+Delaware,4 wk ahead,Bin,percent,12.8,12.9,0
+Delaware,4 wk ahead,Bin,percent,12.9,13.0,0
+Delaware,4 wk ahead,Bin,percent,13.0,100.0,0.002
+Delaware,Season peak percentage,Bin,percent,0.0,0.1,0
+Delaware,Season peak percentage,Bin,percent,0.1,0.2,0
+Delaware,Season peak percentage,Bin,percent,0.2,0.3,0
+Delaware,Season peak percentage,Bin,percent,0.3,0.4,0
+Delaware,Season peak percentage,Bin,percent,0.4,0.5,0
+Delaware,Season peak percentage,Bin,percent,0.5,0.6,0
+Delaware,Season peak percentage,Bin,percent,0.6,0.7,0
+Delaware,Season peak percentage,Bin,percent,0.7,0.8,0
+Delaware,Season peak percentage,Bin,percent,0.8,0.9,0
+Delaware,Season peak percentage,Bin,percent,0.9,1.0,0
+Delaware,Season peak percentage,Bin,percent,1.0,1.1,0
+Delaware,Season peak percentage,Bin,percent,1.1,1.2,0
+Delaware,Season peak percentage,Bin,percent,1.2,1.3,0
+Delaware,Season peak percentage,Bin,percent,1.3,1.4,0
+Delaware,Season peak percentage,Bin,percent,1.4,1.5,0
+Delaware,Season peak percentage,Bin,percent,1.5,1.6,0
+Delaware,Season peak percentage,Bin,percent,1.6,1.7,0
+Delaware,Season peak percentage,Bin,percent,1.7,1.8,0
+Delaware,Season peak percentage,Bin,percent,1.8,1.9,0
+Delaware,Season peak percentage,Bin,percent,1.9,2.0,0
+Delaware,Season peak percentage,Bin,percent,2.0,2.1,0
+Delaware,Season peak percentage,Bin,percent,2.1,2.2,0
+Delaware,Season peak percentage,Bin,percent,2.2,2.3,0.002
+Delaware,Season peak percentage,Bin,percent,2.3,2.4,0
+Delaware,Season peak percentage,Bin,percent,2.4,2.5,0
+Delaware,Season peak percentage,Bin,percent,2.5,2.6,0
+Delaware,Season peak percentage,Bin,percent,2.6,2.7,0.002
+Delaware,Season peak percentage,Bin,percent,2.7,2.8,0
+Delaware,Season peak percentage,Bin,percent,2.8,2.9,0
+Delaware,Season peak percentage,Bin,percent,2.9,3.0,0
+Delaware,Season peak percentage,Bin,percent,3.0,3.1,0
+Delaware,Season peak percentage,Bin,percent,3.1,3.2,0
+Delaware,Season peak percentage,Bin,percent,3.2,3.3,0
+Delaware,Season peak percentage,Bin,percent,3.3,3.4,0.004
+Delaware,Season peak percentage,Bin,percent,3.4,3.5,0
+Delaware,Season peak percentage,Bin,percent,3.5,3.6,0
+Delaware,Season peak percentage,Bin,percent,3.6,3.7,0
+Delaware,Season peak percentage,Bin,percent,3.7,3.8,0.002
+Delaware,Season peak percentage,Bin,percent,3.8,3.9,0.002
+Delaware,Season peak percentage,Bin,percent,3.9,4.0,0
+Delaware,Season peak percentage,Bin,percent,4.0,4.1,0
+Delaware,Season peak percentage,Bin,percent,4.1,4.2,0
+Delaware,Season peak percentage,Bin,percent,4.2,4.3,0
+Delaware,Season peak percentage,Bin,percent,4.3,4.4,0
+Delaware,Season peak percentage,Bin,percent,4.4,4.5,0
+Delaware,Season peak percentage,Bin,percent,4.5,4.6,0
+Delaware,Season peak percentage,Bin,percent,4.6,4.7,0.002
+Delaware,Season peak percentage,Bin,percent,4.7,4.8,0.002
+Delaware,Season peak percentage,Bin,percent,4.8,4.9,0
+Delaware,Season peak percentage,Bin,percent,4.9,5.0,0
+Delaware,Season peak percentage,Bin,percent,5.0,5.1,0
+Delaware,Season peak percentage,Bin,percent,5.1,5.2,0
+Delaware,Season peak percentage,Bin,percent,5.2,5.3,0.004
+Delaware,Season peak percentage,Bin,percent,5.3,5.4,0.002
+Delaware,Season peak percentage,Bin,percent,5.4,5.5,0
+Delaware,Season peak percentage,Bin,percent,5.5,5.6,0.002
+Delaware,Season peak percentage,Bin,percent,5.6,5.7,0.002
+Delaware,Season peak percentage,Bin,percent,5.7,5.8,0
+Delaware,Season peak percentage,Bin,percent,5.8,5.9,0
+Delaware,Season peak percentage,Bin,percent,5.9,6.0,0
+Delaware,Season peak percentage,Bin,percent,6.0,6.1,0.002
+Delaware,Season peak percentage,Bin,percent,6.1,6.2,0.002
+Delaware,Season peak percentage,Bin,percent,6.2,6.3,0.002
+Delaware,Season peak percentage,Bin,percent,6.3,6.4,0
+Delaware,Season peak percentage,Bin,percent,6.4,6.5,0
+Delaware,Season peak percentage,Bin,percent,6.5,6.6,0
+Delaware,Season peak percentage,Bin,percent,6.6,6.7,0
+Delaware,Season peak percentage,Bin,percent,6.7,6.8,0.002
+Delaware,Season peak percentage,Bin,percent,6.8,6.9,0
+Delaware,Season peak percentage,Bin,percent,6.9,7.0,0.002
+Delaware,Season peak percentage,Bin,percent,7.0,7.1,0
+Delaware,Season peak percentage,Bin,percent,7.1,7.2,0
+Delaware,Season peak percentage,Bin,percent,7.2,7.3,0
+Delaware,Season peak percentage,Bin,percent,7.3,7.4,0.002
+Delaware,Season peak percentage,Bin,percent,7.4,7.5,0.002
+Delaware,Season peak percentage,Bin,percent,7.5,7.6,0.002
+Delaware,Season peak percentage,Bin,percent,7.6,7.7,0
+Delaware,Season peak percentage,Bin,percent,7.7,7.8,0
+Delaware,Season peak percentage,Bin,percent,7.8,7.9,0
+Delaware,Season peak percentage,Bin,percent,7.9,8.0,0.002
+Delaware,Season peak percentage,Bin,percent,8.0,8.1,0
+Delaware,Season peak percentage,Bin,percent,8.1,8.2,0
+Delaware,Season peak percentage,Bin,percent,8.2,8.3,0
+Delaware,Season peak percentage,Bin,percent,8.3,8.4,0.002
+Delaware,Season peak percentage,Bin,percent,8.4,8.5,0
+Delaware,Season peak percentage,Bin,percent,8.5,8.6,0
+Delaware,Season peak percentage,Bin,percent,8.6,8.7,0
+Delaware,Season peak percentage,Bin,percent,8.7,8.8,0.002
+Delaware,Season peak percentage,Bin,percent,8.8,8.9,0.002
+Delaware,Season peak percentage,Bin,percent,8.9,9.0,0
+Delaware,Season peak percentage,Bin,percent,9.0,9.1,0.002
+Delaware,Season peak percentage,Bin,percent,9.1,9.2,0
+Delaware,Season peak percentage,Bin,percent,9.2,9.3,0
+Delaware,Season peak percentage,Bin,percent,9.3,9.4,0.002
+Delaware,Season peak percentage,Bin,percent,9.4,9.5,0.004
+Delaware,Season peak percentage,Bin,percent,9.5,9.6,0
+Delaware,Season peak percentage,Bin,percent,9.6,9.7,0.002
+Delaware,Season peak percentage,Bin,percent,9.7,9.8,0
+Delaware,Season peak percentage,Bin,percent,9.8,9.9,0.002
+Delaware,Season peak percentage,Bin,percent,9.9,10.0,0
+Delaware,Season peak percentage,Bin,percent,10.0,10.1,0.002
+Delaware,Season peak percentage,Bin,percent,10.1,10.2,0.002
+Delaware,Season peak percentage,Bin,percent,10.2,10.3,0
+Delaware,Season peak percentage,Bin,percent,10.3,10.4,0
+Delaware,Season peak percentage,Bin,percent,10.4,10.5,0.004
+Delaware,Season peak percentage,Bin,percent,10.5,10.6,0
+Delaware,Season peak percentage,Bin,percent,10.6,10.7,0
+Delaware,Season peak percentage,Bin,percent,10.7,10.8,0
+Delaware,Season peak percentage,Bin,percent,10.8,10.9,0
+Delaware,Season peak percentage,Bin,percent,10.9,11.0,0.002
+Delaware,Season peak percentage,Bin,percent,11.0,11.1,0.002
+Delaware,Season peak percentage,Bin,percent,11.1,11.2,0
+Delaware,Season peak percentage,Bin,percent,11.2,11.3,0
+Delaware,Season peak percentage,Bin,percent,11.3,11.4,0
+Delaware,Season peak percentage,Bin,percent,11.4,11.5,0.004
+Delaware,Season peak percentage,Bin,percent,11.5,11.6,0.002
+Delaware,Season peak percentage,Bin,percent,11.6,11.7,0
+Delaware,Season peak percentage,Bin,percent,11.7,11.8,0.002
+Delaware,Season peak percentage,Bin,percent,11.8,11.9,0
+Delaware,Season peak percentage,Bin,percent,11.9,12.0,0.002
+Delaware,Season peak percentage,Bin,percent,12.0,12.1,0.002
+Delaware,Season peak percentage,Bin,percent,12.1,12.2,0
+Delaware,Season peak percentage,Bin,percent,12.2,12.3,0
+Delaware,Season peak percentage,Bin,percent,12.3,12.4,0.002
+Delaware,Season peak percentage,Bin,percent,12.4,12.5,0.002
+Delaware,Season peak percentage,Bin,percent,12.5,12.6,0
+Delaware,Season peak percentage,Bin,percent,12.6,12.7,0
+Delaware,Season peak percentage,Bin,percent,12.7,12.8,0
+Delaware,Season peak percentage,Bin,percent,12.8,12.9,0
+Delaware,Season peak percentage,Bin,percent,12.9,13.0,0
+Delaware,Season peak percentage,Bin,percent,13.0,100.0,0.91
+Delaware,Season peak week,Bin,week,40.0,41.0,0
+Delaware,Season peak week,Bin,week,41.0,42.0,0
+Delaware,Season peak week,Bin,week,42.0,43.0,0
+Delaware,Season peak week,Bin,week,43.0,44.0,0
+Delaware,Season peak week,Bin,week,44.0,45.0,0
+Delaware,Season peak week,Bin,week,45.0,46.0,0.001996007984031936
+Delaware,Season peak week,Bin,week,46.0,47.0,0
+Delaware,Season peak week,Bin,week,47.0,48.0,0
+Delaware,Season peak week,Bin,week,48.0,49.0,0.003992015968063872
+Delaware,Season peak week,Bin,week,49.0,50.0,0.001996007984031936
+Delaware,Season peak week,Bin,week,50.0,51.0,0.001996007984031936
+Delaware,Season peak week,Bin,week,51.0,52.0,0.003992015968063872
+Delaware,Season peak week,Bin,week,52.0,53.0,0.015968063872255488
+Delaware,Season peak week,Bin,week,1.0,2.0,0.011976047904191617
+Delaware,Season peak week,Bin,week,2.0,3.0,0.043912175648702596
+Delaware,Season peak week,Bin,week,3.0,4.0,0.1217564870259481
+Delaware,Season peak week,Bin,week,4.0,5.0,0.19760479041916168
+Delaware,Season peak week,Bin,week,5.0,6.0,0.28542914171656686
+Delaware,Season peak week,Bin,week,6.0,7.0,0.15169660678642716
+Delaware,Season peak week,Bin,week,7.0,8.0,0.09381237524950099
+Delaware,Season peak week,Bin,week,8.0,9.0,0.021956087824351298
+Delaware,Season peak week,Bin,week,9.0,10.0,0.021956087824351298
+Delaware,Season peak week,Bin,week,10.0,11.0,0
+Delaware,Season peak week,Bin,week,11.0,12.0,0.003992015968063872
+Delaware,Season peak week,Bin,week,12.0,13.0,0.001996007984031936
+Delaware,Season peak week,Bin,week,13.0,14.0,0.007984031936127744
+Delaware,Season peak week,Bin,week,14.0,15.0,0.001996007984031936
+Delaware,Season peak week,Bin,week,15.0,16.0,0.001996007984031936
+Delaware,Season peak week,Bin,week,16.0,17.0,0.001996007984031936
+Delaware,Season peak week,Bin,week,17.0,18.0,0
+Delaware,Season peak week,Bin,week,18.0,19.0,0
+Delaware,Season peak week,Bin,week,19.0,20.0,0
+Delaware,Season peak week,Bin,week,20.0,21.0,0
+Maryland,1 wk ahead,Bin,percent,0.0,0.1,0
+Maryland,1 wk ahead,Bin,percent,0.1,0.2,0
+Maryland,1 wk ahead,Bin,percent,0.2,0.3,0.004
+Maryland,1 wk ahead,Bin,percent,0.3,0.4,0.004
+Maryland,1 wk ahead,Bin,percent,0.4,0.5,0.006
+Maryland,1 wk ahead,Bin,percent,0.5,0.6,0.006
+Maryland,1 wk ahead,Bin,percent,0.6,0.7,0.022
+Maryland,1 wk ahead,Bin,percent,0.7,0.8,0.022
+Maryland,1 wk ahead,Bin,percent,0.8,0.9,0.116
+Maryland,1 wk ahead,Bin,percent,0.9,1.0,0.108
+Maryland,1 wk ahead,Bin,percent,1.0,1.1,0.17
+Maryland,1 wk ahead,Bin,percent,1.1,1.2,0.106
+Maryland,1 wk ahead,Bin,percent,1.2,1.3,0.128
+Maryland,1 wk ahead,Bin,percent,1.3,1.4,0.074
+Maryland,1 wk ahead,Bin,percent,1.4,1.5,0.08
+Maryland,1 wk ahead,Bin,percent,1.5,1.6,0.052
+Maryland,1 wk ahead,Bin,percent,1.6,1.7,0.012
+Maryland,1 wk ahead,Bin,percent,1.7,1.8,0.016
+Maryland,1 wk ahead,Bin,percent,1.8,1.9,0.02
+Maryland,1 wk ahead,Bin,percent,1.9,2.0,0.026
+Maryland,1 wk ahead,Bin,percent,2.0,2.1,0.002
+Maryland,1 wk ahead,Bin,percent,2.1,2.2,0.004
+Maryland,1 wk ahead,Bin,percent,2.2,2.3,0
+Maryland,1 wk ahead,Bin,percent,2.3,2.4,0.002
+Maryland,1 wk ahead,Bin,percent,2.4,2.5,0
+Maryland,1 wk ahead,Bin,percent,2.5,2.6,0
+Maryland,1 wk ahead,Bin,percent,2.6,2.7,0.006
+Maryland,1 wk ahead,Bin,percent,2.7,2.8,0.004
+Maryland,1 wk ahead,Bin,percent,2.8,2.9,0
+Maryland,1 wk ahead,Bin,percent,2.9,3.0,0
+Maryland,1 wk ahead,Bin,percent,3.0,3.1,0.006
+Maryland,1 wk ahead,Bin,percent,3.1,3.2,0
+Maryland,1 wk ahead,Bin,percent,3.2,3.3,0
+Maryland,1 wk ahead,Bin,percent,3.3,3.4,0
+Maryland,1 wk ahead,Bin,percent,3.4,3.5,0
+Maryland,1 wk ahead,Bin,percent,3.5,3.6,0
+Maryland,1 wk ahead,Bin,percent,3.6,3.7,0
+Maryland,1 wk ahead,Bin,percent,3.7,3.8,0
+Maryland,1 wk ahead,Bin,percent,3.8,3.9,0.002
+Maryland,1 wk ahead,Bin,percent,3.9,4.0,0
+Maryland,1 wk ahead,Bin,percent,4.0,4.1,0
+Maryland,1 wk ahead,Bin,percent,4.1,4.2,0
+Maryland,1 wk ahead,Bin,percent,4.2,4.3,0
+Maryland,1 wk ahead,Bin,percent,4.3,4.4,0
+Maryland,1 wk ahead,Bin,percent,4.4,4.5,0
+Maryland,1 wk ahead,Bin,percent,4.5,4.6,0
+Maryland,1 wk ahead,Bin,percent,4.6,4.7,0
+Maryland,1 wk ahead,Bin,percent,4.7,4.8,0
+Maryland,1 wk ahead,Bin,percent,4.8,4.9,0
+Maryland,1 wk ahead,Bin,percent,4.9,5.0,0
+Maryland,1 wk ahead,Bin,percent,5.0,5.1,0
+Maryland,1 wk ahead,Bin,percent,5.1,5.2,0
+Maryland,1 wk ahead,Bin,percent,5.2,5.3,0
+Maryland,1 wk ahead,Bin,percent,5.3,5.4,0
+Maryland,1 wk ahead,Bin,percent,5.4,5.5,0
+Maryland,1 wk ahead,Bin,percent,5.5,5.6,0
+Maryland,1 wk ahead,Bin,percent,5.6,5.7,0
+Maryland,1 wk ahead,Bin,percent,5.7,5.8,0
+Maryland,1 wk ahead,Bin,percent,5.8,5.9,0
+Maryland,1 wk ahead,Bin,percent,5.9,6.0,0
+Maryland,1 wk ahead,Bin,percent,6.0,6.1,0.002
+Maryland,1 wk ahead,Bin,percent,6.1,6.2,0
+Maryland,1 wk ahead,Bin,percent,6.2,6.3,0
+Maryland,1 wk ahead,Bin,percent,6.3,6.4,0
+Maryland,1 wk ahead,Bin,percent,6.4,6.5,0
+Maryland,1 wk ahead,Bin,percent,6.5,6.6,0
+Maryland,1 wk ahead,Bin,percent,6.6,6.7,0
+Maryland,1 wk ahead,Bin,percent,6.7,6.8,0
+Maryland,1 wk ahead,Bin,percent,6.8,6.9,0
+Maryland,1 wk ahead,Bin,percent,6.9,7.0,0
+Maryland,1 wk ahead,Bin,percent,7.0,7.1,0
+Maryland,1 wk ahead,Bin,percent,7.1,7.2,0
+Maryland,1 wk ahead,Bin,percent,7.2,7.3,0
+Maryland,1 wk ahead,Bin,percent,7.3,7.4,0
+Maryland,1 wk ahead,Bin,percent,7.4,7.5,0
+Maryland,1 wk ahead,Bin,percent,7.5,7.6,0
+Maryland,1 wk ahead,Bin,percent,7.6,7.7,0
+Maryland,1 wk ahead,Bin,percent,7.7,7.8,0
+Maryland,1 wk ahead,Bin,percent,7.8,7.9,0
+Maryland,1 wk ahead,Bin,percent,7.9,8.0,0
+Maryland,1 wk ahead,Bin,percent,8.0,8.1,0
+Maryland,1 wk ahead,Bin,percent,8.1,8.2,0
+Maryland,1 wk ahead,Bin,percent,8.2,8.3,0
+Maryland,1 wk ahead,Bin,percent,8.3,8.4,0
+Maryland,1 wk ahead,Bin,percent,8.4,8.5,0
+Maryland,1 wk ahead,Bin,percent,8.5,8.6,0
+Maryland,1 wk ahead,Bin,percent,8.6,8.7,0
+Maryland,1 wk ahead,Bin,percent,8.7,8.8,0
+Maryland,1 wk ahead,Bin,percent,8.8,8.9,0
+Maryland,1 wk ahead,Bin,percent,8.9,9.0,0
+Maryland,1 wk ahead,Bin,percent,9.0,9.1,0
+Maryland,1 wk ahead,Bin,percent,9.1,9.2,0
+Maryland,1 wk ahead,Bin,percent,9.2,9.3,0
+Maryland,1 wk ahead,Bin,percent,9.3,9.4,0
+Maryland,1 wk ahead,Bin,percent,9.4,9.5,0
+Maryland,1 wk ahead,Bin,percent,9.5,9.6,0
+Maryland,1 wk ahead,Bin,percent,9.6,9.7,0
+Maryland,1 wk ahead,Bin,percent,9.7,9.8,0
+Maryland,1 wk ahead,Bin,percent,9.8,9.9,0
+Maryland,1 wk ahead,Bin,percent,9.9,10.0,0
+Maryland,1 wk ahead,Bin,percent,10.0,10.1,0
+Maryland,1 wk ahead,Bin,percent,10.1,10.2,0
+Maryland,1 wk ahead,Bin,percent,10.2,10.3,0
+Maryland,1 wk ahead,Bin,percent,10.3,10.4,0
+Maryland,1 wk ahead,Bin,percent,10.4,10.5,0
+Maryland,1 wk ahead,Bin,percent,10.5,10.6,0
+Maryland,1 wk ahead,Bin,percent,10.6,10.7,0
+Maryland,1 wk ahead,Bin,percent,10.7,10.8,0
+Maryland,1 wk ahead,Bin,percent,10.8,10.9,0
+Maryland,1 wk ahead,Bin,percent,10.9,11.0,0
+Maryland,1 wk ahead,Bin,percent,11.0,11.1,0
+Maryland,1 wk ahead,Bin,percent,11.1,11.2,0
+Maryland,1 wk ahead,Bin,percent,11.2,11.3,0
+Maryland,1 wk ahead,Bin,percent,11.3,11.4,0
+Maryland,1 wk ahead,Bin,percent,11.4,11.5,0
+Maryland,1 wk ahead,Bin,percent,11.5,11.6,0
+Maryland,1 wk ahead,Bin,percent,11.6,11.7,0
+Maryland,1 wk ahead,Bin,percent,11.7,11.8,0
+Maryland,1 wk ahead,Bin,percent,11.8,11.9,0
+Maryland,1 wk ahead,Bin,percent,11.9,12.0,0
+Maryland,1 wk ahead,Bin,percent,12.0,12.1,0
+Maryland,1 wk ahead,Bin,percent,12.1,12.2,0
+Maryland,1 wk ahead,Bin,percent,12.2,12.3,0
+Maryland,1 wk ahead,Bin,percent,12.3,12.4,0
+Maryland,1 wk ahead,Bin,percent,12.4,12.5,0
+Maryland,1 wk ahead,Bin,percent,12.5,12.6,0
+Maryland,1 wk ahead,Bin,percent,12.6,12.7,0
+Maryland,1 wk ahead,Bin,percent,12.7,12.8,0
+Maryland,1 wk ahead,Bin,percent,12.8,12.9,0
+Maryland,1 wk ahead,Bin,percent,12.9,13.0,0
+Maryland,1 wk ahead,Bin,percent,13.0,100.0,0
+Maryland,2 wk ahead,Bin,percent,0.0,0.1,0
+Maryland,2 wk ahead,Bin,percent,0.1,0.2,0
+Maryland,2 wk ahead,Bin,percent,0.2,0.3,0.004
+Maryland,2 wk ahead,Bin,percent,0.3,0.4,0
+Maryland,2 wk ahead,Bin,percent,0.4,0.5,0.004
+Maryland,2 wk ahead,Bin,percent,0.5,0.6,0.01
+Maryland,2 wk ahead,Bin,percent,0.6,0.7,0.016
+Maryland,2 wk ahead,Bin,percent,0.7,0.8,0.048
+Maryland,2 wk ahead,Bin,percent,0.8,0.9,0.08
+Maryland,2 wk ahead,Bin,percent,0.9,1.0,0.094
+Maryland,2 wk ahead,Bin,percent,1.0,1.1,0.102
+Maryland,2 wk ahead,Bin,percent,1.1,1.2,0.128
+Maryland,2 wk ahead,Bin,percent,1.2,1.3,0.102
+Maryland,2 wk ahead,Bin,percent,1.3,1.4,0.07
+Maryland,2 wk ahead,Bin,percent,1.4,1.5,0.072
+Maryland,2 wk ahead,Bin,percent,1.5,1.6,0.064
+Maryland,2 wk ahead,Bin,percent,1.6,1.7,0.036
+Maryland,2 wk ahead,Bin,percent,1.7,1.8,0.034
+Maryland,2 wk ahead,Bin,percent,1.8,1.9,0.02
+Maryland,2 wk ahead,Bin,percent,1.9,2.0,0.022
+Maryland,2 wk ahead,Bin,percent,2.0,2.1,0.016
+Maryland,2 wk ahead,Bin,percent,2.1,2.2,0.004
+Maryland,2 wk ahead,Bin,percent,2.2,2.3,0.01
+Maryland,2 wk ahead,Bin,percent,2.3,2.4,0.012
+Maryland,2 wk ahead,Bin,percent,2.4,2.5,0.004
+Maryland,2 wk ahead,Bin,percent,2.5,2.6,0.006
+Maryland,2 wk ahead,Bin,percent,2.6,2.7,0.002
+Maryland,2 wk ahead,Bin,percent,2.7,2.8,0.002
+Maryland,2 wk ahead,Bin,percent,2.8,2.9,0.004
+Maryland,2 wk ahead,Bin,percent,2.9,3.0,0.004
+Maryland,2 wk ahead,Bin,percent,3.0,3.1,0
+Maryland,2 wk ahead,Bin,percent,3.1,3.2,0.012
+Maryland,2 wk ahead,Bin,percent,3.2,3.3,0.002
+Maryland,2 wk ahead,Bin,percent,3.3,3.4,0.002
+Maryland,2 wk ahead,Bin,percent,3.4,3.5,0.004
+Maryland,2 wk ahead,Bin,percent,3.5,3.6,0
+Maryland,2 wk ahead,Bin,percent,3.6,3.7,0
+Maryland,2 wk ahead,Bin,percent,3.7,3.8,0.002
+Maryland,2 wk ahead,Bin,percent,3.8,3.9,0.004
+Maryland,2 wk ahead,Bin,percent,3.9,4.0,0
+Maryland,2 wk ahead,Bin,percent,4.0,4.1,0
+Maryland,2 wk ahead,Bin,percent,4.1,4.2,0
+Maryland,2 wk ahead,Bin,percent,4.2,4.3,0
+Maryland,2 wk ahead,Bin,percent,4.3,4.4,0.002
+Maryland,2 wk ahead,Bin,percent,4.4,4.5,0
+Maryland,2 wk ahead,Bin,percent,4.5,4.6,0
+Maryland,2 wk ahead,Bin,percent,4.6,4.7,0
+Maryland,2 wk ahead,Bin,percent,4.7,4.8,0
+Maryland,2 wk ahead,Bin,percent,4.8,4.9,0
+Maryland,2 wk ahead,Bin,percent,4.9,5.0,0
+Maryland,2 wk ahead,Bin,percent,5.0,5.1,0
+Maryland,2 wk ahead,Bin,percent,5.1,5.2,0
+Maryland,2 wk ahead,Bin,percent,5.2,5.3,0
+Maryland,2 wk ahead,Bin,percent,5.3,5.4,0
+Maryland,2 wk ahead,Bin,percent,5.4,5.5,0
+Maryland,2 wk ahead,Bin,percent,5.5,5.6,0
+Maryland,2 wk ahead,Bin,percent,5.6,5.7,0
+Maryland,2 wk ahead,Bin,percent,5.7,5.8,0
+Maryland,2 wk ahead,Bin,percent,5.8,5.9,0
+Maryland,2 wk ahead,Bin,percent,5.9,6.0,0
+Maryland,2 wk ahead,Bin,percent,6.0,6.1,0
+Maryland,2 wk ahead,Bin,percent,6.1,6.2,0
+Maryland,2 wk ahead,Bin,percent,6.2,6.3,0
+Maryland,2 wk ahead,Bin,percent,6.3,6.4,0
+Maryland,2 wk ahead,Bin,percent,6.4,6.5,0
+Maryland,2 wk ahead,Bin,percent,6.5,6.6,0
+Maryland,2 wk ahead,Bin,percent,6.6,6.7,0
+Maryland,2 wk ahead,Bin,percent,6.7,6.8,0.002
+Maryland,2 wk ahead,Bin,percent,6.8,6.9,0
+Maryland,2 wk ahead,Bin,percent,6.9,7.0,0
+Maryland,2 wk ahead,Bin,percent,7.0,7.1,0
+Maryland,2 wk ahead,Bin,percent,7.1,7.2,0
+Maryland,2 wk ahead,Bin,percent,7.2,7.3,0
+Maryland,2 wk ahead,Bin,percent,7.3,7.4,0
+Maryland,2 wk ahead,Bin,percent,7.4,7.5,0
+Maryland,2 wk ahead,Bin,percent,7.5,7.6,0
+Maryland,2 wk ahead,Bin,percent,7.6,7.7,0
+Maryland,2 wk ahead,Bin,percent,7.7,7.8,0
+Maryland,2 wk ahead,Bin,percent,7.8,7.9,0
+Maryland,2 wk ahead,Bin,percent,7.9,8.0,0
+Maryland,2 wk ahead,Bin,percent,8.0,8.1,0
+Maryland,2 wk ahead,Bin,percent,8.1,8.2,0
+Maryland,2 wk ahead,Bin,percent,8.2,8.3,0
+Maryland,2 wk ahead,Bin,percent,8.3,8.4,0
+Maryland,2 wk ahead,Bin,percent,8.4,8.5,0
+Maryland,2 wk ahead,Bin,percent,8.5,8.6,0
+Maryland,2 wk ahead,Bin,percent,8.6,8.7,0
+Maryland,2 wk ahead,Bin,percent,8.7,8.8,0
+Maryland,2 wk ahead,Bin,percent,8.8,8.9,0
+Maryland,2 wk ahead,Bin,percent,8.9,9.0,0
+Maryland,2 wk ahead,Bin,percent,9.0,9.1,0
+Maryland,2 wk ahead,Bin,percent,9.1,9.2,0
+Maryland,2 wk ahead,Bin,percent,9.2,9.3,0
+Maryland,2 wk ahead,Bin,percent,9.3,9.4,0
+Maryland,2 wk ahead,Bin,percent,9.4,9.5,0
+Maryland,2 wk ahead,Bin,percent,9.5,9.6,0
+Maryland,2 wk ahead,Bin,percent,9.6,9.7,0
+Maryland,2 wk ahead,Bin,percent,9.7,9.8,0
+Maryland,2 wk ahead,Bin,percent,9.8,9.9,0
+Maryland,2 wk ahead,Bin,percent,9.9,10.0,0
+Maryland,2 wk ahead,Bin,percent,10.0,10.1,0
+Maryland,2 wk ahead,Bin,percent,10.1,10.2,0
+Maryland,2 wk ahead,Bin,percent,10.2,10.3,0
+Maryland,2 wk ahead,Bin,percent,10.3,10.4,0
+Maryland,2 wk ahead,Bin,percent,10.4,10.5,0
+Maryland,2 wk ahead,Bin,percent,10.5,10.6,0
+Maryland,2 wk ahead,Bin,percent,10.6,10.7,0
+Maryland,2 wk ahead,Bin,percent,10.7,10.8,0
+Maryland,2 wk ahead,Bin,percent,10.8,10.9,0
+Maryland,2 wk ahead,Bin,percent,10.9,11.0,0
+Maryland,2 wk ahead,Bin,percent,11.0,11.1,0
+Maryland,2 wk ahead,Bin,percent,11.1,11.2,0
+Maryland,2 wk ahead,Bin,percent,11.2,11.3,0
+Maryland,2 wk ahead,Bin,percent,11.3,11.4,0
+Maryland,2 wk ahead,Bin,percent,11.4,11.5,0
+Maryland,2 wk ahead,Bin,percent,11.5,11.6,0
+Maryland,2 wk ahead,Bin,percent,11.6,11.7,0
+Maryland,2 wk ahead,Bin,percent,11.7,11.8,0
+Maryland,2 wk ahead,Bin,percent,11.8,11.9,0
+Maryland,2 wk ahead,Bin,percent,11.9,12.0,0
+Maryland,2 wk ahead,Bin,percent,12.0,12.1,0
+Maryland,2 wk ahead,Bin,percent,12.1,12.2,0
+Maryland,2 wk ahead,Bin,percent,12.2,12.3,0
+Maryland,2 wk ahead,Bin,percent,12.3,12.4,0
+Maryland,2 wk ahead,Bin,percent,12.4,12.5,0
+Maryland,2 wk ahead,Bin,percent,12.5,12.6,0
+Maryland,2 wk ahead,Bin,percent,12.6,12.7,0
+Maryland,2 wk ahead,Bin,percent,12.7,12.8,0
+Maryland,2 wk ahead,Bin,percent,12.8,12.9,0
+Maryland,2 wk ahead,Bin,percent,12.9,13.0,0
+Maryland,2 wk ahead,Bin,percent,13.0,100.0,0
+Maryland,3 wk ahead,Bin,percent,0.0,0.1,0
+Maryland,3 wk ahead,Bin,percent,0.1,0.2,0
+Maryland,3 wk ahead,Bin,percent,0.2,0.3,0.004
+Maryland,3 wk ahead,Bin,percent,0.3,0.4,0.002
+Maryland,3 wk ahead,Bin,percent,0.4,0.5,0.004
+Maryland,3 wk ahead,Bin,percent,0.5,0.6,0.006
+Maryland,3 wk ahead,Bin,percent,0.6,0.7,0.008
+Maryland,3 wk ahead,Bin,percent,0.7,0.8,0.024
+Maryland,3 wk ahead,Bin,percent,0.8,0.9,0.046
+Maryland,3 wk ahead,Bin,percent,0.9,1.0,0.066
+Maryland,3 wk ahead,Bin,percent,1.0,1.1,0.074
+Maryland,3 wk ahead,Bin,percent,1.1,1.2,0.12
+Maryland,3 wk ahead,Bin,percent,1.2,1.3,0.076
+Maryland,3 wk ahead,Bin,percent,1.3,1.4,0.068
+Maryland,3 wk ahead,Bin,percent,1.4,1.5,0.066
+Maryland,3 wk ahead,Bin,percent,1.5,1.6,0.078
+Maryland,3 wk ahead,Bin,percent,1.6,1.7,0.08
+Maryland,3 wk ahead,Bin,percent,1.7,1.8,0.06
+Maryland,3 wk ahead,Bin,percent,1.8,1.9,0.042
+Maryland,3 wk ahead,Bin,percent,1.9,2.0,0.03
+Maryland,3 wk ahead,Bin,percent,2.0,2.1,0.036
+Maryland,3 wk ahead,Bin,percent,2.1,2.2,0.012
+Maryland,3 wk ahead,Bin,percent,2.2,2.3,0.01
+Maryland,3 wk ahead,Bin,percent,2.3,2.4,0.02
+Maryland,3 wk ahead,Bin,percent,2.4,2.5,0.014
+Maryland,3 wk ahead,Bin,percent,2.5,2.6,0.006
+Maryland,3 wk ahead,Bin,percent,2.6,2.7,0.01
+Maryland,3 wk ahead,Bin,percent,2.7,2.8,0.006
+Maryland,3 wk ahead,Bin,percent,2.8,2.9,0.006
+Maryland,3 wk ahead,Bin,percent,2.9,3.0,0.006
+Maryland,3 wk ahead,Bin,percent,3.0,3.1,0
+Maryland,3 wk ahead,Bin,percent,3.1,3.2,0.006
+Maryland,3 wk ahead,Bin,percent,3.2,3.3,0.004
+Maryland,3 wk ahead,Bin,percent,3.3,3.4,0.002
+Maryland,3 wk ahead,Bin,percent,3.4,3.5,0
+Maryland,3 wk ahead,Bin,percent,3.5,3.6,0
+Maryland,3 wk ahead,Bin,percent,3.6,3.7,0
+Maryland,3 wk ahead,Bin,percent,3.7,3.8,0
+Maryland,3 wk ahead,Bin,percent,3.8,3.9,0
+Maryland,3 wk ahead,Bin,percent,3.9,4.0,0
+Maryland,3 wk ahead,Bin,percent,4.0,4.1,0
+Maryland,3 wk ahead,Bin,percent,4.1,4.2,0.002
+Maryland,3 wk ahead,Bin,percent,4.2,4.3,0
+Maryland,3 wk ahead,Bin,percent,4.3,4.4,0
+Maryland,3 wk ahead,Bin,percent,4.4,4.5,0
+Maryland,3 wk ahead,Bin,percent,4.5,4.6,0
+Maryland,3 wk ahead,Bin,percent,4.6,4.7,0
+Maryland,3 wk ahead,Bin,percent,4.7,4.8,0
+Maryland,3 wk ahead,Bin,percent,4.8,4.9,0
+Maryland,3 wk ahead,Bin,percent,4.9,5.0,0
+Maryland,3 wk ahead,Bin,percent,5.0,5.1,0
+Maryland,3 wk ahead,Bin,percent,5.1,5.2,0
+Maryland,3 wk ahead,Bin,percent,5.2,5.3,0.002
+Maryland,3 wk ahead,Bin,percent,5.3,5.4,0.002
+Maryland,3 wk ahead,Bin,percent,5.4,5.5,0
+Maryland,3 wk ahead,Bin,percent,5.5,5.6,0
+Maryland,3 wk ahead,Bin,percent,5.6,5.7,0
+Maryland,3 wk ahead,Bin,percent,5.7,5.8,0
+Maryland,3 wk ahead,Bin,percent,5.8,5.9,0.002
+Maryland,3 wk ahead,Bin,percent,5.9,6.0,0
+Maryland,3 wk ahead,Bin,percent,6.0,6.1,0
+Maryland,3 wk ahead,Bin,percent,6.1,6.2,0
+Maryland,3 wk ahead,Bin,percent,6.2,6.3,0
+Maryland,3 wk ahead,Bin,percent,6.3,6.4,0
+Maryland,3 wk ahead,Bin,percent,6.4,6.5,0
+Maryland,3 wk ahead,Bin,percent,6.5,6.6,0
+Maryland,3 wk ahead,Bin,percent,6.6,6.7,0
+Maryland,3 wk ahead,Bin,percent,6.7,6.8,0
+Maryland,3 wk ahead,Bin,percent,6.8,6.9,0
+Maryland,3 wk ahead,Bin,percent,6.9,7.0,0
+Maryland,3 wk ahead,Bin,percent,7.0,7.1,0
+Maryland,3 wk ahead,Bin,percent,7.1,7.2,0
+Maryland,3 wk ahead,Bin,percent,7.2,7.3,0
+Maryland,3 wk ahead,Bin,percent,7.3,7.4,0
+Maryland,3 wk ahead,Bin,percent,7.4,7.5,0
+Maryland,3 wk ahead,Bin,percent,7.5,7.6,0
+Maryland,3 wk ahead,Bin,percent,7.6,7.7,0
+Maryland,3 wk ahead,Bin,percent,7.7,7.8,0
+Maryland,3 wk ahead,Bin,percent,7.8,7.9,0
+Maryland,3 wk ahead,Bin,percent,7.9,8.0,0
+Maryland,3 wk ahead,Bin,percent,8.0,8.1,0
+Maryland,3 wk ahead,Bin,percent,8.1,8.2,0
+Maryland,3 wk ahead,Bin,percent,8.2,8.3,0
+Maryland,3 wk ahead,Bin,percent,8.3,8.4,0
+Maryland,3 wk ahead,Bin,percent,8.4,8.5,0
+Maryland,3 wk ahead,Bin,percent,8.5,8.6,0
+Maryland,3 wk ahead,Bin,percent,8.6,8.7,0
+Maryland,3 wk ahead,Bin,percent,8.7,8.8,0
+Maryland,3 wk ahead,Bin,percent,8.8,8.9,0
+Maryland,3 wk ahead,Bin,percent,8.9,9.0,0
+Maryland,3 wk ahead,Bin,percent,9.0,9.1,0
+Maryland,3 wk ahead,Bin,percent,9.1,9.2,0
+Maryland,3 wk ahead,Bin,percent,9.2,9.3,0
+Maryland,3 wk ahead,Bin,percent,9.3,9.4,0
+Maryland,3 wk ahead,Bin,percent,9.4,9.5,0
+Maryland,3 wk ahead,Bin,percent,9.5,9.6,0
+Maryland,3 wk ahead,Bin,percent,9.6,9.7,0
+Maryland,3 wk ahead,Bin,percent,9.7,9.8,0
+Maryland,3 wk ahead,Bin,percent,9.8,9.9,0
+Maryland,3 wk ahead,Bin,percent,9.9,10.0,0
+Maryland,3 wk ahead,Bin,percent,10.0,10.1,0
+Maryland,3 wk ahead,Bin,percent,10.1,10.2,0
+Maryland,3 wk ahead,Bin,percent,10.2,10.3,0
+Maryland,3 wk ahead,Bin,percent,10.3,10.4,0
+Maryland,3 wk ahead,Bin,percent,10.4,10.5,0
+Maryland,3 wk ahead,Bin,percent,10.5,10.6,0
+Maryland,3 wk ahead,Bin,percent,10.6,10.7,0
+Maryland,3 wk ahead,Bin,percent,10.7,10.8,0
+Maryland,3 wk ahead,Bin,percent,10.8,10.9,0
+Maryland,3 wk ahead,Bin,percent,10.9,11.0,0
+Maryland,3 wk ahead,Bin,percent,11.0,11.1,0
+Maryland,3 wk ahead,Bin,percent,11.1,11.2,0
+Maryland,3 wk ahead,Bin,percent,11.2,11.3,0
+Maryland,3 wk ahead,Bin,percent,11.3,11.4,0
+Maryland,3 wk ahead,Bin,percent,11.4,11.5,0
+Maryland,3 wk ahead,Bin,percent,11.5,11.6,0
+Maryland,3 wk ahead,Bin,percent,11.6,11.7,0
+Maryland,3 wk ahead,Bin,percent,11.7,11.8,0
+Maryland,3 wk ahead,Bin,percent,11.8,11.9,0
+Maryland,3 wk ahead,Bin,percent,11.9,12.0,0
+Maryland,3 wk ahead,Bin,percent,12.0,12.1,0
+Maryland,3 wk ahead,Bin,percent,12.1,12.2,0
+Maryland,3 wk ahead,Bin,percent,12.2,12.3,0
+Maryland,3 wk ahead,Bin,percent,12.3,12.4,0
+Maryland,3 wk ahead,Bin,percent,12.4,12.5,0
+Maryland,3 wk ahead,Bin,percent,12.5,12.6,0
+Maryland,3 wk ahead,Bin,percent,12.6,12.7,0
+Maryland,3 wk ahead,Bin,percent,12.7,12.8,0
+Maryland,3 wk ahead,Bin,percent,12.8,12.9,0
+Maryland,3 wk ahead,Bin,percent,12.9,13.0,0
+Maryland,3 wk ahead,Bin,percent,13.0,100.0,0
+Maryland,4 wk ahead,Bin,percent,0.0,0.1,0
+Maryland,4 wk ahead,Bin,percent,0.1,0.2,0
+Maryland,4 wk ahead,Bin,percent,0.2,0.3,0
+Maryland,4 wk ahead,Bin,percent,0.3,0.4,0
+Maryland,4 wk ahead,Bin,percent,0.4,0.5,0.006
+Maryland,4 wk ahead,Bin,percent,0.5,0.6,0.002
+Maryland,4 wk ahead,Bin,percent,0.6,0.7,0.006
+Maryland,4 wk ahead,Bin,percent,0.7,0.8,0.02
+Maryland,4 wk ahead,Bin,percent,0.8,0.9,0.03
+Maryland,4 wk ahead,Bin,percent,0.9,1.0,0.04
+Maryland,4 wk ahead,Bin,percent,1.0,1.1,0.052
+Maryland,4 wk ahead,Bin,percent,1.1,1.2,0.05
+Maryland,4 wk ahead,Bin,percent,1.2,1.3,0.08
+Maryland,4 wk ahead,Bin,percent,1.3,1.4,0.07
+Maryland,4 wk ahead,Bin,percent,1.4,1.5,0.078
+Maryland,4 wk ahead,Bin,percent,1.5,1.6,0.074
+Maryland,4 wk ahead,Bin,percent,1.6,1.7,0.062
+Maryland,4 wk ahead,Bin,percent,1.7,1.8,0.07
+Maryland,4 wk ahead,Bin,percent,1.8,1.9,0.044
+Maryland,4 wk ahead,Bin,percent,1.9,2.0,0.044
+Maryland,4 wk ahead,Bin,percent,2.0,2.1,0.04
+Maryland,4 wk ahead,Bin,percent,2.1,2.2,0.038
+Maryland,4 wk ahead,Bin,percent,2.2,2.3,0.044
+Maryland,4 wk ahead,Bin,percent,2.3,2.4,0.014
+Maryland,4 wk ahead,Bin,percent,2.4,2.5,0.024
+Maryland,4 wk ahead,Bin,percent,2.5,2.6,0.022
+Maryland,4 wk ahead,Bin,percent,2.6,2.7,0.02
+Maryland,4 wk ahead,Bin,percent,2.7,2.8,0.004
+Maryland,4 wk ahead,Bin,percent,2.8,2.9,0.01
+Maryland,4 wk ahead,Bin,percent,2.9,3.0,0.008
+Maryland,4 wk ahead,Bin,percent,3.0,3.1,0.002
+Maryland,4 wk ahead,Bin,percent,3.1,3.2,0
+Maryland,4 wk ahead,Bin,percent,3.2,3.3,0.006
+Maryland,4 wk ahead,Bin,percent,3.3,3.4,0.006
+Maryland,4 wk ahead,Bin,percent,3.4,3.5,0.004
+Maryland,4 wk ahead,Bin,percent,3.5,3.6,0.002
+Maryland,4 wk ahead,Bin,percent,3.6,3.7,0.006
+Maryland,4 wk ahead,Bin,percent,3.7,3.8,0.002
+Maryland,4 wk ahead,Bin,percent,3.8,3.9,0.002
+Maryland,4 wk ahead,Bin,percent,3.9,4.0,0
+Maryland,4 wk ahead,Bin,percent,4.0,4.1,0.002
+Maryland,4 wk ahead,Bin,percent,4.1,4.2,0
+Maryland,4 wk ahead,Bin,percent,4.2,4.3,0.002
+Maryland,4 wk ahead,Bin,percent,4.3,4.4,0.002
+Maryland,4 wk ahead,Bin,percent,4.4,4.5,0.002
+Maryland,4 wk ahead,Bin,percent,4.5,4.6,0
+Maryland,4 wk ahead,Bin,percent,4.6,4.7,0
+Maryland,4 wk ahead,Bin,percent,4.7,4.8,0
+Maryland,4 wk ahead,Bin,percent,4.8,4.9,0
+Maryland,4 wk ahead,Bin,percent,4.9,5.0,0.002
+Maryland,4 wk ahead,Bin,percent,5.0,5.1,0
+Maryland,4 wk ahead,Bin,percent,5.1,5.2,0
+Maryland,4 wk ahead,Bin,percent,5.2,5.3,0
+Maryland,4 wk ahead,Bin,percent,5.3,5.4,0
+Maryland,4 wk ahead,Bin,percent,5.4,5.5,0
+Maryland,4 wk ahead,Bin,percent,5.5,5.6,0
+Maryland,4 wk ahead,Bin,percent,5.6,5.7,0
+Maryland,4 wk ahead,Bin,percent,5.7,5.8,0
+Maryland,4 wk ahead,Bin,percent,5.8,5.9,0
+Maryland,4 wk ahead,Bin,percent,5.9,6.0,0.004
+Maryland,4 wk ahead,Bin,percent,6.0,6.1,0
+Maryland,4 wk ahead,Bin,percent,6.1,6.2,0
+Maryland,4 wk ahead,Bin,percent,6.2,6.3,0
+Maryland,4 wk ahead,Bin,percent,6.3,6.4,0
+Maryland,4 wk ahead,Bin,percent,6.4,6.5,0.002
+Maryland,4 wk ahead,Bin,percent,6.5,6.6,0
+Maryland,4 wk ahead,Bin,percent,6.6,6.7,0
+Maryland,4 wk ahead,Bin,percent,6.7,6.8,0
+Maryland,4 wk ahead,Bin,percent,6.8,6.9,0
+Maryland,4 wk ahead,Bin,percent,6.9,7.0,0
+Maryland,4 wk ahead,Bin,percent,7.0,7.1,0
+Maryland,4 wk ahead,Bin,percent,7.1,7.2,0
+Maryland,4 wk ahead,Bin,percent,7.2,7.3,0
+Maryland,4 wk ahead,Bin,percent,7.3,7.4,0
+Maryland,4 wk ahead,Bin,percent,7.4,7.5,0
+Maryland,4 wk ahead,Bin,percent,7.5,7.6,0
+Maryland,4 wk ahead,Bin,percent,7.6,7.7,0
+Maryland,4 wk ahead,Bin,percent,7.7,7.8,0
+Maryland,4 wk ahead,Bin,percent,7.8,7.9,0
+Maryland,4 wk ahead,Bin,percent,7.9,8.0,0
+Maryland,4 wk ahead,Bin,percent,8.0,8.1,0
+Maryland,4 wk ahead,Bin,percent,8.1,8.2,0
+Maryland,4 wk ahead,Bin,percent,8.2,8.3,0
+Maryland,4 wk ahead,Bin,percent,8.3,8.4,0
+Maryland,4 wk ahead,Bin,percent,8.4,8.5,0.002
+Maryland,4 wk ahead,Bin,percent,8.5,8.6,0
+Maryland,4 wk ahead,Bin,percent,8.6,8.7,0
+Maryland,4 wk ahead,Bin,percent,8.7,8.8,0
+Maryland,4 wk ahead,Bin,percent,8.8,8.9,0
+Maryland,4 wk ahead,Bin,percent,8.9,9.0,0
+Maryland,4 wk ahead,Bin,percent,9.0,9.1,0
+Maryland,4 wk ahead,Bin,percent,9.1,9.2,0
+Maryland,4 wk ahead,Bin,percent,9.2,9.3,0
+Maryland,4 wk ahead,Bin,percent,9.3,9.4,0
+Maryland,4 wk ahead,Bin,percent,9.4,9.5,0
+Maryland,4 wk ahead,Bin,percent,9.5,9.6,0
+Maryland,4 wk ahead,Bin,percent,9.6,9.7,0
+Maryland,4 wk ahead,Bin,percent,9.7,9.8,0
+Maryland,4 wk ahead,Bin,percent,9.8,9.9,0
+Maryland,4 wk ahead,Bin,percent,9.9,10.0,0
+Maryland,4 wk ahead,Bin,percent,10.0,10.1,0
+Maryland,4 wk ahead,Bin,percent,10.1,10.2,0
+Maryland,4 wk ahead,Bin,percent,10.2,10.3,0
+Maryland,4 wk ahead,Bin,percent,10.3,10.4,0
+Maryland,4 wk ahead,Bin,percent,10.4,10.5,0
+Maryland,4 wk ahead,Bin,percent,10.5,10.6,0
+Maryland,4 wk ahead,Bin,percent,10.6,10.7,0
+Maryland,4 wk ahead,Bin,percent,10.7,10.8,0
+Maryland,4 wk ahead,Bin,percent,10.8,10.9,0
+Maryland,4 wk ahead,Bin,percent,10.9,11.0,0
+Maryland,4 wk ahead,Bin,percent,11.0,11.1,0
+Maryland,4 wk ahead,Bin,percent,11.1,11.2,0
+Maryland,4 wk ahead,Bin,percent,11.2,11.3,0
+Maryland,4 wk ahead,Bin,percent,11.3,11.4,0
+Maryland,4 wk ahead,Bin,percent,11.4,11.5,0
+Maryland,4 wk ahead,Bin,percent,11.5,11.6,0
+Maryland,4 wk ahead,Bin,percent,11.6,11.7,0
+Maryland,4 wk ahead,Bin,percent,11.7,11.8,0
+Maryland,4 wk ahead,Bin,percent,11.8,11.9,0
+Maryland,4 wk ahead,Bin,percent,11.9,12.0,0
+Maryland,4 wk ahead,Bin,percent,12.0,12.1,0
+Maryland,4 wk ahead,Bin,percent,12.1,12.2,0
+Maryland,4 wk ahead,Bin,percent,12.2,12.3,0
+Maryland,4 wk ahead,Bin,percent,12.3,12.4,0
+Maryland,4 wk ahead,Bin,percent,12.4,12.5,0
+Maryland,4 wk ahead,Bin,percent,12.5,12.6,0
+Maryland,4 wk ahead,Bin,percent,12.6,12.7,0
+Maryland,4 wk ahead,Bin,percent,12.7,12.8,0
+Maryland,4 wk ahead,Bin,percent,12.8,12.9,0
+Maryland,4 wk ahead,Bin,percent,12.9,13.0,0
+Maryland,4 wk ahead,Bin,percent,13.0,100.0,0
+Maryland,Season peak percentage,Bin,percent,0.0,0.1,0
+Maryland,Season peak percentage,Bin,percent,0.1,0.2,0
+Maryland,Season peak percentage,Bin,percent,0.2,0.3,0
+Maryland,Season peak percentage,Bin,percent,0.3,0.4,0
+Maryland,Season peak percentage,Bin,percent,0.4,0.5,0
+Maryland,Season peak percentage,Bin,percent,0.5,0.6,0
+Maryland,Season peak percentage,Bin,percent,0.6,0.7,0
+Maryland,Season peak percentage,Bin,percent,0.7,0.8,0
+Maryland,Season peak percentage,Bin,percent,0.8,0.9,0
+Maryland,Season peak percentage,Bin,percent,0.9,1.0,0
+Maryland,Season peak percentage,Bin,percent,1.0,1.1,0
+Maryland,Season peak percentage,Bin,percent,1.1,1.2,0
+Maryland,Season peak percentage,Bin,percent,1.2,1.3,0
+Maryland,Season peak percentage,Bin,percent,1.3,1.4,0
+Maryland,Season peak percentage,Bin,percent,1.4,1.5,0
+Maryland,Season peak percentage,Bin,percent,1.5,1.6,0
+Maryland,Season peak percentage,Bin,percent,1.6,1.7,0
+Maryland,Season peak percentage,Bin,percent,1.7,1.8,0
+Maryland,Season peak percentage,Bin,percent,1.8,1.9,0
+Maryland,Season peak percentage,Bin,percent,1.9,2.0,0
+Maryland,Season peak percentage,Bin,percent,2.0,2.1,0
+Maryland,Season peak percentage,Bin,percent,2.1,2.2,0
+Maryland,Season peak percentage,Bin,percent,2.2,2.3,0
+Maryland,Season peak percentage,Bin,percent,2.3,2.4,0
+Maryland,Season peak percentage,Bin,percent,2.4,2.5,0
+Maryland,Season peak percentage,Bin,percent,2.5,2.6,0.002
+Maryland,Season peak percentage,Bin,percent,2.6,2.7,0.002
+Maryland,Season peak percentage,Bin,percent,2.7,2.8,0
+Maryland,Season peak percentage,Bin,percent,2.8,2.9,0.004
+Maryland,Season peak percentage,Bin,percent,2.9,3.0,0
+Maryland,Season peak percentage,Bin,percent,3.0,3.1,0
+Maryland,Season peak percentage,Bin,percent,3.1,3.2,0.004
+Maryland,Season peak percentage,Bin,percent,3.2,3.3,0.002
+Maryland,Season peak percentage,Bin,percent,3.3,3.4,0.002
+Maryland,Season peak percentage,Bin,percent,3.4,3.5,0.002
+Maryland,Season peak percentage,Bin,percent,3.5,3.6,0.002
+Maryland,Season peak percentage,Bin,percent,3.6,3.7,0.012
+Maryland,Season peak percentage,Bin,percent,3.7,3.8,0.002
+Maryland,Season peak percentage,Bin,percent,3.8,3.9,0.002
+Maryland,Season peak percentage,Bin,percent,3.9,4.0,0.002
+Maryland,Season peak percentage,Bin,percent,4.0,4.1,0
+Maryland,Season peak percentage,Bin,percent,4.1,4.2,0.006
+Maryland,Season peak percentage,Bin,percent,4.2,4.3,0.012
+Maryland,Season peak percentage,Bin,percent,4.3,4.4,0.004
+Maryland,Season peak percentage,Bin,percent,4.4,4.5,0.01
+Maryland,Season peak percentage,Bin,percent,4.5,4.6,0.002
+Maryland,Season peak percentage,Bin,percent,4.6,4.7,0.008
+Maryland,Season peak percentage,Bin,percent,4.7,4.8,0.008
+Maryland,Season peak percentage,Bin,percent,4.8,4.9,0.002
+Maryland,Season peak percentage,Bin,percent,4.9,5.0,0.018
+Maryland,Season peak percentage,Bin,percent,5.0,5.1,0.012
+Maryland,Season peak percentage,Bin,percent,5.1,5.2,0.004
+Maryland,Season peak percentage,Bin,percent,5.2,5.3,0.008
+Maryland,Season peak percentage,Bin,percent,5.3,5.4,0.02
+Maryland,Season peak percentage,Bin,percent,5.4,5.5,0.016
+Maryland,Season peak percentage,Bin,percent,5.5,5.6,0.006
+Maryland,Season peak percentage,Bin,percent,5.6,5.7,0.014
+Maryland,Season peak percentage,Bin,percent,5.7,5.8,0.01
+Maryland,Season peak percentage,Bin,percent,5.8,5.9,0.01
+Maryland,Season peak percentage,Bin,percent,5.9,6.0,0.01
+Maryland,Season peak percentage,Bin,percent,6.0,6.1,0.006
+Maryland,Season peak percentage,Bin,percent,6.1,6.2,0.012
+Maryland,Season peak percentage,Bin,percent,6.2,6.3,0.01
+Maryland,Season peak percentage,Bin,percent,6.3,6.4,0.01
+Maryland,Season peak percentage,Bin,percent,6.4,6.5,0.008
+Maryland,Season peak percentage,Bin,percent,6.5,6.6,0.01
+Maryland,Season peak percentage,Bin,percent,6.6,6.7,0.012
+Maryland,Season peak percentage,Bin,percent,6.7,6.8,0.008
+Maryland,Season peak percentage,Bin,percent,6.8,6.9,0.02
+Maryland,Season peak percentage,Bin,percent,6.9,7.0,0.012
+Maryland,Season peak percentage,Bin,percent,7.0,7.1,0.008
+Maryland,Season peak percentage,Bin,percent,7.1,7.2,0.004
+Maryland,Season peak percentage,Bin,percent,7.2,7.3,0.014
+Maryland,Season peak percentage,Bin,percent,7.3,7.4,0.008
+Maryland,Season peak percentage,Bin,percent,7.4,7.5,0.01
+Maryland,Season peak percentage,Bin,percent,7.5,7.6,0.004
+Maryland,Season peak percentage,Bin,percent,7.6,7.7,0.02
+Maryland,Season peak percentage,Bin,percent,7.7,7.8,0.006
+Maryland,Season peak percentage,Bin,percent,7.8,7.9,0.01
+Maryland,Season peak percentage,Bin,percent,7.9,8.0,0.006
+Maryland,Season peak percentage,Bin,percent,8.0,8.1,0.01
+Maryland,Season peak percentage,Bin,percent,8.1,8.2,0.012
+Maryland,Season peak percentage,Bin,percent,8.2,8.3,0.018
+Maryland,Season peak percentage,Bin,percent,8.3,8.4,0.008
+Maryland,Season peak percentage,Bin,percent,8.4,8.5,0.012
+Maryland,Season peak percentage,Bin,percent,8.5,8.6,0.002
+Maryland,Season peak percentage,Bin,percent,8.6,8.7,0.006
+Maryland,Season peak percentage,Bin,percent,8.7,8.8,0.006
+Maryland,Season peak percentage,Bin,percent,8.8,8.9,0.01
+Maryland,Season peak percentage,Bin,percent,8.9,9.0,0.004
+Maryland,Season peak percentage,Bin,percent,9.0,9.1,0.01
+Maryland,Season peak percentage,Bin,percent,9.1,9.2,0.01
+Maryland,Season peak percentage,Bin,percent,9.2,9.3,0.004
+Maryland,Season peak percentage,Bin,percent,9.3,9.4,0.012
+Maryland,Season peak percentage,Bin,percent,9.4,9.5,0.008
+Maryland,Season peak percentage,Bin,percent,9.5,9.6,0.004
+Maryland,Season peak percentage,Bin,percent,9.6,9.7,0.006
+Maryland,Season peak percentage,Bin,percent,9.7,9.8,0.004
+Maryland,Season peak percentage,Bin,percent,9.8,9.9,0
+Maryland,Season peak percentage,Bin,percent,9.9,10.0,0.008
+Maryland,Season peak percentage,Bin,percent,10.0,10.1,0.008
+Maryland,Season peak percentage,Bin,percent,10.1,10.2,0.008
+Maryland,Season peak percentage,Bin,percent,10.2,10.3,0.006
+Maryland,Season peak percentage,Bin,percent,10.3,10.4,0.006
+Maryland,Season peak percentage,Bin,percent,10.4,10.5,0.004
+Maryland,Season peak percentage,Bin,percent,10.5,10.6,0.004
+Maryland,Season peak percentage,Bin,percent,10.6,10.7,0.008
+Maryland,Season peak percentage,Bin,percent,10.7,10.8,0.006
+Maryland,Season peak percentage,Bin,percent,10.8,10.9,0.004
+Maryland,Season peak percentage,Bin,percent,10.9,11.0,0.006
+Maryland,Season peak percentage,Bin,percent,11.0,11.1,0
+Maryland,Season peak percentage,Bin,percent,11.1,11.2,0.006
+Maryland,Season peak percentage,Bin,percent,11.2,11.3,0.006
+Maryland,Season peak percentage,Bin,percent,11.3,11.4,0.004
+Maryland,Season peak percentage,Bin,percent,11.4,11.5,0.004
+Maryland,Season peak percentage,Bin,percent,11.5,11.6,0.006
+Maryland,Season peak percentage,Bin,percent,11.6,11.7,0
+Maryland,Season peak percentage,Bin,percent,11.7,11.8,0.01
+Maryland,Season peak percentage,Bin,percent,11.8,11.9,0.004
+Maryland,Season peak percentage,Bin,percent,11.9,12.0,0.004
+Maryland,Season peak percentage,Bin,percent,12.0,12.1,0.004
+Maryland,Season peak percentage,Bin,percent,12.1,12.2,0
+Maryland,Season peak percentage,Bin,percent,12.2,12.3,0.008
+Maryland,Season peak percentage,Bin,percent,12.3,12.4,0.006
+Maryland,Season peak percentage,Bin,percent,12.4,12.5,0.006
+Maryland,Season peak percentage,Bin,percent,12.5,12.6,0
+Maryland,Season peak percentage,Bin,percent,12.6,12.7,0.002
+Maryland,Season peak percentage,Bin,percent,12.7,12.8,0.002
+Maryland,Season peak percentage,Bin,percent,12.8,12.9,0.006
+Maryland,Season peak percentage,Bin,percent,12.9,13.0,0.004
+Maryland,Season peak percentage,Bin,percent,13.0,100.0,0.288
+Maryland,Season peak week,Bin,week,40.0,41.0,0
+Maryland,Season peak week,Bin,week,41.0,42.0,0
+Maryland,Season peak week,Bin,week,42.0,43.0,0
+Maryland,Season peak week,Bin,week,43.0,44.0,0
+Maryland,Season peak week,Bin,week,44.0,45.0,0
+Maryland,Season peak week,Bin,week,45.0,46.0,0.001988071570576541
+Maryland,Season peak week,Bin,week,46.0,47.0,0
+Maryland,Season peak week,Bin,week,47.0,48.0,0.001988071570576541
+Maryland,Season peak week,Bin,week,48.0,49.0,0.005964214711729623
+Maryland,Season peak week,Bin,week,49.0,50.0,0.005964214711729623
+Maryland,Season peak week,Bin,week,50.0,51.0,0.009940357852882704
+Maryland,Season peak week,Bin,week,51.0,52.0,0.013916500994035786
+Maryland,Season peak week,Bin,week,52.0,53.0,0.009940357852882704
+Maryland,Season peak week,Bin,week,1.0,2.0,0.007952286282306164
+Maryland,Season peak week,Bin,week,2.0,3.0,0.03578528827037773
+Maryland,Season peak week,Bin,week,3.0,4.0,0.061630218687872766
+Maryland,Season peak week,Bin,week,4.0,5.0,0.20079522862823063
+Maryland,Season peak week,Bin,week,5.0,6.0,0.3240556660039762
+Maryland,Season peak week,Bin,week,6.0,7.0,0.13518886679920478
+Maryland,Season peak week,Bin,week,7.0,8.0,0.07952286282306163
+Maryland,Season peak week,Bin,week,8.0,9.0,0.0437375745526839
+Maryland,Season peak week,Bin,week,9.0,10.0,0.013916500994035786
+Maryland,Season peak week,Bin,week,10.0,11.0,0.009940357852882704
+Maryland,Season peak week,Bin,week,11.0,12.0,0.005964214711729623
+Maryland,Season peak week,Bin,week,12.0,13.0,0.009940357852882704
+Maryland,Season peak week,Bin,week,13.0,14.0,0.009940357852882704
+Maryland,Season peak week,Bin,week,14.0,15.0,0.003976143141153082
+Maryland,Season peak week,Bin,week,15.0,16.0,0.003976143141153082
+Maryland,Season peak week,Bin,week,16.0,17.0,0.001988071570576541
+Maryland,Season peak week,Bin,week,17.0,18.0,0
+Maryland,Season peak week,Bin,week,18.0,19.0,0.001988071570576541
+Maryland,Season peak week,Bin,week,19.0,20.0,0
+Maryland,Season peak week,Bin,week,20.0,21.0,0
+Pennsylvania,1 wk ahead,Bin,percent,0.0,0.1,0
+Pennsylvania,1 wk ahead,Bin,percent,0.1,0.2,0
+Pennsylvania,1 wk ahead,Bin,percent,0.2,0.3,0
+Pennsylvania,1 wk ahead,Bin,percent,0.3,0.4,0
+Pennsylvania,1 wk ahead,Bin,percent,0.4,0.5,0
+Pennsylvania,1 wk ahead,Bin,percent,0.5,0.6,0
+Pennsylvania,1 wk ahead,Bin,percent,0.6,0.7,0
+Pennsylvania,1 wk ahead,Bin,percent,0.7,0.8,0.002
+Pennsylvania,1 wk ahead,Bin,percent,0.8,0.9,0.002
+Pennsylvania,1 wk ahead,Bin,percent,0.9,1.0,0.026
+Pennsylvania,1 wk ahead,Bin,percent,1.0,1.1,0.066
+Pennsylvania,1 wk ahead,Bin,percent,1.1,1.2,0.144
+Pennsylvania,1 wk ahead,Bin,percent,1.2,1.3,0.186
+Pennsylvania,1 wk ahead,Bin,percent,1.3,1.4,0.174
+Pennsylvania,1 wk ahead,Bin,percent,1.4,1.5,0.13
+Pennsylvania,1 wk ahead,Bin,percent,1.5,1.6,0.13
+Pennsylvania,1 wk ahead,Bin,percent,1.6,1.7,0.072
+Pennsylvania,1 wk ahead,Bin,percent,1.7,1.8,0.034
+Pennsylvania,1 wk ahead,Bin,percent,1.8,1.9,0.018
+Pennsylvania,1 wk ahead,Bin,percent,1.9,2.0,0.008
+Pennsylvania,1 wk ahead,Bin,percent,2.0,2.1,0.002
+Pennsylvania,1 wk ahead,Bin,percent,2.1,2.2,0.006
+Pennsylvania,1 wk ahead,Bin,percent,2.2,2.3,0
+Pennsylvania,1 wk ahead,Bin,percent,2.3,2.4,0
+Pennsylvania,1 wk ahead,Bin,percent,2.4,2.5,0
+Pennsylvania,1 wk ahead,Bin,percent,2.5,2.6,0
+Pennsylvania,1 wk ahead,Bin,percent,2.6,2.7,0
+Pennsylvania,1 wk ahead,Bin,percent,2.7,2.8,0
+Pennsylvania,1 wk ahead,Bin,percent,2.8,2.9,0
+Pennsylvania,1 wk ahead,Bin,percent,2.9,3.0,0
+Pennsylvania,1 wk ahead,Bin,percent,3.0,3.1,0
+Pennsylvania,1 wk ahead,Bin,percent,3.1,3.2,0
+Pennsylvania,1 wk ahead,Bin,percent,3.2,3.3,0
+Pennsylvania,1 wk ahead,Bin,percent,3.3,3.4,0
+Pennsylvania,1 wk ahead,Bin,percent,3.4,3.5,0
+Pennsylvania,1 wk ahead,Bin,percent,3.5,3.6,0
+Pennsylvania,1 wk ahead,Bin,percent,3.6,3.7,0
+Pennsylvania,1 wk ahead,Bin,percent,3.7,3.8,0
+Pennsylvania,1 wk ahead,Bin,percent,3.8,3.9,0
+Pennsylvania,1 wk ahead,Bin,percent,3.9,4.0,0
+Pennsylvania,1 wk ahead,Bin,percent,4.0,4.1,0
+Pennsylvania,1 wk ahead,Bin,percent,4.1,4.2,0
+Pennsylvania,1 wk ahead,Bin,percent,4.2,4.3,0
+Pennsylvania,1 wk ahead,Bin,percent,4.3,4.4,0
+Pennsylvania,1 wk ahead,Bin,percent,4.4,4.5,0
+Pennsylvania,1 wk ahead,Bin,percent,4.5,4.6,0
+Pennsylvania,1 wk ahead,Bin,percent,4.6,4.7,0
+Pennsylvania,1 wk ahead,Bin,percent,4.7,4.8,0
+Pennsylvania,1 wk ahead,Bin,percent,4.8,4.9,0
+Pennsylvania,1 wk ahead,Bin,percent,4.9,5.0,0
+Pennsylvania,1 wk ahead,Bin,percent,5.0,5.1,0
+Pennsylvania,1 wk ahead,Bin,percent,5.1,5.2,0
+Pennsylvania,1 wk ahead,Bin,percent,5.2,5.3,0
+Pennsylvania,1 wk ahead,Bin,percent,5.3,5.4,0
+Pennsylvania,1 wk ahead,Bin,percent,5.4,5.5,0
+Pennsylvania,1 wk ahead,Bin,percent,5.5,5.6,0
+Pennsylvania,1 wk ahead,Bin,percent,5.6,5.7,0
+Pennsylvania,1 wk ahead,Bin,percent,5.7,5.8,0
+Pennsylvania,1 wk ahead,Bin,percent,5.8,5.9,0
+Pennsylvania,1 wk ahead,Bin,percent,5.9,6.0,0
+Pennsylvania,1 wk ahead,Bin,percent,6.0,6.1,0
+Pennsylvania,1 wk ahead,Bin,percent,6.1,6.2,0
+Pennsylvania,1 wk ahead,Bin,percent,6.2,6.3,0
+Pennsylvania,1 wk ahead,Bin,percent,6.3,6.4,0
+Pennsylvania,1 wk ahead,Bin,percent,6.4,6.5,0
+Pennsylvania,1 wk ahead,Bin,percent,6.5,6.6,0
+Pennsylvania,1 wk ahead,Bin,percent,6.6,6.7,0
+Pennsylvania,1 wk ahead,Bin,percent,6.7,6.8,0
+Pennsylvania,1 wk ahead,Bin,percent,6.8,6.9,0
+Pennsylvania,1 wk ahead,Bin,percent,6.9,7.0,0
+Pennsylvania,1 wk ahead,Bin,percent,7.0,7.1,0
+Pennsylvania,1 wk ahead,Bin,percent,7.1,7.2,0
+Pennsylvania,1 wk ahead,Bin,percent,7.2,7.3,0
+Pennsylvania,1 wk ahead,Bin,percent,7.3,7.4,0
+Pennsylvania,1 wk ahead,Bin,percent,7.4,7.5,0
+Pennsylvania,1 wk ahead,Bin,percent,7.5,7.6,0
+Pennsylvania,1 wk ahead,Bin,percent,7.6,7.7,0
+Pennsylvania,1 wk ahead,Bin,percent,7.7,7.8,0
+Pennsylvania,1 wk ahead,Bin,percent,7.8,7.9,0
+Pennsylvania,1 wk ahead,Bin,percent,7.9,8.0,0
+Pennsylvania,1 wk ahead,Bin,percent,8.0,8.1,0
+Pennsylvania,1 wk ahead,Bin,percent,8.1,8.2,0
+Pennsylvania,1 wk ahead,Bin,percent,8.2,8.3,0
+Pennsylvania,1 wk ahead,Bin,percent,8.3,8.4,0
+Pennsylvania,1 wk ahead,Bin,percent,8.4,8.5,0
+Pennsylvania,1 wk ahead,Bin,percent,8.5,8.6,0
+Pennsylvania,1 wk ahead,Bin,percent,8.6,8.7,0
+Pennsylvania,1 wk ahead,Bin,percent,8.7,8.8,0
+Pennsylvania,1 wk ahead,Bin,percent,8.8,8.9,0
+Pennsylvania,1 wk ahead,Bin,percent,8.9,9.0,0
+Pennsylvania,1 wk ahead,Bin,percent,9.0,9.1,0
+Pennsylvania,1 wk ahead,Bin,percent,9.1,9.2,0
+Pennsylvania,1 wk ahead,Bin,percent,9.2,9.3,0
+Pennsylvania,1 wk ahead,Bin,percent,9.3,9.4,0
+Pennsylvania,1 wk ahead,Bin,percent,9.4,9.5,0
+Pennsylvania,1 wk ahead,Bin,percent,9.5,9.6,0
+Pennsylvania,1 wk ahead,Bin,percent,9.6,9.7,0
+Pennsylvania,1 wk ahead,Bin,percent,9.7,9.8,0
+Pennsylvania,1 wk ahead,Bin,percent,9.8,9.9,0
+Pennsylvania,1 wk ahead,Bin,percent,9.9,10.0,0
+Pennsylvania,1 wk ahead,Bin,percent,10.0,10.1,0
+Pennsylvania,1 wk ahead,Bin,percent,10.1,10.2,0
+Pennsylvania,1 wk ahead,Bin,percent,10.2,10.3,0
+Pennsylvania,1 wk ahead,Bin,percent,10.3,10.4,0
+Pennsylvania,1 wk ahead,Bin,percent,10.4,10.5,0
+Pennsylvania,1 wk ahead,Bin,percent,10.5,10.6,0
+Pennsylvania,1 wk ahead,Bin,percent,10.6,10.7,0
+Pennsylvania,1 wk ahead,Bin,percent,10.7,10.8,0
+Pennsylvania,1 wk ahead,Bin,percent,10.8,10.9,0
+Pennsylvania,1 wk ahead,Bin,percent,10.9,11.0,0
+Pennsylvania,1 wk ahead,Bin,percent,11.0,11.1,0
+Pennsylvania,1 wk ahead,Bin,percent,11.1,11.2,0
+Pennsylvania,1 wk ahead,Bin,percent,11.2,11.3,0
+Pennsylvania,1 wk ahead,Bin,percent,11.3,11.4,0
+Pennsylvania,1 wk ahead,Bin,percent,11.4,11.5,0
+Pennsylvania,1 wk ahead,Bin,percent,11.5,11.6,0
+Pennsylvania,1 wk ahead,Bin,percent,11.6,11.7,0
+Pennsylvania,1 wk ahead,Bin,percent,11.7,11.8,0
+Pennsylvania,1 wk ahead,Bin,percent,11.8,11.9,0
+Pennsylvania,1 wk ahead,Bin,percent,11.9,12.0,0
+Pennsylvania,1 wk ahead,Bin,percent,12.0,12.1,0
+Pennsylvania,1 wk ahead,Bin,percent,12.1,12.2,0
+Pennsylvania,1 wk ahead,Bin,percent,12.2,12.3,0
+Pennsylvania,1 wk ahead,Bin,percent,12.3,12.4,0
+Pennsylvania,1 wk ahead,Bin,percent,12.4,12.5,0
+Pennsylvania,1 wk ahead,Bin,percent,12.5,12.6,0
+Pennsylvania,1 wk ahead,Bin,percent,12.6,12.7,0
+Pennsylvania,1 wk ahead,Bin,percent,12.7,12.8,0
+Pennsylvania,1 wk ahead,Bin,percent,12.8,12.9,0
+Pennsylvania,1 wk ahead,Bin,percent,12.9,13.0,0
+Pennsylvania,1 wk ahead,Bin,percent,13.0,100.0,0
+Pennsylvania,2 wk ahead,Bin,percent,0.0,0.1,0
+Pennsylvania,2 wk ahead,Bin,percent,0.1,0.2,0
+Pennsylvania,2 wk ahead,Bin,percent,0.2,0.3,0
+Pennsylvania,2 wk ahead,Bin,percent,0.3,0.4,0
+Pennsylvania,2 wk ahead,Bin,percent,0.4,0.5,0
+Pennsylvania,2 wk ahead,Bin,percent,0.5,0.6,0
+Pennsylvania,2 wk ahead,Bin,percent,0.6,0.7,0.002
+Pennsylvania,2 wk ahead,Bin,percent,0.7,0.8,0.002
+Pennsylvania,2 wk ahead,Bin,percent,0.8,0.9,0.01
+Pennsylvania,2 wk ahead,Bin,percent,0.9,1.0,0.042
+Pennsylvania,2 wk ahead,Bin,percent,1.0,1.1,0.066
+Pennsylvania,2 wk ahead,Bin,percent,1.1,1.2,0.104
+Pennsylvania,2 wk ahead,Bin,percent,1.2,1.3,0.152
+Pennsylvania,2 wk ahead,Bin,percent,1.3,1.4,0.114
+Pennsylvania,2 wk ahead,Bin,percent,1.4,1.5,0.142
+Pennsylvania,2 wk ahead,Bin,percent,1.5,1.6,0.084
+Pennsylvania,2 wk ahead,Bin,percent,1.6,1.7,0.08
+Pennsylvania,2 wk ahead,Bin,percent,1.7,1.8,0.076
+Pennsylvania,2 wk ahead,Bin,percent,1.8,1.9,0.05
+Pennsylvania,2 wk ahead,Bin,percent,1.9,2.0,0.02
+Pennsylvania,2 wk ahead,Bin,percent,2.0,2.1,0.016
+Pennsylvania,2 wk ahead,Bin,percent,2.1,2.2,0.012
+Pennsylvania,2 wk ahead,Bin,percent,2.2,2.3,0.008
+Pennsylvania,2 wk ahead,Bin,percent,2.3,2.4,0.012
+Pennsylvania,2 wk ahead,Bin,percent,2.4,2.5,0.006
+Pennsylvania,2 wk ahead,Bin,percent,2.5,2.6,0.002
+Pennsylvania,2 wk ahead,Bin,percent,2.6,2.7,0
+Pennsylvania,2 wk ahead,Bin,percent,2.7,2.8,0
+Pennsylvania,2 wk ahead,Bin,percent,2.8,2.9,0
+Pennsylvania,2 wk ahead,Bin,percent,2.9,3.0,0
+Pennsylvania,2 wk ahead,Bin,percent,3.0,3.1,0
+Pennsylvania,2 wk ahead,Bin,percent,3.1,3.2,0
+Pennsylvania,2 wk ahead,Bin,percent,3.2,3.3,0
+Pennsylvania,2 wk ahead,Bin,percent,3.3,3.4,0
+Pennsylvania,2 wk ahead,Bin,percent,3.4,3.5,0
+Pennsylvania,2 wk ahead,Bin,percent,3.5,3.6,0
+Pennsylvania,2 wk ahead,Bin,percent,3.6,3.7,0
+Pennsylvania,2 wk ahead,Bin,percent,3.7,3.8,0
+Pennsylvania,2 wk ahead,Bin,percent,3.8,3.9,0
+Pennsylvania,2 wk ahead,Bin,percent,3.9,4.0,0
+Pennsylvania,2 wk ahead,Bin,percent,4.0,4.1,0
+Pennsylvania,2 wk ahead,Bin,percent,4.1,4.2,0
+Pennsylvania,2 wk ahead,Bin,percent,4.2,4.3,0
+Pennsylvania,2 wk ahead,Bin,percent,4.3,4.4,0
+Pennsylvania,2 wk ahead,Bin,percent,4.4,4.5,0
+Pennsylvania,2 wk ahead,Bin,percent,4.5,4.6,0
+Pennsylvania,2 wk ahead,Bin,percent,4.6,4.7,0
+Pennsylvania,2 wk ahead,Bin,percent,4.7,4.8,0
+Pennsylvania,2 wk ahead,Bin,percent,4.8,4.9,0
+Pennsylvania,2 wk ahead,Bin,percent,4.9,5.0,0
+Pennsylvania,2 wk ahead,Bin,percent,5.0,5.1,0
+Pennsylvania,2 wk ahead,Bin,percent,5.1,5.2,0
+Pennsylvania,2 wk ahead,Bin,percent,5.2,5.3,0
+Pennsylvania,2 wk ahead,Bin,percent,5.3,5.4,0
+Pennsylvania,2 wk ahead,Bin,percent,5.4,5.5,0
+Pennsylvania,2 wk ahead,Bin,percent,5.5,5.6,0
+Pennsylvania,2 wk ahead,Bin,percent,5.6,5.7,0
+Pennsylvania,2 wk ahead,Bin,percent,5.7,5.8,0
+Pennsylvania,2 wk ahead,Bin,percent,5.8,5.9,0
+Pennsylvania,2 wk ahead,Bin,percent,5.9,6.0,0
+Pennsylvania,2 wk ahead,Bin,percent,6.0,6.1,0
+Pennsylvania,2 wk ahead,Bin,percent,6.1,6.2,0
+Pennsylvania,2 wk ahead,Bin,percent,6.2,6.3,0
+Pennsylvania,2 wk ahead,Bin,percent,6.3,6.4,0
+Pennsylvania,2 wk ahead,Bin,percent,6.4,6.5,0
+Pennsylvania,2 wk ahead,Bin,percent,6.5,6.6,0
+Pennsylvania,2 wk ahead,Bin,percent,6.6,6.7,0
+Pennsylvania,2 wk ahead,Bin,percent,6.7,6.8,0
+Pennsylvania,2 wk ahead,Bin,percent,6.8,6.9,0
+Pennsylvania,2 wk ahead,Bin,percent,6.9,7.0,0
+Pennsylvania,2 wk ahead,Bin,percent,7.0,7.1,0
+Pennsylvania,2 wk ahead,Bin,percent,7.1,7.2,0
+Pennsylvania,2 wk ahead,Bin,percent,7.2,7.3,0
+Pennsylvania,2 wk ahead,Bin,percent,7.3,7.4,0
+Pennsylvania,2 wk ahead,Bin,percent,7.4,7.5,0
+Pennsylvania,2 wk ahead,Bin,percent,7.5,7.6,0
+Pennsylvania,2 wk ahead,Bin,percent,7.6,7.7,0
+Pennsylvania,2 wk ahead,Bin,percent,7.7,7.8,0
+Pennsylvania,2 wk ahead,Bin,percent,7.8,7.9,0
+Pennsylvania,2 wk ahead,Bin,percent,7.9,8.0,0
+Pennsylvania,2 wk ahead,Bin,percent,8.0,8.1,0
+Pennsylvania,2 wk ahead,Bin,percent,8.1,8.2,0
+Pennsylvania,2 wk ahead,Bin,percent,8.2,8.3,0
+Pennsylvania,2 wk ahead,Bin,percent,8.3,8.4,0
+Pennsylvania,2 wk ahead,Bin,percent,8.4,8.5,0
+Pennsylvania,2 wk ahead,Bin,percent,8.5,8.6,0
+Pennsylvania,2 wk ahead,Bin,percent,8.6,8.7,0
+Pennsylvania,2 wk ahead,Bin,percent,8.7,8.8,0
+Pennsylvania,2 wk ahead,Bin,percent,8.8,8.9,0
+Pennsylvania,2 wk ahead,Bin,percent,8.9,9.0,0
+Pennsylvania,2 wk ahead,Bin,percent,9.0,9.1,0
+Pennsylvania,2 wk ahead,Bin,percent,9.1,9.2,0
+Pennsylvania,2 wk ahead,Bin,percent,9.2,9.3,0
+Pennsylvania,2 wk ahead,Bin,percent,9.3,9.4,0
+Pennsylvania,2 wk ahead,Bin,percent,9.4,9.5,0
+Pennsylvania,2 wk ahead,Bin,percent,9.5,9.6,0
+Pennsylvania,2 wk ahead,Bin,percent,9.6,9.7,0
+Pennsylvania,2 wk ahead,Bin,percent,9.7,9.8,0
+Pennsylvania,2 wk ahead,Bin,percent,9.8,9.9,0
+Pennsylvania,2 wk ahead,Bin,percent,9.9,10.0,0
+Pennsylvania,2 wk ahead,Bin,percent,10.0,10.1,0
+Pennsylvania,2 wk ahead,Bin,percent,10.1,10.2,0
+Pennsylvania,2 wk ahead,Bin,percent,10.2,10.3,0
+Pennsylvania,2 wk ahead,Bin,percent,10.3,10.4,0
+Pennsylvania,2 wk ahead,Bin,percent,10.4,10.5,0
+Pennsylvania,2 wk ahead,Bin,percent,10.5,10.6,0
+Pennsylvania,2 wk ahead,Bin,percent,10.6,10.7,0
+Pennsylvania,2 wk ahead,Bin,percent,10.7,10.8,0
+Pennsylvania,2 wk ahead,Bin,percent,10.8,10.9,0
+Pennsylvania,2 wk ahead,Bin,percent,10.9,11.0,0
+Pennsylvania,2 wk ahead,Bin,percent,11.0,11.1,0
+Pennsylvania,2 wk ahead,Bin,percent,11.1,11.2,0
+Pennsylvania,2 wk ahead,Bin,percent,11.2,11.3,0
+Pennsylvania,2 wk ahead,Bin,percent,11.3,11.4,0
+Pennsylvania,2 wk ahead,Bin,percent,11.4,11.5,0
+Pennsylvania,2 wk ahead,Bin,percent,11.5,11.6,0
+Pennsylvania,2 wk ahead,Bin,percent,11.6,11.7,0
+Pennsylvania,2 wk ahead,Bin,percent,11.7,11.8,0
+Pennsylvania,2 wk ahead,Bin,percent,11.8,11.9,0
+Pennsylvania,2 wk ahead,Bin,percent,11.9,12.0,0
+Pennsylvania,2 wk ahead,Bin,percent,12.0,12.1,0
+Pennsylvania,2 wk ahead,Bin,percent,12.1,12.2,0
+Pennsylvania,2 wk ahead,Bin,percent,12.2,12.3,0
+Pennsylvania,2 wk ahead,Bin,percent,12.3,12.4,0
+Pennsylvania,2 wk ahead,Bin,percent,12.4,12.5,0
+Pennsylvania,2 wk ahead,Bin,percent,12.5,12.6,0
+Pennsylvania,2 wk ahead,Bin,percent,12.6,12.7,0
+Pennsylvania,2 wk ahead,Bin,percent,12.7,12.8,0
+Pennsylvania,2 wk ahead,Bin,percent,12.8,12.9,0
+Pennsylvania,2 wk ahead,Bin,percent,12.9,13.0,0
+Pennsylvania,2 wk ahead,Bin,percent,13.0,100.0,0
+Pennsylvania,3 wk ahead,Bin,percent,0.0,0.1,0
+Pennsylvania,3 wk ahead,Bin,percent,0.1,0.2,0
+Pennsylvania,3 wk ahead,Bin,percent,0.2,0.3,0
+Pennsylvania,3 wk ahead,Bin,percent,0.3,0.4,0
+Pennsylvania,3 wk ahead,Bin,percent,0.4,0.5,0
+Pennsylvania,3 wk ahead,Bin,percent,0.5,0.6,0
+Pennsylvania,3 wk ahead,Bin,percent,0.6,0.7,0
+Pennsylvania,3 wk ahead,Bin,percent,0.7,0.8,0.002
+Pennsylvania,3 wk ahead,Bin,percent,0.8,0.9,0.012
+Pennsylvania,3 wk ahead,Bin,percent,0.9,1.0,0.03
+Pennsylvania,3 wk ahead,Bin,percent,1.0,1.1,0.054
+Pennsylvania,3 wk ahead,Bin,percent,1.1,1.2,0.062
+Pennsylvania,3 wk ahead,Bin,percent,1.2,1.3,0.104
+Pennsylvania,3 wk ahead,Bin,percent,1.3,1.4,0.106
+Pennsylvania,3 wk ahead,Bin,percent,1.4,1.5,0.108
+Pennsylvania,3 wk ahead,Bin,percent,1.5,1.6,0.098
+Pennsylvania,3 wk ahead,Bin,percent,1.6,1.7,0.082
+Pennsylvania,3 wk ahead,Bin,percent,1.7,1.8,0.1
+Pennsylvania,3 wk ahead,Bin,percent,1.8,1.9,0.074
+Pennsylvania,3 wk ahead,Bin,percent,1.9,2.0,0.048
+Pennsylvania,3 wk ahead,Bin,percent,2.0,2.1,0.026
+Pennsylvania,3 wk ahead,Bin,percent,2.1,2.2,0.04
+Pennsylvania,3 wk ahead,Bin,percent,2.2,2.3,0.012
+Pennsylvania,3 wk ahead,Bin,percent,2.3,2.4,0.026
+Pennsylvania,3 wk ahead,Bin,percent,2.4,2.5,0.006
+Pennsylvania,3 wk ahead,Bin,percent,2.5,2.6,0.004
+Pennsylvania,3 wk ahead,Bin,percent,2.6,2.7,0
+Pennsylvania,3 wk ahead,Bin,percent,2.7,2.8,0
+Pennsylvania,3 wk ahead,Bin,percent,2.8,2.9,0.002
+Pennsylvania,3 wk ahead,Bin,percent,2.9,3.0,0.002
+Pennsylvania,3 wk ahead,Bin,percent,3.0,3.1,0
+Pennsylvania,3 wk ahead,Bin,percent,3.1,3.2,0.002
+Pennsylvania,3 wk ahead,Bin,percent,3.2,3.3,0
+Pennsylvania,3 wk ahead,Bin,percent,3.3,3.4,0
+Pennsylvania,3 wk ahead,Bin,percent,3.4,3.5,0
+Pennsylvania,3 wk ahead,Bin,percent,3.5,3.6,0
+Pennsylvania,3 wk ahead,Bin,percent,3.6,3.7,0
+Pennsylvania,3 wk ahead,Bin,percent,3.7,3.8,0
+Pennsylvania,3 wk ahead,Bin,percent,3.8,3.9,0
+Pennsylvania,3 wk ahead,Bin,percent,3.9,4.0,0
+Pennsylvania,3 wk ahead,Bin,percent,4.0,4.1,0
+Pennsylvania,3 wk ahead,Bin,percent,4.1,4.2,0
+Pennsylvania,3 wk ahead,Bin,percent,4.2,4.3,0
+Pennsylvania,3 wk ahead,Bin,percent,4.3,4.4,0
+Pennsylvania,3 wk ahead,Bin,percent,4.4,4.5,0
+Pennsylvania,3 wk ahead,Bin,percent,4.5,4.6,0
+Pennsylvania,3 wk ahead,Bin,percent,4.6,4.7,0
+Pennsylvania,3 wk ahead,Bin,percent,4.7,4.8,0
+Pennsylvania,3 wk ahead,Bin,percent,4.8,4.9,0
+Pennsylvania,3 wk ahead,Bin,percent,4.9,5.0,0
+Pennsylvania,3 wk ahead,Bin,percent,5.0,5.1,0
+Pennsylvania,3 wk ahead,Bin,percent,5.1,5.2,0
+Pennsylvania,3 wk ahead,Bin,percent,5.2,5.3,0
+Pennsylvania,3 wk ahead,Bin,percent,5.3,5.4,0
+Pennsylvania,3 wk ahead,Bin,percent,5.4,5.5,0
+Pennsylvania,3 wk ahead,Bin,percent,5.5,5.6,0
+Pennsylvania,3 wk ahead,Bin,percent,5.6,5.7,0
+Pennsylvania,3 wk ahead,Bin,percent,5.7,5.8,0
+Pennsylvania,3 wk ahead,Bin,percent,5.8,5.9,0
+Pennsylvania,3 wk ahead,Bin,percent,5.9,6.0,0
+Pennsylvania,3 wk ahead,Bin,percent,6.0,6.1,0
+Pennsylvania,3 wk ahead,Bin,percent,6.1,6.2,0
+Pennsylvania,3 wk ahead,Bin,percent,6.2,6.3,0
+Pennsylvania,3 wk ahead,Bin,percent,6.3,6.4,0
+Pennsylvania,3 wk ahead,Bin,percent,6.4,6.5,0
+Pennsylvania,3 wk ahead,Bin,percent,6.5,6.6,0
+Pennsylvania,3 wk ahead,Bin,percent,6.6,6.7,0
+Pennsylvania,3 wk ahead,Bin,percent,6.7,6.8,0
+Pennsylvania,3 wk ahead,Bin,percent,6.8,6.9,0
+Pennsylvania,3 wk ahead,Bin,percent,6.9,7.0,0
+Pennsylvania,3 wk ahead,Bin,percent,7.0,7.1,0
+Pennsylvania,3 wk ahead,Bin,percent,7.1,7.2,0
+Pennsylvania,3 wk ahead,Bin,percent,7.2,7.3,0
+Pennsylvania,3 wk ahead,Bin,percent,7.3,7.4,0
+Pennsylvania,3 wk ahead,Bin,percent,7.4,7.5,0
+Pennsylvania,3 wk ahead,Bin,percent,7.5,7.6,0
+Pennsylvania,3 wk ahead,Bin,percent,7.6,7.7,0
+Pennsylvania,3 wk ahead,Bin,percent,7.7,7.8,0
+Pennsylvania,3 wk ahead,Bin,percent,7.8,7.9,0
+Pennsylvania,3 wk ahead,Bin,percent,7.9,8.0,0
+Pennsylvania,3 wk ahead,Bin,percent,8.0,8.1,0
+Pennsylvania,3 wk ahead,Bin,percent,8.1,8.2,0
+Pennsylvania,3 wk ahead,Bin,percent,8.2,8.3,0
+Pennsylvania,3 wk ahead,Bin,percent,8.3,8.4,0
+Pennsylvania,3 wk ahead,Bin,percent,8.4,8.5,0
+Pennsylvania,3 wk ahead,Bin,percent,8.5,8.6,0
+Pennsylvania,3 wk ahead,Bin,percent,8.6,8.7,0
+Pennsylvania,3 wk ahead,Bin,percent,8.7,8.8,0
+Pennsylvania,3 wk ahead,Bin,percent,8.8,8.9,0
+Pennsylvania,3 wk ahead,Bin,percent,8.9,9.0,0
+Pennsylvania,3 wk ahead,Bin,percent,9.0,9.1,0
+Pennsylvania,3 wk ahead,Bin,percent,9.1,9.2,0
+Pennsylvania,3 wk ahead,Bin,percent,9.2,9.3,0
+Pennsylvania,3 wk ahead,Bin,percent,9.3,9.4,0
+Pennsylvania,3 wk ahead,Bin,percent,9.4,9.5,0
+Pennsylvania,3 wk ahead,Bin,percent,9.5,9.6,0
+Pennsylvania,3 wk ahead,Bin,percent,9.6,9.7,0
+Pennsylvania,3 wk ahead,Bin,percent,9.7,9.8,0
+Pennsylvania,3 wk ahead,Bin,percent,9.8,9.9,0
+Pennsylvania,3 wk ahead,Bin,percent,9.9,10.0,0
+Pennsylvania,3 wk ahead,Bin,percent,10.0,10.1,0
+Pennsylvania,3 wk ahead,Bin,percent,10.1,10.2,0
+Pennsylvania,3 wk ahead,Bin,percent,10.2,10.3,0
+Pennsylvania,3 wk ahead,Bin,percent,10.3,10.4,0
+Pennsylvania,3 wk ahead,Bin,percent,10.4,10.5,0
+Pennsylvania,3 wk ahead,Bin,percent,10.5,10.6,0
+Pennsylvania,3 wk ahead,Bin,percent,10.6,10.7,0
+Pennsylvania,3 wk ahead,Bin,percent,10.7,10.8,0
+Pennsylvania,3 wk ahead,Bin,percent,10.8,10.9,0
+Pennsylvania,3 wk ahead,Bin,percent,10.9,11.0,0
+Pennsylvania,3 wk ahead,Bin,percent,11.0,11.1,0
+Pennsylvania,3 wk ahead,Bin,percent,11.1,11.2,0
+Pennsylvania,3 wk ahead,Bin,percent,11.2,11.3,0
+Pennsylvania,3 wk ahead,Bin,percent,11.3,11.4,0
+Pennsylvania,3 wk ahead,Bin,percent,11.4,11.5,0
+Pennsylvania,3 wk ahead,Bin,percent,11.5,11.6,0
+Pennsylvania,3 wk ahead,Bin,percent,11.6,11.7,0
+Pennsylvania,3 wk ahead,Bin,percent,11.7,11.8,0
+Pennsylvania,3 wk ahead,Bin,percent,11.8,11.9,0
+Pennsylvania,3 wk ahead,Bin,percent,11.9,12.0,0
+Pennsylvania,3 wk ahead,Bin,percent,12.0,12.1,0
+Pennsylvania,3 wk ahead,Bin,percent,12.1,12.2,0
+Pennsylvania,3 wk ahead,Bin,percent,12.2,12.3,0
+Pennsylvania,3 wk ahead,Bin,percent,12.3,12.4,0
+Pennsylvania,3 wk ahead,Bin,percent,12.4,12.5,0
+Pennsylvania,3 wk ahead,Bin,percent,12.5,12.6,0
+Pennsylvania,3 wk ahead,Bin,percent,12.6,12.7,0
+Pennsylvania,3 wk ahead,Bin,percent,12.7,12.8,0
+Pennsylvania,3 wk ahead,Bin,percent,12.8,12.9,0
+Pennsylvania,3 wk ahead,Bin,percent,12.9,13.0,0
+Pennsylvania,3 wk ahead,Bin,percent,13.0,100.0,0
+Pennsylvania,4 wk ahead,Bin,percent,0.0,0.1,0
+Pennsylvania,4 wk ahead,Bin,percent,0.1,0.2,0
+Pennsylvania,4 wk ahead,Bin,percent,0.2,0.3,0
+Pennsylvania,4 wk ahead,Bin,percent,0.3,0.4,0
+Pennsylvania,4 wk ahead,Bin,percent,0.4,0.5,0
+Pennsylvania,4 wk ahead,Bin,percent,0.5,0.6,0
+Pennsylvania,4 wk ahead,Bin,percent,0.6,0.7,0
+Pennsylvania,4 wk ahead,Bin,percent,0.7,0.8,0.008
+Pennsylvania,4 wk ahead,Bin,percent,0.8,0.9,0.008
+Pennsylvania,4 wk ahead,Bin,percent,0.9,1.0,0.032
+Pennsylvania,4 wk ahead,Bin,percent,1.0,1.1,0.042
+Pennsylvania,4 wk ahead,Bin,percent,1.1,1.2,0.068
+Pennsylvania,4 wk ahead,Bin,percent,1.2,1.3,0.076
+Pennsylvania,4 wk ahead,Bin,percent,1.3,1.4,0.108
+Pennsylvania,4 wk ahead,Bin,percent,1.4,1.5,0.092
+Pennsylvania,4 wk ahead,Bin,percent,1.5,1.6,0.086
+Pennsylvania,4 wk ahead,Bin,percent,1.6,1.7,0.12
+Pennsylvania,4 wk ahead,Bin,percent,1.7,1.8,0.098
+Pennsylvania,4 wk ahead,Bin,percent,1.8,1.9,0.07
+Pennsylvania,4 wk ahead,Bin,percent,1.9,2.0,0.052
+Pennsylvania,4 wk ahead,Bin,percent,2.0,2.1,0.034
+Pennsylvania,4 wk ahead,Bin,percent,2.1,2.2,0.032
+Pennsylvania,4 wk ahead,Bin,percent,2.2,2.3,0.016
+Pennsylvania,4 wk ahead,Bin,percent,2.3,2.4,0.012
+Pennsylvania,4 wk ahead,Bin,percent,2.4,2.5,0.008
+Pennsylvania,4 wk ahead,Bin,percent,2.5,2.6,0.016
+Pennsylvania,4 wk ahead,Bin,percent,2.6,2.7,0.01
+Pennsylvania,4 wk ahead,Bin,percent,2.7,2.8,0.006
+Pennsylvania,4 wk ahead,Bin,percent,2.8,2.9,0
+Pennsylvania,4 wk ahead,Bin,percent,2.9,3.0,0.002
+Pennsylvania,4 wk ahead,Bin,percent,3.0,3.1,0.002
+Pennsylvania,4 wk ahead,Bin,percent,3.1,3.2,0
+Pennsylvania,4 wk ahead,Bin,percent,3.2,3.3,0
+Pennsylvania,4 wk ahead,Bin,percent,3.3,3.4,0
+Pennsylvania,4 wk ahead,Bin,percent,3.4,3.5,0
+Pennsylvania,4 wk ahead,Bin,percent,3.5,3.6,0
+Pennsylvania,4 wk ahead,Bin,percent,3.6,3.7,0
+Pennsylvania,4 wk ahead,Bin,percent,3.7,3.8,0.002
+Pennsylvania,4 wk ahead,Bin,percent,3.8,3.9,0
+Pennsylvania,4 wk ahead,Bin,percent,3.9,4.0,0
+Pennsylvania,4 wk ahead,Bin,percent,4.0,4.1,0
+Pennsylvania,4 wk ahead,Bin,percent,4.1,4.2,0
+Pennsylvania,4 wk ahead,Bin,percent,4.2,4.3,0
+Pennsylvania,4 wk ahead,Bin,percent,4.3,4.4,0
+Pennsylvania,4 wk ahead,Bin,percent,4.4,4.5,0
+Pennsylvania,4 wk ahead,Bin,percent,4.5,4.6,0
+Pennsylvania,4 wk ahead,Bin,percent,4.6,4.7,0
+Pennsylvania,4 wk ahead,Bin,percent,4.7,4.8,0
+Pennsylvania,4 wk ahead,Bin,percent,4.8,4.9,0
+Pennsylvania,4 wk ahead,Bin,percent,4.9,5.0,0
+Pennsylvania,4 wk ahead,Bin,percent,5.0,5.1,0
+Pennsylvania,4 wk ahead,Bin,percent,5.1,5.2,0
+Pennsylvania,4 wk ahead,Bin,percent,5.2,5.3,0
+Pennsylvania,4 wk ahead,Bin,percent,5.3,5.4,0
+Pennsylvania,4 wk ahead,Bin,percent,5.4,5.5,0
+Pennsylvania,4 wk ahead,Bin,percent,5.5,5.6,0
+Pennsylvania,4 wk ahead,Bin,percent,5.6,5.7,0
+Pennsylvania,4 wk ahead,Bin,percent,5.7,5.8,0
+Pennsylvania,4 wk ahead,Bin,percent,5.8,5.9,0
+Pennsylvania,4 wk ahead,Bin,percent,5.9,6.0,0
+Pennsylvania,4 wk ahead,Bin,percent,6.0,6.1,0
+Pennsylvania,4 wk ahead,Bin,percent,6.1,6.2,0
+Pennsylvania,4 wk ahead,Bin,percent,6.2,6.3,0
+Pennsylvania,4 wk ahead,Bin,percent,6.3,6.4,0
+Pennsylvania,4 wk ahead,Bin,percent,6.4,6.5,0
+Pennsylvania,4 wk ahead,Bin,percent,6.5,6.6,0
+Pennsylvania,4 wk ahead,Bin,percent,6.6,6.7,0
+Pennsylvania,4 wk ahead,Bin,percent,6.7,6.8,0
+Pennsylvania,4 wk ahead,Bin,percent,6.8,6.9,0
+Pennsylvania,4 wk ahead,Bin,percent,6.9,7.0,0
+Pennsylvania,4 wk ahead,Bin,percent,7.0,7.1,0
+Pennsylvania,4 wk ahead,Bin,percent,7.1,7.2,0
+Pennsylvania,4 wk ahead,Bin,percent,7.2,7.3,0
+Pennsylvania,4 wk ahead,Bin,percent,7.3,7.4,0
+Pennsylvania,4 wk ahead,Bin,percent,7.4,7.5,0
+Pennsylvania,4 wk ahead,Bin,percent,7.5,7.6,0
+Pennsylvania,4 wk ahead,Bin,percent,7.6,7.7,0
+Pennsylvania,4 wk ahead,Bin,percent,7.7,7.8,0
+Pennsylvania,4 wk ahead,Bin,percent,7.8,7.9,0
+Pennsylvania,4 wk ahead,Bin,percent,7.9,8.0,0
+Pennsylvania,4 wk ahead,Bin,percent,8.0,8.1,0
+Pennsylvania,4 wk ahead,Bin,percent,8.1,8.2,0
+Pennsylvania,4 wk ahead,Bin,percent,8.2,8.3,0
+Pennsylvania,4 wk ahead,Bin,percent,8.3,8.4,0
+Pennsylvania,4 wk ahead,Bin,percent,8.4,8.5,0
+Pennsylvania,4 wk ahead,Bin,percent,8.5,8.6,0
+Pennsylvania,4 wk ahead,Bin,percent,8.6,8.7,0
+Pennsylvania,4 wk ahead,Bin,percent,8.7,8.8,0
+Pennsylvania,4 wk ahead,Bin,percent,8.8,8.9,0
+Pennsylvania,4 wk ahead,Bin,percent,8.9,9.0,0
+Pennsylvania,4 wk ahead,Bin,percent,9.0,9.1,0
+Pennsylvania,4 wk ahead,Bin,percent,9.1,9.2,0
+Pennsylvania,4 wk ahead,Bin,percent,9.2,9.3,0
+Pennsylvania,4 wk ahead,Bin,percent,9.3,9.4,0
+Pennsylvania,4 wk ahead,Bin,percent,9.4,9.5,0
+Pennsylvania,4 wk ahead,Bin,percent,9.5,9.6,0
+Pennsylvania,4 wk ahead,Bin,percent,9.6,9.7,0
+Pennsylvania,4 wk ahead,Bin,percent,9.7,9.8,0
+Pennsylvania,4 wk ahead,Bin,percent,9.8,9.9,0
+Pennsylvania,4 wk ahead,Bin,percent,9.9,10.0,0
+Pennsylvania,4 wk ahead,Bin,percent,10.0,10.1,0
+Pennsylvania,4 wk ahead,Bin,percent,10.1,10.2,0
+Pennsylvania,4 wk ahead,Bin,percent,10.2,10.3,0
+Pennsylvania,4 wk ahead,Bin,percent,10.3,10.4,0
+Pennsylvania,4 wk ahead,Bin,percent,10.4,10.5,0
+Pennsylvania,4 wk ahead,Bin,percent,10.5,10.6,0
+Pennsylvania,4 wk ahead,Bin,percent,10.6,10.7,0
+Pennsylvania,4 wk ahead,Bin,percent,10.7,10.8,0
+Pennsylvania,4 wk ahead,Bin,percent,10.8,10.9,0
+Pennsylvania,4 wk ahead,Bin,percent,10.9,11.0,0
+Pennsylvania,4 wk ahead,Bin,percent,11.0,11.1,0
+Pennsylvania,4 wk ahead,Bin,percent,11.1,11.2,0
+Pennsylvania,4 wk ahead,Bin,percent,11.2,11.3,0
+Pennsylvania,4 wk ahead,Bin,percent,11.3,11.4,0
+Pennsylvania,4 wk ahead,Bin,percent,11.4,11.5,0
+Pennsylvania,4 wk ahead,Bin,percent,11.5,11.6,0
+Pennsylvania,4 wk ahead,Bin,percent,11.6,11.7,0
+Pennsylvania,4 wk ahead,Bin,percent,11.7,11.8,0
+Pennsylvania,4 wk ahead,Bin,percent,11.8,11.9,0
+Pennsylvania,4 wk ahead,Bin,percent,11.9,12.0,0
+Pennsylvania,4 wk ahead,Bin,percent,12.0,12.1,0
+Pennsylvania,4 wk ahead,Bin,percent,12.1,12.2,0
+Pennsylvania,4 wk ahead,Bin,percent,12.2,12.3,0
+Pennsylvania,4 wk ahead,Bin,percent,12.3,12.4,0
+Pennsylvania,4 wk ahead,Bin,percent,12.4,12.5,0
+Pennsylvania,4 wk ahead,Bin,percent,12.5,12.6,0
+Pennsylvania,4 wk ahead,Bin,percent,12.6,12.7,0
+Pennsylvania,4 wk ahead,Bin,percent,12.7,12.8,0
+Pennsylvania,4 wk ahead,Bin,percent,12.8,12.9,0
+Pennsylvania,4 wk ahead,Bin,percent,12.9,13.0,0
+Pennsylvania,4 wk ahead,Bin,percent,13.0,100.0,0
+Pennsylvania,Season peak percentage,Bin,percent,0.0,0.1,0
+Pennsylvania,Season peak percentage,Bin,percent,0.1,0.2,0
+Pennsylvania,Season peak percentage,Bin,percent,0.2,0.3,0
+Pennsylvania,Season peak percentage,Bin,percent,0.3,0.4,0
+Pennsylvania,Season peak percentage,Bin,percent,0.4,0.5,0
+Pennsylvania,Season peak percentage,Bin,percent,0.5,0.6,0
+Pennsylvania,Season peak percentage,Bin,percent,0.6,0.7,0
+Pennsylvania,Season peak percentage,Bin,percent,0.7,0.8,0
+Pennsylvania,Season peak percentage,Bin,percent,0.8,0.9,0
+Pennsylvania,Season peak percentage,Bin,percent,0.9,1.0,0
+Pennsylvania,Season peak percentage,Bin,percent,1.0,1.1,0
+Pennsylvania,Season peak percentage,Bin,percent,1.1,1.2,0
+Pennsylvania,Season peak percentage,Bin,percent,1.2,1.3,0
+Pennsylvania,Season peak percentage,Bin,percent,1.3,1.4,0
+Pennsylvania,Season peak percentage,Bin,percent,1.4,1.5,0
+Pennsylvania,Season peak percentage,Bin,percent,1.5,1.6,0
+Pennsylvania,Season peak percentage,Bin,percent,1.6,1.7,0
+Pennsylvania,Season peak percentage,Bin,percent,1.7,1.8,0
+Pennsylvania,Season peak percentage,Bin,percent,1.8,1.9,0
+Pennsylvania,Season peak percentage,Bin,percent,1.9,2.0,0
+Pennsylvania,Season peak percentage,Bin,percent,2.0,2.1,0
+Pennsylvania,Season peak percentage,Bin,percent,2.1,2.2,0
+Pennsylvania,Season peak percentage,Bin,percent,2.2,2.3,0
+Pennsylvania,Season peak percentage,Bin,percent,2.3,2.4,0
+Pennsylvania,Season peak percentage,Bin,percent,2.4,2.5,0
+Pennsylvania,Season peak percentage,Bin,percent,2.5,2.6,0.002
+Pennsylvania,Season peak percentage,Bin,percent,2.6,2.7,0
+Pennsylvania,Season peak percentage,Bin,percent,2.7,2.8,0
+Pennsylvania,Season peak percentage,Bin,percent,2.8,2.9,0
+Pennsylvania,Season peak percentage,Bin,percent,2.9,3.0,0.006
+Pennsylvania,Season peak percentage,Bin,percent,3.0,3.1,0
+Pennsylvania,Season peak percentage,Bin,percent,3.1,3.2,0
+Pennsylvania,Season peak percentage,Bin,percent,3.2,3.3,0.004
+Pennsylvania,Season peak percentage,Bin,percent,3.3,3.4,0
+Pennsylvania,Season peak percentage,Bin,percent,3.4,3.5,0.002
+Pennsylvania,Season peak percentage,Bin,percent,3.5,3.6,0.004
+Pennsylvania,Season peak percentage,Bin,percent,3.6,3.7,0
+Pennsylvania,Season peak percentage,Bin,percent,3.7,3.8,0.004
+Pennsylvania,Season peak percentage,Bin,percent,3.8,3.9,0.006
+Pennsylvania,Season peak percentage,Bin,percent,3.9,4.0,0.004
+Pennsylvania,Season peak percentage,Bin,percent,4.0,4.1,0.002
+Pennsylvania,Season peak percentage,Bin,percent,4.1,4.2,0.01
+Pennsylvania,Season peak percentage,Bin,percent,4.2,4.3,0.014
+Pennsylvania,Season peak percentage,Bin,percent,4.3,4.4,0.01
+Pennsylvania,Season peak percentage,Bin,percent,4.4,4.5,0.02
+Pennsylvania,Season peak percentage,Bin,percent,4.5,4.6,0.012
+Pennsylvania,Season peak percentage,Bin,percent,4.6,4.7,0.01
+Pennsylvania,Season peak percentage,Bin,percent,4.7,4.8,0.022
+Pennsylvania,Season peak percentage,Bin,percent,4.8,4.9,0.02
+Pennsylvania,Season peak percentage,Bin,percent,4.9,5.0,0.01
+Pennsylvania,Season peak percentage,Bin,percent,5.0,5.1,0.03
+Pennsylvania,Season peak percentage,Bin,percent,5.1,5.2,0.012
+Pennsylvania,Season peak percentage,Bin,percent,5.2,5.3,0.018
+Pennsylvania,Season peak percentage,Bin,percent,5.3,5.4,0.024
+Pennsylvania,Season peak percentage,Bin,percent,5.4,5.5,0.022
+Pennsylvania,Season peak percentage,Bin,percent,5.5,5.6,0.022
+Pennsylvania,Season peak percentage,Bin,percent,5.6,5.7,0.014
+Pennsylvania,Season peak percentage,Bin,percent,5.7,5.8,0.024
+Pennsylvania,Season peak percentage,Bin,percent,5.8,5.9,0.024
+Pennsylvania,Season peak percentage,Bin,percent,5.9,6.0,0.042
+Pennsylvania,Season peak percentage,Bin,percent,6.0,6.1,0.03
+Pennsylvania,Season peak percentage,Bin,percent,6.1,6.2,0.026
+Pennsylvania,Season peak percentage,Bin,percent,6.2,6.3,0.014
+Pennsylvania,Season peak percentage,Bin,percent,6.3,6.4,0.024
+Pennsylvania,Season peak percentage,Bin,percent,6.4,6.5,0.018
+Pennsylvania,Season peak percentage,Bin,percent,6.5,6.6,0.02
+Pennsylvania,Season peak percentage,Bin,percent,6.6,6.7,0.024
+Pennsylvania,Season peak percentage,Bin,percent,6.7,6.8,0.028
+Pennsylvania,Season peak percentage,Bin,percent,6.8,6.9,0.012
+Pennsylvania,Season peak percentage,Bin,percent,6.9,7.0,0.022
+Pennsylvania,Season peak percentage,Bin,percent,7.0,7.1,0.018
+Pennsylvania,Season peak percentage,Bin,percent,7.1,7.2,0.014
+Pennsylvania,Season peak percentage,Bin,percent,7.2,7.3,0.024
+Pennsylvania,Season peak percentage,Bin,percent,7.3,7.4,0.014
+Pennsylvania,Season peak percentage,Bin,percent,7.4,7.5,0.028
+Pennsylvania,Season peak percentage,Bin,percent,7.5,7.6,0.01
+Pennsylvania,Season peak percentage,Bin,percent,7.6,7.7,0.014
+Pennsylvania,Season peak percentage,Bin,percent,7.7,7.8,0.01
+Pennsylvania,Season peak percentage,Bin,percent,7.8,7.9,0.018
+Pennsylvania,Season peak percentage,Bin,percent,7.9,8.0,0.01
+Pennsylvania,Season peak percentage,Bin,percent,8.0,8.1,0.014
+Pennsylvania,Season peak percentage,Bin,percent,8.1,8.2,0.016
+Pennsylvania,Season peak percentage,Bin,percent,8.2,8.3,0.008
+Pennsylvania,Season peak percentage,Bin,percent,8.3,8.4,0.018
+Pennsylvania,Season peak percentage,Bin,percent,8.4,8.5,0.018
+Pennsylvania,Season peak percentage,Bin,percent,8.5,8.6,0.004
+Pennsylvania,Season peak percentage,Bin,percent,8.6,8.7,0.008
+Pennsylvania,Season peak percentage,Bin,percent,8.7,8.8,0.014
+Pennsylvania,Season peak percentage,Bin,percent,8.8,8.9,0.014
+Pennsylvania,Season peak percentage,Bin,percent,8.9,9.0,0.002
+Pennsylvania,Season peak percentage,Bin,percent,9.0,9.1,0.004
+Pennsylvania,Season peak percentage,Bin,percent,9.1,9.2,0
+Pennsylvania,Season peak percentage,Bin,percent,9.2,9.3,0.006
+Pennsylvania,Season peak percentage,Bin,percent,9.3,9.4,0.008
+Pennsylvania,Season peak percentage,Bin,percent,9.4,9.5,0.002
+Pennsylvania,Season peak percentage,Bin,percent,9.5,9.6,0.002
+Pennsylvania,Season peak percentage,Bin,percent,9.6,9.7,0.006
+Pennsylvania,Season peak percentage,Bin,percent,9.7,9.8,0.008
+Pennsylvania,Season peak percentage,Bin,percent,9.8,9.9,0.004
+Pennsylvania,Season peak percentage,Bin,percent,9.9,10.0,0.004
+Pennsylvania,Season peak percentage,Bin,percent,10.0,10.1,0.008
+Pennsylvania,Season peak percentage,Bin,percent,10.1,10.2,0.002
+Pennsylvania,Season peak percentage,Bin,percent,10.2,10.3,0.004
+Pennsylvania,Season peak percentage,Bin,percent,10.3,10.4,0
+Pennsylvania,Season peak percentage,Bin,percent,10.4,10.5,0.006
+Pennsylvania,Season peak percentage,Bin,percent,10.5,10.6,0.004
+Pennsylvania,Season peak percentage,Bin,percent,10.6,10.7,0.004
+Pennsylvania,Season peak percentage,Bin,percent,10.7,10.8,0.01
+Pennsylvania,Season peak percentage,Bin,percent,10.8,10.9,0
+Pennsylvania,Season peak percentage,Bin,percent,10.9,11.0,0.002
+Pennsylvania,Season peak percentage,Bin,percent,11.0,11.1,0
+Pennsylvania,Season peak percentage,Bin,percent,11.1,11.2,0.004
+Pennsylvania,Season peak percentage,Bin,percent,11.2,11.3,0.002
+Pennsylvania,Season peak percentage,Bin,percent,11.3,11.4,0
+Pennsylvania,Season peak percentage,Bin,percent,11.4,11.5,0.006
+Pennsylvania,Season peak percentage,Bin,percent,11.5,11.6,0.002
+Pennsylvania,Season peak percentage,Bin,percent,11.6,11.7,0.002
+Pennsylvania,Season peak percentage,Bin,percent,11.7,11.8,0
+Pennsylvania,Season peak percentage,Bin,percent,11.8,11.9,0.002
+Pennsylvania,Season peak percentage,Bin,percent,11.9,12.0,0.002
+Pennsylvania,Season peak percentage,Bin,percent,12.0,12.1,0
+Pennsylvania,Season peak percentage,Bin,percent,12.1,12.2,0
+Pennsylvania,Season peak percentage,Bin,percent,12.2,12.3,0
+Pennsylvania,Season peak percentage,Bin,percent,12.3,12.4,0
+Pennsylvania,Season peak percentage,Bin,percent,12.4,12.5,0
+Pennsylvania,Season peak percentage,Bin,percent,12.5,12.6,0
+Pennsylvania,Season peak percentage,Bin,percent,12.6,12.7,0
+Pennsylvania,Season peak percentage,Bin,percent,12.7,12.8,0
+Pennsylvania,Season peak percentage,Bin,percent,12.8,12.9,0
+Pennsylvania,Season peak percentage,Bin,percent,12.9,13.0,0
+Pennsylvania,Season peak percentage,Bin,percent,13.0,100.0,0.008
+Pennsylvania,Season peak week,Bin,week,40.0,41.0,0
+Pennsylvania,Season peak week,Bin,week,41.0,42.0,0
+Pennsylvania,Season peak week,Bin,week,42.0,43.0,0
+Pennsylvania,Season peak week,Bin,week,43.0,44.0,0
+Pennsylvania,Season peak week,Bin,week,44.0,45.0,0
+Pennsylvania,Season peak week,Bin,week,45.0,46.0,0
+Pennsylvania,Season peak week,Bin,week,46.0,47.0,0
+Pennsylvania,Season peak week,Bin,week,47.0,48.0,0
+Pennsylvania,Season peak week,Bin,week,48.0,49.0,0
+Pennsylvania,Season peak week,Bin,week,49.0,50.0,0
+Pennsylvania,Season peak week,Bin,week,50.0,51.0,0
+Pennsylvania,Season peak week,Bin,week,51.0,52.0,0
+Pennsylvania,Season peak week,Bin,week,52.0,53.0,0
+Pennsylvania,Season peak week,Bin,week,1.0,2.0,0
+Pennsylvania,Season peak week,Bin,week,2.0,3.0,0.001949317738791423
+Pennsylvania,Season peak week,Bin,week,3.0,4.0,0.037037037037037035
+Pennsylvania,Season peak week,Bin,week,4.0,5.0,0.09941520467836257
+Pennsylvania,Season peak week,Bin,week,5.0,6.0,0.6276803118908382
+Pennsylvania,Season peak week,Bin,week,6.0,7.0,0.08187134502923976
+Pennsylvania,Season peak week,Bin,week,7.0,8.0,0.14230019493177387
+Pennsylvania,Season peak week,Bin,week,8.0,9.0,0.005847953216374269
+Pennsylvania,Season peak week,Bin,week,9.0,10.0,0
+Pennsylvania,Season peak week,Bin,week,10.0,11.0,0
+Pennsylvania,Season peak week,Bin,week,11.0,12.0,0
+Pennsylvania,Season peak week,Bin,week,12.0,13.0,0.001949317738791423
+Pennsylvania,Season peak week,Bin,week,13.0,14.0,0
+Pennsylvania,Season peak week,Bin,week,14.0,15.0,0.001949317738791423
+Pennsylvania,Season peak week,Bin,week,15.0,16.0,0
+Pennsylvania,Season peak week,Bin,week,16.0,17.0,0
+Pennsylvania,Season peak week,Bin,week,17.0,18.0,0
+Pennsylvania,Season peak week,Bin,week,18.0,19.0,0
+Pennsylvania,Season peak week,Bin,week,19.0,20.0,0
+Pennsylvania,Season peak week,Bin,week,20.0,21.0,0
+Virginia,1 wk ahead,Bin,percent,0.0,0.1,0
+Virginia,1 wk ahead,Bin,percent,0.1,0.2,0
+Virginia,1 wk ahead,Bin,percent,0.2,0.3,0
+Virginia,1 wk ahead,Bin,percent,0.3,0.4,0
+Virginia,1 wk ahead,Bin,percent,0.4,0.5,0
+Virginia,1 wk ahead,Bin,percent,0.5,0.6,0
+Virginia,1 wk ahead,Bin,percent,0.6,0.7,0
+Virginia,1 wk ahead,Bin,percent,0.7,0.8,0
+Virginia,1 wk ahead,Bin,percent,0.8,0.9,0
+Virginia,1 wk ahead,Bin,percent,0.9,1.0,0
+Virginia,1 wk ahead,Bin,percent,1.0,1.1,0
+Virginia,1 wk ahead,Bin,percent,1.1,1.2,0.002
+Virginia,1 wk ahead,Bin,percent,1.2,1.3,0
+Virginia,1 wk ahead,Bin,percent,1.3,1.4,0.006
+Virginia,1 wk ahead,Bin,percent,1.4,1.5,0
+Virginia,1 wk ahead,Bin,percent,1.5,1.6,0.014
+Virginia,1 wk ahead,Bin,percent,1.6,1.7,0.028
+Virginia,1 wk ahead,Bin,percent,1.7,1.8,0.03
+Virginia,1 wk ahead,Bin,percent,1.8,1.9,0.086
+Virginia,1 wk ahead,Bin,percent,1.9,2.0,0.118
+Virginia,1 wk ahead,Bin,percent,2.0,2.1,0.154
+Virginia,1 wk ahead,Bin,percent,2.1,2.2,0.144
+Virginia,1 wk ahead,Bin,percent,2.2,2.3,0.104
+Virginia,1 wk ahead,Bin,percent,2.3,2.4,0.098
+Virginia,1 wk ahead,Bin,percent,2.4,2.5,0.074
+Virginia,1 wk ahead,Bin,percent,2.5,2.6,0.032
+Virginia,1 wk ahead,Bin,percent,2.6,2.7,0.038
+Virginia,1 wk ahead,Bin,percent,2.7,2.8,0.018
+Virginia,1 wk ahead,Bin,percent,2.8,2.9,0.01
+Virginia,1 wk ahead,Bin,percent,2.9,3.0,0.002
+Virginia,1 wk ahead,Bin,percent,3.0,3.1,0.004
+Virginia,1 wk ahead,Bin,percent,3.1,3.2,0.008
+Virginia,1 wk ahead,Bin,percent,3.2,3.3,0
+Virginia,1 wk ahead,Bin,percent,3.3,3.4,0.01
+Virginia,1 wk ahead,Bin,percent,3.4,3.5,0.004
+Virginia,1 wk ahead,Bin,percent,3.5,3.6,0.002
+Virginia,1 wk ahead,Bin,percent,3.6,3.7,0
+Virginia,1 wk ahead,Bin,percent,3.7,3.8,0
+Virginia,1 wk ahead,Bin,percent,3.8,3.9,0
+Virginia,1 wk ahead,Bin,percent,3.9,4.0,0
+Virginia,1 wk ahead,Bin,percent,4.0,4.1,0
+Virginia,1 wk ahead,Bin,percent,4.1,4.2,0
+Virginia,1 wk ahead,Bin,percent,4.2,4.3,0
+Virginia,1 wk ahead,Bin,percent,4.3,4.4,0
+Virginia,1 wk ahead,Bin,percent,4.4,4.5,0.006
+Virginia,1 wk ahead,Bin,percent,4.5,4.6,0
+Virginia,1 wk ahead,Bin,percent,4.6,4.7,0
+Virginia,1 wk ahead,Bin,percent,4.7,4.8,0
+Virginia,1 wk ahead,Bin,percent,4.8,4.9,0
+Virginia,1 wk ahead,Bin,percent,4.9,5.0,0
+Virginia,1 wk ahead,Bin,percent,5.0,5.1,0
+Virginia,1 wk ahead,Bin,percent,5.1,5.2,0
+Virginia,1 wk ahead,Bin,percent,5.2,5.3,0
+Virginia,1 wk ahead,Bin,percent,5.3,5.4,0
+Virginia,1 wk ahead,Bin,percent,5.4,5.5,0
+Virginia,1 wk ahead,Bin,percent,5.5,5.6,0
+Virginia,1 wk ahead,Bin,percent,5.6,5.7,0
+Virginia,1 wk ahead,Bin,percent,5.7,5.8,0
+Virginia,1 wk ahead,Bin,percent,5.8,5.9,0
+Virginia,1 wk ahead,Bin,percent,5.9,6.0,0
+Virginia,1 wk ahead,Bin,percent,6.0,6.1,0
+Virginia,1 wk ahead,Bin,percent,6.1,6.2,0
+Virginia,1 wk ahead,Bin,percent,6.2,6.3,0
+Virginia,1 wk ahead,Bin,percent,6.3,6.4,0
+Virginia,1 wk ahead,Bin,percent,6.4,6.5,0
+Virginia,1 wk ahead,Bin,percent,6.5,6.6,0.008
+Virginia,1 wk ahead,Bin,percent,6.6,6.7,0
+Virginia,1 wk ahead,Bin,percent,6.7,6.8,0
+Virginia,1 wk ahead,Bin,percent,6.8,6.9,0
+Virginia,1 wk ahead,Bin,percent,6.9,7.0,0
+Virginia,1 wk ahead,Bin,percent,7.0,7.1,0
+Virginia,1 wk ahead,Bin,percent,7.1,7.2,0
+Virginia,1 wk ahead,Bin,percent,7.2,7.3,0
+Virginia,1 wk ahead,Bin,percent,7.3,7.4,0
+Virginia,1 wk ahead,Bin,percent,7.4,7.5,0
+Virginia,1 wk ahead,Bin,percent,7.5,7.6,0
+Virginia,1 wk ahead,Bin,percent,7.6,7.7,0
+Virginia,1 wk ahead,Bin,percent,7.7,7.8,0
+Virginia,1 wk ahead,Bin,percent,7.8,7.9,0
+Virginia,1 wk ahead,Bin,percent,7.9,8.0,0
+Virginia,1 wk ahead,Bin,percent,8.0,8.1,0
+Virginia,1 wk ahead,Bin,percent,8.1,8.2,0
+Virginia,1 wk ahead,Bin,percent,8.2,8.3,0
+Virginia,1 wk ahead,Bin,percent,8.3,8.4,0
+Virginia,1 wk ahead,Bin,percent,8.4,8.5,0
+Virginia,1 wk ahead,Bin,percent,8.5,8.6,0
+Virginia,1 wk ahead,Bin,percent,8.6,8.7,0
+Virginia,1 wk ahead,Bin,percent,8.7,8.8,0
+Virginia,1 wk ahead,Bin,percent,8.8,8.9,0
+Virginia,1 wk ahead,Bin,percent,8.9,9.0,0
+Virginia,1 wk ahead,Bin,percent,9.0,9.1,0
+Virginia,1 wk ahead,Bin,percent,9.1,9.2,0
+Virginia,1 wk ahead,Bin,percent,9.2,9.3,0
+Virginia,1 wk ahead,Bin,percent,9.3,9.4,0
+Virginia,1 wk ahead,Bin,percent,9.4,9.5,0
+Virginia,1 wk ahead,Bin,percent,9.5,9.6,0
+Virginia,1 wk ahead,Bin,percent,9.6,9.7,0
+Virginia,1 wk ahead,Bin,percent,9.7,9.8,0
+Virginia,1 wk ahead,Bin,percent,9.8,9.9,0
+Virginia,1 wk ahead,Bin,percent,9.9,10.0,0
+Virginia,1 wk ahead,Bin,percent,10.0,10.1,0
+Virginia,1 wk ahead,Bin,percent,10.1,10.2,0
+Virginia,1 wk ahead,Bin,percent,10.2,10.3,0
+Virginia,1 wk ahead,Bin,percent,10.3,10.4,0
+Virginia,1 wk ahead,Bin,percent,10.4,10.5,0
+Virginia,1 wk ahead,Bin,percent,10.5,10.6,0
+Virginia,1 wk ahead,Bin,percent,10.6,10.7,0
+Virginia,1 wk ahead,Bin,percent,10.7,10.8,0
+Virginia,1 wk ahead,Bin,percent,10.8,10.9,0
+Virginia,1 wk ahead,Bin,percent,10.9,11.0,0
+Virginia,1 wk ahead,Bin,percent,11.0,11.1,0
+Virginia,1 wk ahead,Bin,percent,11.1,11.2,0
+Virginia,1 wk ahead,Bin,percent,11.2,11.3,0
+Virginia,1 wk ahead,Bin,percent,11.3,11.4,0
+Virginia,1 wk ahead,Bin,percent,11.4,11.5,0
+Virginia,1 wk ahead,Bin,percent,11.5,11.6,0
+Virginia,1 wk ahead,Bin,percent,11.6,11.7,0
+Virginia,1 wk ahead,Bin,percent,11.7,11.8,0
+Virginia,1 wk ahead,Bin,percent,11.8,11.9,0
+Virginia,1 wk ahead,Bin,percent,11.9,12.0,0
+Virginia,1 wk ahead,Bin,percent,12.0,12.1,0
+Virginia,1 wk ahead,Bin,percent,12.1,12.2,0
+Virginia,1 wk ahead,Bin,percent,12.2,12.3,0
+Virginia,1 wk ahead,Bin,percent,12.3,12.4,0
+Virginia,1 wk ahead,Bin,percent,12.4,12.5,0
+Virginia,1 wk ahead,Bin,percent,12.5,12.6,0
+Virginia,1 wk ahead,Bin,percent,12.6,12.7,0
+Virginia,1 wk ahead,Bin,percent,12.7,12.8,0
+Virginia,1 wk ahead,Bin,percent,12.8,12.9,0
+Virginia,1 wk ahead,Bin,percent,12.9,13.0,0
+Virginia,1 wk ahead,Bin,percent,13.0,100.0,0
+Virginia,2 wk ahead,Bin,percent,0.0,0.1,0
+Virginia,2 wk ahead,Bin,percent,0.1,0.2,0
+Virginia,2 wk ahead,Bin,percent,0.2,0.3,0
+Virginia,2 wk ahead,Bin,percent,0.3,0.4,0
+Virginia,2 wk ahead,Bin,percent,0.4,0.5,0
+Virginia,2 wk ahead,Bin,percent,0.5,0.6,0
+Virginia,2 wk ahead,Bin,percent,0.6,0.7,0
+Virginia,2 wk ahead,Bin,percent,0.7,0.8,0
+Virginia,2 wk ahead,Bin,percent,0.8,0.9,0
+Virginia,2 wk ahead,Bin,percent,0.9,1.0,0
+Virginia,2 wk ahead,Bin,percent,1.0,1.1,0
+Virginia,2 wk ahead,Bin,percent,1.1,1.2,0.002
+Virginia,2 wk ahead,Bin,percent,1.2,1.3,0.004
+Virginia,2 wk ahead,Bin,percent,1.3,1.4,0
+Virginia,2 wk ahead,Bin,percent,1.4,1.5,0.01
+Virginia,2 wk ahead,Bin,percent,1.5,1.6,0.022
+Virginia,2 wk ahead,Bin,percent,1.6,1.7,0.034
+Virginia,2 wk ahead,Bin,percent,1.7,1.8,0.052
+Virginia,2 wk ahead,Bin,percent,1.8,1.9,0.076
+Virginia,2 wk ahead,Bin,percent,1.9,2.0,0.058
+Virginia,2 wk ahead,Bin,percent,2.0,2.1,0.106
+Virginia,2 wk ahead,Bin,percent,2.1,2.2,0.116
+Virginia,2 wk ahead,Bin,percent,2.2,2.3,0.096
+Virginia,2 wk ahead,Bin,percent,2.3,2.4,0.102
+Virginia,2 wk ahead,Bin,percent,2.4,2.5,0.066
+Virginia,2 wk ahead,Bin,percent,2.5,2.6,0.048
+Virginia,2 wk ahead,Bin,percent,2.6,2.7,0.024
+Virginia,2 wk ahead,Bin,percent,2.7,2.8,0.044
+Virginia,2 wk ahead,Bin,percent,2.8,2.9,0.02
+Virginia,2 wk ahead,Bin,percent,2.9,3.0,0.026
+Virginia,2 wk ahead,Bin,percent,3.0,3.1,0.018
+Virginia,2 wk ahead,Bin,percent,3.1,3.2,0.012
+Virginia,2 wk ahead,Bin,percent,3.2,3.3,0.006
+Virginia,2 wk ahead,Bin,percent,3.3,3.4,0.006
+Virginia,2 wk ahead,Bin,percent,3.4,3.5,0.008
+Virginia,2 wk ahead,Bin,percent,3.5,3.6,0.002
+Virginia,2 wk ahead,Bin,percent,3.6,3.7,0.004
+Virginia,2 wk ahead,Bin,percent,3.7,3.8,0.002
+Virginia,2 wk ahead,Bin,percent,3.8,3.9,0.008
+Virginia,2 wk ahead,Bin,percent,3.9,4.0,0
+Virginia,2 wk ahead,Bin,percent,4.0,4.1,0.006
+Virginia,2 wk ahead,Bin,percent,4.1,4.2,0.004
+Virginia,2 wk ahead,Bin,percent,4.2,4.3,0
+Virginia,2 wk ahead,Bin,percent,4.3,4.4,0.002
+Virginia,2 wk ahead,Bin,percent,4.4,4.5,0
+Virginia,2 wk ahead,Bin,percent,4.5,4.6,0.002
+Virginia,2 wk ahead,Bin,percent,4.6,4.7,0
+Virginia,2 wk ahead,Bin,percent,4.7,4.8,0.002
+Virginia,2 wk ahead,Bin,percent,4.8,4.9,0.002
+Virginia,2 wk ahead,Bin,percent,4.9,5.0,0
+Virginia,2 wk ahead,Bin,percent,5.0,5.1,0
+Virginia,2 wk ahead,Bin,percent,5.1,5.2,0
+Virginia,2 wk ahead,Bin,percent,5.2,5.3,0.002
+Virginia,2 wk ahead,Bin,percent,5.3,5.4,0
+Virginia,2 wk ahead,Bin,percent,5.4,5.5,0.002
+Virginia,2 wk ahead,Bin,percent,5.5,5.6,0
+Virginia,2 wk ahead,Bin,percent,5.6,5.7,0
+Virginia,2 wk ahead,Bin,percent,5.7,5.8,0
+Virginia,2 wk ahead,Bin,percent,5.8,5.9,0
+Virginia,2 wk ahead,Bin,percent,5.9,6.0,0
+Virginia,2 wk ahead,Bin,percent,6.0,6.1,0
+Virginia,2 wk ahead,Bin,percent,6.1,6.2,0
+Virginia,2 wk ahead,Bin,percent,6.2,6.3,0
+Virginia,2 wk ahead,Bin,percent,6.3,6.4,0
+Virginia,2 wk ahead,Bin,percent,6.4,6.5,0
+Virginia,2 wk ahead,Bin,percent,6.5,6.6,0
+Virginia,2 wk ahead,Bin,percent,6.6,6.7,0
+Virginia,2 wk ahead,Bin,percent,6.7,6.8,0
+Virginia,2 wk ahead,Bin,percent,6.8,6.9,0
+Virginia,2 wk ahead,Bin,percent,6.9,7.0,0.002
+Virginia,2 wk ahead,Bin,percent,7.0,7.1,0.002
+Virginia,2 wk ahead,Bin,percent,7.1,7.2,0
+Virginia,2 wk ahead,Bin,percent,7.2,7.3,0
+Virginia,2 wk ahead,Bin,percent,7.3,7.4,0.002
+Virginia,2 wk ahead,Bin,percent,7.4,7.5,0
+Virginia,2 wk ahead,Bin,percent,7.5,7.6,0
+Virginia,2 wk ahead,Bin,percent,7.6,7.7,0
+Virginia,2 wk ahead,Bin,percent,7.7,7.8,0
+Virginia,2 wk ahead,Bin,percent,7.8,7.9,0
+Virginia,2 wk ahead,Bin,percent,7.9,8.0,0
+Virginia,2 wk ahead,Bin,percent,8.0,8.1,0
+Virginia,2 wk ahead,Bin,percent,8.1,8.2,0
+Virginia,2 wk ahead,Bin,percent,8.2,8.3,0
+Virginia,2 wk ahead,Bin,percent,8.3,8.4,0
+Virginia,2 wk ahead,Bin,percent,8.4,8.5,0
+Virginia,2 wk ahead,Bin,percent,8.5,8.6,0
+Virginia,2 wk ahead,Bin,percent,8.6,8.7,0
+Virginia,2 wk ahead,Bin,percent,8.7,8.8,0
+Virginia,2 wk ahead,Bin,percent,8.8,8.9,0
+Virginia,2 wk ahead,Bin,percent,8.9,9.0,0
+Virginia,2 wk ahead,Bin,percent,9.0,9.1,0
+Virginia,2 wk ahead,Bin,percent,9.1,9.2,0
+Virginia,2 wk ahead,Bin,percent,9.2,9.3,0
+Virginia,2 wk ahead,Bin,percent,9.3,9.4,0
+Virginia,2 wk ahead,Bin,percent,9.4,9.5,0
+Virginia,2 wk ahead,Bin,percent,9.5,9.6,0
+Virginia,2 wk ahead,Bin,percent,9.6,9.7,0
+Virginia,2 wk ahead,Bin,percent,9.7,9.8,0
+Virginia,2 wk ahead,Bin,percent,9.8,9.9,0
+Virginia,2 wk ahead,Bin,percent,9.9,10.0,0
+Virginia,2 wk ahead,Bin,percent,10.0,10.1,0
+Virginia,2 wk ahead,Bin,percent,10.1,10.2,0
+Virginia,2 wk ahead,Bin,percent,10.2,10.3,0
+Virginia,2 wk ahead,Bin,percent,10.3,10.4,0
+Virginia,2 wk ahead,Bin,percent,10.4,10.5,0
+Virginia,2 wk ahead,Bin,percent,10.5,10.6,0
+Virginia,2 wk ahead,Bin,percent,10.6,10.7,0
+Virginia,2 wk ahead,Bin,percent,10.7,10.8,0
+Virginia,2 wk ahead,Bin,percent,10.8,10.9,0
+Virginia,2 wk ahead,Bin,percent,10.9,11.0,0
+Virginia,2 wk ahead,Bin,percent,11.0,11.1,0
+Virginia,2 wk ahead,Bin,percent,11.1,11.2,0
+Virginia,2 wk ahead,Bin,percent,11.2,11.3,0
+Virginia,2 wk ahead,Bin,percent,11.3,11.4,0
+Virginia,2 wk ahead,Bin,percent,11.4,11.5,0
+Virginia,2 wk ahead,Bin,percent,11.5,11.6,0
+Virginia,2 wk ahead,Bin,percent,11.6,11.7,0
+Virginia,2 wk ahead,Bin,percent,11.7,11.8,0
+Virginia,2 wk ahead,Bin,percent,11.8,11.9,0
+Virginia,2 wk ahead,Bin,percent,11.9,12.0,0
+Virginia,2 wk ahead,Bin,percent,12.0,12.1,0
+Virginia,2 wk ahead,Bin,percent,12.1,12.2,0
+Virginia,2 wk ahead,Bin,percent,12.2,12.3,0
+Virginia,2 wk ahead,Bin,percent,12.3,12.4,0
+Virginia,2 wk ahead,Bin,percent,12.4,12.5,0
+Virginia,2 wk ahead,Bin,percent,12.5,12.6,0
+Virginia,2 wk ahead,Bin,percent,12.6,12.7,0
+Virginia,2 wk ahead,Bin,percent,12.7,12.8,0
+Virginia,2 wk ahead,Bin,percent,12.8,12.9,0
+Virginia,2 wk ahead,Bin,percent,12.9,13.0,0
+Virginia,2 wk ahead,Bin,percent,13.0,100.0,0
+Virginia,3 wk ahead,Bin,percent,0.0,0.1,0
+Virginia,3 wk ahead,Bin,percent,0.1,0.2,0
+Virginia,3 wk ahead,Bin,percent,0.2,0.3,0
+Virginia,3 wk ahead,Bin,percent,0.3,0.4,0
+Virginia,3 wk ahead,Bin,percent,0.4,0.5,0
+Virginia,3 wk ahead,Bin,percent,0.5,0.6,0
+Virginia,3 wk ahead,Bin,percent,0.6,0.7,0
+Virginia,3 wk ahead,Bin,percent,0.7,0.8,0
+Virginia,3 wk ahead,Bin,percent,0.8,0.9,0
+Virginia,3 wk ahead,Bin,percent,0.9,1.0,0
+Virginia,3 wk ahead,Bin,percent,1.0,1.1,0
+Virginia,3 wk ahead,Bin,percent,1.1,1.2,0.002
+Virginia,3 wk ahead,Bin,percent,1.2,1.3,0.006
+Virginia,3 wk ahead,Bin,percent,1.3,1.4,0.006
+Virginia,3 wk ahead,Bin,percent,1.4,1.5,0.006
+Virginia,3 wk ahead,Bin,percent,1.5,1.6,0.016
+Virginia,3 wk ahead,Bin,percent,1.6,1.7,0.022
+Virginia,3 wk ahead,Bin,percent,1.7,1.8,0.026
+Virginia,3 wk ahead,Bin,percent,1.8,1.9,0.032
+Virginia,3 wk ahead,Bin,percent,1.9,2.0,0.06
+Virginia,3 wk ahead,Bin,percent,2.0,2.1,0.054
+Virginia,3 wk ahead,Bin,percent,2.1,2.2,0.074
+Virginia,3 wk ahead,Bin,percent,2.2,2.3,0.062
+Virginia,3 wk ahead,Bin,percent,2.3,2.4,0.062
+Virginia,3 wk ahead,Bin,percent,2.4,2.5,0.046
+Virginia,3 wk ahead,Bin,percent,2.5,2.6,0.052
+Virginia,3 wk ahead,Bin,percent,2.6,2.7,0.052
+Virginia,3 wk ahead,Bin,percent,2.7,2.8,0.05
+Virginia,3 wk ahead,Bin,percent,2.8,2.9,0.05
+Virginia,3 wk ahead,Bin,percent,2.9,3.0,0.058
+Virginia,3 wk ahead,Bin,percent,3.0,3.1,0.024
+Virginia,3 wk ahead,Bin,percent,3.1,3.2,0.034
+Virginia,3 wk ahead,Bin,percent,3.2,3.3,0.014
+Virginia,3 wk ahead,Bin,percent,3.3,3.4,0.018
+Virginia,3 wk ahead,Bin,percent,3.4,3.5,0.016
+Virginia,3 wk ahead,Bin,percent,3.5,3.6,0.018
+Virginia,3 wk ahead,Bin,percent,3.6,3.7,0.018
+Virginia,3 wk ahead,Bin,percent,3.7,3.8,0.008
+Virginia,3 wk ahead,Bin,percent,3.8,3.9,0.012
+Virginia,3 wk ahead,Bin,percent,3.9,4.0,0.008
+Virginia,3 wk ahead,Bin,percent,4.0,4.1,0.008
+Virginia,3 wk ahead,Bin,percent,4.1,4.2,0.008
+Virginia,3 wk ahead,Bin,percent,4.2,4.3,0.004
+Virginia,3 wk ahead,Bin,percent,4.3,4.4,0.002
+Virginia,3 wk ahead,Bin,percent,4.4,4.5,0
+Virginia,3 wk ahead,Bin,percent,4.5,4.6,0.006
+Virginia,3 wk ahead,Bin,percent,4.6,4.7,0.006
+Virginia,3 wk ahead,Bin,percent,4.7,4.8,0.002
+Virginia,3 wk ahead,Bin,percent,4.8,4.9,0.012
+Virginia,3 wk ahead,Bin,percent,4.9,5.0,0.004
+Virginia,3 wk ahead,Bin,percent,5.0,5.1,0
+Virginia,3 wk ahead,Bin,percent,5.1,5.2,0.002
+Virginia,3 wk ahead,Bin,percent,5.2,5.3,0.002
+Virginia,3 wk ahead,Bin,percent,5.3,5.4,0.002
+Virginia,3 wk ahead,Bin,percent,5.4,5.5,0
+Virginia,3 wk ahead,Bin,percent,5.5,5.6,0
+Virginia,3 wk ahead,Bin,percent,5.6,5.7,0.002
+Virginia,3 wk ahead,Bin,percent,5.7,5.8,0
+Virginia,3 wk ahead,Bin,percent,5.8,5.9,0
+Virginia,3 wk ahead,Bin,percent,5.9,6.0,0
+Virginia,3 wk ahead,Bin,percent,6.0,6.1,0.004
+Virginia,3 wk ahead,Bin,percent,6.1,6.2,0.002
+Virginia,3 wk ahead,Bin,percent,6.2,6.3,0.002
+Virginia,3 wk ahead,Bin,percent,6.3,6.4,0
+Virginia,3 wk ahead,Bin,percent,6.4,6.5,0.002
+Virginia,3 wk ahead,Bin,percent,6.5,6.6,0
+Virginia,3 wk ahead,Bin,percent,6.6,6.7,0
+Virginia,3 wk ahead,Bin,percent,6.7,6.8,0
+Virginia,3 wk ahead,Bin,percent,6.8,6.9,0
+Virginia,3 wk ahead,Bin,percent,6.9,7.0,0.002
+Virginia,3 wk ahead,Bin,percent,7.0,7.1,0.002
+Virginia,3 wk ahead,Bin,percent,7.1,7.2,0
+Virginia,3 wk ahead,Bin,percent,7.2,7.3,0
+Virginia,3 wk ahead,Bin,percent,7.3,7.4,0
+Virginia,3 wk ahead,Bin,percent,7.4,7.5,0
+Virginia,3 wk ahead,Bin,percent,7.5,7.6,0
+Virginia,3 wk ahead,Bin,percent,7.6,7.7,0.002
+Virginia,3 wk ahead,Bin,percent,7.7,7.8,0.002
+Virginia,3 wk ahead,Bin,percent,7.8,7.9,0
+Virginia,3 wk ahead,Bin,percent,7.9,8.0,0.002
+Virginia,3 wk ahead,Bin,percent,8.0,8.1,0
+Virginia,3 wk ahead,Bin,percent,8.1,8.2,0
+Virginia,3 wk ahead,Bin,percent,8.2,8.3,0.002
+Virginia,3 wk ahead,Bin,percent,8.3,8.4,0
+Virginia,3 wk ahead,Bin,percent,8.4,8.5,0
+Virginia,3 wk ahead,Bin,percent,8.5,8.6,0
+Virginia,3 wk ahead,Bin,percent,8.6,8.7,0
+Virginia,3 wk ahead,Bin,percent,8.7,8.8,0
+Virginia,3 wk ahead,Bin,percent,8.8,8.9,0
+Virginia,3 wk ahead,Bin,percent,8.9,9.0,0
+Virginia,3 wk ahead,Bin,percent,9.0,9.1,0
+Virginia,3 wk ahead,Bin,percent,9.1,9.2,0
+Virginia,3 wk ahead,Bin,percent,9.2,9.3,0.002
+Virginia,3 wk ahead,Bin,percent,9.3,9.4,0
+Virginia,3 wk ahead,Bin,percent,9.4,9.5,0
+Virginia,3 wk ahead,Bin,percent,9.5,9.6,0
+Virginia,3 wk ahead,Bin,percent,9.6,9.7,0
+Virginia,3 wk ahead,Bin,percent,9.7,9.8,0
+Virginia,3 wk ahead,Bin,percent,9.8,9.9,0
+Virginia,3 wk ahead,Bin,percent,9.9,10.0,0
+Virginia,3 wk ahead,Bin,percent,10.0,10.1,0
+Virginia,3 wk ahead,Bin,percent,10.1,10.2,0
+Virginia,3 wk ahead,Bin,percent,10.2,10.3,0
+Virginia,3 wk ahead,Bin,percent,10.3,10.4,0
+Virginia,3 wk ahead,Bin,percent,10.4,10.5,0.002
+Virginia,3 wk ahead,Bin,percent,10.5,10.6,0
+Virginia,3 wk ahead,Bin,percent,10.6,10.7,0
+Virginia,3 wk ahead,Bin,percent,10.7,10.8,0
+Virginia,3 wk ahead,Bin,percent,10.8,10.9,0
+Virginia,3 wk ahead,Bin,percent,10.9,11.0,0
+Virginia,3 wk ahead,Bin,percent,11.0,11.1,0.002
+Virginia,3 wk ahead,Bin,percent,11.1,11.2,0
+Virginia,3 wk ahead,Bin,percent,11.2,11.3,0
+Virginia,3 wk ahead,Bin,percent,11.3,11.4,0.004
+Virginia,3 wk ahead,Bin,percent,11.4,11.5,0
+Virginia,3 wk ahead,Bin,percent,11.5,11.6,0
+Virginia,3 wk ahead,Bin,percent,11.6,11.7,0
+Virginia,3 wk ahead,Bin,percent,11.7,11.8,0
+Virginia,3 wk ahead,Bin,percent,11.8,11.9,0
+Virginia,3 wk ahead,Bin,percent,11.9,12.0,0
+Virginia,3 wk ahead,Bin,percent,12.0,12.1,0
+Virginia,3 wk ahead,Bin,percent,12.1,12.2,0
+Virginia,3 wk ahead,Bin,percent,12.2,12.3,0
+Virginia,3 wk ahead,Bin,percent,12.3,12.4,0
+Virginia,3 wk ahead,Bin,percent,12.4,12.5,0
+Virginia,3 wk ahead,Bin,percent,12.5,12.6,0
+Virginia,3 wk ahead,Bin,percent,12.6,12.7,0
+Virginia,3 wk ahead,Bin,percent,12.7,12.8,0
+Virginia,3 wk ahead,Bin,percent,12.8,12.9,0
+Virginia,3 wk ahead,Bin,percent,12.9,13.0,0
+Virginia,3 wk ahead,Bin,percent,13.0,100.0,0.002
+Virginia,4 wk ahead,Bin,percent,0.0,0.1,0
+Virginia,4 wk ahead,Bin,percent,0.1,0.2,0
+Virginia,4 wk ahead,Bin,percent,0.2,0.3,0
+Virginia,4 wk ahead,Bin,percent,0.3,0.4,0
+Virginia,4 wk ahead,Bin,percent,0.4,0.5,0
+Virginia,4 wk ahead,Bin,percent,0.5,0.6,0
+Virginia,4 wk ahead,Bin,percent,0.6,0.7,0
+Virginia,4 wk ahead,Bin,percent,0.7,0.8,0
+Virginia,4 wk ahead,Bin,percent,0.8,0.9,0
+Virginia,4 wk ahead,Bin,percent,0.9,1.0,0
+Virginia,4 wk ahead,Bin,percent,1.0,1.1,0
+Virginia,4 wk ahead,Bin,percent,1.1,1.2,0
+Virginia,4 wk ahead,Bin,percent,1.2,1.3,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,1.3,1.4,0.018072289156626505
+Virginia,4 wk ahead,Bin,percent,1.4,1.5,0.010040160642570281
+Virginia,4 wk ahead,Bin,percent,1.5,1.6,0.020080321285140562
+Virginia,4 wk ahead,Bin,percent,1.6,1.7,0.030120481927710843
+Virginia,4 wk ahead,Bin,percent,1.7,1.8,0.020080321285140562
+Virginia,4 wk ahead,Bin,percent,1.8,1.9,0.0321285140562249
+Virginia,4 wk ahead,Bin,percent,1.9,2.0,0.04618473895582329
+Virginia,4 wk ahead,Bin,percent,2.0,2.1,0.040160642570281124
+Virginia,4 wk ahead,Bin,percent,2.1,2.2,0.05823293172690763
+Virginia,4 wk ahead,Bin,percent,2.2,2.3,0.06224899598393574
+Virginia,4 wk ahead,Bin,percent,2.3,2.4,0.03614457831325301
+Virginia,4 wk ahead,Bin,percent,2.4,2.5,0.04819277108433735
+Virginia,4 wk ahead,Bin,percent,2.5,2.6,0.040160642570281124
+Virginia,4 wk ahead,Bin,percent,2.6,2.7,0.05823293172690763
+Virginia,4 wk ahead,Bin,percent,2.7,2.8,0.04216867469879518
+Virginia,4 wk ahead,Bin,percent,2.8,2.9,0.04216867469879518
+Virginia,4 wk ahead,Bin,percent,2.9,3.0,0.03413654618473896
+Virginia,4 wk ahead,Bin,percent,3.0,3.1,0.03614457831325301
+Virginia,4 wk ahead,Bin,percent,3.1,3.2,0.04618473895582329
+Virginia,4 wk ahead,Bin,percent,3.2,3.3,0.0321285140562249
+Virginia,4 wk ahead,Bin,percent,3.3,3.4,0.018072289156626505
+Virginia,4 wk ahead,Bin,percent,3.4,3.5,0.020080321285140562
+Virginia,4 wk ahead,Bin,percent,3.5,3.6,0.010040160642570281
+Virginia,4 wk ahead,Bin,percent,3.6,3.7,0.01606425702811245
+Virginia,4 wk ahead,Bin,percent,3.7,3.8,0.02208835341365462
+Virginia,4 wk ahead,Bin,percent,3.8,3.9,0.006024096385542169
+Virginia,4 wk ahead,Bin,percent,3.9,4.0,0.018072289156626505
+Virginia,4 wk ahead,Bin,percent,4.0,4.1,0.01606425702811245
+Virginia,4 wk ahead,Bin,percent,4.1,4.2,0.006024096385542169
+Virginia,4 wk ahead,Bin,percent,4.2,4.3,0.010040160642570281
+Virginia,4 wk ahead,Bin,percent,4.3,4.4,0.008032128514056224
+Virginia,4 wk ahead,Bin,percent,4.4,4.5,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,4.5,4.6,0.006024096385542169
+Virginia,4 wk ahead,Bin,percent,4.6,4.7,0.006024096385542169
+Virginia,4 wk ahead,Bin,percent,4.7,4.8,0.006024096385542169
+Virginia,4 wk ahead,Bin,percent,4.8,4.9,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,4.9,5.0,0.006024096385542169
+Virginia,4 wk ahead,Bin,percent,5.0,5.1,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,5.1,5.2,0
+Virginia,4 wk ahead,Bin,percent,5.2,5.3,0.004016064257028112
+Virginia,4 wk ahead,Bin,percent,5.3,5.4,0.008032128514056224
+Virginia,4 wk ahead,Bin,percent,5.4,5.5,0
+Virginia,4 wk ahead,Bin,percent,5.5,5.6,0
+Virginia,4 wk ahead,Bin,percent,5.6,5.7,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,5.7,5.8,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,5.8,5.9,0.004016064257028112
+Virginia,4 wk ahead,Bin,percent,5.9,6.0,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,6.0,6.1,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,6.1,6.2,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,6.2,6.3,0
+Virginia,4 wk ahead,Bin,percent,6.3,6.4,0
+Virginia,4 wk ahead,Bin,percent,6.4,6.5,0
+Virginia,4 wk ahead,Bin,percent,6.5,6.6,0
+Virginia,4 wk ahead,Bin,percent,6.6,6.7,0
+Virginia,4 wk ahead,Bin,percent,6.7,6.8,0
+Virginia,4 wk ahead,Bin,percent,6.8,6.9,0
+Virginia,4 wk ahead,Bin,percent,6.9,7.0,0
+Virginia,4 wk ahead,Bin,percent,7.0,7.1,0
+Virginia,4 wk ahead,Bin,percent,7.1,7.2,0
+Virginia,4 wk ahead,Bin,percent,7.2,7.3,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,7.3,7.4,0
+Virginia,4 wk ahead,Bin,percent,7.4,7.5,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,7.5,7.6,0
+Virginia,4 wk ahead,Bin,percent,7.6,7.7,0
+Virginia,4 wk ahead,Bin,percent,7.7,7.8,0
+Virginia,4 wk ahead,Bin,percent,7.8,7.9,0
+Virginia,4 wk ahead,Bin,percent,7.9,8.0,0
+Virginia,4 wk ahead,Bin,percent,8.0,8.1,0
+Virginia,4 wk ahead,Bin,percent,8.1,8.2,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,8.2,8.3,0
+Virginia,4 wk ahead,Bin,percent,8.3,8.4,0
+Virginia,4 wk ahead,Bin,percent,8.4,8.5,0
+Virginia,4 wk ahead,Bin,percent,8.5,8.6,0
+Virginia,4 wk ahead,Bin,percent,8.6,8.7,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,8.7,8.8,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,8.8,8.9,0
+Virginia,4 wk ahead,Bin,percent,8.9,9.0,0
+Virginia,4 wk ahead,Bin,percent,9.0,9.1,0
+Virginia,4 wk ahead,Bin,percent,9.1,9.2,0
+Virginia,4 wk ahead,Bin,percent,9.2,9.3,0
+Virginia,4 wk ahead,Bin,percent,9.3,9.4,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,9.4,9.5,0
+Virginia,4 wk ahead,Bin,percent,9.5,9.6,0
+Virginia,4 wk ahead,Bin,percent,9.6,9.7,0
+Virginia,4 wk ahead,Bin,percent,9.7,9.8,0
+Virginia,4 wk ahead,Bin,percent,9.8,9.9,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,9.9,10.0,0
+Virginia,4 wk ahead,Bin,percent,10.0,10.1,0.004016064257028112
+Virginia,4 wk ahead,Bin,percent,10.1,10.2,0
+Virginia,4 wk ahead,Bin,percent,10.2,10.3,0
+Virginia,4 wk ahead,Bin,percent,10.3,10.4,0
+Virginia,4 wk ahead,Bin,percent,10.4,10.5,0
+Virginia,4 wk ahead,Bin,percent,10.5,10.6,0
+Virginia,4 wk ahead,Bin,percent,10.6,10.7,0
+Virginia,4 wk ahead,Bin,percent,10.7,10.8,0
+Virginia,4 wk ahead,Bin,percent,10.8,10.9,0.004016064257028112
+Virginia,4 wk ahead,Bin,percent,10.9,11.0,0
+Virginia,4 wk ahead,Bin,percent,11.0,11.1,0.004016064257028112
+Virginia,4 wk ahead,Bin,percent,11.1,11.2,0
+Virginia,4 wk ahead,Bin,percent,11.2,11.3,0
+Virginia,4 wk ahead,Bin,percent,11.3,11.4,0
+Virginia,4 wk ahead,Bin,percent,11.4,11.5,0
+Virginia,4 wk ahead,Bin,percent,11.5,11.6,0
+Virginia,4 wk ahead,Bin,percent,11.6,11.7,0
+Virginia,4 wk ahead,Bin,percent,11.7,11.8,0
+Virginia,4 wk ahead,Bin,percent,11.8,11.9,0
+Virginia,4 wk ahead,Bin,percent,11.9,12.0,0.002008032128514056
+Virginia,4 wk ahead,Bin,percent,12.0,12.1,0
+Virginia,4 wk ahead,Bin,percent,12.1,12.2,0
+Virginia,4 wk ahead,Bin,percent,12.2,12.3,0
+Virginia,4 wk ahead,Bin,percent,12.3,12.4,0
+Virginia,4 wk ahead,Bin,percent,12.4,12.5,0
+Virginia,4 wk ahead,Bin,percent,12.5,12.6,0
+Virginia,4 wk ahead,Bin,percent,12.6,12.7,0
+Virginia,4 wk ahead,Bin,percent,12.7,12.8,0
+Virginia,4 wk ahead,Bin,percent,12.8,12.9,0
+Virginia,4 wk ahead,Bin,percent,12.9,13.0,0
+Virginia,4 wk ahead,Bin,percent,13.0,100.0,0.010040160642570281
+Virginia,Season peak percentage,Bin,percent,0.0,0.1,0
+Virginia,Season peak percentage,Bin,percent,0.1,0.2,0
+Virginia,Season peak percentage,Bin,percent,0.2,0.3,0
+Virginia,Season peak percentage,Bin,percent,0.3,0.4,0
+Virginia,Season peak percentage,Bin,percent,0.4,0.5,0
+Virginia,Season peak percentage,Bin,percent,0.5,0.6,0
+Virginia,Season peak percentage,Bin,percent,0.6,0.7,0
+Virginia,Season peak percentage,Bin,percent,0.7,0.8,0
+Virginia,Season peak percentage,Bin,percent,0.8,0.9,0
+Virginia,Season peak percentage,Bin,percent,0.9,1.0,0
+Virginia,Season peak percentage,Bin,percent,1.0,1.1,0
+Virginia,Season peak percentage,Bin,percent,1.1,1.2,0
+Virginia,Season peak percentage,Bin,percent,1.2,1.3,0
+Virginia,Season peak percentage,Bin,percent,1.3,1.4,0
+Virginia,Season peak percentage,Bin,percent,1.4,1.5,0
+Virginia,Season peak percentage,Bin,percent,1.5,1.6,0
+Virginia,Season peak percentage,Bin,percent,1.6,1.7,0
+Virginia,Season peak percentage,Bin,percent,1.7,1.8,0
+Virginia,Season peak percentage,Bin,percent,1.8,1.9,0
+Virginia,Season peak percentage,Bin,percent,1.9,2.0,0
+Virginia,Season peak percentage,Bin,percent,2.0,2.1,0
+Virginia,Season peak percentage,Bin,percent,2.1,2.2,0
+Virginia,Season peak percentage,Bin,percent,2.2,2.3,0
+Virginia,Season peak percentage,Bin,percent,2.3,2.4,0.004
+Virginia,Season peak percentage,Bin,percent,2.4,2.5,0.002
+Virginia,Season peak percentage,Bin,percent,2.5,2.6,0.008
+Virginia,Season peak percentage,Bin,percent,2.6,2.7,0.004
+Virginia,Season peak percentage,Bin,percent,2.7,2.8,0.01
+Virginia,Season peak percentage,Bin,percent,2.8,2.9,0.002
+Virginia,Season peak percentage,Bin,percent,2.9,3.0,0.004
+Virginia,Season peak percentage,Bin,percent,3.0,3.1,0.01
+Virginia,Season peak percentage,Bin,percent,3.1,3.2,0.008
+Virginia,Season peak percentage,Bin,percent,3.2,3.3,0
+Virginia,Season peak percentage,Bin,percent,3.3,3.4,0.012
+Virginia,Season peak percentage,Bin,percent,3.4,3.5,0.01
+Virginia,Season peak percentage,Bin,percent,3.5,3.6,0.004
+Virginia,Season peak percentage,Bin,percent,3.6,3.7,0.014
+Virginia,Season peak percentage,Bin,percent,3.7,3.8,0.01
+Virginia,Season peak percentage,Bin,percent,3.8,3.9,0.004
+Virginia,Season peak percentage,Bin,percent,3.9,4.0,0.012
+Virginia,Season peak percentage,Bin,percent,4.0,4.1,0.004
+Virginia,Season peak percentage,Bin,percent,4.1,4.2,0.012
+Virginia,Season peak percentage,Bin,percent,4.2,4.3,0.01
+Virginia,Season peak percentage,Bin,percent,4.3,4.4,0.01
+Virginia,Season peak percentage,Bin,percent,4.4,4.5,0.006
+Virginia,Season peak percentage,Bin,percent,4.5,4.6,0.01
+Virginia,Season peak percentage,Bin,percent,4.6,4.7,0.012
+Virginia,Season peak percentage,Bin,percent,4.7,4.8,0.004
+Virginia,Season peak percentage,Bin,percent,4.8,4.9,0.006
+Virginia,Season peak percentage,Bin,percent,4.9,5.0,0.02
+Virginia,Season peak percentage,Bin,percent,5.0,5.1,0.012
+Virginia,Season peak percentage,Bin,percent,5.1,5.2,0.002
+Virginia,Season peak percentage,Bin,percent,5.2,5.3,0.004
+Virginia,Season peak percentage,Bin,percent,5.3,5.4,0.012
+Virginia,Season peak percentage,Bin,percent,5.4,5.5,0.012
+Virginia,Season peak percentage,Bin,percent,5.5,5.6,0.012
+Virginia,Season peak percentage,Bin,percent,5.6,5.7,0.008
+Virginia,Season peak percentage,Bin,percent,5.7,5.8,0.008
+Virginia,Season peak percentage,Bin,percent,5.8,5.9,0.006
+Virginia,Season peak percentage,Bin,percent,5.9,6.0,0.012
+Virginia,Season peak percentage,Bin,percent,6.0,6.1,0.002
+Virginia,Season peak percentage,Bin,percent,6.1,6.2,0.006
+Virginia,Season peak percentage,Bin,percent,6.2,6.3,0.008
+Virginia,Season peak percentage,Bin,percent,6.3,6.4,0.008
+Virginia,Season peak percentage,Bin,percent,6.4,6.5,0.01
+Virginia,Season peak percentage,Bin,percent,6.5,6.6,0.012
+Virginia,Season peak percentage,Bin,percent,6.6,6.7,0.012
+Virginia,Season peak percentage,Bin,percent,6.7,6.8,0.006
+Virginia,Season peak percentage,Bin,percent,6.8,6.9,0.01
+Virginia,Season peak percentage,Bin,percent,6.9,7.0,0.004
+Virginia,Season peak percentage,Bin,percent,7.0,7.1,0.01
+Virginia,Season peak percentage,Bin,percent,7.1,7.2,0.01
+Virginia,Season peak percentage,Bin,percent,7.2,7.3,0.004
+Virginia,Season peak percentage,Bin,percent,7.3,7.4,0.006
+Virginia,Season peak percentage,Bin,percent,7.4,7.5,0.01
+Virginia,Season peak percentage,Bin,percent,7.5,7.6,0.002
+Virginia,Season peak percentage,Bin,percent,7.6,7.7,0.008
+Virginia,Season peak percentage,Bin,percent,7.7,7.8,0.004
+Virginia,Season peak percentage,Bin,percent,7.8,7.9,0.004
+Virginia,Season peak percentage,Bin,percent,7.9,8.0,0.002
+Virginia,Season peak percentage,Bin,percent,8.0,8.1,0.002
+Virginia,Season peak percentage,Bin,percent,8.1,8.2,0.004
+Virginia,Season peak percentage,Bin,percent,8.2,8.3,0.008
+Virginia,Season peak percentage,Bin,percent,8.3,8.4,0.012
+Virginia,Season peak percentage,Bin,percent,8.4,8.5,0.006
+Virginia,Season peak percentage,Bin,percent,8.5,8.6,0.006
+Virginia,Season peak percentage,Bin,percent,8.6,8.7,0.004
+Virginia,Season peak percentage,Bin,percent,8.7,8.8,0.004
+Virginia,Season peak percentage,Bin,percent,8.8,8.9,0.008
+Virginia,Season peak percentage,Bin,percent,8.9,9.0,0.006
+Virginia,Season peak percentage,Bin,percent,9.0,9.1,0.004
+Virginia,Season peak percentage,Bin,percent,9.1,9.2,0.002
+Virginia,Season peak percentage,Bin,percent,9.2,9.3,0.006
+Virginia,Season peak percentage,Bin,percent,9.3,9.4,0.002
+Virginia,Season peak percentage,Bin,percent,9.4,9.5,0
+Virginia,Season peak percentage,Bin,percent,9.5,9.6,0.006
+Virginia,Season peak percentage,Bin,percent,9.6,9.7,0.004
+Virginia,Season peak percentage,Bin,percent,9.7,9.8,0.006
+Virginia,Season peak percentage,Bin,percent,9.8,9.9,0.006
+Virginia,Season peak percentage,Bin,percent,9.9,10.0,0
+Virginia,Season peak percentage,Bin,percent,10.0,10.1,0.002
+Virginia,Season peak percentage,Bin,percent,10.1,10.2,0
+Virginia,Season peak percentage,Bin,percent,10.2,10.3,0.002
+Virginia,Season peak percentage,Bin,percent,10.3,10.4,0.002
+Virginia,Season peak percentage,Bin,percent,10.4,10.5,0.002
+Virginia,Season peak percentage,Bin,percent,10.5,10.6,0.002
+Virginia,Season peak percentage,Bin,percent,10.6,10.7,0
+Virginia,Season peak percentage,Bin,percent,10.7,10.8,0.002
+Virginia,Season peak percentage,Bin,percent,10.8,10.9,0.002
+Virginia,Season peak percentage,Bin,percent,10.9,11.0,0.002
+Virginia,Season peak percentage,Bin,percent,11.0,11.1,0.002
+Virginia,Season peak percentage,Bin,percent,11.1,11.2,0.006
+Virginia,Season peak percentage,Bin,percent,11.2,11.3,0
+Virginia,Season peak percentage,Bin,percent,11.3,11.4,0.004
+Virginia,Season peak percentage,Bin,percent,11.4,11.5,0.002
+Virginia,Season peak percentage,Bin,percent,11.5,11.6,0.006
+Virginia,Season peak percentage,Bin,percent,11.6,11.7,0.004
+Virginia,Season peak percentage,Bin,percent,11.7,11.8,0.008
+Virginia,Season peak percentage,Bin,percent,11.8,11.9,0.002
+Virginia,Season peak percentage,Bin,percent,11.9,12.0,0.002
+Virginia,Season peak percentage,Bin,percent,12.0,12.1,0.002
+Virginia,Season peak percentage,Bin,percent,12.1,12.2,0
+Virginia,Season peak percentage,Bin,percent,12.2,12.3,0.002
+Virginia,Season peak percentage,Bin,percent,12.3,12.4,0.002
+Virginia,Season peak percentage,Bin,percent,12.4,12.5,0.002
+Virginia,Season peak percentage,Bin,percent,12.5,12.6,0.006
+Virginia,Season peak percentage,Bin,percent,12.6,12.7,0
+Virginia,Season peak percentage,Bin,percent,12.7,12.8,0.002
+Virginia,Season peak percentage,Bin,percent,12.8,12.9,0
+Virginia,Season peak percentage,Bin,percent,12.9,13.0,0
+Virginia,Season peak percentage,Bin,percent,13.0,100.0,0.398
+Virginia,Season peak week,Bin,week,40.0,41.0,0
+Virginia,Season peak week,Bin,week,41.0,42.0,0
+Virginia,Season peak week,Bin,week,42.0,43.0,0
+Virginia,Season peak week,Bin,week,43.0,44.0,0
+Virginia,Season peak week,Bin,week,44.0,45.0,0.003861003861003861
+Virginia,Season peak week,Bin,week,45.0,46.0,0.005791505791505791
+Virginia,Season peak week,Bin,week,46.0,47.0,0.011583011583011582
+Virginia,Season peak week,Bin,week,47.0,48.0,0.007722007722007722
+Virginia,Season peak week,Bin,week,48.0,49.0,0.02702702702702703
+Virginia,Season peak week,Bin,week,49.0,50.0,0.017374517374517374
+Virginia,Season peak week,Bin,week,50.0,51.0,0.03088803088803089
+Virginia,Season peak week,Bin,week,51.0,52.0,0.07142857142857142
+Virginia,Season peak week,Bin,week,52.0,53.0,0.0637065637065637
+Virginia,Season peak week,Bin,week,1.0,2.0,0.11196911196911197
+Virginia,Season peak week,Bin,week,2.0,3.0,0.0945945945945946
+Virginia,Season peak week,Bin,week,3.0,4.0,0.09652509652509653
+Virginia,Season peak week,Bin,week,4.0,5.0,0.08494208494208494
+Virginia,Season peak week,Bin,week,5.0,6.0,0.07528957528957529
+Virginia,Season peak week,Bin,week,6.0,7.0,0.09652509652509653
+Virginia,Season peak week,Bin,week,7.0,8.0,0.04826254826254826
+Virginia,Season peak week,Bin,week,8.0,9.0,0.06177606177606178
+Virginia,Season peak week,Bin,week,9.0,10.0,0.02702702702702703
+Virginia,Season peak week,Bin,week,10.0,11.0,0.015444015444015444
+Virginia,Season peak week,Bin,week,11.0,12.0,0.03088803088803089
+Virginia,Season peak week,Bin,week,12.0,13.0,0.005791505791505791
+Virginia,Season peak week,Bin,week,13.0,14.0,0.011583011583011582
+Virginia,Season peak week,Bin,week,14.0,15.0,0
+Virginia,Season peak week,Bin,week,15.0,16.0,0
+Virginia,Season peak week,Bin,week,16.0,17.0,0
+Virginia,Season peak week,Bin,week,17.0,18.0,0
+Virginia,Season peak week,Bin,week,18.0,19.0,0
+Virginia,Season peak week,Bin,week,19.0,20.0,0
+Virginia,Season peak week,Bin,week,20.0,21.0,0
+West Virginia,1 wk ahead,Bin,percent,0.0,0.1,0
+West Virginia,1 wk ahead,Bin,percent,0.1,0.2,0
+West Virginia,1 wk ahead,Bin,percent,0.2,0.3,0
+West Virginia,1 wk ahead,Bin,percent,0.3,0.4,0.004
+West Virginia,1 wk ahead,Bin,percent,0.4,0.5,0.012
+West Virginia,1 wk ahead,Bin,percent,0.5,0.6,0.012
+West Virginia,1 wk ahead,Bin,percent,0.6,0.7,0.054
+West Virginia,1 wk ahead,Bin,percent,0.7,0.8,0.122
+West Virginia,1 wk ahead,Bin,percent,0.8,0.9,0.152
+West Virginia,1 wk ahead,Bin,percent,0.9,1.0,0.122
+West Virginia,1 wk ahead,Bin,percent,1.0,1.1,0.106
+West Virginia,1 wk ahead,Bin,percent,1.1,1.2,0.062
+West Virginia,1 wk ahead,Bin,percent,1.2,1.3,0.144
+West Virginia,1 wk ahead,Bin,percent,1.3,1.4,0.066
+West Virginia,1 wk ahead,Bin,percent,1.4,1.5,0.068
+West Virginia,1 wk ahead,Bin,percent,1.5,1.6,0.038
+West Virginia,1 wk ahead,Bin,percent,1.6,1.7,0.012
+West Virginia,1 wk ahead,Bin,percent,1.7,1.8,0.01
+West Virginia,1 wk ahead,Bin,percent,1.8,1.9,0
+West Virginia,1 wk ahead,Bin,percent,1.9,2.0,0
+West Virginia,1 wk ahead,Bin,percent,2.0,2.1,0.004
+West Virginia,1 wk ahead,Bin,percent,2.1,2.2,0.008
+West Virginia,1 wk ahead,Bin,percent,2.2,2.3,0
+West Virginia,1 wk ahead,Bin,percent,2.3,2.4,0
+West Virginia,1 wk ahead,Bin,percent,2.4,2.5,0.004
+West Virginia,1 wk ahead,Bin,percent,2.5,2.6,0
+West Virginia,1 wk ahead,Bin,percent,2.6,2.7,0
+West Virginia,1 wk ahead,Bin,percent,2.7,2.8,0
+West Virginia,1 wk ahead,Bin,percent,2.8,2.9,0
+West Virginia,1 wk ahead,Bin,percent,2.9,3.0,0
+West Virginia,1 wk ahead,Bin,percent,3.0,3.1,0
+West Virginia,1 wk ahead,Bin,percent,3.1,3.2,0
+West Virginia,1 wk ahead,Bin,percent,3.2,3.3,0
+West Virginia,1 wk ahead,Bin,percent,3.3,3.4,0
+West Virginia,1 wk ahead,Bin,percent,3.4,3.5,0
+West Virginia,1 wk ahead,Bin,percent,3.5,3.6,0
+West Virginia,1 wk ahead,Bin,percent,3.6,3.7,0
+West Virginia,1 wk ahead,Bin,percent,3.7,3.8,0
+West Virginia,1 wk ahead,Bin,percent,3.8,3.9,0
+West Virginia,1 wk ahead,Bin,percent,3.9,4.0,0
+West Virginia,1 wk ahead,Bin,percent,4.0,4.1,0
+West Virginia,1 wk ahead,Bin,percent,4.1,4.2,0
+West Virginia,1 wk ahead,Bin,percent,4.2,4.3,0
+West Virginia,1 wk ahead,Bin,percent,4.3,4.4,0
+West Virginia,1 wk ahead,Bin,percent,4.4,4.5,0
+West Virginia,1 wk ahead,Bin,percent,4.5,4.6,0
+West Virginia,1 wk ahead,Bin,percent,4.6,4.7,0
+West Virginia,1 wk ahead,Bin,percent,4.7,4.8,0
+West Virginia,1 wk ahead,Bin,percent,4.8,4.9,0
+West Virginia,1 wk ahead,Bin,percent,4.9,5.0,0
+West Virginia,1 wk ahead,Bin,percent,5.0,5.1,0
+West Virginia,1 wk ahead,Bin,percent,5.1,5.2,0
+West Virginia,1 wk ahead,Bin,percent,5.2,5.3,0
+West Virginia,1 wk ahead,Bin,percent,5.3,5.4,0
+West Virginia,1 wk ahead,Bin,percent,5.4,5.5,0
+West Virginia,1 wk ahead,Bin,percent,5.5,5.6,0
+West Virginia,1 wk ahead,Bin,percent,5.6,5.7,0
+West Virginia,1 wk ahead,Bin,percent,5.7,5.8,0
+West Virginia,1 wk ahead,Bin,percent,5.8,5.9,0
+West Virginia,1 wk ahead,Bin,percent,5.9,6.0,0
+West Virginia,1 wk ahead,Bin,percent,6.0,6.1,0
+West Virginia,1 wk ahead,Bin,percent,6.1,6.2,0
+West Virginia,1 wk ahead,Bin,percent,6.2,6.3,0
+West Virginia,1 wk ahead,Bin,percent,6.3,6.4,0
+West Virginia,1 wk ahead,Bin,percent,6.4,6.5,0
+West Virginia,1 wk ahead,Bin,percent,6.5,6.6,0
+West Virginia,1 wk ahead,Bin,percent,6.6,6.7,0
+West Virginia,1 wk ahead,Bin,percent,6.7,6.8,0
+West Virginia,1 wk ahead,Bin,percent,6.8,6.9,0
+West Virginia,1 wk ahead,Bin,percent,6.9,7.0,0
+West Virginia,1 wk ahead,Bin,percent,7.0,7.1,0
+West Virginia,1 wk ahead,Bin,percent,7.1,7.2,0
+West Virginia,1 wk ahead,Bin,percent,7.2,7.3,0
+West Virginia,1 wk ahead,Bin,percent,7.3,7.4,0
+West Virginia,1 wk ahead,Bin,percent,7.4,7.5,0
+West Virginia,1 wk ahead,Bin,percent,7.5,7.6,0
+West Virginia,1 wk ahead,Bin,percent,7.6,7.7,0
+West Virginia,1 wk ahead,Bin,percent,7.7,7.8,0
+West Virginia,1 wk ahead,Bin,percent,7.8,7.9,0
+West Virginia,1 wk ahead,Bin,percent,7.9,8.0,0
+West Virginia,1 wk ahead,Bin,percent,8.0,8.1,0
+West Virginia,1 wk ahead,Bin,percent,8.1,8.2,0
+West Virginia,1 wk ahead,Bin,percent,8.2,8.3,0
+West Virginia,1 wk ahead,Bin,percent,8.3,8.4,0
+West Virginia,1 wk ahead,Bin,percent,8.4,8.5,0
+West Virginia,1 wk ahead,Bin,percent,8.5,8.6,0
+West Virginia,1 wk ahead,Bin,percent,8.6,8.7,0
+West Virginia,1 wk ahead,Bin,percent,8.7,8.8,0
+West Virginia,1 wk ahead,Bin,percent,8.8,8.9,0
+West Virginia,1 wk ahead,Bin,percent,8.9,9.0,0
+West Virginia,1 wk ahead,Bin,percent,9.0,9.1,0
+West Virginia,1 wk ahead,Bin,percent,9.1,9.2,0
+West Virginia,1 wk ahead,Bin,percent,9.2,9.3,0
+West Virginia,1 wk ahead,Bin,percent,9.3,9.4,0
+West Virginia,1 wk ahead,Bin,percent,9.4,9.5,0
+West Virginia,1 wk ahead,Bin,percent,9.5,9.6,0
+West Virginia,1 wk ahead,Bin,percent,9.6,9.7,0
+West Virginia,1 wk ahead,Bin,percent,9.7,9.8,0
+West Virginia,1 wk ahead,Bin,percent,9.8,9.9,0
+West Virginia,1 wk ahead,Bin,percent,9.9,10.0,0
+West Virginia,1 wk ahead,Bin,percent,10.0,10.1,0
+West Virginia,1 wk ahead,Bin,percent,10.1,10.2,0
+West Virginia,1 wk ahead,Bin,percent,10.2,10.3,0
+West Virginia,1 wk ahead,Bin,percent,10.3,10.4,0
+West Virginia,1 wk ahead,Bin,percent,10.4,10.5,0
+West Virginia,1 wk ahead,Bin,percent,10.5,10.6,0
+West Virginia,1 wk ahead,Bin,percent,10.6,10.7,0
+West Virginia,1 wk ahead,Bin,percent,10.7,10.8,0
+West Virginia,1 wk ahead,Bin,percent,10.8,10.9,0
+West Virginia,1 wk ahead,Bin,percent,10.9,11.0,0
+West Virginia,1 wk ahead,Bin,percent,11.0,11.1,0
+West Virginia,1 wk ahead,Bin,percent,11.1,11.2,0
+West Virginia,1 wk ahead,Bin,percent,11.2,11.3,0
+West Virginia,1 wk ahead,Bin,percent,11.3,11.4,0
+West Virginia,1 wk ahead,Bin,percent,11.4,11.5,0
+West Virginia,1 wk ahead,Bin,percent,11.5,11.6,0
+West Virginia,1 wk ahead,Bin,percent,11.6,11.7,0
+West Virginia,1 wk ahead,Bin,percent,11.7,11.8,0
+West Virginia,1 wk ahead,Bin,percent,11.8,11.9,0
+West Virginia,1 wk ahead,Bin,percent,11.9,12.0,0
+West Virginia,1 wk ahead,Bin,percent,12.0,12.1,0
+West Virginia,1 wk ahead,Bin,percent,12.1,12.2,0
+West Virginia,1 wk ahead,Bin,percent,12.2,12.3,0
+West Virginia,1 wk ahead,Bin,percent,12.3,12.4,0
+West Virginia,1 wk ahead,Bin,percent,12.4,12.5,0
+West Virginia,1 wk ahead,Bin,percent,12.5,12.6,0
+West Virginia,1 wk ahead,Bin,percent,12.6,12.7,0
+West Virginia,1 wk ahead,Bin,percent,12.7,12.8,0
+West Virginia,1 wk ahead,Bin,percent,12.8,12.9,0
+West Virginia,1 wk ahead,Bin,percent,12.9,13.0,0
+West Virginia,1 wk ahead,Bin,percent,13.0,100.0,0
+West Virginia,2 wk ahead,Bin,percent,0.0,0.1,0
+West Virginia,2 wk ahead,Bin,percent,0.1,0.2,0
+West Virginia,2 wk ahead,Bin,percent,0.2,0.3,0
+West Virginia,2 wk ahead,Bin,percent,0.3,0.4,0.002
+West Virginia,2 wk ahead,Bin,percent,0.4,0.5,0.01
+West Virginia,2 wk ahead,Bin,percent,0.5,0.6,0.034
+West Virginia,2 wk ahead,Bin,percent,0.6,0.7,0.04
+West Virginia,2 wk ahead,Bin,percent,0.7,0.8,0.066
+West Virginia,2 wk ahead,Bin,percent,0.8,0.9,0.09
+West Virginia,2 wk ahead,Bin,percent,0.9,1.0,0.122
+West Virginia,2 wk ahead,Bin,percent,1.0,1.1,0.082
+West Virginia,2 wk ahead,Bin,percent,1.1,1.2,0.09
+West Virginia,2 wk ahead,Bin,percent,1.2,1.3,0.086
+West Virginia,2 wk ahead,Bin,percent,1.3,1.4,0.068
+West Virginia,2 wk ahead,Bin,percent,1.4,1.5,0.084
+West Virginia,2 wk ahead,Bin,percent,1.5,1.6,0.048
+West Virginia,2 wk ahead,Bin,percent,1.6,1.7,0.044
+West Virginia,2 wk ahead,Bin,percent,1.7,1.8,0.026
+West Virginia,2 wk ahead,Bin,percent,1.8,1.9,0.028
+West Virginia,2 wk ahead,Bin,percent,1.9,2.0,0.018
+West Virginia,2 wk ahead,Bin,percent,2.0,2.1,0.012
+West Virginia,2 wk ahead,Bin,percent,2.1,2.2,0.008
+West Virginia,2 wk ahead,Bin,percent,2.2,2.3,0.008
+West Virginia,2 wk ahead,Bin,percent,2.3,2.4,0.008
+West Virginia,2 wk ahead,Bin,percent,2.4,2.5,0.004
+West Virginia,2 wk ahead,Bin,percent,2.5,2.6,0.006
+West Virginia,2 wk ahead,Bin,percent,2.6,2.7,0.006
+West Virginia,2 wk ahead,Bin,percent,2.7,2.8,0
+West Virginia,2 wk ahead,Bin,percent,2.8,2.9,0.002
+West Virginia,2 wk ahead,Bin,percent,2.9,3.0,0.002
+West Virginia,2 wk ahead,Bin,percent,3.0,3.1,0.002
+West Virginia,2 wk ahead,Bin,percent,3.1,3.2,0.002
+West Virginia,2 wk ahead,Bin,percent,3.2,3.3,0
+West Virginia,2 wk ahead,Bin,percent,3.3,3.4,0.002
+West Virginia,2 wk ahead,Bin,percent,3.4,3.5,0
+West Virginia,2 wk ahead,Bin,percent,3.5,3.6,0
+West Virginia,2 wk ahead,Bin,percent,3.6,3.7,0
+West Virginia,2 wk ahead,Bin,percent,3.7,3.8,0
+West Virginia,2 wk ahead,Bin,percent,3.8,3.9,0
+West Virginia,2 wk ahead,Bin,percent,3.9,4.0,0
+West Virginia,2 wk ahead,Bin,percent,4.0,4.1,0
+West Virginia,2 wk ahead,Bin,percent,4.1,4.2,0
+West Virginia,2 wk ahead,Bin,percent,4.2,4.3,0
+West Virginia,2 wk ahead,Bin,percent,4.3,4.4,0
+West Virginia,2 wk ahead,Bin,percent,4.4,4.5,0
+West Virginia,2 wk ahead,Bin,percent,4.5,4.6,0
+West Virginia,2 wk ahead,Bin,percent,4.6,4.7,0
+West Virginia,2 wk ahead,Bin,percent,4.7,4.8,0
+West Virginia,2 wk ahead,Bin,percent,4.8,4.9,0
+West Virginia,2 wk ahead,Bin,percent,4.9,5.0,0
+West Virginia,2 wk ahead,Bin,percent,5.0,5.1,0
+West Virginia,2 wk ahead,Bin,percent,5.1,5.2,0
+West Virginia,2 wk ahead,Bin,percent,5.2,5.3,0
+West Virginia,2 wk ahead,Bin,percent,5.3,5.4,0
+West Virginia,2 wk ahead,Bin,percent,5.4,5.5,0
+West Virginia,2 wk ahead,Bin,percent,5.5,5.6,0
+West Virginia,2 wk ahead,Bin,percent,5.6,5.7,0
+West Virginia,2 wk ahead,Bin,percent,5.7,5.8,0
+West Virginia,2 wk ahead,Bin,percent,5.8,5.9,0
+West Virginia,2 wk ahead,Bin,percent,5.9,6.0,0
+West Virginia,2 wk ahead,Bin,percent,6.0,6.1,0
+West Virginia,2 wk ahead,Bin,percent,6.1,6.2,0
+West Virginia,2 wk ahead,Bin,percent,6.2,6.3,0
+West Virginia,2 wk ahead,Bin,percent,6.3,6.4,0
+West Virginia,2 wk ahead,Bin,percent,6.4,6.5,0
+West Virginia,2 wk ahead,Bin,percent,6.5,6.6,0
+West Virginia,2 wk ahead,Bin,percent,6.6,6.7,0
+West Virginia,2 wk ahead,Bin,percent,6.7,6.8,0
+West Virginia,2 wk ahead,Bin,percent,6.8,6.9,0
+West Virginia,2 wk ahead,Bin,percent,6.9,7.0,0
+West Virginia,2 wk ahead,Bin,percent,7.0,7.1,0
+West Virginia,2 wk ahead,Bin,percent,7.1,7.2,0
+West Virginia,2 wk ahead,Bin,percent,7.2,7.3,0
+West Virginia,2 wk ahead,Bin,percent,7.3,7.4,0
+West Virginia,2 wk ahead,Bin,percent,7.4,7.5,0
+West Virginia,2 wk ahead,Bin,percent,7.5,7.6,0
+West Virginia,2 wk ahead,Bin,percent,7.6,7.7,0
+West Virginia,2 wk ahead,Bin,percent,7.7,7.8,0
+West Virginia,2 wk ahead,Bin,percent,7.8,7.9,0
+West Virginia,2 wk ahead,Bin,percent,7.9,8.0,0
+West Virginia,2 wk ahead,Bin,percent,8.0,8.1,0
+West Virginia,2 wk ahead,Bin,percent,8.1,8.2,0
+West Virginia,2 wk ahead,Bin,percent,8.2,8.3,0
+West Virginia,2 wk ahead,Bin,percent,8.3,8.4,0
+West Virginia,2 wk ahead,Bin,percent,8.4,8.5,0
+West Virginia,2 wk ahead,Bin,percent,8.5,8.6,0
+West Virginia,2 wk ahead,Bin,percent,8.6,8.7,0
+West Virginia,2 wk ahead,Bin,percent,8.7,8.8,0
+West Virginia,2 wk ahead,Bin,percent,8.8,8.9,0
+West Virginia,2 wk ahead,Bin,percent,8.9,9.0,0
+West Virginia,2 wk ahead,Bin,percent,9.0,9.1,0
+West Virginia,2 wk ahead,Bin,percent,9.1,9.2,0
+West Virginia,2 wk ahead,Bin,percent,9.2,9.3,0
+West Virginia,2 wk ahead,Bin,percent,9.3,9.4,0
+West Virginia,2 wk ahead,Bin,percent,9.4,9.5,0
+West Virginia,2 wk ahead,Bin,percent,9.5,9.6,0
+West Virginia,2 wk ahead,Bin,percent,9.6,9.7,0
+West Virginia,2 wk ahead,Bin,percent,9.7,9.8,0
+West Virginia,2 wk ahead,Bin,percent,9.8,9.9,0
+West Virginia,2 wk ahead,Bin,percent,9.9,10.0,0
+West Virginia,2 wk ahead,Bin,percent,10.0,10.1,0
+West Virginia,2 wk ahead,Bin,percent,10.1,10.2,0
+West Virginia,2 wk ahead,Bin,percent,10.2,10.3,0
+West Virginia,2 wk ahead,Bin,percent,10.3,10.4,0
+West Virginia,2 wk ahead,Bin,percent,10.4,10.5,0
+West Virginia,2 wk ahead,Bin,percent,10.5,10.6,0
+West Virginia,2 wk ahead,Bin,percent,10.6,10.7,0
+West Virginia,2 wk ahead,Bin,percent,10.7,10.8,0
+West Virginia,2 wk ahead,Bin,percent,10.8,10.9,0
+West Virginia,2 wk ahead,Bin,percent,10.9,11.0,0
+West Virginia,2 wk ahead,Bin,percent,11.0,11.1,0
+West Virginia,2 wk ahead,Bin,percent,11.1,11.2,0
+West Virginia,2 wk ahead,Bin,percent,11.2,11.3,0
+West Virginia,2 wk ahead,Bin,percent,11.3,11.4,0
+West Virginia,2 wk ahead,Bin,percent,11.4,11.5,0
+West Virginia,2 wk ahead,Bin,percent,11.5,11.6,0
+West Virginia,2 wk ahead,Bin,percent,11.6,11.7,0
+West Virginia,2 wk ahead,Bin,percent,11.7,11.8,0
+West Virginia,2 wk ahead,Bin,percent,11.8,11.9,0
+West Virginia,2 wk ahead,Bin,percent,11.9,12.0,0
+West Virginia,2 wk ahead,Bin,percent,12.0,12.1,0
+West Virginia,2 wk ahead,Bin,percent,12.1,12.2,0
+West Virginia,2 wk ahead,Bin,percent,12.2,12.3,0
+West Virginia,2 wk ahead,Bin,percent,12.3,12.4,0
+West Virginia,2 wk ahead,Bin,percent,12.4,12.5,0
+West Virginia,2 wk ahead,Bin,percent,12.5,12.6,0
+West Virginia,2 wk ahead,Bin,percent,12.6,12.7,0
+West Virginia,2 wk ahead,Bin,percent,12.7,12.8,0
+West Virginia,2 wk ahead,Bin,percent,12.8,12.9,0
+West Virginia,2 wk ahead,Bin,percent,12.9,13.0,0
+West Virginia,2 wk ahead,Bin,percent,13.0,100.0,0
+West Virginia,3 wk ahead,Bin,percent,0.0,0.1,0
+West Virginia,3 wk ahead,Bin,percent,0.1,0.2,0
+West Virginia,3 wk ahead,Bin,percent,0.2,0.3,0
+West Virginia,3 wk ahead,Bin,percent,0.3,0.4,0.004
+West Virginia,3 wk ahead,Bin,percent,0.4,0.5,0.006
+West Virginia,3 wk ahead,Bin,percent,0.5,0.6,0.038
+West Virginia,3 wk ahead,Bin,percent,0.6,0.7,0.046
+West Virginia,3 wk ahead,Bin,percent,0.7,0.8,0.054
+West Virginia,3 wk ahead,Bin,percent,0.8,0.9,0.076
+West Virginia,3 wk ahead,Bin,percent,0.9,1.0,0.068
+West Virginia,3 wk ahead,Bin,percent,1.0,1.1,0.078
+West Virginia,3 wk ahead,Bin,percent,1.1,1.2,0.068
+West Virginia,3 wk ahead,Bin,percent,1.2,1.3,0.088
+West Virginia,3 wk ahead,Bin,percent,1.3,1.4,0.08
+West Virginia,3 wk ahead,Bin,percent,1.4,1.5,0.054
+West Virginia,3 wk ahead,Bin,percent,1.5,1.6,0.062
+West Virginia,3 wk ahead,Bin,percent,1.6,1.7,0.034
+West Virginia,3 wk ahead,Bin,percent,1.7,1.8,0.048
+West Virginia,3 wk ahead,Bin,percent,1.8,1.9,0.022
+West Virginia,3 wk ahead,Bin,percent,1.9,2.0,0.042
+West Virginia,3 wk ahead,Bin,percent,2.0,2.1,0.028
+West Virginia,3 wk ahead,Bin,percent,2.1,2.2,0.014
+West Virginia,3 wk ahead,Bin,percent,2.2,2.3,0.026
+West Virginia,3 wk ahead,Bin,percent,2.3,2.4,0.002
+West Virginia,3 wk ahead,Bin,percent,2.4,2.5,0.006
+West Virginia,3 wk ahead,Bin,percent,2.5,2.6,0.006
+West Virginia,3 wk ahead,Bin,percent,2.6,2.7,0.008
+West Virginia,3 wk ahead,Bin,percent,2.7,2.8,0.006
+West Virginia,3 wk ahead,Bin,percent,2.8,2.9,0.004
+West Virginia,3 wk ahead,Bin,percent,2.9,3.0,0.008
+West Virginia,3 wk ahead,Bin,percent,3.0,3.1,0.002
+West Virginia,3 wk ahead,Bin,percent,3.1,3.2,0.002
+West Virginia,3 wk ahead,Bin,percent,3.2,3.3,0.006
+West Virginia,3 wk ahead,Bin,percent,3.3,3.4,0
+West Virginia,3 wk ahead,Bin,percent,3.4,3.5,0.008
+West Virginia,3 wk ahead,Bin,percent,3.5,3.6,0
+West Virginia,3 wk ahead,Bin,percent,3.6,3.7,0
+West Virginia,3 wk ahead,Bin,percent,3.7,3.8,0.002
+West Virginia,3 wk ahead,Bin,percent,3.8,3.9,0
+West Virginia,3 wk ahead,Bin,percent,3.9,4.0,0.002
+West Virginia,3 wk ahead,Bin,percent,4.0,4.1,0
+West Virginia,3 wk ahead,Bin,percent,4.1,4.2,0
+West Virginia,3 wk ahead,Bin,percent,4.2,4.3,0
+West Virginia,3 wk ahead,Bin,percent,4.3,4.4,0
+West Virginia,3 wk ahead,Bin,percent,4.4,4.5,0
+West Virginia,3 wk ahead,Bin,percent,4.5,4.6,0
+West Virginia,3 wk ahead,Bin,percent,4.6,4.7,0
+West Virginia,3 wk ahead,Bin,percent,4.7,4.8,0
+West Virginia,3 wk ahead,Bin,percent,4.8,4.9,0
+West Virginia,3 wk ahead,Bin,percent,4.9,5.0,0
+West Virginia,3 wk ahead,Bin,percent,5.0,5.1,0
+West Virginia,3 wk ahead,Bin,percent,5.1,5.2,0
+West Virginia,3 wk ahead,Bin,percent,5.2,5.3,0
+West Virginia,3 wk ahead,Bin,percent,5.3,5.4,0
+West Virginia,3 wk ahead,Bin,percent,5.4,5.5,0
+West Virginia,3 wk ahead,Bin,percent,5.5,5.6,0
+West Virginia,3 wk ahead,Bin,percent,5.6,5.7,0
+West Virginia,3 wk ahead,Bin,percent,5.7,5.8,0
+West Virginia,3 wk ahead,Bin,percent,5.8,5.9,0
+West Virginia,3 wk ahead,Bin,percent,5.9,6.0,0
+West Virginia,3 wk ahead,Bin,percent,6.0,6.1,0
+West Virginia,3 wk ahead,Bin,percent,6.1,6.2,0
+West Virginia,3 wk ahead,Bin,percent,6.2,6.3,0
+West Virginia,3 wk ahead,Bin,percent,6.3,6.4,0
+West Virginia,3 wk ahead,Bin,percent,6.4,6.5,0
+West Virginia,3 wk ahead,Bin,percent,6.5,6.6,0
+West Virginia,3 wk ahead,Bin,percent,6.6,6.7,0
+West Virginia,3 wk ahead,Bin,percent,6.7,6.8,0
+West Virginia,3 wk ahead,Bin,percent,6.8,6.9,0
+West Virginia,3 wk ahead,Bin,percent,6.9,7.0,0
+West Virginia,3 wk ahead,Bin,percent,7.0,7.1,0.002
+West Virginia,3 wk ahead,Bin,percent,7.1,7.2,0
+West Virginia,3 wk ahead,Bin,percent,7.2,7.3,0
+West Virginia,3 wk ahead,Bin,percent,7.3,7.4,0
+West Virginia,3 wk ahead,Bin,percent,7.4,7.5,0
+West Virginia,3 wk ahead,Bin,percent,7.5,7.6,0
+West Virginia,3 wk ahead,Bin,percent,7.6,7.7,0
+West Virginia,3 wk ahead,Bin,percent,7.7,7.8,0
+West Virginia,3 wk ahead,Bin,percent,7.8,7.9,0
+West Virginia,3 wk ahead,Bin,percent,7.9,8.0,0
+West Virginia,3 wk ahead,Bin,percent,8.0,8.1,0
+West Virginia,3 wk ahead,Bin,percent,8.1,8.2,0
+West Virginia,3 wk ahead,Bin,percent,8.2,8.3,0
+West Virginia,3 wk ahead,Bin,percent,8.3,8.4,0
+West Virginia,3 wk ahead,Bin,percent,8.4,8.5,0
+West Virginia,3 wk ahead,Bin,percent,8.5,8.6,0
+West Virginia,3 wk ahead,Bin,percent,8.6,8.7,0
+West Virginia,3 wk ahead,Bin,percent,8.7,8.8,0
+West Virginia,3 wk ahead,Bin,percent,8.8,8.9,0
+West Virginia,3 wk ahead,Bin,percent,8.9,9.0,0
+West Virginia,3 wk ahead,Bin,percent,9.0,9.1,0
+West Virginia,3 wk ahead,Bin,percent,9.1,9.2,0
+West Virginia,3 wk ahead,Bin,percent,9.2,9.3,0
+West Virginia,3 wk ahead,Bin,percent,9.3,9.4,0
+West Virginia,3 wk ahead,Bin,percent,9.4,9.5,0
+West Virginia,3 wk ahead,Bin,percent,9.5,9.6,0
+West Virginia,3 wk ahead,Bin,percent,9.6,9.7,0
+West Virginia,3 wk ahead,Bin,percent,9.7,9.8,0
+West Virginia,3 wk ahead,Bin,percent,9.8,9.9,0
+West Virginia,3 wk ahead,Bin,percent,9.9,10.0,0
+West Virginia,3 wk ahead,Bin,percent,10.0,10.1,0
+West Virginia,3 wk ahead,Bin,percent,10.1,10.2,0
+West Virginia,3 wk ahead,Bin,percent,10.2,10.3,0
+West Virginia,3 wk ahead,Bin,percent,10.3,10.4,0
+West Virginia,3 wk ahead,Bin,percent,10.4,10.5,0
+West Virginia,3 wk ahead,Bin,percent,10.5,10.6,0
+West Virginia,3 wk ahead,Bin,percent,10.6,10.7,0
+West Virginia,3 wk ahead,Bin,percent,10.7,10.8,0
+West Virginia,3 wk ahead,Bin,percent,10.8,10.9,0
+West Virginia,3 wk ahead,Bin,percent,10.9,11.0,0
+West Virginia,3 wk ahead,Bin,percent,11.0,11.1,0
+West Virginia,3 wk ahead,Bin,percent,11.1,11.2,0
+West Virginia,3 wk ahead,Bin,percent,11.2,11.3,0
+West Virginia,3 wk ahead,Bin,percent,11.3,11.4,0
+West Virginia,3 wk ahead,Bin,percent,11.4,11.5,0
+West Virginia,3 wk ahead,Bin,percent,11.5,11.6,0
+West Virginia,3 wk ahead,Bin,percent,11.6,11.7,0
+West Virginia,3 wk ahead,Bin,percent,11.7,11.8,0
+West Virginia,3 wk ahead,Bin,percent,11.8,11.9,0
+West Virginia,3 wk ahead,Bin,percent,11.9,12.0,0
+West Virginia,3 wk ahead,Bin,percent,12.0,12.1,0
+West Virginia,3 wk ahead,Bin,percent,12.1,12.2,0
+West Virginia,3 wk ahead,Bin,percent,12.2,12.3,0
+West Virginia,3 wk ahead,Bin,percent,12.3,12.4,0
+West Virginia,3 wk ahead,Bin,percent,12.4,12.5,0
+West Virginia,3 wk ahead,Bin,percent,12.5,12.6,0
+West Virginia,3 wk ahead,Bin,percent,12.6,12.7,0
+West Virginia,3 wk ahead,Bin,percent,12.7,12.8,0
+West Virginia,3 wk ahead,Bin,percent,12.8,12.9,0
+West Virginia,3 wk ahead,Bin,percent,12.9,13.0,0
+West Virginia,3 wk ahead,Bin,percent,13.0,100.0,0
+West Virginia,4 wk ahead,Bin,percent,0.0,0.1,0
+West Virginia,4 wk ahead,Bin,percent,0.1,0.2,0
+West Virginia,4 wk ahead,Bin,percent,0.2,0.3,0.006
+West Virginia,4 wk ahead,Bin,percent,0.3,0.4,0.014
+West Virginia,4 wk ahead,Bin,percent,0.4,0.5,0.024
+West Virginia,4 wk ahead,Bin,percent,0.5,0.6,0.032
+West Virginia,4 wk ahead,Bin,percent,0.6,0.7,0.044
+West Virginia,4 wk ahead,Bin,percent,0.7,0.8,0.094
+West Virginia,4 wk ahead,Bin,percent,0.8,0.9,0.076
+West Virginia,4 wk ahead,Bin,percent,0.9,1.0,0.06
+West Virginia,4 wk ahead,Bin,percent,1.0,1.1,0.068
+West Virginia,4 wk ahead,Bin,percent,1.1,1.2,0.068
+West Virginia,4 wk ahead,Bin,percent,1.2,1.3,0.08
+West Virginia,4 wk ahead,Bin,percent,1.3,1.4,0.038
+West Virginia,4 wk ahead,Bin,percent,1.4,1.5,0.06
+West Virginia,4 wk ahead,Bin,percent,1.5,1.6,0.048
+West Virginia,4 wk ahead,Bin,percent,1.6,1.7,0.054
+West Virginia,4 wk ahead,Bin,percent,1.7,1.8,0.04
+West Virginia,4 wk ahead,Bin,percent,1.8,1.9,0.036
+West Virginia,4 wk ahead,Bin,percent,1.9,2.0,0.024
+West Virginia,4 wk ahead,Bin,percent,2.0,2.1,0.02
+West Virginia,4 wk ahead,Bin,percent,2.1,2.2,0.012
+West Virginia,4 wk ahead,Bin,percent,2.2,2.3,0.01
+West Virginia,4 wk ahead,Bin,percent,2.3,2.4,0.018
+West Virginia,4 wk ahead,Bin,percent,2.4,2.5,0.008
+West Virginia,4 wk ahead,Bin,percent,2.5,2.6,0.01
+West Virginia,4 wk ahead,Bin,percent,2.6,2.7,0.004
+West Virginia,4 wk ahead,Bin,percent,2.7,2.8,0.01
+West Virginia,4 wk ahead,Bin,percent,2.8,2.9,0.01
+West Virginia,4 wk ahead,Bin,percent,2.9,3.0,0.008
+West Virginia,4 wk ahead,Bin,percent,3.0,3.1,0.006
+West Virginia,4 wk ahead,Bin,percent,3.1,3.2,0.002
+West Virginia,4 wk ahead,Bin,percent,3.2,3.3,0.002
+West Virginia,4 wk ahead,Bin,percent,3.3,3.4,0
+West Virginia,4 wk ahead,Bin,percent,3.4,3.5,0
+West Virginia,4 wk ahead,Bin,percent,3.5,3.6,0.002
+West Virginia,4 wk ahead,Bin,percent,3.6,3.7,0.002
+West Virginia,4 wk ahead,Bin,percent,3.7,3.8,0.002
+West Virginia,4 wk ahead,Bin,percent,3.8,3.9,0.002
+West Virginia,4 wk ahead,Bin,percent,3.9,4.0,0
+West Virginia,4 wk ahead,Bin,percent,4.0,4.1,0.002
+West Virginia,4 wk ahead,Bin,percent,4.1,4.2,0
+West Virginia,4 wk ahead,Bin,percent,4.2,4.3,0
+West Virginia,4 wk ahead,Bin,percent,4.3,4.4,0.002
+West Virginia,4 wk ahead,Bin,percent,4.4,4.5,0
+West Virginia,4 wk ahead,Bin,percent,4.5,4.6,0
+West Virginia,4 wk ahead,Bin,percent,4.6,4.7,0.002
+West Virginia,4 wk ahead,Bin,percent,4.7,4.8,0
+West Virginia,4 wk ahead,Bin,percent,4.8,4.9,0
+West Virginia,4 wk ahead,Bin,percent,4.9,5.0,0
+West Virginia,4 wk ahead,Bin,percent,5.0,5.1,0
+West Virginia,4 wk ahead,Bin,percent,5.1,5.2,0
+West Virginia,4 wk ahead,Bin,percent,5.2,5.3,0
+West Virginia,4 wk ahead,Bin,percent,5.3,5.4,0
+West Virginia,4 wk ahead,Bin,percent,5.4,5.5,0
+West Virginia,4 wk ahead,Bin,percent,5.5,5.6,0
+West Virginia,4 wk ahead,Bin,percent,5.6,5.7,0
+West Virginia,4 wk ahead,Bin,percent,5.7,5.8,0
+West Virginia,4 wk ahead,Bin,percent,5.8,5.9,0
+West Virginia,4 wk ahead,Bin,percent,5.9,6.0,0
+West Virginia,4 wk ahead,Bin,percent,6.0,6.1,0
+West Virginia,4 wk ahead,Bin,percent,6.1,6.2,0
+West Virginia,4 wk ahead,Bin,percent,6.2,6.3,0
+West Virginia,4 wk ahead,Bin,percent,6.3,6.4,0
+West Virginia,4 wk ahead,Bin,percent,6.4,6.5,0
+West Virginia,4 wk ahead,Bin,percent,6.5,6.6,0
+West Virginia,4 wk ahead,Bin,percent,6.6,6.7,0
+West Virginia,4 wk ahead,Bin,percent,6.7,6.8,0
+West Virginia,4 wk ahead,Bin,percent,6.8,6.9,0
+West Virginia,4 wk ahead,Bin,percent,6.9,7.0,0
+West Virginia,4 wk ahead,Bin,percent,7.0,7.1,0
+West Virginia,4 wk ahead,Bin,percent,7.1,7.2,0
+West Virginia,4 wk ahead,Bin,percent,7.2,7.3,0
+West Virginia,4 wk ahead,Bin,percent,7.3,7.4,0
+West Virginia,4 wk ahead,Bin,percent,7.4,7.5,0
+West Virginia,4 wk ahead,Bin,percent,7.5,7.6,0
+West Virginia,4 wk ahead,Bin,percent,7.6,7.7,0
+West Virginia,4 wk ahead,Bin,percent,7.7,7.8,0
+West Virginia,4 wk ahead,Bin,percent,7.8,7.9,0
+West Virginia,4 wk ahead,Bin,percent,7.9,8.0,0
+West Virginia,4 wk ahead,Bin,percent,8.0,8.1,0
+West Virginia,4 wk ahead,Bin,percent,8.1,8.2,0
+West Virginia,4 wk ahead,Bin,percent,8.2,8.3,0
+West Virginia,4 wk ahead,Bin,percent,8.3,8.4,0
+West Virginia,4 wk ahead,Bin,percent,8.4,8.5,0
+West Virginia,4 wk ahead,Bin,percent,8.5,8.6,0
+West Virginia,4 wk ahead,Bin,percent,8.6,8.7,0
+West Virginia,4 wk ahead,Bin,percent,8.7,8.8,0
+West Virginia,4 wk ahead,Bin,percent,8.8,8.9,0
+West Virginia,4 wk ahead,Bin,percent,8.9,9.0,0
+West Virginia,4 wk ahead,Bin,percent,9.0,9.1,0
+West Virginia,4 wk ahead,Bin,percent,9.1,9.2,0
+West Virginia,4 wk ahead,Bin,percent,9.2,9.3,0
+West Virginia,4 wk ahead,Bin,percent,9.3,9.4,0
+West Virginia,4 wk ahead,Bin,percent,9.4,9.5,0
+West Virginia,4 wk ahead,Bin,percent,9.5,9.6,0
+West Virginia,4 wk ahead,Bin,percent,9.6,9.7,0
+West Virginia,4 wk ahead,Bin,percent,9.7,9.8,0
+West Virginia,4 wk ahead,Bin,percent,9.8,9.9,0
+West Virginia,4 wk ahead,Bin,percent,9.9,10.0,0
+West Virginia,4 wk ahead,Bin,percent,10.0,10.1,0
+West Virginia,4 wk ahead,Bin,percent,10.1,10.2,0
+West Virginia,4 wk ahead,Bin,percent,10.2,10.3,0
+West Virginia,4 wk ahead,Bin,percent,10.3,10.4,0
+West Virginia,4 wk ahead,Bin,percent,10.4,10.5,0
+West Virginia,4 wk ahead,Bin,percent,10.5,10.6,0
+West Virginia,4 wk ahead,Bin,percent,10.6,10.7,0
+West Virginia,4 wk ahead,Bin,percent,10.7,10.8,0
+West Virginia,4 wk ahead,Bin,percent,10.8,10.9,0
+West Virginia,4 wk ahead,Bin,percent,10.9,11.0,0
+West Virginia,4 wk ahead,Bin,percent,11.0,11.1,0
+West Virginia,4 wk ahead,Bin,percent,11.1,11.2,0
+West Virginia,4 wk ahead,Bin,percent,11.2,11.3,0
+West Virginia,4 wk ahead,Bin,percent,11.3,11.4,0
+West Virginia,4 wk ahead,Bin,percent,11.4,11.5,0
+West Virginia,4 wk ahead,Bin,percent,11.5,11.6,0
+West Virginia,4 wk ahead,Bin,percent,11.6,11.7,0
+West Virginia,4 wk ahead,Bin,percent,11.7,11.8,0
+West Virginia,4 wk ahead,Bin,percent,11.8,11.9,0
+West Virginia,4 wk ahead,Bin,percent,11.9,12.0,0
+West Virginia,4 wk ahead,Bin,percent,12.0,12.1,0
+West Virginia,4 wk ahead,Bin,percent,12.1,12.2,0
+West Virginia,4 wk ahead,Bin,percent,12.2,12.3,0
+West Virginia,4 wk ahead,Bin,percent,12.3,12.4,0
+West Virginia,4 wk ahead,Bin,percent,12.4,12.5,0
+West Virginia,4 wk ahead,Bin,percent,12.5,12.6,0
+West Virginia,4 wk ahead,Bin,percent,12.6,12.7,0
+West Virginia,4 wk ahead,Bin,percent,12.7,12.8,0
+West Virginia,4 wk ahead,Bin,percent,12.8,12.9,0
+West Virginia,4 wk ahead,Bin,percent,12.9,13.0,0
+West Virginia,4 wk ahead,Bin,percent,13.0,100.0,0
+West Virginia,Season peak percentage,Bin,percent,0.0,0.1,0
+West Virginia,Season peak percentage,Bin,percent,0.1,0.2,0
+West Virginia,Season peak percentage,Bin,percent,0.2,0.3,0
+West Virginia,Season peak percentage,Bin,percent,0.3,0.4,0
+West Virginia,Season peak percentage,Bin,percent,0.4,0.5,0
+West Virginia,Season peak percentage,Bin,percent,0.5,0.6,0
+West Virginia,Season peak percentage,Bin,percent,0.6,0.7,0
+West Virginia,Season peak percentage,Bin,percent,0.7,0.8,0
+West Virginia,Season peak percentage,Bin,percent,0.8,0.9,0
+West Virginia,Season peak percentage,Bin,percent,0.9,1.0,0
+West Virginia,Season peak percentage,Bin,percent,1.0,1.1,0
+West Virginia,Season peak percentage,Bin,percent,1.1,1.2,0.004
+West Virginia,Season peak percentage,Bin,percent,1.2,1.3,0
+West Virginia,Season peak percentage,Bin,percent,1.3,1.4,0.002
+West Virginia,Season peak percentage,Bin,percent,1.4,1.5,0
+West Virginia,Season peak percentage,Bin,percent,1.5,1.6,0
+West Virginia,Season peak percentage,Bin,percent,1.6,1.7,0.004
+West Virginia,Season peak percentage,Bin,percent,1.7,1.8,0.004
+West Virginia,Season peak percentage,Bin,percent,1.8,1.9,0.004
+West Virginia,Season peak percentage,Bin,percent,1.9,2.0,0
+West Virginia,Season peak percentage,Bin,percent,2.0,2.1,0.01
+West Virginia,Season peak percentage,Bin,percent,2.1,2.2,0.006
+West Virginia,Season peak percentage,Bin,percent,2.2,2.3,0
+West Virginia,Season peak percentage,Bin,percent,2.3,2.4,0.006
+West Virginia,Season peak percentage,Bin,percent,2.4,2.5,0
+West Virginia,Season peak percentage,Bin,percent,2.5,2.6,0
+West Virginia,Season peak percentage,Bin,percent,2.6,2.7,0.004
+West Virginia,Season peak percentage,Bin,percent,2.7,2.8,0.002
+West Virginia,Season peak percentage,Bin,percent,2.8,2.9,0.002
+West Virginia,Season peak percentage,Bin,percent,2.9,3.0,0.002
+West Virginia,Season peak percentage,Bin,percent,3.0,3.1,0.004
+West Virginia,Season peak percentage,Bin,percent,3.1,3.2,0.002
+West Virginia,Season peak percentage,Bin,percent,3.2,3.3,0.004
+West Virginia,Season peak percentage,Bin,percent,3.3,3.4,0.002
+West Virginia,Season peak percentage,Bin,percent,3.4,3.5,0.004
+West Virginia,Season peak percentage,Bin,percent,3.5,3.6,0.004
+West Virginia,Season peak percentage,Bin,percent,3.6,3.7,0.004
+West Virginia,Season peak percentage,Bin,percent,3.7,3.8,0.004
+West Virginia,Season peak percentage,Bin,percent,3.8,3.9,0
+West Virginia,Season peak percentage,Bin,percent,3.9,4.0,0.008
+West Virginia,Season peak percentage,Bin,percent,4.0,4.1,0.01
+West Virginia,Season peak percentage,Bin,percent,4.1,4.2,0
+West Virginia,Season peak percentage,Bin,percent,4.2,4.3,0.004
+West Virginia,Season peak percentage,Bin,percent,4.3,4.4,0.01
+West Virginia,Season peak percentage,Bin,percent,4.4,4.5,0.008
+West Virginia,Season peak percentage,Bin,percent,4.5,4.6,0.004
+West Virginia,Season peak percentage,Bin,percent,4.6,4.7,0.004
+West Virginia,Season peak percentage,Bin,percent,4.7,4.8,0.004
+West Virginia,Season peak percentage,Bin,percent,4.8,4.9,0.006
+West Virginia,Season peak percentage,Bin,percent,4.9,5.0,0.016
+West Virginia,Season peak percentage,Bin,percent,5.0,5.1,0.002
+West Virginia,Season peak percentage,Bin,percent,5.1,5.2,0.008
+West Virginia,Season peak percentage,Bin,percent,5.2,5.3,0.002
+West Virginia,Season peak percentage,Bin,percent,5.3,5.4,0.002
+West Virginia,Season peak percentage,Bin,percent,5.4,5.5,0.01
+West Virginia,Season peak percentage,Bin,percent,5.5,5.6,0.006
+West Virginia,Season peak percentage,Bin,percent,5.6,5.7,0.01
+West Virginia,Season peak percentage,Bin,percent,5.7,5.8,0.008
+West Virginia,Season peak percentage,Bin,percent,5.8,5.9,0.004
+West Virginia,Season peak percentage,Bin,percent,5.9,6.0,0.004
+West Virginia,Season peak percentage,Bin,percent,6.0,6.1,0.006
+West Virginia,Season peak percentage,Bin,percent,6.1,6.2,0.014
+West Virginia,Season peak percentage,Bin,percent,6.2,6.3,0.002
+West Virginia,Season peak percentage,Bin,percent,6.3,6.4,0.002
+West Virginia,Season peak percentage,Bin,percent,6.4,6.5,0.006
+West Virginia,Season peak percentage,Bin,percent,6.5,6.6,0.012
+West Virginia,Season peak percentage,Bin,percent,6.6,6.7,0.004
+West Virginia,Season peak percentage,Bin,percent,6.7,6.8,0.002
+West Virginia,Season peak percentage,Bin,percent,6.8,6.9,0.008
+West Virginia,Season peak percentage,Bin,percent,6.9,7.0,0.006
+West Virginia,Season peak percentage,Bin,percent,7.0,7.1,0.004
+West Virginia,Season peak percentage,Bin,percent,7.1,7.2,0.004
+West Virginia,Season peak percentage,Bin,percent,7.2,7.3,0.01
+West Virginia,Season peak percentage,Bin,percent,7.3,7.4,0
+West Virginia,Season peak percentage,Bin,percent,7.4,7.5,0.004
+West Virginia,Season peak percentage,Bin,percent,7.5,7.6,0
+West Virginia,Season peak percentage,Bin,percent,7.6,7.7,0.006
+West Virginia,Season peak percentage,Bin,percent,7.7,7.8,0.004
+West Virginia,Season peak percentage,Bin,percent,7.8,7.9,0.002
+West Virginia,Season peak percentage,Bin,percent,7.9,8.0,0.004
+West Virginia,Season peak percentage,Bin,percent,8.0,8.1,0.002
+West Virginia,Season peak percentage,Bin,percent,8.1,8.2,0.004
+West Virginia,Season peak percentage,Bin,percent,8.2,8.3,0.006
+West Virginia,Season peak percentage,Bin,percent,8.3,8.4,0.002
+West Virginia,Season peak percentage,Bin,percent,8.4,8.5,0.008
+West Virginia,Season peak percentage,Bin,percent,8.5,8.6,0.004
+West Virginia,Season peak percentage,Bin,percent,8.6,8.7,0.004
+West Virginia,Season peak percentage,Bin,percent,8.7,8.8,0.012
+West Virginia,Season peak percentage,Bin,percent,8.8,8.9,0.004
+West Virginia,Season peak percentage,Bin,percent,8.9,9.0,0.004
+West Virginia,Season peak percentage,Bin,percent,9.0,9.1,0.006
+West Virginia,Season peak percentage,Bin,percent,9.1,9.2,0.004
+West Virginia,Season peak percentage,Bin,percent,9.2,9.3,0
+West Virginia,Season peak percentage,Bin,percent,9.3,9.4,0.004
+West Virginia,Season peak percentage,Bin,percent,9.4,9.5,0.002
+West Virginia,Season peak percentage,Bin,percent,9.5,9.6,0.01
+West Virginia,Season peak percentage,Bin,percent,9.6,9.7,0.008
+West Virginia,Season peak percentage,Bin,percent,9.7,9.8,0.008
+West Virginia,Season peak percentage,Bin,percent,9.8,9.9,0
+West Virginia,Season peak percentage,Bin,percent,9.9,10.0,0.002
+West Virginia,Season peak percentage,Bin,percent,10.0,10.1,0.006
+West Virginia,Season peak percentage,Bin,percent,10.1,10.2,0.002
+West Virginia,Season peak percentage,Bin,percent,10.2,10.3,0.002
+West Virginia,Season peak percentage,Bin,percent,10.3,10.4,0.004
+West Virginia,Season peak percentage,Bin,percent,10.4,10.5,0.004
+West Virginia,Season peak percentage,Bin,percent,10.5,10.6,0.008
+West Virginia,Season peak percentage,Bin,percent,10.6,10.7,0.002
+West Virginia,Season peak percentage,Bin,percent,10.7,10.8,0.004
+West Virginia,Season peak percentage,Bin,percent,10.8,10.9,0.006
+West Virginia,Season peak percentage,Bin,percent,10.9,11.0,0.006
+West Virginia,Season peak percentage,Bin,percent,11.0,11.1,0
+West Virginia,Season peak percentage,Bin,percent,11.1,11.2,0.002
+West Virginia,Season peak percentage,Bin,percent,11.2,11.3,0.006
+West Virginia,Season peak percentage,Bin,percent,11.3,11.4,0.008
+West Virginia,Season peak percentage,Bin,percent,11.4,11.5,0.008
+West Virginia,Season peak percentage,Bin,percent,11.5,11.6,0.002
+West Virginia,Season peak percentage,Bin,percent,11.6,11.7,0.002
+West Virginia,Season peak percentage,Bin,percent,11.7,11.8,0.004
+West Virginia,Season peak percentage,Bin,percent,11.8,11.9,0.008
+West Virginia,Season peak percentage,Bin,percent,11.9,12.0,0
+West Virginia,Season peak percentage,Bin,percent,12.0,12.1,0.002
+West Virginia,Season peak percentage,Bin,percent,12.1,12.2,0.004
+West Virginia,Season peak percentage,Bin,percent,12.2,12.3,0
+West Virginia,Season peak percentage,Bin,percent,12.3,12.4,0.004
+West Virginia,Season peak percentage,Bin,percent,12.4,12.5,0.002
+West Virginia,Season peak percentage,Bin,percent,12.5,12.6,0.006
+West Virginia,Season peak percentage,Bin,percent,12.6,12.7,0.006
+West Virginia,Season peak percentage,Bin,percent,12.7,12.8,0.002
+West Virginia,Season peak percentage,Bin,percent,12.8,12.9,0.008
+West Virginia,Season peak percentage,Bin,percent,12.9,13.0,0.01
+West Virginia,Season peak percentage,Bin,percent,13.0,100.0,0.47
+West Virginia,Season peak week,Bin,week,40.0,41.0,0
+West Virginia,Season peak week,Bin,week,41.0,42.0,0
+West Virginia,Season peak week,Bin,week,42.0,43.0,0
+West Virginia,Season peak week,Bin,week,43.0,44.0,0.003898635477582846
+West Virginia,Season peak week,Bin,week,44.0,45.0,0
+West Virginia,Season peak week,Bin,week,45.0,46.0,0
+West Virginia,Season peak week,Bin,week,46.0,47.0,0
+West Virginia,Season peak week,Bin,week,47.0,48.0,0
+West Virginia,Season peak week,Bin,week,48.0,49.0,0
+West Virginia,Season peak week,Bin,week,49.0,50.0,0.001949317738791423
+West Virginia,Season peak week,Bin,week,50.0,51.0,0
+West Virginia,Season peak week,Bin,week,51.0,52.0,0.001949317738791423
+West Virginia,Season peak week,Bin,week,52.0,53.0,0.007797270955165692
+West Virginia,Season peak week,Bin,week,1.0,2.0,0.005847953216374269
+West Virginia,Season peak week,Bin,week,2.0,3.0,0.01364522417153996
+West Virginia,Season peak week,Bin,week,3.0,4.0,0.08576998050682261
+West Virginia,Season peak week,Bin,week,4.0,5.0,0.24561403508771928
+West Virginia,Season peak week,Bin,week,5.0,6.0,0.43859649122807015
+West Virginia,Season peak week,Bin,week,6.0,7.0,0.15009746588693956
+West Virginia,Season peak week,Bin,week,7.0,8.0,0.037037037037037035
+West Virginia,Season peak week,Bin,week,8.0,9.0,0.003898635477582846
+West Virginia,Season peak week,Bin,week,9.0,10.0,0.001949317738791423
+West Virginia,Season peak week,Bin,week,10.0,11.0,0
+West Virginia,Season peak week,Bin,week,11.0,12.0,0
+West Virginia,Season peak week,Bin,week,12.0,13.0,0.001949317738791423
+West Virginia,Season peak week,Bin,week,13.0,14.0,0
+West Virginia,Season peak week,Bin,week,14.0,15.0,0
+West Virginia,Season peak week,Bin,week,15.0,16.0,0
+West Virginia,Season peak week,Bin,week,16.0,17.0,0
+West Virginia,Season peak week,Bin,week,17.0,18.0,0
+West Virginia,Season peak week,Bin,week,18.0,19.0,0
+West Virginia,Season peak week,Bin,week,19.0,20.0,0
+West Virginia,Season peak week,Bin,week,20.0,21.0,0
+Delaware,1 wk ahead,Point,percent,NA,NA,0.2
+Delaware,2 wk ahead,Point,percent,NA,NA,0.2
+Delaware,3 wk ahead,Point,percent,NA,NA,0.2
+Delaware,4 wk ahead,Point,percent,NA,NA,0.3
+Delaware,Season peak percentage,Point,percent,NA,NA,13
+Delaware,Season peak week,Point,week,NA,NA,5
+Maryland,1 wk ahead,Point,percent,NA,NA,1.1
+Maryland,2 wk ahead,Point,percent,NA,NA,1.2
+Maryland,3 wk ahead,Point,percent,NA,NA,1.4
+Maryland,4 wk ahead,Point,percent,NA,NA,1.5
+Maryland,Season peak percentage,Point,percent,NA,NA,8.8
+Maryland,Season peak week,Point,week,NA,NA,5
+Pennsylvania,1 wk ahead,Point,percent,NA,NA,1.3
+Pennsylvania,2 wk ahead,Point,percent,NA,NA,1.4
+Pennsylvania,3 wk ahead,Point,percent,NA,NA,1.5
+Pennsylvania,4 wk ahead,Point,percent,NA,NA,1.5
+Pennsylvania,Season peak percentage,Point,percent,NA,NA,6.4
+Pennsylvania,Season peak week,Point,week,NA,NA,5
+Virginia,1 wk ahead,Point,percent,NA,NA,2.1
+Virginia,2 wk ahead,Point,percent,NA,NA,2.2
+Virginia,3 wk ahead,Point,percent,NA,NA,2.5
+Virginia,4 wk ahead,Point,percent,NA,NA,2.6
+Virginia,Season peak percentage,Point,percent,NA,NA,9
+Virginia,Season peak week,Point,week,NA,NA,3
+West Virginia,1 wk ahead,Point,percent,NA,NA,1
+West Virginia,2 wk ahead,Point,percent,NA,NA,1.1
+West Virginia,3 wk ahead,Point,percent,NA,NA,1.2
+West Virginia,4 wk ahead,Point,percent,NA,NA,1.2
+West Virginia,Season peak percentage,Point,percent,NA,NA,12.5
+West Virginia,Season peak week,Point,week,NA,NA,5

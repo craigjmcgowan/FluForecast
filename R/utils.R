@@ -40,7 +40,7 @@ US_flu_ratio <- function(gdata1, gdata2) {
     mean()
 }
 
-# Helper function for pulling in Google Trends data for a region
+# Helper function for pulling in Google Trends data for a region -------
 fetch_gtrend <- function(location) {
   require(gtrendsR)
   
@@ -54,24 +54,28 @@ fetch_gtrend <- function(location) {
   flu_0407 <- gtrends(keyword = "flu",
                          geo = location,
                          time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-    mutate(hits = case_when(hits == "<1" ~ 1,
+    mutate_at(vars(hits), as.character) %>%
+    mutate(hits = case_when(hits %in% c("0", "<1") ~ 0.1,
                             TRUE ~ as.numeric(hits)))
   
   flu_0611 <- gtrends(keyword = "flu",
                          geo = location,
                          time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-    mutate(hits = case_when(hits == "<1" ~ 1,
+    mutate_at(vars(hits), as.character) %>%
+    mutate(hits = case_when(hits %in% c("0", "<1") ~ 0.1,
                             TRUE ~ as.numeric(hits)))
   
   flu_1015 <- gtrends(keyword = "flu",
                          geo = location,
                          time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-    mutate(hits = case_when(hits == "<1" ~ 1,
+    mutate_at(vars(hits), as.character) %>%
+    mutate(hits = case_when(hits %in% c("0", "<1") ~ 0.1,
                             TRUE ~ as.numeric(hits)))
   
   flu_1419 <- gtrends(keyword = "flu",
                          geo = location)$interest_over_time %>%
-    mutate(hits = case_when(hits == "<1" ~ 1,
+    mutate_at(vars(hits), as.character) %>%
+    mutate(hits = case_when(hits %in% c("0", "<1") ~ 0.1,
                             TRUE ~ as.numeric(hits)))
   
   # Set up ratios to normalize all Gtrends data to scale from 2010-2015
@@ -80,7 +84,7 @@ fetch_gtrend <- function(location) {
   inv_gratio_1415 <- US_flu_ratio(flu_1419, flu_1015)
   
   # Merge Gtrends data and rescale to 2010-2015 scale
-  filter(flu_0407, !date %in% flu_0611$date) %>%
+  temp <- filter(flu_0407, !date %in% flu_0611$date) %>%
     mutate(hits = hits / gratio_0607) %>%
     bind_rows(flu_0611) %>%
     filter(!date %in% flu_1015$date) %>%
@@ -665,8 +669,8 @@ fit_to_forecast <- function(object, xreg, pred_data, location, season,
   return(forecast_results)
 }
 
-
-stack_forecasts <- function(files, stacking_weights) {
+# Stack forecasts for ensembles -----
+stack_forecasts <- function(files, stacking_weights, challenge = "ilinet") {
   require(dplyr)
   require(FluSight)
   nfiles <- nrow(files)
@@ -699,7 +703,7 @@ stack_forecasts <- function(files, stacking_weights) {
   entries <- vector("list", nfiles)
   for(i in 1:nfiles) {
     entries[[i]] <- read_entry(files$file[i]) 
-    verify_entry(entries[[i]])
+    verify_entry(entries[[i]], challenge = challenge)
   }
   
   ## stack distributions

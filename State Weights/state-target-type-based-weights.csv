@@ -1,0 +1,451 @@
+component_model_id,season,location,target,weight
+Dynamic Harmonic Model,2014/2015,Delaware,Season peak week,0.991372938001183
+Dynamic Harmonic Model,2014/2015,Delaware,Season peak percentage,0.991372938001183
+Historical Average,2014/2015,Delaware,Season peak week,0.00862444338303621
+Historical Average,2014/2015,Delaware,Season peak percentage,0.00862444338303621
+Subtype Historical Average,2014/2015,Delaware,Season peak week,2.61861578128065e-06
+Subtype Historical Average,2014/2015,Delaware,Season peak percentage,2.61861578128065e-06
+Dynamic Harmonic Model,2015/2016,Delaware,Season peak week,0.986239524438673
+Dynamic Harmonic Model,2015/2016,Delaware,Season peak percentage,0.986239524438673
+Historical Average,2015/2016,Delaware,Season peak week,0.0137588387327884
+Historical Average,2015/2016,Delaware,Season peak percentage,0.0137588387327884
+Subtype Historical Average,2015/2016,Delaware,Season peak week,1.63682853858603e-06
+Subtype Historical Average,2015/2016,Delaware,Season peak percentage,1.63682853858603e-06
+Dynamic Harmonic Model,2016/2017,Delaware,Season peak week,0.98575866296201
+Dynamic Harmonic Model,2016/2017,Delaware,Season peak percentage,0.98575866296201
+Historical Average,2016/2017,Delaware,Season peak week,0.0142395063286812
+Historical Average,2016/2017,Delaware,Season peak percentage,0.0142395063286812
+Subtype Historical Average,2016/2017,Delaware,Season peak week,1.83070930869827e-06
+Subtype Historical Average,2016/2017,Delaware,Season peak percentage,1.83070930869827e-06
+Dynamic Harmonic Model,2017/2018,Delaware,Season peak week,0.999999957866002
+Dynamic Harmonic Model,2017/2018,Delaware,Season peak percentage,0.999999957866002
+Historical Average,2017/2018,Delaware,Season peak week,3.4367258117293e-08
+Historical Average,2017/2018,Delaware,Season peak percentage,3.4367258117293e-08
+Subtype Historical Average,2017/2018,Delaware,Season peak week,7.76674017514745e-09
+Subtype Historical Average,2017/2018,Delaware,Season peak percentage,7.76674017514745e-09
+Dynamic Harmonic Model,2014/2015,Maryland,Season peak week,0.947838883033279
+Dynamic Harmonic Model,2014/2015,Maryland,Season peak percentage,0.947838883033279
+Historical Average,2014/2015,Maryland,Season peak week,0.0521569754648656
+Historical Average,2014/2015,Maryland,Season peak percentage,0.0521569754648656
+Subtype Historical Average,2014/2015,Maryland,Season peak week,4.14150185499231e-06
+Subtype Historical Average,2014/2015,Maryland,Season peak percentage,4.14150185499231e-06
+Dynamic Harmonic Model,2015/2016,Maryland,Season peak week,0.761732554316784
+Dynamic Harmonic Model,2015/2016,Maryland,Season peak percentage,0.761732554316784
+Historical Average,2015/2016,Maryland,Season peak week,0.238266199136402
+Historical Average,2015/2016,Maryland,Season peak percentage,0.238266199136402
+Subtype Historical Average,2015/2016,Maryland,Season peak week,1.24654681358316e-06
+Subtype Historical Average,2015/2016,Maryland,Season peak percentage,1.24654681358316e-06
+Dynamic Harmonic Model,2016/2017,Maryland,Season peak week,0.787370896735041
+Dynamic Harmonic Model,2016/2017,Maryland,Season peak percentage,0.787370896735041
+Historical Average,2016/2017,Maryland,Season peak week,0.212627983004134
+Historical Average,2016/2017,Maryland,Season peak percentage,0.212627983004134
+Subtype Historical Average,2016/2017,Maryland,Season peak week,1.12026082500566e-06
+Subtype Historical Average,2016/2017,Maryland,Season peak percentage,1.12026082500566e-06
+Dynamic Harmonic Model,2017/2018,Maryland,Season peak week,0.831910637588564
+Dynamic Harmonic Model,2017/2018,Maryland,Season peak percentage,0.831910637588564
+Historical Average,2017/2018,Maryland,Season peak week,0.16808820379038
+Historical Average,2017/2018,Maryland,Season peak percentage,0.16808820379038
+Subtype Historical Average,2017/2018,Maryland,Season peak week,1.15862105647887e-06
+Subtype Historical Average,2017/2018,Maryland,Season peak percentage,1.15862105647887e-06
+Dynamic Harmonic Model,2014/2015,Pennsylvania,Season peak week,0.881660191034814
+Dynamic Harmonic Model,2014/2015,Pennsylvania,Season peak percentage,0.881660191034814
+Historical Average,2014/2015,Pennsylvania,Season peak week,0.118337679826726
+Historical Average,2014/2015,Pennsylvania,Season peak percentage,0.118337679826726
+Subtype Historical Average,2014/2015,Pennsylvania,Season peak week,2.12913845987237e-06
+Subtype Historical Average,2014/2015,Pennsylvania,Season peak percentage,2.12913845987237e-06
+Dynamic Harmonic Model,2015/2016,Pennsylvania,Season peak week,0.770933009868739
+Dynamic Harmonic Model,2015/2016,Pennsylvania,Season peak percentage,0.770933009868739
+Historical Average,2015/2016,Pennsylvania,Season peak week,0.213631839339447
+Historical Average,2015/2016,Pennsylvania,Season peak percentage,0.213631839339447
+Subtype Historical Average,2015/2016,Pennsylvania,Season peak week,0.0154351507918136
+Subtype Historical Average,2015/2016,Pennsylvania,Season peak percentage,0.0154351507918136
+Dynamic Harmonic Model,2016/2017,Pennsylvania,Season peak week,0.8345920736957
+Dynamic Harmonic Model,2016/2017,Pennsylvania,Season peak percentage,0.8345920736957
+Historical Average,2016/2017,Pennsylvania,Season peak week,0.0908770396706156
+Historical Average,2016/2017,Pennsylvania,Season peak percentage,0.0908770396706156
+Subtype Historical Average,2016/2017,Pennsylvania,Season peak week,0.0745308866336849
+Subtype Historical Average,2016/2017,Pennsylvania,Season peak percentage,0.0745308866336849
+Dynamic Harmonic Model,2017/2018,Pennsylvania,Season peak week,0.961339568011894
+Dynamic Harmonic Model,2017/2018,Pennsylvania,Season peak percentage,0.961339568011894
+Historical Average,2017/2018,Pennsylvania,Season peak week,1.38819021321424e-06
+Historical Average,2017/2018,Pennsylvania,Season peak percentage,1.38819021321424e-06
+Subtype Historical Average,2017/2018,Pennsylvania,Season peak week,0.038659043797893
+Subtype Historical Average,2017/2018,Pennsylvania,Season peak percentage,0.038659043797893
+Dynamic Harmonic Model,2014/2015,Virginia,Season peak week,0.999999822849904
+Dynamic Harmonic Model,2014/2015,Virginia,Season peak percentage,0.999999822849904
+Historical Average,2014/2015,Virginia,Season peak week,1.52102367351448e-07
+Historical Average,2014/2015,Virginia,Season peak percentage,1.52102367351448e-07
+Subtype Historical Average,2014/2015,Virginia,Season peak week,2.50477287534247e-08
+Subtype Historical Average,2014/2015,Virginia,Season peak percentage,2.50477287534247e-08
+Dynamic Harmonic Model,2015/2016,Virginia,Season peak week,0.999999823162398
+Dynamic Harmonic Model,2015/2016,Virginia,Season peak percentage,0.999999823162398
+Historical Average,2015/2016,Virginia,Season peak week,1.15342938247277e-07
+Historical Average,2015/2016,Virginia,Season peak percentage,1.15342938247277e-07
+Subtype Historical Average,2015/2016,Virginia,Season peak week,6.14946641261898e-08
+Subtype Historical Average,2015/2016,Virginia,Season peak percentage,6.14946641261898e-08
+Dynamic Harmonic Model,2016/2017,Virginia,Season peak week,0.999999952669106
+Dynamic Harmonic Model,2016/2017,Virginia,Season peak percentage,0.999999952669106
+Historical Average,2016/2017,Virginia,Season peak week,2.32513869112836e-08
+Historical Average,2016/2017,Virginia,Season peak percentage,2.32513869112836e-08
+Subtype Historical Average,2016/2017,Virginia,Season peak week,2.40795065985158e-08
+Subtype Historical Average,2016/2017,Virginia,Season peak percentage,2.40795065985158e-08
+Dynamic Harmonic Model,2017/2018,Virginia,Season peak week,0.999999966949013
+Dynamic Harmonic Model,2017/2018,Virginia,Season peak percentage,0.999999966949013
+Historical Average,2017/2018,Virginia,Season peak week,2.30317201839886e-09
+Historical Average,2017/2018,Virginia,Season peak percentage,2.30317201839886e-09
+Subtype Historical Average,2017/2018,Virginia,Season peak week,3.07478149299687e-08
+Subtype Historical Average,2017/2018,Virginia,Season peak percentage,3.07478149299687e-08
+Dynamic Harmonic Model,2014/2015,West Virginia,Season peak week,0.985787027591796
+Dynamic Harmonic Model,2014/2015,West Virginia,Season peak percentage,0.985787027591796
+Historical Average,2014/2015,West Virginia,Season peak week,0.0142052632036618
+Historical Average,2014/2015,West Virginia,Season peak percentage,0.0142052632036618
+Subtype Historical Average,2014/2015,West Virginia,Season peak week,7.70920454229174e-06
+Subtype Historical Average,2014/2015,West Virginia,Season peak percentage,7.70920454229174e-06
+Dynamic Harmonic Model,2015/2016,West Virginia,Season peak week,0.829459365744841
+Dynamic Harmonic Model,2015/2016,West Virginia,Season peak percentage,0.829459365744841
+Historical Average,2015/2016,West Virginia,Season peak week,0.170535878868749
+Historical Average,2015/2016,West Virginia,Season peak percentage,0.170535878868749
+Subtype Historical Average,2015/2016,West Virginia,Season peak week,4.75538641029846e-06
+Subtype Historical Average,2015/2016,West Virginia,Season peak percentage,4.75538641029846e-06
+Dynamic Harmonic Model,2016/2017,West Virginia,Season peak week,0.818813191489682
+Dynamic Harmonic Model,2016/2017,West Virginia,Season peak percentage,0.818813191489682
+Historical Average,2016/2017,West Virginia,Season peak week,0.181182393433604
+Historical Average,2016/2017,West Virginia,Season peak percentage,0.181182393433604
+Subtype Historical Average,2016/2017,West Virginia,Season peak week,4.41507671391407e-06
+Subtype Historical Average,2016/2017,West Virginia,Season peak percentage,4.41507671391407e-06
+Dynamic Harmonic Model,2017/2018,West Virginia,Season peak week,0.825904127117694
+Dynamic Harmonic Model,2017/2018,West Virginia,Season peak percentage,0.825904127117694
+Historical Average,2017/2018,West Virginia,Season peak week,0.174080441420763
+Historical Average,2017/2018,West Virginia,Season peak percentage,0.174080441420763
+Subtype Historical Average,2017/2018,West Virginia,Season peak week,1.54314615427302e-05
+Subtype Historical Average,2017/2018,West Virginia,Season peak percentage,1.54314615427302e-05
+Dynamic Harmonic Model,2014/2015,Delaware,1 wk ahead,0.99792944428799
+Dynamic Harmonic Model,2014/2015,Delaware,2 wk ahead,0.99792944428799
+Dynamic Harmonic Model,2014/2015,Delaware,3 wk ahead,0.99792944428799
+Dynamic Harmonic Model,2014/2015,Delaware,4 wk ahead,0.99792944428799
+Historical Average,2014/2015,Delaware,1 wk ahead,1.67441709964634e-05
+Historical Average,2014/2015,Delaware,2 wk ahead,1.67441709964634e-05
+Historical Average,2014/2015,Delaware,3 wk ahead,1.67441709964634e-05
+Historical Average,2014/2015,Delaware,4 wk ahead,1.67441709964634e-05
+Subtype Historical Average,2014/2015,Delaware,1 wk ahead,0.00205381154101328
+Subtype Historical Average,2014/2015,Delaware,2 wk ahead,0.00205381154101328
+Subtype Historical Average,2014/2015,Delaware,3 wk ahead,0.00205381154101328
+Subtype Historical Average,2014/2015,Delaware,4 wk ahead,0.00205381154101328
+Dynamic Harmonic Model,2015/2016,Delaware,1 wk ahead,0.999999927984784
+Dynamic Harmonic Model,2015/2016,Delaware,2 wk ahead,0.999999927984784
+Dynamic Harmonic Model,2015/2016,Delaware,3 wk ahead,0.999999927984784
+Dynamic Harmonic Model,2015/2016,Delaware,4 wk ahead,0.999999927984784
+Historical Average,2015/2016,Delaware,1 wk ahead,1.87020426398786e-08
+Historical Average,2015/2016,Delaware,2 wk ahead,1.87020426398786e-08
+Historical Average,2015/2016,Delaware,3 wk ahead,1.87020426398786e-08
+Historical Average,2015/2016,Delaware,4 wk ahead,1.87020426398786e-08
+Subtype Historical Average,2015/2016,Delaware,1 wk ahead,5.33131728839672e-08
+Subtype Historical Average,2015/2016,Delaware,2 wk ahead,5.33131728839672e-08
+Subtype Historical Average,2015/2016,Delaware,3 wk ahead,5.33131728839672e-08
+Subtype Historical Average,2015/2016,Delaware,4 wk ahead,5.33131728839672e-08
+Dynamic Harmonic Model,2016/2017,Delaware,1 wk ahead,0.995060740096491
+Dynamic Harmonic Model,2016/2017,Delaware,2 wk ahead,0.995060740096491
+Dynamic Harmonic Model,2016/2017,Delaware,3 wk ahead,0.995060740096491
+Dynamic Harmonic Model,2016/2017,Delaware,4 wk ahead,0.995060740096491
+Historical Average,2016/2017,Delaware,1 wk ahead,5.32987899431508e-06
+Historical Average,2016/2017,Delaware,2 wk ahead,5.32987899431508e-06
+Historical Average,2016/2017,Delaware,3 wk ahead,5.32987899431508e-06
+Historical Average,2016/2017,Delaware,4 wk ahead,5.32987899431508e-06
+Subtype Historical Average,2016/2017,Delaware,1 wk ahead,0.00493393002451436
+Subtype Historical Average,2016/2017,Delaware,2 wk ahead,0.00493393002451436
+Subtype Historical Average,2016/2017,Delaware,3 wk ahead,0.00493393002451436
+Subtype Historical Average,2016/2017,Delaware,4 wk ahead,0.00493393002451436
+Dynamic Harmonic Model,2017/2018,Delaware,1 wk ahead,0.998789607914868
+Dynamic Harmonic Model,2017/2018,Delaware,2 wk ahead,0.998789607914868
+Dynamic Harmonic Model,2017/2018,Delaware,3 wk ahead,0.998789607914868
+Dynamic Harmonic Model,2017/2018,Delaware,4 wk ahead,0.998789607914868
+Historical Average,2017/2018,Delaware,1 wk ahead,3.86979350902494e-06
+Historical Average,2017/2018,Delaware,2 wk ahead,3.86979350902494e-06
+Historical Average,2017/2018,Delaware,3 wk ahead,3.86979350902494e-06
+Historical Average,2017/2018,Delaware,4 wk ahead,3.86979350902494e-06
+Subtype Historical Average,2017/2018,Delaware,1 wk ahead,0.00120652229162271
+Subtype Historical Average,2017/2018,Delaware,2 wk ahead,0.00120652229162271
+Subtype Historical Average,2017/2018,Delaware,3 wk ahead,0.00120652229162271
+Subtype Historical Average,2017/2018,Delaware,4 wk ahead,0.00120652229162271
+Dynamic Harmonic Model,2014/2015,Maryland,1 wk ahead,0.999997325754853
+Dynamic Harmonic Model,2014/2015,Maryland,2 wk ahead,0.999997325754853
+Dynamic Harmonic Model,2014/2015,Maryland,3 wk ahead,0.999997325754853
+Dynamic Harmonic Model,2014/2015,Maryland,4 wk ahead,0.999997325754853
+Historical Average,2014/2015,Maryland,1 wk ahead,1.31513559039835e-06
+Historical Average,2014/2015,Maryland,2 wk ahead,1.31513559039835e-06
+Historical Average,2014/2015,Maryland,3 wk ahead,1.31513559039835e-06
+Historical Average,2014/2015,Maryland,4 wk ahead,1.31513559039835e-06
+Subtype Historical Average,2014/2015,Maryland,1 wk ahead,1.35910955614171e-06
+Subtype Historical Average,2014/2015,Maryland,2 wk ahead,1.35910955614171e-06
+Subtype Historical Average,2014/2015,Maryland,3 wk ahead,1.35910955614171e-06
+Subtype Historical Average,2014/2015,Maryland,4 wk ahead,1.35910955614171e-06
+Dynamic Harmonic Model,2015/2016,Maryland,1 wk ahead,0.999998908208033
+Dynamic Harmonic Model,2015/2016,Maryland,2 wk ahead,0.999998908208033
+Dynamic Harmonic Model,2015/2016,Maryland,3 wk ahead,0.999998908208033
+Dynamic Harmonic Model,2015/2016,Maryland,4 wk ahead,0.999998908208033
+Historical Average,2015/2016,Maryland,1 wk ahead,8.77383881021146e-07
+Historical Average,2015/2016,Maryland,2 wk ahead,8.77383881021146e-07
+Historical Average,2015/2016,Maryland,3 wk ahead,8.77383881021146e-07
+Historical Average,2015/2016,Maryland,4 wk ahead,8.77383881021146e-07
+Subtype Historical Average,2015/2016,Maryland,1 wk ahead,2.14408085500509e-07
+Subtype Historical Average,2015/2016,Maryland,2 wk ahead,2.14408085500509e-07
+Subtype Historical Average,2015/2016,Maryland,3 wk ahead,2.14408085500509e-07
+Subtype Historical Average,2015/2016,Maryland,4 wk ahead,2.14408085500509e-07
+Dynamic Harmonic Model,2016/2017,Maryland,1 wk ahead,0.999979842572153
+Dynamic Harmonic Model,2016/2017,Maryland,2 wk ahead,0.999979842572153
+Dynamic Harmonic Model,2016/2017,Maryland,3 wk ahead,0.999979842572153
+Dynamic Harmonic Model,2016/2017,Maryland,4 wk ahead,0.999979842572153
+Historical Average,2016/2017,Maryland,1 wk ahead,2.00979751776267e-05
+Historical Average,2016/2017,Maryland,2 wk ahead,2.00979751776267e-05
+Historical Average,2016/2017,Maryland,3 wk ahead,2.00979751776267e-05
+Historical Average,2016/2017,Maryland,4 wk ahead,2.00979751776267e-05
+Subtype Historical Average,2016/2017,Maryland,1 wk ahead,5.9452669245966e-08
+Subtype Historical Average,2016/2017,Maryland,2 wk ahead,5.9452669245966e-08
+Subtype Historical Average,2016/2017,Maryland,3 wk ahead,5.9452669245966e-08
+Subtype Historical Average,2016/2017,Maryland,4 wk ahead,5.9452669245966e-08
+Dynamic Harmonic Model,2017/2018,Maryland,1 wk ahead,0.9999987520872
+Dynamic Harmonic Model,2017/2018,Maryland,2 wk ahead,0.9999987520872
+Dynamic Harmonic Model,2017/2018,Maryland,3 wk ahead,0.9999987520872
+Dynamic Harmonic Model,2017/2018,Maryland,4 wk ahead,0.9999987520872
+Historical Average,2017/2018,Maryland,1 wk ahead,1.17281803939296e-06
+Historical Average,2017/2018,Maryland,2 wk ahead,1.17281803939296e-06
+Historical Average,2017/2018,Maryland,3 wk ahead,1.17281803939296e-06
+Historical Average,2017/2018,Maryland,4 wk ahead,1.17281803939296e-06
+Subtype Historical Average,2017/2018,Maryland,1 wk ahead,7.50947604372204e-08
+Subtype Historical Average,2017/2018,Maryland,2 wk ahead,7.50947604372204e-08
+Subtype Historical Average,2017/2018,Maryland,3 wk ahead,7.50947604372204e-08
+Subtype Historical Average,2017/2018,Maryland,4 wk ahead,7.50947604372204e-08
+Dynamic Harmonic Model,2014/2015,Pennsylvania,1 wk ahead,0.961638113216922
+Dynamic Harmonic Model,2014/2015,Pennsylvania,2 wk ahead,0.961638113216922
+Dynamic Harmonic Model,2014/2015,Pennsylvania,3 wk ahead,0.961638113216922
+Dynamic Harmonic Model,2014/2015,Pennsylvania,4 wk ahead,0.961638113216922
+Historical Average,2014/2015,Pennsylvania,1 wk ahead,0.0383590164724865
+Historical Average,2014/2015,Pennsylvania,2 wk ahead,0.0383590164724865
+Historical Average,2014/2015,Pennsylvania,3 wk ahead,0.0383590164724865
+Historical Average,2014/2015,Pennsylvania,4 wk ahead,0.0383590164724865
+Subtype Historical Average,2014/2015,Pennsylvania,1 wk ahead,2.87031059195447e-06
+Subtype Historical Average,2014/2015,Pennsylvania,2 wk ahead,2.87031059195447e-06
+Subtype Historical Average,2014/2015,Pennsylvania,3 wk ahead,2.87031059195447e-06
+Subtype Historical Average,2014/2015,Pennsylvania,4 wk ahead,2.87031059195447e-06
+Dynamic Harmonic Model,2015/2016,Pennsylvania,1 wk ahead,0.794177142484051
+Dynamic Harmonic Model,2015/2016,Pennsylvania,2 wk ahead,0.794177142484051
+Dynamic Harmonic Model,2015/2016,Pennsylvania,3 wk ahead,0.794177142484051
+Dynamic Harmonic Model,2015/2016,Pennsylvania,4 wk ahead,0.794177142484051
+Historical Average,2015/2016,Pennsylvania,1 wk ahead,0.00091936006016129
+Historical Average,2015/2016,Pennsylvania,2 wk ahead,0.00091936006016129
+Historical Average,2015/2016,Pennsylvania,3 wk ahead,0.00091936006016129
+Historical Average,2015/2016,Pennsylvania,4 wk ahead,0.00091936006016129
+Subtype Historical Average,2015/2016,Pennsylvania,1 wk ahead,0.204903497455787
+Subtype Historical Average,2015/2016,Pennsylvania,2 wk ahead,0.204903497455787
+Subtype Historical Average,2015/2016,Pennsylvania,3 wk ahead,0.204903497455787
+Subtype Historical Average,2015/2016,Pennsylvania,4 wk ahead,0.204903497455787
+Dynamic Harmonic Model,2016/2017,Pennsylvania,1 wk ahead,0.89022080752822
+Dynamic Harmonic Model,2016/2017,Pennsylvania,2 wk ahead,0.89022080752822
+Dynamic Harmonic Model,2016/2017,Pennsylvania,3 wk ahead,0.89022080752822
+Dynamic Harmonic Model,2016/2017,Pennsylvania,4 wk ahead,0.89022080752822
+Historical Average,2016/2017,Pennsylvania,1 wk ahead,5.78198744654118e-05
+Historical Average,2016/2017,Pennsylvania,2 wk ahead,5.78198744654118e-05
+Historical Average,2016/2017,Pennsylvania,3 wk ahead,5.78198744654118e-05
+Historical Average,2016/2017,Pennsylvania,4 wk ahead,5.78198744654118e-05
+Subtype Historical Average,2016/2017,Pennsylvania,1 wk ahead,0.109721372597314
+Subtype Historical Average,2016/2017,Pennsylvania,2 wk ahead,0.109721372597314
+Subtype Historical Average,2016/2017,Pennsylvania,3 wk ahead,0.109721372597314
+Subtype Historical Average,2016/2017,Pennsylvania,4 wk ahead,0.109721372597314
+Dynamic Harmonic Model,2017/2018,Pennsylvania,1 wk ahead,0.930103142324264
+Dynamic Harmonic Model,2017/2018,Pennsylvania,2 wk ahead,0.930103142324264
+Dynamic Harmonic Model,2017/2018,Pennsylvania,3 wk ahead,0.930103142324264
+Dynamic Harmonic Model,2017/2018,Pennsylvania,4 wk ahead,0.930103142324264
+Historical Average,2017/2018,Pennsylvania,1 wk ahead,2.34911213664308e-06
+Historical Average,2017/2018,Pennsylvania,2 wk ahead,2.34911213664308e-06
+Historical Average,2017/2018,Pennsylvania,3 wk ahead,2.34911213664308e-06
+Historical Average,2017/2018,Pennsylvania,4 wk ahead,2.34911213664308e-06
+Subtype Historical Average,2017/2018,Pennsylvania,1 wk ahead,0.0698945085635991
+Subtype Historical Average,2017/2018,Pennsylvania,2 wk ahead,0.0698945085635991
+Subtype Historical Average,2017/2018,Pennsylvania,3 wk ahead,0.0698945085635991
+Subtype Historical Average,2017/2018,Pennsylvania,4 wk ahead,0.0698945085635991
+Dynamic Harmonic Model,2014/2015,Virginia,1 wk ahead,0.913393964424738
+Dynamic Harmonic Model,2014/2015,Virginia,2 wk ahead,0.913393964424738
+Dynamic Harmonic Model,2014/2015,Virginia,3 wk ahead,0.913393964424738
+Dynamic Harmonic Model,2014/2015,Virginia,4 wk ahead,0.913393964424738
+Historical Average,2014/2015,Virginia,1 wk ahead,0.000557145686348457
+Historical Average,2014/2015,Virginia,2 wk ahead,0.000557145686348457
+Historical Average,2014/2015,Virginia,3 wk ahead,0.000557145686348457
+Historical Average,2014/2015,Virginia,4 wk ahead,0.000557145686348457
+Subtype Historical Average,2014/2015,Virginia,1 wk ahead,0.0860488898889133
+Subtype Historical Average,2014/2015,Virginia,2 wk ahead,0.0860488898889133
+Subtype Historical Average,2014/2015,Virginia,3 wk ahead,0.0860488898889133
+Subtype Historical Average,2014/2015,Virginia,4 wk ahead,0.0860488898889133
+Dynamic Harmonic Model,2015/2016,Virginia,1 wk ahead,0.894135960132714
+Dynamic Harmonic Model,2015/2016,Virginia,2 wk ahead,0.894135960132714
+Dynamic Harmonic Model,2015/2016,Virginia,3 wk ahead,0.894135960132714
+Dynamic Harmonic Model,2015/2016,Virginia,4 wk ahead,0.894135960132714
+Historical Average,2015/2016,Virginia,1 wk ahead,5.8991398305263e-05
+Historical Average,2015/2016,Virginia,2 wk ahead,5.8991398305263e-05
+Historical Average,2015/2016,Virginia,3 wk ahead,5.8991398305263e-05
+Historical Average,2015/2016,Virginia,4 wk ahead,5.8991398305263e-05
+Subtype Historical Average,2015/2016,Virginia,1 wk ahead,0.105805048468981
+Subtype Historical Average,2015/2016,Virginia,2 wk ahead,0.105805048468981
+Subtype Historical Average,2015/2016,Virginia,3 wk ahead,0.105805048468981
+Subtype Historical Average,2015/2016,Virginia,4 wk ahead,0.105805048468981
+Dynamic Harmonic Model,2016/2017,Virginia,1 wk ahead,0.912882579971458
+Dynamic Harmonic Model,2016/2017,Virginia,2 wk ahead,0.912882579971458
+Dynamic Harmonic Model,2016/2017,Virginia,3 wk ahead,0.912882579971458
+Dynamic Harmonic Model,2016/2017,Virginia,4 wk ahead,0.912882579971458
+Historical Average,2016/2017,Virginia,1 wk ahead,5.61841875568663e-05
+Historical Average,2016/2017,Virginia,2 wk ahead,5.61841875568663e-05
+Historical Average,2016/2017,Virginia,3 wk ahead,5.61841875568663e-05
+Historical Average,2016/2017,Virginia,4 wk ahead,5.61841875568663e-05
+Subtype Historical Average,2016/2017,Virginia,1 wk ahead,0.0870612358409853
+Subtype Historical Average,2016/2017,Virginia,2 wk ahead,0.0870612358409853
+Subtype Historical Average,2016/2017,Virginia,3 wk ahead,0.0870612358409853
+Subtype Historical Average,2016/2017,Virginia,4 wk ahead,0.0870612358409853
+Dynamic Harmonic Model,2017/2018,Virginia,1 wk ahead,0.999999840679908
+Dynamic Harmonic Model,2017/2018,Virginia,2 wk ahead,0.999999840679908
+Dynamic Harmonic Model,2017/2018,Virginia,3 wk ahead,0.999999840679908
+Dynamic Harmonic Model,2017/2018,Virginia,4 wk ahead,0.999999840679908
+Historical Average,2017/2018,Virginia,1 wk ahead,3.51812514193862e-08
+Historical Average,2017/2018,Virginia,2 wk ahead,3.51812514193862e-08
+Historical Average,2017/2018,Virginia,3 wk ahead,3.51812514193862e-08
+Historical Average,2017/2018,Virginia,4 wk ahead,3.51812514193862e-08
+Subtype Historical Average,2017/2018,Virginia,1 wk ahead,1.24138841023186e-07
+Subtype Historical Average,2017/2018,Virginia,2 wk ahead,1.24138841023186e-07
+Subtype Historical Average,2017/2018,Virginia,3 wk ahead,1.24138841023186e-07
+Subtype Historical Average,2017/2018,Virginia,4 wk ahead,1.24138841023186e-07
+Dynamic Harmonic Model,2014/2015,West Virginia,1 wk ahead,0.963573949883534
+Dynamic Harmonic Model,2014/2015,West Virginia,2 wk ahead,0.963573949883534
+Dynamic Harmonic Model,2014/2015,West Virginia,3 wk ahead,0.963573949883534
+Dynamic Harmonic Model,2014/2015,West Virginia,4 wk ahead,0.963573949883534
+Historical Average,2014/2015,West Virginia,1 wk ahead,0.0364143881914001
+Historical Average,2014/2015,West Virginia,2 wk ahead,0.0364143881914001
+Historical Average,2014/2015,West Virginia,3 wk ahead,0.0364143881914001
+Historical Average,2014/2015,West Virginia,4 wk ahead,0.0364143881914001
+Subtype Historical Average,2014/2015,West Virginia,1 wk ahead,1.16619250658517e-05
+Subtype Historical Average,2014/2015,West Virginia,2 wk ahead,1.16619250658517e-05
+Subtype Historical Average,2014/2015,West Virginia,3 wk ahead,1.16619250658517e-05
+Subtype Historical Average,2014/2015,West Virginia,4 wk ahead,1.16619250658517e-05
+Dynamic Harmonic Model,2015/2016,West Virginia,1 wk ahead,0.948622902183009
+Dynamic Harmonic Model,2015/2016,West Virginia,2 wk ahead,0.948622902183009
+Dynamic Harmonic Model,2015/2016,West Virginia,3 wk ahead,0.948622902183009
+Dynamic Harmonic Model,2015/2016,West Virginia,4 wk ahead,0.948622902183009
+Historical Average,2015/2016,West Virginia,1 wk ahead,0.0513647811412767
+Historical Average,2015/2016,West Virginia,2 wk ahead,0.0513647811412767
+Historical Average,2015/2016,West Virginia,3 wk ahead,0.0513647811412767
+Historical Average,2015/2016,West Virginia,4 wk ahead,0.0513647811412767
+Subtype Historical Average,2015/2016,West Virginia,1 wk ahead,1.23166757141083e-05
+Subtype Historical Average,2015/2016,West Virginia,2 wk ahead,1.23166757141083e-05
+Subtype Historical Average,2015/2016,West Virginia,3 wk ahead,1.23166757141083e-05
+Subtype Historical Average,2015/2016,West Virginia,4 wk ahead,1.23166757141083e-05
+Dynamic Harmonic Model,2016/2017,West Virginia,1 wk ahead,0.970347470803132
+Dynamic Harmonic Model,2016/2017,West Virginia,2 wk ahead,0.970347470803132
+Dynamic Harmonic Model,2016/2017,West Virginia,3 wk ahead,0.970347470803132
+Dynamic Harmonic Model,2016/2017,West Virginia,4 wk ahead,0.970347470803132
+Historical Average,2016/2017,West Virginia,1 wk ahead,0.0296436981114935
+Historical Average,2016/2017,West Virginia,2 wk ahead,0.0296436981114935
+Historical Average,2016/2017,West Virginia,3 wk ahead,0.0296436981114935
+Historical Average,2016/2017,West Virginia,4 wk ahead,0.0296436981114935
+Subtype Historical Average,2016/2017,West Virginia,1 wk ahead,8.83108537452045e-06
+Subtype Historical Average,2016/2017,West Virginia,2 wk ahead,8.83108537452045e-06
+Subtype Historical Average,2016/2017,West Virginia,3 wk ahead,8.83108537452045e-06
+Subtype Historical Average,2016/2017,West Virginia,4 wk ahead,8.83108537452045e-06
+Dynamic Harmonic Model,2017/2018,West Virginia,1 wk ahead,0.999999772510023
+Dynamic Harmonic Model,2017/2018,West Virginia,2 wk ahead,0.999999772510023
+Dynamic Harmonic Model,2017/2018,West Virginia,3 wk ahead,0.999999772510023
+Dynamic Harmonic Model,2017/2018,West Virginia,4 wk ahead,0.999999772510023
+Historical Average,2017/2018,West Virginia,1 wk ahead,9.1483613672815e-08
+Historical Average,2017/2018,West Virginia,2 wk ahead,9.1483613672815e-08
+Historical Average,2017/2018,West Virginia,3 wk ahead,9.1483613672815e-08
+Historical Average,2017/2018,West Virginia,4 wk ahead,9.1483613672815e-08
+Subtype Historical Average,2017/2018,West Virginia,1 wk ahead,1.36006363004715e-07
+Subtype Historical Average,2017/2018,West Virginia,2 wk ahead,1.36006363004715e-07
+Subtype Historical Average,2017/2018,West Virginia,3 wk ahead,1.36006363004715e-07
+Subtype Historical Average,2017/2018,West Virginia,4 wk ahead,1.36006363004715e-07
+Dynamic Harmonic Model,2018/2019,Delaware,Season peak week,0.991542656142584
+Dynamic Harmonic Model,2018/2019,Delaware,Season peak percentage,0.991542656142584
+Historical Average,2018/2019,Delaware,Season peak week,0.00845539475932951
+Historical Average,2018/2019,Delaware,Season peak percentage,0.00845539475932951
+Subtype Historical Average,2018/2019,Delaware,Season peak week,1.94909808619425e-06
+Subtype Historical Average,2018/2019,Delaware,Season peak percentage,1.94909808619425e-06
+Dynamic Harmonic Model,2018/2019,Maryland,Season peak week,0.829961784237009
+Dynamic Harmonic Model,2018/2019,Maryland,Season peak percentage,0.829961784237009
+Historical Average,2018/2019,Maryland,Season peak week,0.170036888873333
+Historical Average,2018/2019,Maryland,Season peak percentage,0.170036888873333
+Subtype Historical Average,2018/2019,Maryland,Season peak week,1.32688965783565e-06
+Subtype Historical Average,2018/2019,Maryland,Season peak percentage,1.32688965783565e-06
+Dynamic Harmonic Model,2018/2019,Pennsylvania,Season peak week,0.861860762653182
+Dynamic Harmonic Model,2018/2019,Pennsylvania,Season peak percentage,0.861860762653182
+Historical Average,2018/2019,Pennsylvania,Season peak week,0.136234431608676
+Historical Average,2018/2019,Pennsylvania,Season peak percentage,0.136234431608676
+Subtype Historical Average,2018/2019,Pennsylvania,Season peak week,0.00190480573814138
+Subtype Historical Average,2018/2019,Pennsylvania,Season peak percentage,0.00190480573814138
+Dynamic Harmonic Model,2018/2019,Virginia,Season peak week,0.999999919068005
+Dynamic Harmonic Model,2018/2019,Virginia,Season peak percentage,0.999999919068005
+Historical Average,2018/2019,Virginia,Season peak week,3.65266859235074e-08
+Historical Average,2018/2019,Virginia,Season peak percentage,3.65266859235074e-08
+Subtype Historical Average,2018/2019,Virginia,Season peak week,4.4405309413885e-08
+Subtype Historical Average,2018/2019,Virginia,Season peak percentage,4.4405309413885e-08
+Dynamic Harmonic Model,2018/2019,West Virginia,Season peak week,0.856250662241244
+Dynamic Harmonic Model,2018/2019,West Virginia,Season peak percentage,0.856250662241244
+Historical Average,2018/2019,West Virginia,Season peak week,0.14374235058536
+Historical Average,2018/2019,West Virginia,Season peak percentage,0.14374235058536
+Subtype Historical Average,2018/2019,West Virginia,Season peak week,6.98717339561053e-06
+Subtype Historical Average,2018/2019,West Virginia,Season peak percentage,6.98717339561053e-06
+Dynamic Harmonic Model,2018/2019,Delaware,1 wk ahead,0.999938524534443
+Dynamic Harmonic Model,2018/2019,Delaware,2 wk ahead,0.999938524534443
+Dynamic Harmonic Model,2018/2019,Delaware,3 wk ahead,0.999938524534443
+Dynamic Harmonic Model,2018/2019,Delaware,4 wk ahead,0.999938524534443
+Historical Average,2018/2019,Delaware,1 wk ahead,5.70329724952359e-08
+Historical Average,2018/2019,Delaware,2 wk ahead,5.70329724952359e-08
+Historical Average,2018/2019,Delaware,3 wk ahead,5.70329724952359e-08
+Historical Average,2018/2019,Delaware,4 wk ahead,5.70329724952359e-08
+Subtype Historical Average,2018/2019,Delaware,1 wk ahead,6.14184325848e-05
+Subtype Historical Average,2018/2019,Delaware,2 wk ahead,6.14184325848e-05
+Subtype Historical Average,2018/2019,Delaware,3 wk ahead,6.14184325848e-05
+Subtype Historical Average,2018/2019,Delaware,4 wk ahead,6.14184325848e-05
+Dynamic Harmonic Model,2018/2019,Maryland,1 wk ahead,0.999997701386291
+Dynamic Harmonic Model,2018/2019,Maryland,2 wk ahead,0.999997701386291
+Dynamic Harmonic Model,2018/2019,Maryland,3 wk ahead,0.999997701386291
+Dynamic Harmonic Model,2018/2019,Maryland,4 wk ahead,0.999997701386291
+Historical Average,2018/2019,Maryland,1 wk ahead,2.01919175602173e-06
+Historical Average,2018/2019,Maryland,2 wk ahead,2.01919175602173e-06
+Historical Average,2018/2019,Maryland,3 wk ahead,2.01919175602173e-06
+Historical Average,2018/2019,Maryland,4 wk ahead,2.01919175602173e-06
+Subtype Historical Average,2018/2019,Maryland,1 wk ahead,2.79421952718907e-07
+Subtype Historical Average,2018/2019,Maryland,2 wk ahead,2.79421952718907e-07
+Subtype Historical Average,2018/2019,Maryland,3 wk ahead,2.79421952718907e-07
+Subtype Historical Average,2018/2019,Maryland,4 wk ahead,2.79421952718907e-07
+Dynamic Harmonic Model,2018/2019,Pennsylvania,1 wk ahead,0.910572692375889
+Dynamic Harmonic Model,2018/2019,Pennsylvania,2 wk ahead,0.910572692375889
+Dynamic Harmonic Model,2018/2019,Pennsylvania,3 wk ahead,0.910572692375889
+Dynamic Harmonic Model,2018/2019,Pennsylvania,4 wk ahead,0.910572692375889
+Historical Average,2018/2019,Pennsylvania,1 wk ahead,0.00010392705458684
+Historical Average,2018/2019,Pennsylvania,2 wk ahead,0.00010392705458684
+Historical Average,2018/2019,Pennsylvania,3 wk ahead,0.00010392705458684
+Historical Average,2018/2019,Pennsylvania,4 wk ahead,0.00010392705458684
+Subtype Historical Average,2018/2019,Pennsylvania,1 wk ahead,0.0893233805695238
+Subtype Historical Average,2018/2019,Pennsylvania,2 wk ahead,0.0893233805695238
+Subtype Historical Average,2018/2019,Pennsylvania,3 wk ahead,0.0893233805695238
+Subtype Historical Average,2018/2019,Pennsylvania,4 wk ahead,0.0893233805695238
+Dynamic Harmonic Model,2018/2019,Virginia,1 wk ahead,0.93513952283772
+Dynamic Harmonic Model,2018/2019,Virginia,2 wk ahead,0.93513952283772
+Dynamic Harmonic Model,2018/2019,Virginia,3 wk ahead,0.93513952283772
+Dynamic Harmonic Model,2018/2019,Virginia,4 wk ahead,0.93513952283772
+Historical Average,2018/2019,Virginia,1 wk ahead,7.31477306877216e-05
+Historical Average,2018/2019,Virginia,2 wk ahead,7.31477306877216e-05
+Historical Average,2018/2019,Virginia,3 wk ahead,7.31477306877216e-05
+Historical Average,2018/2019,Virginia,4 wk ahead,7.31477306877216e-05
+Subtype Historical Average,2018/2019,Virginia,1 wk ahead,0.0647873294315919
+Subtype Historical Average,2018/2019,Virginia,2 wk ahead,0.0647873294315919
+Subtype Historical Average,2018/2019,Virginia,3 wk ahead,0.0647873294315919
+Subtype Historical Average,2018/2019,Virginia,4 wk ahead,0.0647873294315919
+Dynamic Harmonic Model,2018/2019,West Virginia,1 wk ahead,0.977503520026379
+Dynamic Harmonic Model,2018/2019,West Virginia,2 wk ahead,0.977503520026379
+Dynamic Harmonic Model,2018/2019,West Virginia,3 wk ahead,0.977503520026379
+Dynamic Harmonic Model,2018/2019,West Virginia,4 wk ahead,0.977503520026379
+Historical Average,2018/2019,West Virginia,1 wk ahead,0.0224858630765868
+Historical Average,2018/2019,West Virginia,2 wk ahead,0.0224858630765868
+Historical Average,2018/2019,West Virginia,3 wk ahead,0.0224858630765868
+Historical Average,2018/2019,West Virginia,4 wk ahead,0.0224858630765868
+Subtype Historical Average,2018/2019,West Virginia,1 wk ahead,1.06168970337584e-05
+Subtype Historical Average,2018/2019,West Virginia,2 wk ahead,1.06168970337584e-05
+Subtype Historical Average,2018/2019,West Virginia,3 wk ahead,1.06168970337584e-05
+Subtype Historical Average,2018/2019,West Virginia,4 wk ahead,1.06168970337584e-05

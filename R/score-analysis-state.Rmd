@@ -1,0 +1,312 @@
+---
+title: "State Forecast Score Analysis"
+author: "Craig McGowan"
+date: "`r format(Sys.Date(), '%d %b %Y')`"
+output:
+  # pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_knit$set(root.dir = "../")
+library(tidyverse)
+library(FluSight)
+theme_set(theme_minimal())
+```
+
+```{r}
+load("Data/state_model_scores.Rdata")
+source("R/utils.R")
+
+state_full_scores <- state_full_scores %>%
+  # Only keep week ahead scores for Data Incubator purposes
+  filter(target %in% c("1 wk ahead", "2 wk ahead", "3 wk ahead", "4 wk ahead")) %>%
+  # Shorter names for ensembles
+  mutate(team = case_when(
+    team == "ens-constant-weights" ~ "Ens-CW",
+    team == "ens-equal-weights" ~ "Ens-EW",
+    team == "ens-state-based-weights" ~ "Ens-SW",
+    team == "ens-state-target-based-weights" ~ "Ens-STW",
+    team == "ens-state-target-type-based-weights" ~ "Ens-STTW",
+    team == "ens-target-based-weights" ~ "Ens-TW",
+    team == "ens-target-type-based-weights" ~ "Ens-TTW",
+    team == "ens-week-based-weights" ~ "Ens-WW",
+    team == "ens-week-state-based-weights" ~ "Ens-WSW",
+    team == "ens-week-target-based-weights" ~ "Ens-WTW",
+    team == "ens-week-target-state-based-weights" ~ "Ens-WTSW",
+    team == "ens-week-target-type-based-weights" ~ "Ens-WTTW",
+    team == "ens-week-target-type-state-based-weights" ~ "Ens-WTTSW",
+    team == "ens-month-state-based-weights" ~ "Ens-MSW",
+    team == "ens-month-based-weights" ~ "Ens-MW",
+    team == "ens-month-target-based-weights" ~ "Ens-MTW",
+    team == "ens-month-target-state-based-weights" ~ "Ens-MTSW",
+    team == "ens-month-target-type-based-weights" ~ "Ens-MTTW",
+    team == "ens-month-target-type-state-based-weights" ~ "Ens-MTTSW",
+    TRUE ~ team
+  ))
+
+models <- unique(state_full_scores$team)
+
+scores_by_season <- state_full_scores %>%
+    group_by(team, season) %>%
+    summarize(
+        avg_score = mean(score),
+        min_score = min(score),
+        max_score = max(score)
+        ) %>%
+    ungroup() %>%
+    mutate(team = reorder(team, avg_score)) 
+
+scores_by_target <- state_full_scores %>%
+    group_by(team, target) %>%
+    summarize(avg_score = mean(score)) %>%
+    ungroup() %>%
+    mutate(team = reorder(team, avg_score))
+
+scores_by_team <- state_full_scores %>%
+    group_by(team) %>%
+    summarize(
+        avg_score = mean(score),
+        min_score = min(score),
+        max_score = max(score)) %>%
+    ungroup() %>%
+    mutate(team = reorder(team, avg_score))
+
+scores_by_state <- state_full_scores %>%
+    group_by(team, location) %>%
+    summarize(
+        avg_score = mean(score),
+        min_score = min(score)) %>%
+    ungroup() %>%
+    mutate(team = reorder(team, avg_score))
+
+scores_by_target_state <- state_full_scores %>%
+    group_by(team, target, location) %>%
+    summarize(
+        avg_score = mean(score),
+        min_score = min(score)) %>%
+    ungroup() %>%
+    mutate(team = reorder(team, avg_score))
+
+scores_by_target_season <- state_full_scores %>%
+    group_by(team, target, season) %>%
+    summarize(
+        avg_score = mean(score),
+        min_score = min(score)) %>%
+    ungroup() %>%
+    mutate(team = reorder(team, avg_score))
+
+scores_by_target_season_state <- state_full_scores %>%
+    group_by(team, target, season, location) %>%
+    summarize(
+        avg_score = mean(score),
+        min_score = min(score)) %>%
+    ungroup() %>%
+    mutate(team = reorder(team, avg_score))
+
+scores_by_week_season <- state_full_scores %>%
+  mutate(plot_week = week_inorder(forecast_week, season)) %>%
+  group_by(team, target, season, plot_week) %>%
+  summarize(
+      avg_score = mean(score),
+      min_score = min(score)) %>%
+  ungroup() %>%
+  mutate(team = reorder(team, avg_score))
+
+scores_by_week <- state_full_scores %>%
+  mutate(plot_week = week_inorder(forecast_week, season)) %>%
+  group_by(team, target, plot_week) %>%
+  summarize(
+      avg_score = mean(score),
+      min_score = min(score)) %>%
+  ungroup() %>%
+  mutate(team = reorder(team, avg_score))
+```
+
+```{r, include=FALSE}
+midpt <- mean(filter(scores_by_season, team=="Historical Average")$avg_score)
+ggplot(scores_by_season, 
+    aes(x=season, fill=avg_score, y=team)) + 
+    geom_tile() + ylab(NULL) + xlab(NULL) +
+    geom_text(aes(label=round(avg_score, 2))) +
+    scale_fill_gradient2(midpoint = midpt) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Average model scores by season")
+```
+
+```{r}
+midpt <- mean(filter(scores_by_team, team=="Historical Average")$avg_score)
+ggplot(scores_by_team, 
+    aes(x=1, fill=avg_score, y=team)) + 
+    geom_tile() + ylab(NULL) + xlab(NULL) +
+    geom_text(aes(label=round(avg_score, 2))) +
+    scale_fill_gradient2(midpoint = midpt) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("team scores across all seasons")
+```
+
+```{r}
+midpt <- mean(filter(scores_by_target, team=="Historical Average")$avg_score)
+ggplot(scores_by_target, 
+    aes(x=target, fill=avg_score, y=team)) + 
+    geom_tile() + ylab(NULL) + xlab(NULL) +
+    geom_text(aes(label=round(avg_score, 2))) +
+    scale_fill_gradient2(midpoint = midpt) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Average model scores by target")
+```
+
+```{r}
+midpt <- mean(filter(scores_by_state, team=="Historical Average")$avg_score)
+ggplot(scores_by_state, 
+    aes(x=location, fill=avg_score, y=team)) + 
+    geom_tile() + ylab(NULL) + xlab(NULL) +
+    geom_text(aes(label=round(avg_score, 2))) +
+    scale_fill_gradient2(midpoint = midpt) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Average model scores by location")
+```
+
+```{r, eval=FALSE}
+midpt <- mean(filter(scores_by_target_season, team=="Historical Average")$avg_score)
+ggplot(scores_by_target_season, 
+    aes(x=season, fill=avg_score, y=team)) +
+    facet_grid(.~target) +
+    geom_tile() + ylab(NULL) + xlab(NULL) +
+    #geom_text(aes(label=round(avg_score, 2))) +
+    scale_fill_gradient2(midpoint = midpt) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Average model scores by target")
+```
+
+```{r}
+midpt <- mean(filter(scores_by_target_state, team=="Historical Average")$avg_score)
+ggplot(scores_by_target_state, 
+    aes(x=location, fill=avg_score, y=team)) +
+    facet_grid(.~target) +
+    geom_tile() + ylab(NULL) + xlab(NULL) +
+    #geom_text(aes(label=round(avg_score, 2))) +
+    scale_fill_gradient2(midpoint = midpt) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Average model scores by location and target")
+```
+
+```{r, eval=FALSE}
+midpt <- mean(filter(scores_by_target_season_state, team=="Historical Average", target=="Season onset")$avg_score)
+ggplot(filter(scores_by_target_season_state, target=="Season onset"), 
+    aes(y=season, fill=avg_score, x=reorder(team, -avg_score))) +
+    facet_grid(location~target) +
+    geom_tile() + ylab(NULL) + xlab(NULL) +
+    #geom_text(aes(label=round(avg_score, 2))) +
+    scale_fill_gradient2(midpoint = -5) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Average model scores by location-season-target")
+```
+
+
+```{r}
+M <- length(unique(state_full_scores$team))
+Ens_labels <- c("CW", "EW", "SW", "STW", "STTW", "TW", "TTW", 
+                "WW", "WSW", "WTW", "WTSW", "WTTW", "WTTSW", 
+                "MW", "MSW", "MTW", "MTSW", "MTTW", "MTTSW")
+Ens_levels <- paste0("Ens-", Ens_labels)
+
+max_avg_scores_target <- scores_by_target %>%
+    group_by(target) %>%
+    summarize(max_score = max(avg_score))
+```
+
+```{r}
+ggplot(scores_by_target_season, aes(x=team, y=avg_score)) +
+    geom_point(alpha=.5, aes(color=season)) + 
+    geom_point(data=scores_by_target, shape="x", size=1, stroke=5)+
+    facet_wrap(~target, ncol=4) +
+    geom_hline(data=max_avg_scores_target, aes(yintercept=max_score), linetype=2) +
+    scale_color_brewer(palette="Dark2") +
+    ylab("average multi-bin log score") + 
+    #ylab("geometric mean of probabilities assigned to multi-bin correct value") + 
+    theme(axis.text.x = element_text(
+        angle = 90, hjust = 1, vjust = .5,
+        color=ifelse(
+            levels(scores_by_target_season$team)%in% Ens_levels,
+            "red",
+            "black"
+            ))
+    ) +
+    ggtitle("Average log-scores for all models, by target and season")
+
+```
+
+```{r}
+ensemble_scores <- scores_by_target_season %>% 
+    filter(grepl("Ens", team)) %>%
+    mutate(team = factor(team, levels=Ens_levels, labels=Ens_labels))
+ensemble_scores_target <- scores_by_target %>% 
+    filter(grepl("Ens", team)) %>%
+    mutate(team = factor(team, levels=Ens_levels, labels=Ens_labels))
+ggplot(ensemble_scores, aes(x=team, y=avg_score)) +
+    geom_point(alpha=.5, aes(color=season)) + 
+    geom_point(data=ensemble_scores_target, shape="x", size=1, stroke=5)+
+    facet_wrap(~target, ncol=4) +
+    geom_hline(data=max_avg_scores_target, aes(yintercept=max_score), linetype=2) +
+    scale_color_brewer(palette="Dark2") +
+    ylab("average log score") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5)) +
+    ggtitle("Average log-scores for ensemble models, by target and season")
+```
+
+```{r}
+ensemble_scores_season <- scores_by_season %>% 
+    filter(grepl("Ens", team)) %>%
+    mutate(team = factor(team, levels=Ens_levels, labels=Ens_labels))
+ensemble_scores_model <- scores_by_team %>% 
+    filter(grepl("Ens", team)) %>%
+    mutate(team = factor(team, levels=Ens_levels, labels=Ens_labels))
+ggplot(ensemble_scores_season, aes(x=team, y=exp(avg_score))) +
+    geom_point(alpha=.8, aes(color=season)) + 
+    geom_point(data=ensemble_scores_model, shape="x", size=1, stroke=8)+
+    scale_color_brewer(palette="Dark2") +
+    ylab("average forecast skill") + xlab(NULL) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5)) +
+    ggtitle("Average log-scores for ensemble models, by season")
+
+```
+
+```{r}
+ggplot(scores_by_season, aes(x=team, y=avg_score)) +
+    geom_point(alpha=.5, aes(color=season)) + 
+    geom_point(data=scores_by_team, shape="x", size=1, stroke=5)+
+    scale_color_brewer(palette="Dark2") +
+    ylab("average log score") +
+        theme(axis.text.x = element_text(
+        angle = 90, hjust = 1, vjust = .5,
+        color=ifelse(
+            levels(scores_by_target_season$team)%in% Ens_levels,
+            "red", 
+            "black"
+            ))
+    ) +
+    ggtitle("Average log-scores for all models, by season")
+
+```
+
+```{r}
+ggplot(scores_by_week, aes(x=plot_week, y=exp(avg_score))) +
+    geom_line(alpha=.5, aes(color=team)) + 
+    geom_line(data=filter(scores_by_week, team=="Historical Average"), color="black", size=1, alpha=.8)+ 
+    ylab("Forecast skill") +
+    facet_wrap(~target)
+```
+
+
+```{r}
+# ggplot(filter(scores_by_week_season, target=="Season onset"), 
+#     aes(x=plot_week, y=exp(avg_score))) +
+#     geom_line(alpha=.5, aes(color=team)) + 
+#     ylab("Forecast skill") +
+#     labs(main = "Weekly skill for onset week") +
+#     facet_wrap(~season)
+```
+
+

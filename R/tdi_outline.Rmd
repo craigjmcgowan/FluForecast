@@ -1,0 +1,43 @@
+---
+title: "Prospective TDI Incubator Outline"
+author: "Craig McGowan"
+date: "February 15, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(MMWRweek)
+library(FluSight)
+
+
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Outline
+
+### Intro
+All had flu, terrible, no good, very bad
+
+
+### Techincal nature
+Challenge not size of data, but combining data from multiple sources storing dates differently. Computational effort to fix weekly training forecasts across multiple seasons.
+
+### Takeaways
+
+#### Technical
+Accuracy measures - compare MAE of forecasts at different resolutions?
+
+#### Fun facts
+Look at forecasts for coming weeks - anything there?
+
+Been putting off flu shot - need to get it by X to have it be effective!
+
+Comparison between states - you live in Maryland but sis in PA, maybe don't visit
+
+In states in Region 3 - emphasize how using finer resolution forecasts provide different information than national ones (hopefully!)  Illustrate with plots of ILI trends across states - maybe overlay different forecasts to show how state one tracks better - but don't want to undercut own work
+
+### Accomplish at TDI
+Finish building out state forecasts and create interactive web application so users (individuals, regional health care providers, media, etc) can explore forecasts at different resolutions, including measures of accuracy.

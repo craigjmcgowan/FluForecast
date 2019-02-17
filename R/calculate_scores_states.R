@@ -1,3 +1,5 @@
+rm(list = ls())
+
 # Generate scores
 library(tidyverse)
 library(FluSight)

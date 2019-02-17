@@ -1,0 +1,76 @@
+component_model_id,season,location,weight
+Dynamic Harmonic Model,2014/2015,Delaware,0.993722561203616
+Historical Average,2014/2015,Delaware,0.00623501908289075
+Subtype Historical Average,2014/2015,Delaware,4.24197134933122e-05
+Dynamic Harmonic Model,2015/2016,Delaware,0.99567340461966
+Historical Average,2015/2016,Delaware,0.00431982123246956
+Subtype Historical Average,2015/2016,Delaware,6.77414787019628e-06
+Dynamic Harmonic Model,2016/2017,Delaware,0.990826218437016
+Historical Average,2016/2017,Delaware,0.00885607810560267
+Subtype Historical Average,2016/2017,Delaware,0.000317703457381581
+Dynamic Harmonic Model,2017/2018,Delaware,0.999999219561956
+Historical Average,2017/2018,Delaware,7.10680977064834e-08
+Subtype Historical Average,2017/2018,Delaware,7.09369946579388e-07
+Dynamic Harmonic Model,2014/2015,Maryland,0.961151943450758
+Historical Average,2014/2015,Maryland,0.038828258446075
+Subtype Historical Average,2014/2015,Maryland,1.97981031671314e-05
+Dynamic Harmonic Model,2015/2016,Maryland,0.845096257971797
+Historical Average,2015/2016,Maryland,0.154900256942116
+Subtype Historical Average,2015/2016,Maryland,3.48508608650725e-06
+Dynamic Harmonic Model,2016/2017,Maryland,0.825848759587734
+Historical Average,2016/2017,Maryland,0.174147564569508
+Subtype Historical Average,2016/2017,Maryland,3.67584275757516e-06
+Dynamic Harmonic Model,2017/2018,Maryland,0.879784626503004
+Historical Average,2017/2018,Maryland,0.120212520294071
+Subtype Historical Average,2017/2018,Maryland,2.85320292497158e-06
+Dynamic Harmonic Model,2014/2015,Pennsylvania,0.923326814746957
+Historical Average,2014/2015,Pennsylvania,0.0766705278961898
+Subtype Historical Average,2014/2015,Pennsylvania,2.6573568533227e-06
+Dynamic Harmonic Model,2015/2016,Pennsylvania,0.777674672233558
+Historical Average,2015/2016,Pennsylvania,0.0538248715401769
+Subtype Historical Average,2015/2016,Pennsylvania,0.168500456226266
+Dynamic Harmonic Model,2016/2017,Pennsylvania,0.861970171112252
+Historical Average,2016/2017,Pennsylvania,0.00127236521098188
+Subtype Historical Average,2016/2017,Pennsylvania,0.136757463676766
+Dynamic Harmonic Model,2017/2018,Pennsylvania,0.939430760977193
+Historical Average,2017/2018,Pennsylvania,1.86108824044859e-06
+Subtype Historical Average,2017/2018,Pennsylvania,0.0605673779345663
+Dynamic Harmonic Model,2014/2015,Virginia,0.954203539136966
+Historical Average,2014/2015,Virginia,0.042561307554258
+Subtype Historical Average,2014/2015,Virginia,0.00323515330877608
+Dynamic Harmonic Model,2015/2016,Virginia,0.948062370670497
+Historical Average,2015/2016,Virginia,0.000123509494864078
+Subtype Historical Average,2015/2016,Virginia,0.0518141198346392
+Dynamic Harmonic Model,2016/2017,Virginia,0.960578028780488
+Historical Average,2016/2017,Virginia,7.48250000970574e-05
+Subtype Historical Average,2016/2017,Virginia,0.039347146219415
+Dynamic Harmonic Model,2017/2018,Virginia,0.999999923030887
+Historical Average,2017/2018,Virginia,1.14815191978599e-08
+Subtype Historical Average,2017/2018,Virginia,6.54875939954757e-08
+Dynamic Harmonic Model,2014/2015,West Virginia,0.976992504920454
+Historical Average,2014/2015,West Virginia,0.0229989149421995
+Subtype Historical Average,2014/2015,West Virginia,8.58013734607062e-06
+Dynamic Harmonic Model,2015/2016,West Virginia,0.875615283899491
+Historical Average,2015/2016,West Virginia,0.12437545194026
+Subtype Historical Average,2015/2016,West Virginia,9.26416024949668e-06
+Dynamic Harmonic Model,2016/2017,West Virginia,0.885656103710921
+Historical Average,2016/2017,West Virginia,0.114335469663146
+Subtype Historical Average,2016/2017,West Virginia,8.42662593341414e-06
+Dynamic Harmonic Model,2017/2018,West Virginia,0.911263550971625
+Historical Average,2017/2018,West Virginia,0.0887079964057216
+Subtype Historical Average,2017/2018,West Virginia,2.84526226537139e-05
+Dynamic Harmonic Model,2018/2019,Delaware,0.995231538535032
+Historical Average,2018/2019,Delaware,0.00470744676451648
+Subtype Historical Average,2018/2019,Delaware,6.10147004517801e-05
+Dynamic Harmonic Model,2018/2019,Maryland,0.876493272957725
+Historical Average,2018/2019,Maryland,0.123502495535494
+Subtype Historical Average,2018/2019,Maryland,4.23150678061591e-06
+Dynamic Harmonic Model,2018/2019,Pennsylvania,0.885479799308177
+Historical Average,2018/2019,Pennsylvania,0.0181439594514061
+Subtype Historical Average,2018/2019,Pennsylvania,0.0963762412404172
+Dynamic Harmonic Model,2018/2019,Virginia,0.970119039520259
+Historical Average,2018/2019,Virginia,9.26517624284771e-05
+Subtype Historical Average,2018/2019,Virginia,0.0297883087173126
+Dynamic Harmonic Model,2018/2019,West Virginia,0.907771838201184
+Historical Average,2018/2019,West Virginia,0.092215667027474
+Subtype Historical Average,2018/2019,West Virginia,1.24947713424657e-05
