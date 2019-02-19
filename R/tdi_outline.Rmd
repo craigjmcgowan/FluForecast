@@ -29,6 +29,8 @@ g_legend <- function(a.gplot){
   return(legend)
 }
 
+load("Data/state_model_scores.Rdata")
+
 forecast_data <- readRDS("Data/nat_state_forecasts.Rds") %>%
   mutate(year = ifelse(forecast_week < 40, as.numeric(substr(season, 6, 9)),
                        as.numeric(substr(season, 1, 4))),
