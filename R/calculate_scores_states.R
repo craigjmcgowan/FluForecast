@@ -134,3 +134,21 @@ state_full_scores <- bind_rows(full_scores_1415, full_scores_1516,
 save(state_full_scores,
      file = "Data/state_model_scores.Rdata")
 
+
+# Determine best fitting model by state
+scores_by_state <- state_full_scores %>%
+  filter(season != "2018/2019") %>%
+  filter(target %in% c("1 wk ahead", "2 wk ahead", "3 wk ahead", "4 wk ahead"),
+         team != "ens-optimal-state") %>%
+  group_by(team, location) %>%
+  summarize(
+    avg_score = mean(score),
+    min_score = min(score)
+  ) %>%
+  group_by(location) %>%
+  filter(avg_score == max(avg_score)) %>%
+  ungroup() %>%
+  select(team, location)
+
+save(scores_by_state,
+     file = "Data/state_best_model_fits.Rdata")

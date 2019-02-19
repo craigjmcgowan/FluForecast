@@ -565,21 +565,8 @@ weight_types <- sub(
       weight_files)
 )
 
-# Fetch scores and identify ensemble with best performance for each state
-load("Data/state_model_scores.Rdata")
-
-scores_by_state <- state_full_scores %>%
-  filter(season != "2018/2019") %>%
-  filter(target %in% c("1 wk ahead", "2 wk ahead", "3 wk ahead", "4 wk ahead")) %>%
-  group_by(team, location) %>%
-  summarize(
-    avg_score = mean(score),
-    min_score = min(score)
-    ) %>%
-  group_by(location) %>%
-  filter(avg_score == max(avg_score)) %>%
-  ungroup() %>%
-  select(team, location)
+# Fetch ensemble with best performance for each state
+load("Data/state_best_model_fits.Rdata")
 
 final_sub <- tibble()
 

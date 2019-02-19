@@ -5,6 +5,7 @@ library(tidyverse)
 library(FluSight)
 
 source("R/utils.R")
+load("Data/state_best_model_fits.Rdata") 
 
 # List forecast files to be weighted
 model_files <- list.files(path = "State Forecasts", recursive = TRUE, full.names = T)
@@ -16,6 +17,8 @@ weight_types <- sub(
   pattern = "-weights.csv", 
   replacement = "",
   weight_files)
+
+optimal_sub <- tibble()
 
 for(j in 1:length(weight_files)) {
   stacking_weights <- read.csv(paste0("state weights/", weight_files[j]), 
@@ -60,7 +63,7 @@ for(j in 1:length(weight_files)) {
 
     # Only create forecasts for weeks with forecasts in current season
     if (loso_season == "2018/2019")
-      week_names <- week_names[1:18]
+      week_names <- week_names[1:19]
   
     for (k in 1:length(week_names)) {
   
@@ -92,7 +95,42 @@ for(j in 1:length(weight_files)) {
       )
       write.csv(stacked_entry, file=stacked_file_name, 
                 row.names = FALSE, quote = FALSE)
+      
+      # Save entry to optimal output if needed
+      if(any(scores_by_state$team %in% paste0("ens-", stacked_name))) {
+        optimal_sub <- bind_rows(
+          optimal_sub,
+          filter(stacked_entry, 
+                 location == scores_by_state$location[
+                   scores_by_state$team == paste0("ens-", stacked_name)]) %>%
+            mutate(season = loso_season,
+                   week = this_week)
+        )
+      }
     }
+    
   }
 }
 
+
+# Create optimal ensemble forecasts
+
+these_seasons <- unique(optimal_sub$season)
+
+for(i in seq_along(these_seasons)) {
+  
+  week_names <- unique(optimal_sub$week[optimal_sub$season == 
+                                          these_seasons[i]])
+  
+  
+  for (k in 1:length(week_names)) {
+    
+    filter(optimal_sub, season == these_seasons[i], week == week_names[k]) %>%
+      select(-season, -week) %>%
+      write.csv(file=paste0("State Forecasts/", 
+                            sub("/", "-", these_seasons[i]),
+                            "/ens-optimal-state/",
+                            week_names[k], ".csv"), 
+                row.names = FALSE, quote = FALSE)
+  }
+}

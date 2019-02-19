@@ -1,6 +1,7 @@
 # Dynamic harmonic regression model 
 
-library(tidyverse)
+
+# Create clusters for use later in programlibrary(tidyverse)
 library(forecast)
 library(lubridate)
 library(FluSight)
@@ -18,7 +19,6 @@ load("Data/virologic_state.Rdata")
 load("Data/Gtrends.Rdata")
 load("Data/state_gtrend.Rdata")
 
-# Create clusters for use later in program
 cluster <- create_cluster(cores = parallel::detectCores())
 
 # Create truth for all seasons and combine datasets -------

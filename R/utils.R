@@ -174,9 +174,15 @@ create_pseudo_onset <- function(weekILI) {
 
 # Functions to read forecasts from directory into a list --------
 
-read_forecasts <- function(dir, challenge = 'ilinet', these_weeks = NULL) {
+read_forecasts <- function(dir, challenge = 'ilinet', these_weeks = c(),
+                           these_teams = c()) {
+  require(stringr)
   
   teams <- list.dirs(path = dir, recursive = F)
+  
+  # Only read forecasts for certain teams if called
+  if(!is.null(these_teams))
+    teams <- teams[str_extract(teams, "[^/]+$") %in% these_teams]
   
   subs <- list()
   
