@@ -30,6 +30,7 @@ g_legend <- function(a.gplot){
 }
 
 load("Data/state_model_scores.Rdata")
+load("Data/model_scores.Rdata")
 
 forecast_data <- readRDS("Data/nat_state_forecasts.Rds") %>%
   mutate(year = ifelse(forecast_week < 40, as.numeric(substr(season, 6, 9)),
@@ -114,6 +115,52 @@ tgt_avg_MAE %>%
   pander::pander()
 
 ```
+
+
+```{r geom mean avg scores}
+scores <- filter(all_full_scores, season == "2018/2019",
+                 target %in% c("1 wk ahead", "2 wk ahead", "3 wk ahead",
+                               "4 wk ahead"),
+                 team == "ens-month-target-type-based-weights",
+                 (forecast_week >= 40 | forecast_week <= 5),
+                 !(forecast_week == 5 & target %in% c("2 wk ahead", "3 wk ahead",
+                                                      "4 wk ahead")),
+                 !(forecast_week == 4 & target %in% c("3 wk ahead", "4 wk ahead")),
+                 !(forecast_week == 3 & target %in% c("4 wk ahead"))) %>%
+  bind_rows(
+    filter(state_full_scores, season == "2018/2019",
+           target %in% c("1 wk ahead", "2 wk ahead", "3 wk ahead",
+                               "4 wk ahead"),
+           team == "ens-optimal-state",
+           (forecast_week >= 40 | forecast_week <= 5),
+           !(forecast_week == 5 & target %in% c("2 wk ahead", 
+                                                "3 wk ahead", "4 wk ahead")),
+           !(forecast_week == 4 & target %in% c("3 wk ahead", "4 wk ahead")),
+           !(forecast_week == 3 & target %in% c("4 wk ahead")))
+  )
+
+tgt_avg_skill <- group_by(scores, location, target) %>%
+  summarize(avg_skill = exp(mean(score, na.rm = T))) %>%
+  ungroup()
+
+tgt_avg_skill %>%
+  mutate(avg_skill = round(avg_skill, 2)) %>%
+  spread(key = "target", value = "avg_skill") %>%
+  filter(location %in% c("US National", "HHS Region 3", "Pennsylvania", "Virginia")) %>%
+  mutate(location =  factor(location, levels = c("US National", "HHS Region 1",
+                                           "HHS Region 2", "HHS Region 3", 
+                                           "HHS Region 4", "HHS Region 5",
+                                           "HHS Region 6", "HHS Region 7", 
+                                           "HHS Region 8", "HHS Region 9",
+                                           "HHS Region 10", "Delaware",
+                                           "Maryland", "Pennsylvania",
+                                           "Virginia", "West Virginia"))) %>%
+  arrange(location) %>%
+  pander::pander(caption = "Geom. mean prob assigned to observed outcome")
+
+
+```
+
 
 
 ```{r next 4 weeks plot}
