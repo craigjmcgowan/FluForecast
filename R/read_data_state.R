@@ -2,7 +2,6 @@
 library(tidyverse)
 library(cdcfluview)
 library(MMWRweek)
-library(gtrendsR)
 library(lubridate)
 library(FluSight)
 library(epiforecast)
@@ -28,24 +27,43 @@ pull_week <- case_when(
   TRUE ~ current_week - 2
 )
 
+state_matchup <- tibble(abb = tolower(state.abb),
+                        name = state.name) %>%
+  # Remove Florida b/c no data are available
+  filter(abb != "fl")
+
 # ILI data ------
-state_current <- Epidata$fluview(regions = list("pa", "de", "md",
-                                             "va", "wv"),
-                           epiweeks = list(Epidata$range(201040, pull_week)))$epidata %>%
-  modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
-  bind_rows() %>%
+current_epidata <- function(start_wk, end_wk) {
+  Epidata$fluview(
+    regions = list("al", "ak", "az", "ar", "ca", "co", "ct", "de", "ga", "hi", 
+                   "id", "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", 
+                   "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", 
+                   "ny", "nc", "nd", "oh", "ok", "or", "pa", "ri", "sc", "sd", 
+                   "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy"),
+    epiweeks = list(Epidata$range(start_wk, end_wk))
+  )$epidata %>%
+    modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
+    bind_rows()
+}
+
+state_current <- bind_rows(
+  current_epidata(201040, 201139),
+  current_epidata(201140, 201239),
+  current_epidata(201240, 201339),
+  current_epidata(201340, 201439),
+  current_epidata(201440, 201539),
+  current_epidata(201540, 201639),
+  current_epidata(201640, 201739),
+  current_epidata(201740, 201839),
+  current_epidata(201840, pull_week)
+  ) %>%
   mutate(year = as.integer(substr(epiweek, 1, 4)),
          week = as.integer(substr(epiweek, 5, 6)),
          season = ifelse(week >= 40,
                          paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         location = case_when(
-           region == "pa" ~ "Pennsylvania",
-           region == "de" ~ "Delaware",
-           region == "md" ~ "Maryland",
-           region == "va" ~ "Virginia",
-           region == "wv" ~ "West Virginia"
-         )) %>%
+                         paste0(year - 1, "/", year))) %>%
+  # Add in state name
+  left_join(rename(state_matchup, location = name), by = c("region" = "abb")) %>%
   rename(ILI = ili) %>%
   # Make ILI always > 0
   mutate(ILI = case_when(near(ILI, 0) ~ 0.1,
@@ -58,47 +76,25 @@ if (!dir.exists(epidata.cache.dir)) {
   dir.create(epidata.cache.dir)
 }
 
-state_history = bind_rows(
+state_epidata_history <- function(abb) {
   fetchEpidataHistoryDF(
-    "fluview", "pa", 0:51,
+    "fluview", abb, 0:51,
     first.week.of.season = 40L,
-    cache.file.prefix=file.path(epidata.cache.dir,paste0("fluview_pa"))
-  ),
-  fetchEpidataHistoryDF(
-    "fluview", "de", 0:51,
-    first.week.of.season = 40L,
-    cache.file.prefix=file.path(epidata.cache.dir,paste0("fluview_de"))
-  ),
-  fetchEpidataHistoryDF(
-    "fluview", "md", 0:51,
-    first.week.of.season = 40L,
-    cache.file.prefix=file.path(epidata.cache.dir,paste0("fluview_md"))
-  ),
-  fetchEpidataHistoryDF(
-    "fluview", "va", 0:51,
-    first.week.of.season = 40L,
-    cache.file.prefix=file.path(epidata.cache.dir,paste0("fluview_va"))
-  ),
-  fetchEpidataHistoryDF(
-    "fluview", "wv", 0:51,
-    first.week.of.season = 40L,
-    cache.file.prefix=file.path(epidata.cache.dir,paste0("fluview_wv"))
+    cache.file.prefix=file.path(epidata.cache.dir,paste0(paste0("fluview_", abb)))
   )
-) %>%
+}
+
+state_history <- lapply(state_matchup$abb, state_epidata_history) %>%
+  bind_rows() %>%
   distinct() %>%
   filter(!is.na(ili)) %>%
   mutate(year = as.integer(substr(epiweek, 1, 4)),
          week = as.integer(substr(epiweek, 5, 6)),
          season = ifelse(week >= 40,
                          paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         location = case_when(
-           region == "pa" ~ "Pennsylvania",
-           region == "de" ~ "Delaware",
-           region == "md" ~ "Maryland",
-           region == "va" ~ "Virginia",
-           region == "wv" ~ "West Virginia"
-         )) %>%
+                         paste0(year - 1, "/", year))) %>%
+  # Add in state name
+  left_join(rename(state_matchup, location = name), by = c("region" = "abb")) %>%
   rename(ILI = ili) %>%
   # Make ILI always > 0
   mutate(ILI = case_when(near(ILI, 0) ~ 0.1,
@@ -161,8 +157,9 @@ virologic_before_1516 <- virologic_state_raw[[1]] %>%
                        paste0(year, "/", year + 1),
                        paste0(year - 1, "/", year)),
        location = region) %>%
-  filter(location %in% c("Pennsylvania", "Delaware", "Maryland", "Virginia",
-                         "West Virginia")) %>%
+  filter(!location %in% c("District of Columbia", "Florida", "New York City", 
+                          "Virgin Islands", "Puerto Rico")) %>%
+  # Issues with New Jersey and Rhode Island - don't have any data before 15/16
   # Create mock H1 and H3 percents if all A samples had been tested
   rowwise() %>%
   mutate(pos_samples = sum(a_h1, a_2009_h1n1, a_h3, a_subtyping_not_performed, 
@@ -207,8 +204,8 @@ virologic_ph_lab <- virologic_state_raw[[2]] %>%
   mutate(season = paste0(substr(season_description, 8, 11), "/20",
                          substr(season_description, 13, 14)),
          location = region) %>%
-  filter(location %in% c("Pennsylvania", "Delaware", "Maryland", "Virginia",
-                         "West Virginia")) %>%
+  filter(!location %in% c("District of Columbia", "Florida", "New York City", 
+                          "Virgin Islands", "Puerto Rico")) %>%
   # Create mock H1 and H3 percents if all A samples had been tested
   mutate_at(vars(c("a_2009_h1n1", "a_h3", "a_subtyping_not_performed",
                    "b", "bvic", "byam")),
@@ -230,8 +227,8 @@ virologic_clin_lab <- virologic_state_raw[[3]] %>%
                        paste0(year, "/", year + 1),
                        paste0(year - 1, "/", year)),
        location = region) %>%
-  filter(location %in% c("Pennsylvania", "Delaware", "Maryland", "Virginia",
-                         "West Virginia")) %>%
+  filter(!location %in% c("District of Columbia", "Florida", "New York City", 
+                          "Virgin Islands", "Puerto Rico")) %>%
   # Set values to 0 if missing
   mutate_at(vars(c("total_specimens", "total_a", "total_b")),
             function(x) ifelse(is.na(x), 0, x)) %>%

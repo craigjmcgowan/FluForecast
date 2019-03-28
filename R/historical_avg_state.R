@@ -9,7 +9,6 @@ load("Data/ili_state.Rdata")
 source("R/create_historical_forecast.R")
 source("R/utils.R")
 
-
 # Create forecasts for 2014/2015 ------
 train_ili_1415 <- state_current %>%
   filter(year <= 2014, season != "2014/2015")
@@ -108,7 +107,8 @@ for(i in 40:72) {
 
 # Create forecasts for 2017/2018 ------
 train_ili_1718 <- state_current %>%
-  filter(year <= 2017, season != "2017/2018")
+  filter(year <= 2017, season != "2017/2018",
+         location != "Louisiana") # Remove LA b/c only one year of training data
 
 # Create directory to store forecasts
 dir.create("State Forecasts/2017-2018/Historical Average",
