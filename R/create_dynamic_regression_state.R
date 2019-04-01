@@ -42,12 +42,10 @@ load("Data/state_truth_and_data.Rdata")
 #                    cum_h3per, cum_bper),
 #             by = c("location", "season", "year", "week")) %>%
 #   # Add Google Trends data by location
-#   right_join(bind_rows(mutate(gtrend_PA_flu_merge, location = "Pennsylvania"),
-#                        mutate(gtrend_DE_flu_merge, location = "Delaware"),
-#                        mutate(gtrend_MD_flu_merge, location = "Maryland"),
-#                        mutate(gtrend_VA_flu_merge, location = "Virginia"),
-#                        mutate(gtrend_WV_flu_merge, location = "West Virginia")) %>%
+#   right_join(gtrend_state_flu_merge %>%
 #                filter(year > 2010 | (year == 2010 & week >= 40)) %>%
+#                filter(location != "Florida" &
+#                         (location != "Louisiana" | season %in% c('2016/2017', '2017/2018', '2018/2019'))) %>%
 #                rename(region_hits = hits) %>%
 #                select(-date),
 #             by = c("location", "season", "year", "week")) %>%
