@@ -81,12 +81,17 @@ create_subtype_densities <- function(ili_df, vir_ssn_per,
         left_join(vir_ssn_per, by = c("season", "location")) %>%
         filter(!is.na(h1per))
       
-      densities[["h1"]][["Season peak week"]][[this_location]] <- 
-        density(temp_peak_wk$bin_start_incl, bw = "SJ",
-                weights = temp_peak_wk$h1per / sum(temp_peak_wk$h1per))
-      densities[["h3"]][["Season peak week"]][[this_location]] <- 
-        density(temp_peak_wk$bin_start_incl, bw = "SJ",
-                weights = temp_peak_wk$h3per / sum(temp_peak_wk$h3per)) 
+      out_h1 <- try(density(temp_peak_wk$bin_start_incl, bw = "SJ",
+                            weights = temp_peak_wk$h1per / sum(temp_peak_wk$h1per)),
+                    silent = TRUE)
+      out_h3 <- try(density(temp_peak_wk$bin_start_incl, bw = "SJ",
+                            weights = temp_peak_wk$h3per / sum(temp_peak_wk$h3per)),
+                    silent = TRUE)
+      
+      if(!is.character(out_h1))
+        densities[["h1"]][["Season peak week"]][[this_location]] <- out_h1
+      if(!is.character(out_h3))
+        densities[["h3"]][["Season peak week"]][[this_location]] <- out_h3
       
       # Peak percentage densities
       temp_peak_per <- train_peak %>%
@@ -95,12 +100,18 @@ create_subtype_densities <- function(ili_df, vir_ssn_per,
         left_join(vir_ssn_per, by = c("season", "location")) %>%
         filter(!is.na(h1per))
       
-      densities[["h1"]][["Season peak percentage"]][[this_location]] <- 
-        density(temp_peak_per$bin_start_incl, bw = "SJ",
-                weights = temp_peak_per$h1per / sum(temp_peak_per$h1per))
-      densities[["h3"]][["Season peak percentage"]][[this_location]] <- 
-        density(temp_peak_per$bin_start_incl, bw = "SJ",
-                weights = temp_peak_per$h3per / sum(temp_peak_per$h3per))
+      out_h1 <- try(density(temp_peak_per$bin_start_incl, bw = "SJ",
+                            weights = temp_peak_per$h1per / sum(temp_peak_per$h1per)),
+                    silent = TRUE)
+      out_h3 <- try(density(temp_peak_per$bin_start_incl, bw = "SJ",
+                            weights = temp_peak_per$h3per / sum(temp_peak_per$h3per)),
+                    silent = TRUE)
+        
+      if(!is.character(out_h1))
+        densities[["h1"]][["Season peak percentage"]][[this_location]] <- out_h1
+      if(!is.character(out_h3))
+        densities[["h3"]][["Season peak percentage"]][[this_location]] <- out_h3
+        
     } 
    
     # Densities for each week of the season
@@ -141,7 +152,7 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
 
   pred <- tibble()
 
-  for(this_location in names(functions[["h1"]][[1]])) {
+  for(this_location in names(functions[["h1"]][[2]])) {
     
     temp_vir <- filter(virologic, location == this_location,
                        order_week == pub_week)
@@ -164,14 +175,17 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
             unit = "week",
             bin_start_incl = paste(i),
             bin_end_notincl = paste(i + 1),
-            value = (integrate(functions[["h1"]][["Season onset"]][[this_location]],
-                               i - 0.5, i + 0.5)$value * temp_vir$h1per) +
-              (integrate(functions[["h3"]][["Season onset"]][[this_location]],
-                         i - 0.5, i + 0.5)$value * temp_vir$h3per)
-          ) %>% bind_rows(onset, .)
+            value = ifelse(is.null(functions[["h1"]][["Season onset"]][[this_location]]),
+                           1/34 * temp_vir$h1per,
+                           integrate(functions[["h1"]][["Season onset"]][[this_location]],
+                                     i - 0.5, i + 0.5)$value * temp_vir$h1per) +
+              ifelse(is.null(functions[["h3"]][["Season onset"]][[this_location]]),
+                     1/34 * temp_vir$h3per,
+                     integrate(functions[["h3"]][["Season onset"]][[this_location]],
+                               i - 0.5, i + 0.5)$value * temp_vir$h3per)
+          )
         }
-        
-        # Season peak week
+          
         pkwk <- tibble(
           location = this_location,
           target = "Season peak week",
@@ -179,10 +193,14 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           unit = "week",
           bin_start_incl = paste(i),
           bin_end_notincl = paste(i + 1),
-          value = (integrate(functions[["h1"]][["Season peak week"]][[this_location]],
-                             i - 0.5, i + 0.5)$value * temp_vir$h1per) +
-            (integrate(functions[["h3"]][["Season peak week"]][[this_location]],
-                       i - 0.5, i + 0.5)$value * temp_vir$h3per)
+          value = ifelse(is.null(functions[["h1"]][["Season peak week"]][[this_location]]),
+                         1/34 * temp_vir$h1per,
+                         integrate(functions[["h1"]][["Season peak week"]][[this_location]],
+                                   i - 0.5, i + 0.5)$value * temp_vir$h1per) +
+            ifelse(is.null(functions[["h3"]][["Season peak week"]][[this_location]]),
+                   1/34 * temp_vir$h3per,
+                   integrate(functions[["h3"]][["Season peak week"]][[this_location]],
+                             i - 0.5, i + 0.5)$value * temp_vir$h3per)
         ) %>% bind_rows(pkwk, .)
         
       }

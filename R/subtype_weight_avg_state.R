@@ -6,6 +6,7 @@ library(zoo)
 # Load data -------
 load("Data/ili_state.Rdata")
 load("Data/virologic_state.Rdata")
+load("Data/virologic.Rdata")
 
 # Load functions 
 source("R/create_subtype_forecast.R")
@@ -16,7 +17,23 @@ vir_ssn_per <- state_virologic %>%
   group_by(season, location) %>%
   slice(tail(row_number(), 1)) %>%
   select(season, location, h1per = h1per_of_a, h3per = h3per_of_a) %>%
-  ungroup()
+  ungroup() %>%
+  filter(!location %in% c("New Jersey", "Rhode Island")) %>%
+  bind_rows(
+    # For NJ and RI - bring in HHS region percentages to use instead
+    virologic_combined %>%
+      filter(location %in% c("HHS Region 1", "HHS Region 2"),
+             season %in% c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
+                           "2014/2015", "2015/2016", "2016/2017", "2017/2018",
+                           "2018/2019")) %>%
+      group_by(season, location) %>%
+      slice(tail(row_number(), 1)) %>%
+      select(season, location, h1per = h1per_of_a, h3per = h3per_of_a) %>%
+      ungroup() %>%
+      mutate(location = case_when(location == "HHS Region 1" ~ "Rhode Island",
+                                  location == "HHS Region 2" ~ "New Jersey"))
+  )
+
 
 # Create forecasts for 2014/2015 ------
 train_ili_1415 <- state_current %>%
@@ -166,10 +183,11 @@ for(i in 40:72) {
 
 # Create forecasts for 2017/2018 ------
 train_ili_1718 <- state_current %>%
-  filter(year <= 2017, season != "2017/2018")
+  filter(year <= 2017, season != "2017/2018",
+         location != "Louisiana") # Remove LA b/c only one season of training data
 
 virologic_1718 <- state_virologic %>%
-  filter(season == "2017/2018") %>%
+  filter(season == "2017/2018", location != "Louisiana") %>%
   group_by(location) %>%
   mutate(h1sum = cumsum(a_2009_h1n1) + cumsum(a_h1),
          h3sum = cumsum(a_h3),
