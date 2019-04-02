@@ -71,16 +71,23 @@ create_historical_densities <- function(ili_df, pseudo_onsets = c(),
             as.numeric(bin_start_incl) + 52,
           TRUE ~ as.numeric(bin_start_incl))) 
       
-      densities[["Season peak week"]][[this_location]] <- 
-        density(temp_peak_wk$bin_start_incl, bw = "SJ")
+      out <- try(density(temp_peak_wk$bin_start_incl, bw = "SJ"),
+                 silent = TRUE)
+      
+      if(!is.character(out))
+        densities[["Season peak week"]][[this_location]] <- out
       
       # Peak percentage densities
       temp_peak_per <- train_peak %>%
         mutate(bin_start_incl = as.numeric(bin_start_incl)) %>%
         filter(location == this_location, target == "Season peak percentage")
       
-      densities[["Season peak percentage"]][[this_location]] <- 
-        density(temp_peak_per$bin_start_incl, bw = "SJ")
+      out <- try(density(temp_peak_per$bin_start_incl, bw = "SJ"),
+                 silent = TRUE)
+      
+      if(!is.character(out))
+        densities[["Season peak percentage"]][[this_location]] <- out
+        
     }
     
     # Densities for each week of the season
@@ -109,7 +116,7 @@ create_historical_forecast <- function(functions, pub_week, season,
 
   pred <- tibble()
   
-  for(this_location in names(functions[[1]])) {
+  for(this_location in names(functions[[2]])) {
   
     # Seasonal targets -----
     onset <- tibble()
@@ -128,8 +135,9 @@ create_historical_forecast <- function(functions, pub_week, season,
             unit = "week",
             bin_start_incl = paste(i),
             bin_end_notincl = paste(i + 1),
-            value = integrate(functions[["Season onset"]][[this_location]],
-                               i - 0.5, i + 0.5)$value
+            value = ifelse(is.null(functions[["Season onset"]][[this_location]]),
+                           1/34, 
+                           integrate(functions[["Season onset"]][[this_location]], i - 0.5, i + 0.5)$value)
           ) %>% bind_rows(onset, .)
         }
       
@@ -141,8 +149,9 @@ create_historical_forecast <- function(functions, pub_week, season,
           unit = "week",
           bin_start_incl = paste(i),
           bin_end_notincl = paste(i + 1),
-          value = integrate(functions[["Season peak week"]][[this_location]],
-                             i - 0.5, i + 0.5)$value
+          value = ifelse(is.null(functions[["Season peak week"]][[this_location]]),
+                         1/34, 
+                         integrate(functions[["Season peak week"]][[this_location]], i - 0.5, i + 0.5)$value)
         ) %>% bind_rows(pkwk, .)
       }
     
