@@ -1,7 +1,8 @@
 # Dynamic harmonic regression model 
 
 
-# Create clusters for use later in programlibrary(tidyverse)
+# Create clusters for use later in program
+library(tidyverse)
 library(forecast)
 library(lubridate)
 library(FluSight)
@@ -89,7 +90,7 @@ load("Data/state_truth_and_data.Rdata")
 
 ##### Transform data #####
 load("Data/state_transform_fits.Rdata")
-cluster <- create_cluster(cores = parallel::detectCores())
+cluster <- create_cluster(cores = parallel::detectCores() )
 
 # transform_model_fit_data <- tibble(season = c("2014/2015", "2015/2016", "2016/2017", "2017/2018")) %>%
 #   mutate(train_data = map(season,
@@ -195,7 +196,7 @@ transform_forecasts <- transform_by_group %>%
     )
   ) %>%
   collect() %>%
-  as.tibble() %>%
+  as_tibble() %>%
   ungroup() %>%
   select(season, model, location, week, pred_results) 
   
@@ -308,7 +309,7 @@ fourier_model_fits <- fourier_fits_by_group %>%
                        ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 12),
                                     seasonal = FALSE, lambda = .y))) %>%
   collect() %>%
-  as.tibble() %>%
+  as_tibble() %>%
   ungroup() %>%
   select(-data) %>%
   gather(key = "model", value = "fit", fit_1:fit_12)
@@ -388,7 +389,7 @@ fourier_forecasts <- fourier_by_group %>%
       )
     ) %>%
   collect() %>%
-  as.tibble() %>%
+  as_tibble() %>%
   ungroup() %>%
   select(season, model, location, week, pred_results)
 
@@ -478,7 +479,7 @@ cluster <- create_cluster(cores = parallel::detectCores())
 #     )) %>%
 #   select(-data) %>%
 #   collect() %>%
-#   as.tibble() %>%
+#   as_tibble() %>%
 #   ungroup() %>%
 #   filter(!grepl("Error", fit)) 
 # 
@@ -564,7 +565,7 @@ for(this_season in unique(arima_model_data_setup$season)) {
                         npaths = 250)
       )) %>%
     collect() %>%
-    as.tibble() %>%
+    as_tibble() %>%
     ungroup() %>%
     select(season, arima_1:arima_3, location, week, pred_results)
  
@@ -1138,7 +1139,7 @@ for (this_season in c("2017/2018")) { #} unique(covar_model_data_setup$season)) 
       )
     ) %>%
     collect() %>%
-    as.tibble()
+    as_tibble()
 
   covar_scores <- covar_forecasts %>% ungroup() %>%
     select(season, model, location, week, pred_results) %>%
