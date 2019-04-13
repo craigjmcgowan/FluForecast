@@ -202,7 +202,7 @@ transform_time <- lubridate::time_length(Sys.time() - start_time, unit = "min")
 
 save(transform_forecasts, file = "Data/state_transform_forecasts.Rdata") 
 
-parallel::stopCluster(cluster)
+# parallel::stopCluster(cluster)
 
 # Normalize probabilities and score forecasts 
 transform_scores <- transform_forecasts %>% 
