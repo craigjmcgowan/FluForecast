@@ -6,8 +6,8 @@ library(tidyverse)
 library(forecast)
 library(lubridate)
 library(FluSight)
-library(MMWRweek)
 library(multidplyr)
+library(MMWRweek)
 
 # Load functions
 source("R/utils.R")
@@ -92,47 +92,44 @@ load("Data/state_truth_and_data.Rdata")
 load("Data/state_transform_fits.Rdata")
 cluster <- create_cluster(cores = parallel::detectCores() )
 
-# transform_model_fit_data <- tibble(season = c("2014/2015", "2015/2016", "2016/2017", "2017/2018")) %>%
-#   mutate(train_data = map(season,
-#                           ~ filter(state_flu_data_merge, year <= as.numeric(substr(., 6, 9)),
-#                                    season != paste0(substr(., 6, 9), "/",
-#                                                     as.numeric(substr(., 6, 9)) + 1),
-#                                    season != .))) %>%
-#   unnest() %>%
-#   # Nest by season and location
-#   nest(-season, -location) %>%
-#   # Create time series of ILI
-#   mutate(data = map(data,
-#                    ~ mutate(.x,
-#                             ILI = ts(ILI, frequency = 52, start = c(2010, 40)))),
-#          group = rep(1:length(cluster), length.out = nrow(.)))
-# 
-# transform_fits_by_group <- transform_model_fit_data %>%
-#   partition(group, cluster = cluster)
-# 
-# transform_fits_by_group %>%
-#   cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek"))
-# 
-# transform_model_fits <- transform_fits_by_group %>%
-#   mutate(no_trans = map(data,
-#                      ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 1),
-#                                   seasonal = FALSE)),
-#          log = map(data,
-#                      ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 1),
-#                                   seasonal = FALSE, lambda = 0)),
-#          Box_Cox = map(data,
-#                      ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 1),
-#                                   seasonal = FALSE, lambda = "auto"))) %>%
-#   collect() %>%
-#   as_tibble() %>%
-#   ungroup() %>%
-#   select(-data) %>%
-#   gather(key = "model", value = "fit", no_trans, log, Box_Cox)
-# 
-# save(transform_model_fits, file = "Data/state_transform_fits.Rdata")
+transform_model_fit_data <- tibble(season = c("2014/2015", "2015/2016", "2016/2017", "2017/2018")) %>%
+  mutate(train_data = map(season,
+                          ~ filter(state_flu_data_merge, year <= as.numeric(substr(., 6, 9)),
+                                   season != paste0(substr(., 6, 9), "/",
+                                                    as.numeric(substr(., 6, 9)) + 1),
+                                   season != .))) %>%
+  unnest() %>%
+  # Nest by season and location
+  nest(-season, -location) %>%
+  # Create time series of ILI
+  mutate(data = map(data,
+                   ~ mutate(.x,
+                            ILI = ts(ILI, frequency = 52, start = c(2010, 40)))),
+         group = rep(1:length(cluster), length.out = nrow(.)))
+
+transform_fits_by_group <- transform_model_fit_data %>%
+  partition(group, cluster = cluster)
+
+transform_fits_by_group %>%
+  cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek"))
+
+transform_model_fits <- transform_fits_by_group %>%
+  mutate(log = map(data,
+                     ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 1),
+                                  seasonal = FALSE, lambda = 0)),
+         Box_Cox = map(data,
+                     ~ auto.arima(.$ILI, xreg = fourier(.$ILI, K = 1),
+                                  seasonal = FALSE, lambda = "auto"))) %>%
+  collect() %>%
+  as_tibble() %>%
+  ungroup() %>%
+  select(-data) %>%
+  gather(key = "model", value = "fit", log, Box_Cox)
+
+save(transform_model_fits, file = "Data/state_transform_fits.Rdata")
 
 # Set up data for model fitting in parallel
-transform_model_data <- crossing(model = c("no_trans", "log", "Box_Cox"),
+transform_model_data <- crossing(model = c("log", "Box_Cox"),
                                season = c("2014/2015", "2015/2016", "2016/2017", "2017/2018"),
                                week = c(43:71),
                                location = unique(state_flu_data_merge$location)) %>%
@@ -237,7 +234,7 @@ best_transform_cv <- transform_scores %>%
 save(best_transform_cv, file = "Data/state_CV_Transform_terms.Rdata")
 
 ##### Number of Fourier terms #####
-load("Data/state_fourier_fits.Rdata")
+# load("Data/state_fourier_fits.Rdata")
 load("Data/state_CV_Transform_terms.Rdata")
 cluster <- create_cluster(cores = parallel::detectCores())
 
@@ -259,12 +256,11 @@ fourier_model_fit_data <- tibble(season = c("2014/2015", "2015/2016", "2016/2017
          lambda = unlist(map(data,
                              ~ BoxCox.lambda(.$ILI))),
          lambda = case_when(transform == "log" ~ 0,
-                            transform == "Box_Cox" ~ lambda,
-                            transform == "no_trans" ~ NA_real_),
-         group = rep(1:length(cluster), length.out = nrow(.))) 
+                            transform == "Box_Cox" ~ lambda),
+         group = rep(1:length(cluster), length.out = nrow(.)))
 
 # Split for parallel model fitting
-fourier_fits_by_group <- fourier_model_fit_data %>%
+fourier_fits_by_group <- fourier_model_fit_data %>% 
   partition(group, cluster = cluster)
 
 fourier_fits_by_group %>%
@@ -307,7 +303,7 @@ fourier_model_fits <- fourier_fits_by_group %>%
                                            seasonal = FALSE, lambda = .y)),
          fit_12 = map2(data, lambda,
                        ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 12),
-                                    seasonal = FALSE, lambda = .y))) %>%
+                                           seasonal = FALSE, lambda = .y))) %>%
   collect() %>%
   as_tibble() %>%
   ungroup() %>%
@@ -320,8 +316,8 @@ save(fourier_model_fits, file = "Data/state_fourier_fits.Rdata")
 fourier_model_data <- crossing(model = c("fit_1", "fit_2", "fit_3", "fit_4",
                                          "fit_5", "fit_6", "fit_7", "fit_8", 
                                          "fit_9", "fit_10", "fit_11", "fit_12"),
-                       season = c("2014/2015", "2015/2016", "2016/2017", "2017/2018"),
-                       week = c(43:71),
+                       season = "2014/2015",#c("2014/2015", "2015/2016", "2016/2017", "2017/2018"),
+                       week = 45,#c(43:71),
                        location = unique(state_flu_data_merge$location)) %>%
   filter(week < 71 | season == "2014/2015") %>%
   mutate(epiweek = case_when(
@@ -335,7 +331,7 @@ fourier_model_data <- crossing(model = c("fit_1", "fit_2", "fit_3", "fit_4",
     )) %>%
   inner_join(fourier_model_fits, by = c("season", "location", "model")) %>%
   # Set up grouping for parallel
-  mutate(group = rep(1:4, length.out = nrow(.)))
+  mutate(group = rep(1:length(cluster), length.out = nrow(.)))
 
 
 # Set up party_df and load necessary libraries and functions
