@@ -234,98 +234,98 @@ best_transform_cv <- transform_scores %>%
 save(best_transform_cv, file = "Data/state_CV_Transform_terms.Rdata")
 
 ##### Number of Fourier terms #####
-# load("Data/state_fourier_fits.Rdata")
+load("Data/state_fourier_fits.Rdata")
 load("Data/state_CV_Transform_terms.Rdata")
 cluster <- create_cluster(cores = parallel::detectCores())
 
-fourier_model_fit_data <- tibble(season = c("2014/2015", "2015/2016", "2016/2017", "2017/2018")) %>%
-  mutate(train_data = map(season,
-                          ~ filter(state_flu_data_merge, year <= as.numeric(substr(., 6, 9)),
-                                   season != paste0(substr(., 6, 9), "/",
-                                                    as.numeric(substr(., 6, 9)) + 1),
-                                   season != .))) %>%
-  unnest() %>%
-  # Nest by season and location
-  nest(-season, -location) %>%
-  # Join lambda value for arima model
-  left_join(best_transform_cv, by = "location") %>%
-  # Create time series of ILI and numerical value of lambda
-  mutate(data = map(data,
-                   ~ mutate(.x,
-                            ILI = ts(ILI, frequency = 52, start = c(2010, 40)))),
-         lambda = unlist(map(data,
-                             ~ BoxCox.lambda(.$ILI))),
-         lambda = case_when(transform == "log" ~ 0,
-                            transform == "Box_Cox" ~ lambda),
-         group = rep(1:length(cluster), length.out = nrow(.)))
-
-# Split for parallel model fitting
-fourier_fits_by_group <- fourier_model_fit_data %>% 
-  partition(group, cluster = cluster)
-
-fourier_fits_by_group %>%
-  cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek"))
-
-fourier_model_fits <- fourier_fits_by_group %>%
-  # Fit model
-  mutate(fit_1 = map2(data, lambda,
-                     ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 1),
-                                         seasonal = FALSE, lambda = .y)),
-         fit_2 = map2(data, lambda,
-                      ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 2),
-                                          seasonal = FALSE, lambda = .y)),
-         fit_3 = map2(data, lambda,
-                      ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 3),
-                                          seasonal = FALSE, lambda = .y)),
-         fit_4 = map2(data, lambda,
-                      ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 4),
-                                          seasonal = FALSE, lambda = .y)),
-         fit_5 = map2(data, lambda,
-                      ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 5),
-                                          seasonal = FALSE, lambda = .y)),
-         fit_6 = map2(data, lambda,
-                      ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 6),
-                                          seasonal = FALSE, lambda = .y)),
-         fit_7 = map2(data, lambda,
-                      ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 7),
-                                          seasonal = FALSE, lambda = .y)),
-         fit_8 = map2(data, lambda,
-                      ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 8),
-                                          seasonal = FALSE, lambda = .y)),
-         fit_9 = map2(data, lambda,
-                      ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 9),
-                                          seasonal = FALSE, lambda = .y)),
-         fit_10 = map2(data, lambda,
-                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 10),
-                                           seasonal = FALSE, lambda = .y)),
-         fit_11 = map2(data, lambda,
-                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 11),
-                                           seasonal = FALSE, lambda = .y)),
-         fit_12 = map2(data, lambda,
-                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 12),
-                                           seasonal = FALSE, lambda = .y))) %>%
-  collect() %>%
-  as_tibble() %>%
-  ungroup() %>%
-  select(-data) %>%
-  gather(key = "model", value = "fit", fit_1:fit_12)
-
-save(fourier_model_fits, file = "Data/state_fourier_fits.Rdata")
-
+# fourier_model_fit_data <- tibble(season = c("2014/2015", "2015/2016", "2016/2017", "2017/2018")) %>%
+#   mutate(train_data = map(season,
+#                           ~ filter(state_flu_data_merge, year <= as.numeric(substr(., 6, 9)),
+#                                    season != paste0(substr(., 6, 9), "/",
+#                                                     as.numeric(substr(., 6, 9)) + 1),
+#                                    season != .))) %>%
+#   unnest() %>%
+#   # Nest by season and location
+#   nest(-season, -location) %>%
+#   # Join lambda value for arima model
+#   left_join(best_transform_cv, by = "location") %>%
+#   # Create time series of ILI and numerical value of lambda
+#   mutate(data = map(data,
+#                    ~ mutate(.x,
+#                             ILI = ts(ILI, frequency = 52, start = c(2010, 40)))),
+#          lambda = unlist(map(data,
+#                              ~ BoxCox.lambda(.$ILI))),
+#          lambda = case_when(transform == "log" ~ 0,
+#                             transform == "Box_Cox" ~ lambda),
+#          group = rep(1:length(cluster), length.out = nrow(.)))
+# 
+# # Split for parallel model fitting
+# fourier_fits_by_group <- fourier_model_fit_data %>% 
+#   partition(group, cluster = cluster)
+# 
+# fourier_fits_by_group %>%
+#   cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek"))
+# 
+# fourier_model_fits <- fourier_fits_by_group %>%
+#   # Fit model
+#   mutate(fit_1 = map2(data, lambda,
+#                      ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 1),
+#                                          seasonal = FALSE, lambda = .y)),
+#          fit_2 = map2(data, lambda,
+#                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 2),
+#                                           seasonal = FALSE, lambda = .y)),
+#          fit_3 = map2(data, lambda,
+#                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 3),
+#                                           seasonal = FALSE, lambda = .y)),
+#          fit_4 = map2(data, lambda,
+#                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 4),
+#                                           seasonal = FALSE, lambda = .y)),
+#          fit_5 = map2(data, lambda,
+#                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 5),
+#                                           seasonal = FALSE, lambda = .y)),
+#          fit_6 = map2(data, lambda,
+#                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 6),
+#                                           seasonal = FALSE, lambda = .y)),
+#          fit_7 = map2(data, lambda,
+#                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 7),
+#                                           seasonal = FALSE, lambda = .y)),
+#          fit_8 = map2(data, lambda,
+#                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 8),
+#                                           seasonal = FALSE, lambda = .y)),
+#          fit_9 = map2(data, lambda,
+#                       ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 9),
+#                                           seasonal = FALSE, lambda = .y)),
+#          fit_10 = map2(data, lambda,
+#                        ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 10),
+#                                            seasonal = FALSE, lambda = .y)),
+#          fit_11 = map2(data, lambda,
+#                        ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 11),
+#                                            seasonal = FALSE, lambda = .y)),
+#          fit_12 = map2(data, lambda,
+#                        ~ auto.arima(.x$ILI, xreg = fourier(.x$ILI, K = 12),
+#                                            seasonal = FALSE, lambda = .y))) %>%
+#   collect() %>%
+#   as_tibble() %>%
+#   ungroup() %>%
+#   select(-data) %>%
+#   gather(key = "model", value = "fit", fit_1:fit_12)
+# 
+# save(fourier_model_fits, file = "Data/state_fourier_fits.Rdata")
+# 
 # Set up data for model fitting in parallel
 fourier_model_data <- crossing(model = c("fit_1", "fit_2", "fit_3", "fit_4",
-                                         "fit_5", "fit_6", "fit_7", "fit_8", 
+                                         "fit_5", "fit_6", "fit_7", "fit_8",
                                          "fit_9", "fit_10", "fit_11", "fit_12"),
-                       season = "2014/2015",#c("2014/2015", "2015/2016", "2016/2017", "2017/2018"),
-                       week = 45,#c(43:71),
+                       season = c("2014/2015", "2015/2016", "2016/2017", "2017/2018"),
+                       week = c(43:71),
                        location = unique(state_flu_data_merge$location)) %>%
   filter(week < 71 | season == "2014/2015") %>%
   mutate(epiweek = case_when(
-      season == "2014/2015" & week > 53 ~ 
-        as.numeric(paste0(substr(season, 6, 9), 
+      season == "2014/2015" & week > 53 ~
+        as.numeric(paste0(substr(season, 6, 9),
                           str_pad(week - 53, 2, "left", "0"))),
-      week > 52 ~ 
-        as.numeric(paste0(substr(season, 6, 9), 
+      week > 52 ~
+        as.numeric(paste0(substr(season, 6, 9),
                           str_pad(week - 52, 2, "left", "0"))),
       TRUE ~ as.numeric(paste0(substr(season, 1, 4), str_pad(week, 2, "left", "0")))
     )) %>%
@@ -391,7 +391,7 @@ fourier_forecasts <- fourier_by_group %>%
 
 fourier_time <- lubridate::time_length(Sys.time() - fourier_start_time, unit = "min")
 
-parallel::stopCluster(cluster)
+# parallel::stopCluster(cluster)
 
 # Normalize probabilities and score forecasts
 fourier_scores <- fourier_forecasts %>%
