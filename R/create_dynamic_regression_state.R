@@ -579,12 +579,12 @@ for(this_season in unique(arima_model_data_setup$season)) {
     select(season, arima_1:arima_3, scores) %>%
     unnest() 
   
-  parallel::stopCluster(for_cluster)
-  
   save(arima_scores, file = paste0("Data/state_CV_ARIMA_Scores_", substr(this_season, 1, 4),
                                    ".Rdata"))
   
   rm(for_cluster, arima_forecasts, arima_model_data_parallel)
+  
+  message(paste("Total elapsed time", lubridate::time_length(Sys.time() - start_time, unit = "min")))
 
 }
 arima_time <- lubridate::time_length(Sys.time() - start_time, unit = "min")
