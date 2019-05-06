@@ -669,17 +669,17 @@ load("Data/state_covar_fits.Rdata")
 #                             transform == "log" ~ 0,
 #                             transform == "Box_Cox" ~ lambda),
 #          group = rep(1:length(cluster), length.out = nrow(.))) %>%
-#   # Remove virus models for states w/o virus data
-#   filter(!(model %in% c("FluVirus", "FluVirus & Backfill", "National Gtrends & FluVirus",
-#                       "National Gtrends, FluVirus, & Backfill", "Regional Gtrends & FluVirus",
-#                       "Regional Gtrends, FluVirus, & Backfill") &
-#            location %in% c("Alaksa", "New Jersey", "New Hampshire", "Rhode Island", "Louisiana",
-#                            "Wyoming")),
-#          !(model %in% c("Backfill", "National Gtrends & Backfill",
-#                        "FluVirus & Backfill","National Gtrends, FluVirus, & Backfill",
-#                        "Regional Gtrends & Backfill", "Regional Gtrends, FluVirus, & Backfill") &
-#             location  %in% c("Oklahoma")),
-#          (location != "Louisiana" | season != "2017-2018"))
+  # # Remove virus models for states w/o virus data
+  # filter(!(model %in% c("FluVirus", "FluVirus & Backfill", "National Gtrends & FluVirus",
+  #                     "National Gtrends, FluVirus, & Backfill", "Regional Gtrends & FluVirus",
+  #                     "Regional Gtrends, FluVirus, & Backfill") &
+  #          location %in% c("Alaksa", "New Jersey", "New Hampshire", "Rhode Island", "Louisiana",
+  #                          "Wyoming")),
+  #        !(model %in% c("Backfill", "National Gtrends & Backfill",
+  #                      "FluVirus & Backfill","National Gtrends, FluVirus, & Backfill",
+  #                      "Regional Gtrends & Backfill", "Regional Gtrends, FluVirus, & Backfill") &
+  #           location  %in% c("Oklahoma")),
+  #        (location != "Louisiana" | season != "2017-2018"))
 # 
 # out_fits <- list()
 # 
@@ -687,134 +687,134 @@ load("Data/state_covar_fits.Rdata")
 # 
 #   out_fits[[this_location]] <- filter(covar_model_fits_data, location == this_location) %>%
 #     # Fit models
-#     mutate(fit = ifelse(
-#       model == "ARIMA only",
-#         pmap(
-#           list(data, arima_1, arima_2, arima_3, K, lambda),
-#           ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                   xreg = fourier(..1$ILI, K = ..5),
-#                   lambda = ..6)
-#         ),
-#       ifelse(
-#         model == "National Gtrends",
-#           pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$hits) %>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#       ifelse(
-#         model == "Regional Gtrends",
-#           pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$region_hits)%>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#       ifelse(
-#         model == "FluVirus",
-#           pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$cum_h1per, ..1$cum_h3per)%>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#       ifelse(
-#         model == "Backfill",
-#           pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$backfill) %>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#       ifelse(
-#         model == "National Gtrends & Backfill",
-#          pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$hits, ..1$backfill)%>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#       ifelse(
-#         model == "Regional Gtrends & Backfill",
-#           pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$region_hits, ..1$backfill) %>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#       ifelse(
-#         model == "FluVirus & Backfill",
-#           pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$cum_h1per, ..1$cum_h3per,
-#                                  ..1$backfill) %>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#       ifelse(
-#         model == "National Gtrends & FluVirus",
-#           pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$hits, ..1$cum_h1per,
-#                                  ..1$cum_h3per) %>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#       ifelse(
-#         model == "Regional Gtrends & FluVirus",
-#           pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$region_hits, ..1$cum_h1per,
-#                                  ..1$cum_h3per) %>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#       ifelse(
-#         model == "National Gtrends, FluVirus, & Backfill",
-#           pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$hits, ..1$cum_h1per,
-#                                  ..1$cum_h3per,
-#                                  ..1$backfill) %>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#       ifelse(
-#         model == "Regional Gtrends, FluVirus, & Backfill",
-#           pmap(
-#             list(data, arima_1, arima_2, arima_3, K, lambda),
-#             ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-#                     xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-#                                  ..1$region_hits, ..1$cum_h1per,
-#                                  ..1$cum_h3per,
-#                                  ..1$backfill) %>%
-#                       as.matrix(),
-#                     lambda = ..6)
-#           ),
-#         list()
-#       )))))))))))) # Close ridiculous number of ifelse statements
-#     )
+    # mutate(fit = ifelse(
+    #   model == "ARIMA only",
+    #     pmap(
+    #       list(data, arima_1, arima_2, arima_3, K, lambda),
+    #       ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #               xreg = fourier(..1$ILI, K = ..5),
+    #               lambda = ..6)
+    #     ),
+    #   ifelse(
+    #     model == "National Gtrends",
+    #       pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$hits) %>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #   ifelse(
+    #     model == "Regional Gtrends",
+    #       pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$region_hits)%>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #   ifelse(
+    #     model == "FluVirus",
+    #       pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$cum_h1per, ..1$cum_h3per)%>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #   ifelse(
+    #     model == "Backfill",
+    #       pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$backfill) %>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #   ifelse(
+    #     model == "National Gtrends & Backfill",
+    #      pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$hits, ..1$backfill)%>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #   ifelse(
+    #     model == "Regional Gtrends & Backfill",
+    #       pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$region_hits, ..1$backfill) %>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #   ifelse(
+    #     model == "FluVirus & Backfill",
+    #       pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$cum_h1per, ..1$cum_h3per,
+    #                              ..1$backfill) %>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #   ifelse(
+    #     model == "National Gtrends & FluVirus",
+    #       pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$hits, ..1$cum_h1per,
+    #                              ..1$cum_h3per) %>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #   ifelse(
+    #     model == "Regional Gtrends & FluVirus",
+    #       pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$region_hits, ..1$cum_h1per,
+    #                              ..1$cum_h3per) %>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #   ifelse(
+    #     model == "National Gtrends, FluVirus, & Backfill",
+    #       pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$hits, ..1$cum_h1per,
+    #                              ..1$cum_h3per,
+    #                              ..1$backfill) %>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #   ifelse(
+    #     model == "Regional Gtrends, FluVirus, & Backfill",
+    #       pmap(
+    #         list(data, arima_1, arima_2, arima_3, K, lambda),
+    #         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+    #                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+    #                              ..1$region_hits, ..1$cum_h1per,
+    #                              ..1$cum_h3per,
+    #                              ..1$backfill) %>%
+    #                   as.matrix(),
+    #                 lambda = ..6)
+    #       ),
+    #     list()
+    #   )))))))))))) # Close ridiculous number of ifelse statements
+    # )
 #   message(paste(this_location, "finished"))
 # }
 # 
@@ -1239,154 +1239,192 @@ load("Data/state_CV_covar_terms.Rdata")
 
 # Set up model fits
 load("Data/state_Final_CV_fits.Rdata")
-final_fits <- tibble(season = c("2014/2015", "2015/2016",
-                                "2016/2017", "2017/2018",
-                                "2018/2019")) %>%
-  mutate(train_data = map(season,
-                          ~ filter(state_flu_data_merge, year <= as.numeric(substr(., 6, 9)),
-                                   season != paste0(substr(., 6, 9), "/",
-                                                    as.numeric(substr(., 6, 9)) + 1),
-                                   season != .))) %>%
-  unnest() %>%
-  # Nest by season and location
-  nest(-season, -location) %>%
-  # Create time series of ILI
-  mutate(data = map(data,
-                    ~ mutate(.x,
-                             ILI = ts(ILI, frequency = 52, start = c(2010, 40))))) %>%
-  # Merge best lambda, Fourier K value, and ARIMA structure by location
-  left_join(best_transform_cv, by = "location") %>%
-  mutate(lambda = unlist(map(data,
-                             ~ BoxCox.lambda(.$ILI))),
-         lambda = case_when(transform == "no_trans" ~ NA_real_,
-                            transform == "log" ~ 0,
-                            transform == "Box_Cox" ~ lambda)) %>%
-  left_join(best_k_cv, by = "location") %>%
-  left_join(best_arima_cv, by = "location") %>%
-  left_join(best_covar_cv, by = "location") %>%
-  # Fit models
-  mutate(fit = case_when(
-    model == "ARIMA only" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = fourier(..1$ILI, K = ..5),
-                lambda = ..6)
-      ),
-    model == "National Gtrends" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$hits) %>%
-                  as.matrix(),
-                lambda = ..6)
-      ),
-    model == "Regional Gtrends" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$region_hits) %>%
-                  as.matrix(),
-                lambda = ..6)
-      ),
-    model == "FluVirus" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$cum_h1per, ..1$cum_h3per) %>%
-                  as.matrix(),
-                lambda = ..6)
-      ),
-    model == "Backfill" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$backfill) %>%
-                  as.matrix(),
-                lambda = ..6)
-      ),
-    model == "FluVirus & Backfill" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$cum_h1per, ..1$cum_h3per, ..1$backfill) %>%
-                  as.matrix(),
-                lambda = ..6)
-      ),
-    model == "National Gtrends & FluVirus" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$hits, ..1$cum_h1per, ..1$cum_h3per) %>%
-                  as.matrix(),
-                lambda = ..6)
-      ),
-    model == "Regional Gtrends & FluVirus" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$region_hits, ..1$cum_h1per,
-                             ..1$cum_h3per) %>%
-                  as.matrix(),
-                lambda = ..6)
-      ),
-    model == "National Gtrends & Backfill" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$hits, ..1$backfill) %>%
-                  as.matrix(),
-                lambda = ..6)
-      ),
-    model == "Regional Gtrends & Backfill" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$region_hits, ..1$backfill) %>%
-                  as.matrix(),
-                lambda = ..6)
-      ),
-    model == "National Gtrends, FluVirus, & Backfill" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$hits, ..1$cum_h1per,
-                             ..1$cum_h3per, ..1$backfill) %>%
-                  as.matrix(),
-                lambda = ..6)
-      ),
-    model == "Regional Gtrends, FluVirus, & Backfill" ~
-      pmap(
-        list(data, arima_1, arima_2, arima_3, K, lambda),
-        ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
-                xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
-                             ..1$region_hits, ..1$cum_h1per,
-                             ..1$cum_h3per, ..1$backfill) %>%
-                  as.matrix(),
-                lambda = ..6)
-      )
-    )
-  )
+# final_fits_data <- tibble(season = c("2014/2015", "2015/2016",
+#                                 "2016/2017", "2017/2018",
+#                                 "2018/2019")) %>%
+#   mutate(train_data = map(season,
+#                           ~ filter(state_flu_data_merge, year <= as.numeric(substr(., 6, 9)),
+#                                    season != paste0(substr(., 6, 9), "/",
+#                                                     as.numeric(substr(., 6, 9)) + 1),
+#                                    season != .))) %>%
+#   unnest() %>%
+#   # Nest by season and location
+#   nest(-season, -location) %>%
+#   # Create time series of ILI
+#   mutate(data = map(data,
+#                     ~ mutate(.x,
+#                              ILI = ts(ILI, frequency = 52, start = c(2010, 40))))) %>%
+#   # Merge best lambda, Fourier K value, and ARIMA structure by location
+#   left_join(best_transform_cv, by = "location") %>%
+#   mutate(lambda = unlist(map(data,
+#                              ~ BoxCox.lambda(.$ILI))),
+#          lambda = case_when(transform == "no_trans" ~ NA_real_,
+#                             transform == "log" ~ 0,
+#                             transform == "Box_Cox" ~ lambda)) %>%
+#   left_join(best_k_cv, by = "location") %>%
+#   left_join(best_arima_cv, by = "location") %>%
+#   left_join(best_covar_cv, by = "location") %>%
+#   # Remove virus models for states w/o virus data
+#   filter(!(model %in% c("FluVirus", "FluVirus & Backfill", "National Gtrends & FluVirus",
+#                         "National Gtrends, FluVirus, & Backfill", "Regional Gtrends & FluVirus",
+#                         "Regional Gtrends, FluVirus, & Backfill") &
+#              location %in% c("Alaksa", "New Jersey", "New Hampshire", "Rhode Island", "Louisiana",
+#                              "Wyoming")),
+#          !(model %in% c("Backfill", "National Gtrends & Backfill",
+#                         "FluVirus & Backfill","National Gtrends, FluVirus, & Backfill",
+#                         "Regional Gtrends & Backfill", "Regional Gtrends, FluVirus, & Backfill") &
+#              location  %in% c("Oklahoma")),
+#          (location != "Louisiana" | season != "2017-2018")) #%>%
+#   # Fit models
+# 
+# final_fit_list <- list()
+# 
+# for (this_location in unique(final_fits_data$location)) {
+#   final_fit_list[[this_location]] <- final_fits_data %>%
+#     filter(location == this_location) %>%
+#     mutate(fit = ifelse(
+#       model == "ARIMA only",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = fourier(..1$ILI, K = ..5),
+#                 lambda = ..6)
+#       ),
+#     ifelse(
+#       model == "National Gtrends",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$hits) %>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     ifelse(
+#       model == "Regional Gtrends",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$region_hits)%>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     ifelse(
+#       model == "FluVirus",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$cum_h1per, ..1$cum_h3per)%>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     ifelse(
+#       model == "Backfill",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$backfill) %>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     ifelse(
+#       model == "National Gtrends & Backfill",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$hits, ..1$backfill)%>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     ifelse(
+#       model == "Regional Gtrends & Backfill",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$region_hits, ..1$backfill) %>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     ifelse(
+#       model == "FluVirus & Backfill",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$cum_h1per, ..1$cum_h3per,
+#                              ..1$backfill) %>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     ifelse(
+#       model == "National Gtrends & FluVirus",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$hits, ..1$cum_h1per,
+#                              ..1$cum_h3per) %>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     ifelse(
+#       model == "Regional Gtrends & FluVirus",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$region_hits, ..1$cum_h1per,
+#                              ..1$cum_h3per) %>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     ifelse(
+#       model == "National Gtrends, FluVirus, & Backfill",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$hits, ..1$cum_h1per,
+#                              ..1$cum_h3per,
+#                              ..1$backfill) %>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     ifelse(
+#       model == "Regional Gtrends, FluVirus, & Backfill",
+#       pmap(
+#         list(data, arima_1, arima_2, arima_3, K, lambda),
+#         ~ Arima(..1$ILI, order = c(..2, ..3, ..4),
+#                 xreg = cbind(as.data.frame(fourier(..1$ILI, K = ..5)),
+#                              ..1$region_hits, ..1$cum_h1per,
+#                              ..1$cum_h3per,
+#                              ..1$backfill) %>%
+#                   as.matrix(),
+#                 lambda = ..6)
+#     ),
+#     list()
+#     )))))))))))) # Close ridiculous number of ifelse statements
+#   )
+#   
+#   message(paste(this_location, "fits complete"))
+# }
+# 
+# final_fits <- bind_rows(final_fit_list)
+# 
+# save(final_fits, file = "Data/state_Final_CV_fits.Rdata")
 
-save(final_fits, file = "Data/state_Final_CV_fits.Rdata")
-  
 final_forecast_data_setup <- crossing(season = c("2014/2015", "2015/2016",
                                              "2016/2017", "2017/2018",
                                              "2018/2019"),
                                       week = c(40:73),
                                       location = unique(state_flu_data_merge$location)) %>%
   filter((week < 73 | season == "2014/2015") & 
-         (season != "2018/2019" | week <= 57)) %>%
+         (season != "2018/2019" | week <= 68)) %>%
   mutate(
     epiweek = case_when(
       season == "2014/2015" & week > 53 ~ 
