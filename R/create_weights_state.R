@@ -109,6 +109,7 @@ week.partial.indexer.lists <- list(
 cv_full_scores <- state_full_scores %>%
   # Remove prospective season scores if they exist
   filter(season != pro_season) %>%
+  filter(location != "Louisiana")%>%
   # Remove ensemble models
   filter(!grepl('ens', team), !grepl('Ens', team)) %>%
   # Create ordered week variable

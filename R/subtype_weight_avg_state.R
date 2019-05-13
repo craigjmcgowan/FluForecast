@@ -262,7 +262,7 @@ subtype_functions_1819 <- modify_depth(
   function(dens) approxfun(dens$x, dens$y, rule = 2)
 )
 MMWRweek(Sys.Date())
-for(i in 40:64) {
+for(i in 65:69) {
   temp <- create_subtype_forecast(
     functions = subtype_functions_1819,
     virologic = virologic_1819,

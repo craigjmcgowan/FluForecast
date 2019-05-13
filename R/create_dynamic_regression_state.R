@@ -20,7 +20,7 @@ load("Data/state_gtrend.Rdata")
 
 # Create truth for all seasons and combine datasets -------
 load("Data/state_truth_and_data.Rdata")
-# set.seed(101085)
+set.seed(101085)
 # state_nested_truth <- state_current %>%
 #   filter(year >= 2014, !season %in% c("2013/2014", "2018/2019")) %>%
 #   select(season, location, week, ILI) %>%
@@ -1424,7 +1424,7 @@ final_forecast_data_setup <- crossing(season = c("2014/2015", "2015/2016",
                                       week = c(40:73),
                                       location = unique(state_flu_data_merge$location)) %>%
   filter((week < 73 | season == "2014/2015") & 
-         (season != "2018/2019" | week <= 68)) %>%
+         (season != "2018/2019" | week <= 69)) %>%
   mutate(
     epiweek = case_when(
       season == "2014/2015" & week > 53 ~ 
@@ -1451,7 +1451,7 @@ for(this_season in unique(final_forecast_data_setup$season)) {
 
   dir.create(season_path, showWarnings = FALSE)
   
-  for(this_week in unique(final_forecast_data_setup$week[final_forecast_data_setup$season == this_season])) {
+  for(this_week in 69) {#unique(final_forecast_data_setup$week[final_forecast_data_setup$season == this_season])) {
 
     temp <- final_forecast_data_setup %>%
       filter(season == this_season, week == this_week) %>%

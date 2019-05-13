@@ -63,7 +63,7 @@ for(j in 1:length(weight_files)) {
 
     # Only create forecasts for weeks with forecasts in current season
     if (loso_season == "2018/2019")
-      week_names <- week_names[1:19]
+      week_names <- week_names[1:30]
   
     for (k in 1:length(week_names)) {
   
@@ -97,12 +97,14 @@ for(j in 1:length(weight_files)) {
                 row.names = FALSE, quote = FALSE)
       
       # Save entry to optimal output if needed
-      if(any(scores_by_state$team %in% paste0("ens-", stacked_name))) {
+      
+      optimal_locations <- filter(scores_by_state, team == paste0("ens-", stacked_name)) %>%
+        pull(location)
+      if(!is.null(optimal_locations)) {
         optimal_sub <- bind_rows(
           optimal_sub,
           filter(stacked_entry, 
-                 location == scores_by_state$location[
-                   scores_by_state$team == paste0("ens-", stacked_name)]) %>%
+                 location %in% optimal_locations) %>%
             mutate(season = loso_season,
                    week = this_week)
         )
@@ -110,6 +112,26 @@ for(j in 1:length(weight_files)) {
     }
     
   }
+}
+
+# If Dynamic Model alone is optimal model for a state, add those forecasts in
+dynamic_states <- filter(scores_by_state, team == "Dynamic Harmonic Model") %>%
+  pull(location)
+
+dynamic_files <- model_files[grepl("Dynamic Harmonic", model_files)]
+
+for (file in dynamic_files) {
+  
+  optimal_sub <- bind_rows(
+    optimal_sub,
+    read_entry(file) %>%
+      filter(location %in% dynamic_states) %>%
+      mutate(season = sub("-", "/", substr(file, 17, 25)),
+             week = paste0("EW", str_pad(as.character(forecast_week), 2, 'left', '0'))) %>%
+      select(-forecast_week)
+  )
+    
+  
 }
 
 

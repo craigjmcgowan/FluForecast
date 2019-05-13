@@ -1,76 +1,721 @@
 component_model_id,season,location,weight
-Dynamic Harmonic Model,2014/2015,Delaware,0.993722561203616
-Historical Average,2014/2015,Delaware,0.00623501908289075
-Subtype Historical Average,2014/2015,Delaware,4.24197134933122e-05
-Dynamic Harmonic Model,2015/2016,Delaware,0.99567340461966
-Historical Average,2015/2016,Delaware,0.00431982123246956
-Subtype Historical Average,2015/2016,Delaware,6.77414787019628e-06
-Dynamic Harmonic Model,2016/2017,Delaware,0.990826218437016
-Historical Average,2016/2017,Delaware,0.00885607810560267
-Subtype Historical Average,2016/2017,Delaware,0.000317703457381581
-Dynamic Harmonic Model,2017/2018,Delaware,0.999999219561956
-Historical Average,2017/2018,Delaware,7.10680977064834e-08
-Subtype Historical Average,2017/2018,Delaware,7.09369946579388e-07
-Dynamic Harmonic Model,2014/2015,Maryland,0.961151943450758
-Historical Average,2014/2015,Maryland,0.038828258446075
-Subtype Historical Average,2014/2015,Maryland,1.97981031671314e-05
-Dynamic Harmonic Model,2015/2016,Maryland,0.845096257971797
-Historical Average,2015/2016,Maryland,0.154900256942116
-Subtype Historical Average,2015/2016,Maryland,3.48508608650725e-06
-Dynamic Harmonic Model,2016/2017,Maryland,0.825848759587734
-Historical Average,2016/2017,Maryland,0.174147564569508
-Subtype Historical Average,2016/2017,Maryland,3.67584275757516e-06
-Dynamic Harmonic Model,2017/2018,Maryland,0.879784626503004
-Historical Average,2017/2018,Maryland,0.120212520294071
-Subtype Historical Average,2017/2018,Maryland,2.85320292497158e-06
-Dynamic Harmonic Model,2014/2015,Pennsylvania,0.923326814746957
-Historical Average,2014/2015,Pennsylvania,0.0766705278961898
-Subtype Historical Average,2014/2015,Pennsylvania,2.6573568533227e-06
-Dynamic Harmonic Model,2015/2016,Pennsylvania,0.777674672233558
-Historical Average,2015/2016,Pennsylvania,0.0538248715401769
-Subtype Historical Average,2015/2016,Pennsylvania,0.168500456226266
-Dynamic Harmonic Model,2016/2017,Pennsylvania,0.861970171112252
-Historical Average,2016/2017,Pennsylvania,0.00127236521098188
-Subtype Historical Average,2016/2017,Pennsylvania,0.136757463676766
-Dynamic Harmonic Model,2017/2018,Pennsylvania,0.939430760977193
-Historical Average,2017/2018,Pennsylvania,1.86108824044859e-06
-Subtype Historical Average,2017/2018,Pennsylvania,0.0605673779345663
-Dynamic Harmonic Model,2014/2015,Virginia,0.954203539136966
-Historical Average,2014/2015,Virginia,0.042561307554258
-Subtype Historical Average,2014/2015,Virginia,0.00323515330877608
-Dynamic Harmonic Model,2015/2016,Virginia,0.948062370670497
-Historical Average,2015/2016,Virginia,0.000123509494864078
-Subtype Historical Average,2015/2016,Virginia,0.0518141198346392
-Dynamic Harmonic Model,2016/2017,Virginia,0.960578028780488
-Historical Average,2016/2017,Virginia,7.48250000970574e-05
-Subtype Historical Average,2016/2017,Virginia,0.039347146219415
-Dynamic Harmonic Model,2017/2018,Virginia,0.999999923030887
-Historical Average,2017/2018,Virginia,1.14815191978599e-08
-Subtype Historical Average,2017/2018,Virginia,6.54875939954757e-08
-Dynamic Harmonic Model,2014/2015,West Virginia,0.976992504920454
-Historical Average,2014/2015,West Virginia,0.0229989149421995
-Subtype Historical Average,2014/2015,West Virginia,8.58013734607062e-06
-Dynamic Harmonic Model,2015/2016,West Virginia,0.875615283899491
-Historical Average,2015/2016,West Virginia,0.12437545194026
-Subtype Historical Average,2015/2016,West Virginia,9.26416024949668e-06
-Dynamic Harmonic Model,2016/2017,West Virginia,0.885656103710921
-Historical Average,2016/2017,West Virginia,0.114335469663146
-Subtype Historical Average,2016/2017,West Virginia,8.42662593341414e-06
-Dynamic Harmonic Model,2017/2018,West Virginia,0.911263550971625
-Historical Average,2017/2018,West Virginia,0.0887079964057216
-Subtype Historical Average,2017/2018,West Virginia,2.84526226537139e-05
-Dynamic Harmonic Model,2018/2019,Delaware,0.995231538535032
-Historical Average,2018/2019,Delaware,0.00470744676451648
-Subtype Historical Average,2018/2019,Delaware,6.10147004517801e-05
-Dynamic Harmonic Model,2018/2019,Maryland,0.876493272957725
-Historical Average,2018/2019,Maryland,0.123502495535494
-Subtype Historical Average,2018/2019,Maryland,4.23150678061591e-06
-Dynamic Harmonic Model,2018/2019,Pennsylvania,0.885479799308177
-Historical Average,2018/2019,Pennsylvania,0.0181439594514061
-Subtype Historical Average,2018/2019,Pennsylvania,0.0963762412404172
-Dynamic Harmonic Model,2018/2019,Virginia,0.970119039520259
-Historical Average,2018/2019,Virginia,9.26517624284771e-05
-Subtype Historical Average,2018/2019,Virginia,0.0297883087173126
-Dynamic Harmonic Model,2018/2019,West Virginia,0.907771838201184
-Historical Average,2018/2019,West Virginia,0.092215667027474
-Subtype Historical Average,2018/2019,West Virginia,1.24947713424657e-05
+Dynamic Harmonic Model,2014/2015,Alabama,0.999999680908015
+Historical Average,2014/2015,Alabama,2.18432769216796e-07
+Subtype Historical Average,2014/2015,Alabama,1.00659215818342e-07
+Dynamic Harmonic Model,2015/2016,Alabama,0.999995662985105
+Historical Average,2015/2016,Alabama,1.34869216330169e-07
+Subtype Historical Average,2015/2016,Alabama,4.20214567852597e-06
+Dynamic Harmonic Model,2016/2017,Alabama,0.999991373374147
+Historical Average,2016/2017,Alabama,1.81076995053962e-06
+Subtype Historical Average,2016/2017,Alabama,6.8158559023608e-06
+Dynamic Harmonic Model,2017/2018,Alabama,0.999998710041391
+Historical Average,2017/2018,Alabama,1.85097870612032e-07
+Subtype Historical Average,2017/2018,Alabama,1.10486073806563e-06
+Dynamic Harmonic Model,2014/2015,Alaska,0.982640159466736
+Historical Average,2014/2015,Alaska,3.30246200599589e-06
+Subtype Historical Average,2014/2015,Alaska,0.0173565380712579
+Dynamic Harmonic Model,2015/2016,Alaska,0.999999699448059
+Historical Average,2015/2016,Alaska,2.4398933439153e-08
+Subtype Historical Average,2015/2016,Alaska,2.76153007600724e-07
+Dynamic Harmonic Model,2016/2017,Alaska,0.999990486275501
+Historical Average,2016/2017,Alaska,8.43147054268235e-12
+Subtype Historical Average,2016/2017,Alaska,9.51371606741556e-06
+Dynamic Harmonic Model,2017/2018,Alaska,0.9068637374653
+Historical Average,2017/2018,Alaska,3.84539355173635e-06
+Subtype Historical Average,2017/2018,Alaska,0.0931324171411486
+Dynamic Harmonic Model,2014/2015,Arizona,0.999999986191762
+Historical Average,2014/2015,Arizona,5.54591389511566e-09
+Subtype Historical Average,2014/2015,Arizona,8.26232377783959e-09
+Dynamic Harmonic Model,2015/2016,Arizona,0.999999966777543
+Historical Average,2015/2016,Arizona,1.53647544937001e-08
+Subtype Historical Average,2015/2016,Arizona,1.78577025123495e-08
+Dynamic Harmonic Model,2016/2017,Arizona,0.999999979492172
+Historical Average,2016/2017,Arizona,1.10337096955549e-08
+Subtype Historical Average,2016/2017,Arizona,9.474118242143e-09
+Dynamic Harmonic Model,2017/2018,Arizona,0.999999949265246
+Historical Average,2017/2018,Arizona,2.83500972885525e-08
+Subtype Historical Average,2017/2018,Arizona,2.23846567793968e-08
+Dynamic Harmonic Model,2014/2015,Arkansas,0.896665911482282
+Historical Average,2014/2015,Arkansas,0.103326380861296
+Subtype Historical Average,2014/2015,Arkansas,7.70765642159968e-06
+Dynamic Harmonic Model,2015/2016,Arkansas,0.951984639292586
+Historical Average,2015/2016,Arkansas,0.0480089144271478
+Subtype Historical Average,2015/2016,Arkansas,6.44628026665081e-06
+Dynamic Harmonic Model,2016/2017,Arkansas,0.922344614847853
+Historical Average,2016/2017,Arkansas,0.0776488212305866
+Subtype Historical Average,2016/2017,Arkansas,6.56392156085238e-06
+Dynamic Harmonic Model,2017/2018,Arkansas,0.960462539194217
+Historical Average,2017/2018,Arkansas,0.0395195057554151
+Subtype Historical Average,2017/2018,Arkansas,1.79550503674399e-05
+Dynamic Harmonic Model,2014/2015,California,0.995000445253013
+Historical Average,2014/2015,California,0.00082861939218597
+Subtype Historical Average,2014/2015,California,0.00417093535480133
+Dynamic Harmonic Model,2015/2016,California,0.992135041768431
+Historical Average,2015/2016,California,0.00678092024968532
+Subtype Historical Average,2015/2016,California,0.00108403798188373
+Dynamic Harmonic Model,2016/2017,California,0.991514186078924
+Historical Average,2016/2017,California,0.00840510306951081
+Subtype Historical Average,2016/2017,California,8.07108515652696e-05
+Dynamic Harmonic Model,2017/2018,California,0.999999934688878
+Historical Average,2017/2018,California,4.66497056741249e-08
+Subtype Historical Average,2017/2018,California,1.86614161544927e-08
+Dynamic Harmonic Model,2014/2015,Colorado,0.99999924323891
+Historical Average,2014/2015,Colorado,7.31762171695712e-07
+Subtype Historical Average,2014/2015,Colorado,2.49989186321976e-08
+Dynamic Harmonic Model,2015/2016,Colorado,0.863967306906479
+Historical Average,2015/2016,Colorado,0.136030365773599
+Subtype Historical Average,2015/2016,Colorado,2.32731992207515e-06
+Dynamic Harmonic Model,2016/2017,Colorado,0.864525721149845
+Historical Average,2016/2017,Colorado,0.13547283090027
+Subtype Historical Average,2016/2017,Colorado,1.4479498854588e-06
+Dynamic Harmonic Model,2017/2018,Colorado,0.842238905726824
+Historical Average,2017/2018,Colorado,0.157759345568845
+Subtype Historical Average,2017/2018,Colorado,1.74870433139368e-06
+Dynamic Harmonic Model,2014/2015,Connecticut,0.99999868046315
+Historical Average,2014/2015,Connecticut,1.91228805175922e-07
+Subtype Historical Average,2014/2015,Connecticut,1.12830804484146e-06
+Dynamic Harmonic Model,2015/2016,Connecticut,0.999999643918324
+Historical Average,2015/2016,Connecticut,2.38077410453573e-07
+Subtype Historical Average,2015/2016,Connecticut,1.18004266030684e-07
+Dynamic Harmonic Model,2016/2017,Connecticut,0.99999975045305
+Historical Average,2016/2017,Connecticut,1.67050111739429e-07
+Subtype Historical Average,2016/2017,Connecticut,8.24968383227218e-08
+Dynamic Harmonic Model,2017/2018,Connecticut,0.999999907187321
+Historical Average,2017/2018,Connecticut,3.05056251131522e-08
+Subtype Historical Average,2017/2018,Connecticut,6.23070540310446e-08
+Dynamic Harmonic Model,2014/2015,Delaware,0.995319581543461
+Historical Average,2014/2015,Delaware,0.00467145037540687
+Subtype Historical Average,2014/2015,Delaware,8.96808113212449e-06
+Dynamic Harmonic Model,2015/2016,Delaware,0.995595485957823
+Historical Average,2015/2016,Delaware,0.00439796919577255
+Subtype Historical Average,2015/2016,Delaware,6.54484640449629e-06
+Dynamic Harmonic Model,2016/2017,Delaware,0.993176830102303
+Historical Average,2016/2017,Delaware,0.0067955603304301
+Subtype Historical Average,2016/2017,Delaware,2.76095672665271e-05
+Dynamic Harmonic Model,2017/2018,Delaware,0.999999914034897
+Historical Average,2017/2018,Delaware,3.18053131103046e-08
+Subtype Historical Average,2017/2018,Delaware,5.41597896402808e-08
+Dynamic Harmonic Model,2014/2015,Georgia,0.999999977771612
+Historical Average,2014/2015,Georgia,1.20250577899935e-08
+Subtype Historical Average,2014/2015,Georgia,1.02033298961031e-08
+Dynamic Harmonic Model,2015/2016,Georgia,0.961885907211182
+Historical Average,2015/2016,Georgia,1.05159015064e-05
+Subtype Historical Average,2015/2016,Georgia,0.0381035768873112
+Dynamic Harmonic Model,2016/2017,Georgia,0.94825357244049
+Historical Average,2016/2017,Georgia,1.08013305550597e-05
+Subtype Historical Average,2016/2017,Georgia,0.0517356262289548
+Dynamic Harmonic Model,2017/2018,Georgia,0.937759065804192
+Historical Average,2017/2018,Georgia,9.73028256984008e-06
+Subtype Historical Average,2017/2018,Georgia,0.0622312039132381
+Dynamic Harmonic Model,2014/2015,Hawaii,0.99999701097344
+Historical Average,2014/2015,Hawaii,3.19404385657852e-10
+Subtype Historical Average,2014/2015,Hawaii,2.98870715539909e-06
+Dynamic Harmonic Model,2015/2016,Hawaii,0.999999940060839
+Historical Average,2015/2016,Hawaii,1.91418476732455e-08
+Subtype Historical Average,2015/2016,Hawaii,4.07973134821836e-08
+Dynamic Harmonic Model,2016/2017,Hawaii,0.999999820416706
+Historical Average,2016/2017,Hawaii,1.27969548730684e-08
+Subtype Historical Average,2016/2017,Hawaii,1.66786338670111e-07
+Dynamic Harmonic Model,2017/2018,Hawaii,0.999999783037453
+Historical Average,2017/2018,Hawaii,6.51380969633321e-09
+Subtype Historical Average,2017/2018,Hawaii,2.10448737829866e-07
+Dynamic Harmonic Model,2014/2015,Idaho,0.999999943245607
+Historical Average,2014/2015,Idaho,8.3507604429673e-09
+Subtype Historical Average,2014/2015,Idaho,4.8403632634149e-08
+Dynamic Harmonic Model,2015/2016,Idaho,0.919545567832284
+Historical Average,2015/2016,Idaho,0.0804536400782278
+Subtype Historical Average,2015/2016,Idaho,7.92089488435868e-07
+Dynamic Harmonic Model,2016/2017,Idaho,0.914489733230603
+Historical Average,2016/2017,Idaho,0.0855093916659644
+Subtype Historical Average,2016/2017,Idaho,8.75103432181915e-07
+Dynamic Harmonic Model,2017/2018,Idaho,0.929719816367796
+Historical Average,2017/2018,Idaho,0.0702794925061908
+Subtype Historical Average,2017/2018,Idaho,6.91126013365026e-07
+Dynamic Harmonic Model,2014/2015,Illinois,0.999999665585749
+Historical Average,2014/2015,Illinois,1.38806170536199e-07
+Subtype Historical Average,2014/2015,Illinois,1.95608080339992e-07
+Dynamic Harmonic Model,2015/2016,Illinois,0.999998806887746
+Historical Average,2015/2016,Illinois,2.18962773756761e-07
+Subtype Historical Average,2015/2016,Illinois,9.7414948053416e-07
+Dynamic Harmonic Model,2016/2017,Illinois,0.999999649927999
+Historical Average,2016/2017,Illinois,9.88793645195183e-08
+Subtype Historical Average,2016/2017,Illinois,2.51192636496679e-07
+Dynamic Harmonic Model,2017/2018,Illinois,0.999999414131032
+Historical Average,2017/2018,Illinois,1.24476513902767e-08
+Subtype Historical Average,2017/2018,Illinois,5.73421316673306e-07
+Dynamic Harmonic Model,2014/2015,Indiana,0.999999739953087
+Historical Average,2014/2015,Indiana,1.53313675706134e-07
+Subtype Historical Average,2014/2015,Indiana,1.06733237597326e-07
+Dynamic Harmonic Model,2015/2016,Indiana,0.988093612262806
+Historical Average,2015/2016,Indiana,1.53204128380071e-06
+Subtype Historical Average,2015/2016,Indiana,0.0119048556959104
+Dynamic Harmonic Model,2016/2017,Indiana,0.992416708747198
+Historical Average,2016/2017,Indiana,9.7733281890503e-07
+Subtype Historical Average,2016/2017,Indiana,0.00758231391998296
+Dynamic Harmonic Model,2017/2018,Indiana,0.991039079451125
+Historical Average,2017/2018,Indiana,8.61937602327641e-07
+Subtype Historical Average,2017/2018,Indiana,0.00896005861127236
+Dynamic Harmonic Model,2014/2015,Iowa,0.951461917300926
+Historical Average,2014/2015,Iowa,0.0485295029114463
+Subtype Historical Average,2014/2015,Iowa,8.57978762738572e-06
+Dynamic Harmonic Model,2015/2016,Iowa,0.943869135842575
+Historical Average,2015/2016,Iowa,0.0560960265693526
+Subtype Historical Average,2015/2016,Iowa,3.48375880720102e-05
+Dynamic Harmonic Model,2016/2017,Iowa,0.949085258548542
+Historical Average,2016/2017,Iowa,0.0508705249299062
+Subtype Historical Average,2016/2017,Iowa,4.42165215522825e-05
+Dynamic Harmonic Model,2017/2018,Iowa,0.999999912010822
+Historical Average,2017/2018,Iowa,1.91984241872172e-08
+Subtype Historical Average,2017/2018,Iowa,6.87907533851935e-08
+Dynamic Harmonic Model,2014/2015,Kansas,0.99999979361667
+Historical Average,2014/2015,Kansas,1.45349715916109e-07
+Subtype Historical Average,2014/2015,Kansas,6.10336136047679e-08
+Dynamic Harmonic Model,2015/2016,Kansas,0.934287921576942
+Historical Average,2015/2016,Kansas,0.0656928438306406
+Subtype Historical Average,2015/2016,Kansas,1.92345924174208e-05
+Dynamic Harmonic Model,2016/2017,Kansas,0.911007730125547
+Historical Average,2016/2017,Kansas,0.0889366183793927
+Subtype Historical Average,2016/2017,Kansas,5.56514950600682e-05
+Dynamic Harmonic Model,2017/2018,Kansas,0.904582569650258
+Historical Average,2017/2018,Kansas,0.0948539734370438
+Subtype Historical Average,2017/2018,Kansas,0.000563456912698684
+Dynamic Harmonic Model,2014/2015,Kentucky,0.999999822779564
+Historical Average,2014/2015,Kentucky,1.16106078492003e-07
+Subtype Historical Average,2014/2015,Kentucky,6.1114357460874e-08
+Dynamic Harmonic Model,2015/2016,Kentucky,0.925004789738033
+Historical Average,2015/2016,Kentucky,0.0749942207976403
+Subtype Historical Average,2015/2016,Kentucky,9.89464326707634e-07
+Dynamic Harmonic Model,2016/2017,Kentucky,0.888680134734419
+Historical Average,2016/2017,Kentucky,0.111318263524277
+Subtype Historical Average,2016/2017,Kentucky,1.60174130444486e-06
+Dynamic Harmonic Model,2017/2018,Kentucky,0.884399907728989
+Historical Average,2017/2018,Kentucky,0.115598137739679
+Subtype Historical Average,2017/2018,Kentucky,1.95453133179118e-06
+Dynamic Harmonic Model,2014/2015,Maine,0.983767450492118
+Historical Average,2014/2015,Maine,2.96760457703736e-05
+Subtype Historical Average,2014/2015,Maine,0.0162028734621113
+Dynamic Harmonic Model,2015/2016,Maine,0.983632276796411
+Historical Average,2015/2016,Maine,0.0163274460956226
+Subtype Historical Average,2015/2016,Maine,4.02771079661288e-05
+Dynamic Harmonic Model,2016/2017,Maine,0.98654884156554
+Historical Average,2016/2017,Maine,0.0134103517618388
+Subtype Historical Average,2016/2017,Maine,4.08066726210298e-05
+Dynamic Harmonic Model,2017/2018,Maine,0.999999941181036
+Historical Average,2017/2018,Maine,5.28906174546219e-08
+Subtype Historical Average,2017/2018,Maine,5.92834609227398e-09
+Dynamic Harmonic Model,2014/2015,Maryland,0.965365187548189
+Historical Average,2014/2015,Maryland,0.0346201626806747
+Subtype Historical Average,2014/2015,Maryland,1.46497711367529e-05
+Dynamic Harmonic Model,2015/2016,Maryland,0.848868130890927
+Historical Average,2015/2016,Maryland,0.15112850865892
+Subtype Historical Average,2015/2016,Maryland,3.3604501526318e-06
+Dynamic Harmonic Model,2016/2017,Maryland,0.823990107731514
+Historical Average,2016/2017,Maryland,0.17600595160686
+Subtype Historical Average,2016/2017,Maryland,3.94066162638257e-06
+Dynamic Harmonic Model,2017/2018,Maryland,0.880667597993466
+Historical Average,2017/2018,Maryland,0.11932954087732
+Subtype Historical Average,2017/2018,Maryland,2.86112921358103e-06
+Dynamic Harmonic Model,2014/2015,Massachusetts,0.999999939565152
+Historical Average,2014/2015,Massachusetts,2.56022481167037e-08
+Subtype Historical Average,2014/2015,Massachusetts,3.48325998401712e-08
+Dynamic Harmonic Model,2015/2016,Massachusetts,0.999999893635526
+Historical Average,2015/2016,Massachusetts,5.86415741821803e-08
+Subtype Historical Average,2015/2016,Massachusetts,4.77228995555755e-08
+Dynamic Harmonic Model,2016/2017,Massachusetts,0.999999957472383
+Historical Average,2016/2017,Massachusetts,2.17667161898176e-08
+Subtype Historical Average,2016/2017,Massachusetts,2.07609010816199e-08
+Dynamic Harmonic Model,2017/2018,Massachusetts,0.999999902017133
+Historical Average,2017/2018,Massachusetts,3.78422210254372e-08
+Subtype Historical Average,2017/2018,Massachusetts,6.01406461336977e-08
+Dynamic Harmonic Model,2014/2015,Michigan,0.99414610276393
+Historical Average,2014/2015,Michigan,0.00584994898745901
+Subtype Historical Average,2014/2015,Michigan,3.94824861131221e-06
+Dynamic Harmonic Model,2015/2016,Michigan,0.969447891934679
+Historical Average,2015/2016,Michigan,0.000499299396801459
+Subtype Historical Average,2015/2016,Michigan,0.03005280866852
+Dynamic Harmonic Model,2016/2017,Michigan,0.959225948076675
+Historical Average,2016/2017,Michigan,0.000172448967749239
+Subtype Historical Average,2016/2017,Michigan,0.0406016029555759
+Dynamic Harmonic Model,2017/2018,Michigan,0.97575436856947
+Historical Average,2017/2018,Michigan,8.30496889100078e-06
+Subtype Historical Average,2017/2018,Michigan,0.0242373264616387
+Dynamic Harmonic Model,2014/2015,Minnesota,0.984005253925337
+Historical Average,2014/2015,Minnesota,0.0159925298085206
+Subtype Historical Average,2014/2015,Minnesota,2.21626614211554e-06
+Dynamic Harmonic Model,2015/2016,Minnesota,0.961239674161146
+Historical Average,2015/2016,Minnesota,0.0289315513425389
+Subtype Historical Average,2015/2016,Minnesota,0.00982877449631528
+Dynamic Harmonic Model,2016/2017,Minnesota,0.941239534278126
+Historical Average,2016/2017,Minnesota,0.0561167644397239
+Subtype Historical Average,2016/2017,Minnesota,0.00264370128214964
+Dynamic Harmonic Model,2017/2018,Minnesota,0.962034906238168
+Historical Average,2017/2018,Minnesota,1.34961117182115e-05
+Subtype Historical Average,2017/2018,Minnesota,0.0379515976501135
+Dynamic Harmonic Model,2014/2015,Mississippi,0.999999827640922
+Historical Average,2014/2015,Mississippi,1.43919520900393e-07
+Subtype Historical Average,2014/2015,Mississippi,2.84395568023839e-08
+Dynamic Harmonic Model,2015/2016,Mississippi,0.999999485687752
+Historical Average,2015/2016,Mississippi,1.36637814491161e-07
+Subtype Historical Average,2015/2016,Mississippi,3.77674433426639e-07
+Dynamic Harmonic Model,2016/2017,Mississippi,0.999999490603229
+Historical Average,2016/2017,Mississippi,3.52116575719727e-07
+Subtype Historical Average,2016/2017,Mississippi,1.572801951772e-07
+Dynamic Harmonic Model,2017/2018,Mississippi,0.999999018520091
+Historical Average,2017/2018,Mississippi,8.34084404891079e-07
+Subtype Historical Average,2017/2018,Mississippi,1.47395504414949e-07
+Dynamic Harmonic Model,2014/2015,Missouri,0.999999723682301
+Historical Average,2014/2015,Missouri,1.86233119659163e-07
+Subtype Historical Average,2014/2015,Missouri,9.00845792946095e-08
+Dynamic Harmonic Model,2015/2016,Missouri,0.980233858231491
+Historical Average,2015/2016,Missouri,0.0168318302248775
+Subtype Historical Average,2015/2016,Missouri,0.00293431154363131
+Dynamic Harmonic Model,2016/2017,Missouri,0.982633500703396
+Historical Average,2016/2017,Missouri,0.0168765228793028
+Subtype Historical Average,2016/2017,Missouri,0.000489976417301536
+Dynamic Harmonic Model,2017/2018,Missouri,0.980420354808315
+Historical Average,2017/2018,Missouri,0.0114218704208149
+Subtype Historical Average,2017/2018,Missouri,0.00815777477087025
+Dynamic Harmonic Model,2014/2015,Montana,0.999999900345226
+Historical Average,2014/2015,Montana,4.39816085638997e-08
+Subtype Historical Average,2014/2015,Montana,5.56731649269835e-08
+Dynamic Harmonic Model,2015/2016,Montana,0.99999977756467
+Historical Average,2015/2016,Montana,7.57462150140271e-10
+Subtype Historical Average,2015/2016,Montana,2.21677867666609e-07
+Dynamic Harmonic Model,2016/2017,Montana,0.999999742542964
+Historical Average,2016/2017,Montana,7.92266897424458e-09
+Subtype Historical Average,2016/2017,Montana,2.49534366911575e-07
+Dynamic Harmonic Model,2017/2018,Montana,0.999999721825399
+Historical Average,2017/2018,Montana,1.60823599198271e-09
+Subtype Historical Average,2017/2018,Montana,2.76566364714864e-07
+Dynamic Harmonic Model,2014/2015,Nebraska,0.996713770443477
+Historical Average,2014/2015,Nebraska,0.00327329390145786
+Subtype Historical Average,2014/2015,Nebraska,1.29356550654505e-05
+Dynamic Harmonic Model,2015/2016,Nebraska,0.993499216309589
+Historical Average,2015/2016,Nebraska,0.00649715359878333
+Subtype Historical Average,2015/2016,Nebraska,3.6300916275061e-06
+Dynamic Harmonic Model,2016/2017,Nebraska,0.996194537240511
+Historical Average,2016/2017,Nebraska,0.00380320042283727
+Subtype Historical Average,2016/2017,Nebraska,2.26233665197976e-06
+Dynamic Harmonic Model,2017/2018,Nebraska,0.999999949520337
+Historical Average,2017/2018,Nebraska,2.49287787010087e-08
+Subtype Historical Average,2017/2018,Nebraska,2.55508840829446e-08
+Dynamic Harmonic Model,2014/2015,Nevada,0.972567747983087
+Historical Average,2014/2015,Nevada,0.0138642771400953
+Subtype Historical Average,2014/2015,Nevada,0.0135679748768182
+Dynamic Harmonic Model,2015/2016,Nevada,0.835992488783859
+Historical Average,2015/2016,Nevada,0.164007072143697
+Subtype Historical Average,2015/2016,Nevada,4.39072444021394e-07
+Dynamic Harmonic Model,2016/2017,Nevada,0.822722273917058
+Historical Average,2016/2017,Nevada,0.177277270863628
+Subtype Historical Average,2016/2017,Nevada,4.55219313304659e-07
+Dynamic Harmonic Model,2017/2018,Nevada,0.892349762822296
+Historical Average,2017/2018,Nevada,0.107650070909371
+Subtype Historical Average,2017/2018,Nevada,1.66268332491414e-07
+Dynamic Harmonic Model,2014/2015,New Hampshire,0.999999149991357
+Historical Average,2014/2015,New Hampshire,3.04760121036489e-07
+Subtype Historical Average,2014/2015,New Hampshire,5.45248521567442e-07
+Dynamic Harmonic Model,2015/2016,New Hampshire,0.999999522762904
+Historical Average,2015/2016,New Hampshire,4.0528596176489e-07
+Subtype Historical Average,2015/2016,New Hampshire,7.19511337884877e-08
+Dynamic Harmonic Model,2016/2017,New Hampshire,0.999999787242214
+Historical Average,2016/2017,New Hampshire,1.96862927956826e-07
+Subtype Historical Average,2016/2017,New Hampshire,1.58948585748852e-08
+Dynamic Harmonic Model,2017/2018,New Hampshire,0.999999913701474
+Historical Average,2017/2018,New Hampshire,5.76155495063433e-09
+Subtype Historical Average,2017/2018,New Hampshire,8.05369706861015e-08
+Dynamic Harmonic Model,2014/2015,New Jersey,0.999999878127794
+Historical Average,2014/2015,New Jersey,1.10364073974972e-07
+Subtype Historical Average,2014/2015,New Jersey,1.15081318570739e-08
+Dynamic Harmonic Model,2015/2016,New Jersey,0.999999890049925
+Historical Average,2015/2016,New Jersey,9.34866111612488e-08
+Subtype Historical Average,2015/2016,New Jersey,1.646346374431e-08
+Dynamic Harmonic Model,2016/2017,New Jersey,0.999999862753756
+Historical Average,2016/2017,New Jersey,1.15632366607721e-07
+Subtype Historical Average,2016/2017,New Jersey,2.16138774388928e-08
+Dynamic Harmonic Model,2017/2018,New Jersey,0.999999873725797
+Historical Average,2017/2018,New Jersey,1.02090255091606e-07
+Subtype Historical Average,2017/2018,New Jersey,2.41839479004572e-08
+Dynamic Harmonic Model,2014/2015,New Mexico,0.999999776048172
+Historical Average,2014/2015,New Mexico,1.97971324372427e-07
+Subtype Historical Average,2014/2015,New Mexico,2.59805032813318e-08
+Dynamic Harmonic Model,2015/2016,New Mexico,0.95855243750218
+Historical Average,2015/2016,New Mexico,0.0414276617848438
+Subtype Historical Average,2015/2016,New Mexico,1.99007129759589e-05
+Dynamic Harmonic Model,2016/2017,New Mexico,0.956449960148754
+Historical Average,2016/2017,New Mexico,0.0435384251987558
+Subtype Historical Average,2016/2017,New Mexico,1.16146524897704e-05
+Dynamic Harmonic Model,2017/2018,New Mexico,0.976417455486974
+Historical Average,2017/2018,New Mexico,0.0234639100089042
+Subtype Historical Average,2017/2018,New Mexico,0.000118634504121997
+Dynamic Harmonic Model,2014/2015,New York,0.999999911872515
+Historical Average,2014/2015,New York,4.73861798780955e-08
+Subtype Historical Average,2014/2015,New York,4.07413049569323e-08
+Dynamic Harmonic Model,2015/2016,New York,0.999999895436305
+Historical Average,2015/2016,New York,6.89175853703665e-08
+Subtype Historical Average,2015/2016,New York,3.56461096459695e-08
+Dynamic Harmonic Model,2016/2017,New York,0.999999894310317
+Historical Average,2016/2017,New York,3.83141946702012e-08
+Subtype Historical Average,2016/2017,New York,6.73754882259698e-08
+Dynamic Harmonic Model,2017/2018,New York,0.999999837327493
+Historical Average,2017/2018,New York,7.21042061256071e-08
+Subtype Historical Average,2017/2018,New York,9.05683011426243e-08
+Dynamic Harmonic Model,2014/2015,North Carolina,0.993674224796637
+Historical Average,2014/2015,North Carolina,0.00628292158981264
+Subtype Historical Average,2014/2015,North Carolina,4.28536135498613e-05
+Dynamic Harmonic Model,2015/2016,North Carolina,0.96564528931936
+Historical Average,2015/2016,North Carolina,2.48803630747498e-06
+Subtype Historical Average,2015/2016,North Carolina,0.0343522226443326
+Dynamic Harmonic Model,2016/2017,North Carolina,0.980029583725454
+Historical Average,2016/2017,North Carolina,1.18292688460806e-06
+Subtype Historical Average,2016/2017,North Carolina,0.0199692333476612
+Dynamic Harmonic Model,2017/2018,North Carolina,0.977658824360267
+Historical Average,2017/2018,North Carolina,1.05950286905362e-06
+Subtype Historical Average,2017/2018,North Carolina,0.0223401161368637
+Dynamic Harmonic Model,2014/2015,North Dakota,0.968907214124481
+Historical Average,2014/2015,North Dakota,0.0308384294217575
+Subtype Historical Average,2014/2015,North Dakota,0.000254356453761087
+Dynamic Harmonic Model,2015/2016,North Dakota,0.927257360126761
+Historical Average,2015/2016,North Dakota,0.0201111689416365
+Subtype Historical Average,2015/2016,North Dakota,0.0526314709316028
+Dynamic Harmonic Model,2016/2017,North Dakota,0.950946216749266
+Historical Average,2016/2017,North Dakota,0.000177102041501533
+Subtype Historical Average,2016/2017,North Dakota,0.0488766812092321
+Dynamic Harmonic Model,2017/2018,North Dakota,0.973418415484915
+Historical Average,2017/2018,North Dakota,6.97864348806499e-05
+Subtype Historical Average,2017/2018,North Dakota,0.0265117980802039
+Dynamic Harmonic Model,2014/2015,Ohio,0.999999958835771
+Historical Average,2014/2015,Ohio,1.84393451716887e-08
+Subtype Historical Average,2014/2015,Ohio,2.27248841196669e-08
+Dynamic Harmonic Model,2015/2016,Ohio,0.985079852453734
+Historical Average,2015/2016,Ohio,5.18430296747534e-07
+Subtype Historical Average,2015/2016,Ohio,0.0149196291159694
+Dynamic Harmonic Model,2016/2017,Ohio,0.984518585867847
+Historical Average,2016/2017,Ohio,6.36680844951661e-07
+Subtype Historical Average,2016/2017,Ohio,0.0154807774513076
+Dynamic Harmonic Model,2017/2018,Ohio,0.984626673602779
+Historical Average,2017/2018,Ohio,5.62975534673053e-07
+Subtype Historical Average,2017/2018,Ohio,0.0153727634216867
+Dynamic Harmonic Model,2014/2015,Oklahoma,0.999999615911968
+Historical Average,2014/2015,Oklahoma,1.89815663781539e-07
+Subtype Historical Average,2014/2015,Oklahoma,1.94272368230556e-07
+Dynamic Harmonic Model,2015/2016,Oklahoma,0.999999635547651
+Historical Average,2015/2016,Oklahoma,1.74808889454611e-07
+Subtype Historical Average,2015/2016,Oklahoma,1.8964345948242e-07
+Dynamic Harmonic Model,2016/2017,Oklahoma,0.999999530016955
+Historical Average,2016/2017,Oklahoma,5.18498623058746e-08
+Subtype Historical Average,2016/2017,Oklahoma,4.18133182835373e-07
+Dynamic Harmonic Model,2017/2018,Oklahoma,0.999999677703937
+Historical Average,2017/2018,Oklahoma,4.05026778232736e-08
+Subtype Historical Average,2017/2018,Oklahoma,2.81793385568098e-07
+Dynamic Harmonic Model,2014/2015,Oregon,0.99999982424245
+Historical Average,2014/2015,Oregon,9.8826498344045e-08
+Subtype Historical Average,2014/2015,Oregon,7.69310514567319e-08
+Dynamic Harmonic Model,2015/2016,Oregon,0.999999916329216
+Historical Average,2015/2016,Oregon,5.84541949756207e-08
+Subtype Historical Average,2015/2016,Oregon,2.52165891382504e-08
+Dynamic Harmonic Model,2016/2017,Oregon,0.999999898265019
+Historical Average,2016/2017,Oregon,8.85537470877697e-08
+Subtype Historical Average,2016/2017,Oregon,1.31812334457841e-08
+Dynamic Harmonic Model,2017/2018,Oregon,0.999999765043825
+Historical Average,2017/2018,Oregon,1.81207555739576e-07
+Subtype Historical Average,2017/2018,Oregon,5.37486195015947e-08
+Dynamic Harmonic Model,2014/2015,Pennsylvania,0.981451021283731
+Historical Average,2014/2015,Pennsylvania,0.0185463065705866
+Subtype Historical Average,2014/2015,Pennsylvania,2.67214568259327e-06
+Dynamic Harmonic Model,2015/2016,Pennsylvania,0.831950557257124
+Historical Average,2015/2016,Pennsylvania,0.000400865870451456
+Subtype Historical Average,2015/2016,Pennsylvania,0.167648576872424
+Dynamic Harmonic Model,2016/2017,Pennsylvania,0.890008842963283
+Historical Average,2016/2017,Pennsylvania,4.30045775968889e-05
+Subtype Historical Average,2016/2017,Pennsylvania,0.10994815245912
+Dynamic Harmonic Model,2017/2018,Pennsylvania,0.945262938354723
+Historical Average,2017/2018,Pennsylvania,1.65564845369517e-06
+Subtype Historical Average,2017/2018,Pennsylvania,0.0547354059968231
+Dynamic Harmonic Model,2014/2015,Rhode Island,0.999999938704531
+Historical Average,2014/2015,Rhode Island,3.40558635893538e-08
+Subtype Historical Average,2014/2015,Rhode Island,2.7239605879097e-08
+Dynamic Harmonic Model,2015/2016,Rhode Island,0.999999857902172
+Historical Average,2015/2016,Rhode Island,1.13144021934838e-07
+Subtype Historical Average,2015/2016,Rhode Island,2.89538060507526e-08
+Dynamic Harmonic Model,2016/2017,Rhode Island,0.999999941133634
+Historical Average,2016/2017,Rhode Island,3.01171672466254e-08
+Subtype Historical Average,2016/2017,Rhode Island,2.87491986309487e-08
+Dynamic Harmonic Model,2017/2018,Rhode Island,0.999999903790069
+Historical Average,2017/2018,Rhode Island,5.94994475401457e-08
+Subtype Historical Average,2017/2018,Rhode Island,3.67104831579481e-08
+Dynamic Harmonic Model,2014/2015,South Carolina,0.99999997095648
+Historical Average,2014/2015,South Carolina,1.71636902073462e-08
+Subtype Historical Average,2014/2015,South Carolina,1.18798299483718e-08
+Dynamic Harmonic Model,2015/2016,South Carolina,0.999999968274083
+Historical Average,2015/2016,South Carolina,2.14229756634912e-08
+Subtype Historical Average,2015/2016,South Carolina,1.03029416312102e-08
+Dynamic Harmonic Model,2016/2017,South Carolina,0.999999935672457
+Historical Average,2016/2017,South Carolina,4.01489574400754e-08
+Subtype Historical Average,2016/2017,South Carolina,2.41785854945385e-08
+Dynamic Harmonic Model,2017/2018,South Carolina,0.999999873085427
+Historical Average,2017/2018,South Carolina,8.09850237727548e-08
+Subtype Historical Average,2017/2018,South Carolina,4.59295487151675e-08
+Dynamic Harmonic Model,2014/2015,South Dakota,0.999999873334305
+Historical Average,2014/2015,South Dakota,1.00485185911375e-07
+Subtype Historical Average,2014/2015,South Dakota,2.61805091770107e-08
+Dynamic Harmonic Model,2015/2016,South Dakota,0.999999858072587
+Historical Average,2015/2016,South Dakota,1.24582499254574e-07
+Subtype Historical Average,2015/2016,South Dakota,1.73449142610254e-08
+Dynamic Harmonic Model,2016/2017,South Dakota,0.999999817389562
+Historical Average,2016/2017,South Dakota,1.67115054085357e-07
+Subtype Historical Average,2016/2017,South Dakota,1.54953834365433e-08
+Dynamic Harmonic Model,2017/2018,South Dakota,0.999999318104686
+Historical Average,2017/2018,South Dakota,6.41982683606725e-07
+Subtype Historical Average,2017/2018,South Dakota,3.99126300052836e-08
+Dynamic Harmonic Model,2014/2015,Tennessee,0.999999720517386
+Historical Average,2014/2015,Tennessee,1.93898218667765e-07
+Subtype Historical Average,2014/2015,Tennessee,8.55843955323788e-08
+Dynamic Harmonic Model,2015/2016,Tennessee,0.99576250886385
+Historical Average,2015/2016,Tennessee,0.00419846320549814
+Subtype Historical Average,2015/2016,Tennessee,3.90279306519288e-05
+Dynamic Harmonic Model,2016/2017,Tennessee,0.985229171414304
+Historical Average,2016/2017,Tennessee,0.0147482239318162
+Subtype Historical Average,2016/2017,Tennessee,2.26046538798692e-05
+Dynamic Harmonic Model,2017/2018,Tennessee,0.99992215075977
+Historical Average,2017/2018,Tennessee,7.75316098797658e-05
+Subtype Historical Average,2017/2018,Tennessee,3.17630349872269e-07
+Dynamic Harmonic Model,2014/2015,Texas,0.999999858711341
+Historical Average,2014/2015,Texas,8.88435869788681e-08
+Subtype Historical Average,2014/2015,Texas,5.24450720798484e-08
+Dynamic Harmonic Model,2015/2016,Texas,0.999998039638008
+Historical Average,2015/2016,Texas,1.95979754563942e-06
+Subtype Historical Average,2015/2016,Texas,5.64446510338568e-10
+Dynamic Harmonic Model,2016/2017,Texas,0.999999636912606
+Historical Average,2016/2017,Texas,3.5991925237493e-07
+Subtype Historical Average,2016/2017,Texas,3.16814194272928e-09
+Dynamic Harmonic Model,2017/2018,Texas,0.999994692903462
+Historical Average,2017/2018,Texas,5.30695174449753e-06
+Subtype Historical Average,2017/2018,Texas,1.44793190796397e-10
+Dynamic Harmonic Model,2014/2015,Utah,0.999999952543791
+Historical Average,2014/2015,Utah,1.88978998604833e-08
+Subtype Historical Average,2014/2015,Utah,2.85583095265537e-08
+Dynamic Harmonic Model,2015/2016,Utah,0.999999925798954
+Historical Average,2015/2016,Utah,4.29116865211057e-08
+Subtype Historical Average,2015/2016,Utah,3.1289359951408e-08
+Dynamic Harmonic Model,2016/2017,Utah,0.999999872566306
+Historical Average,2016/2017,Utah,7.10632180103443e-08
+Subtype Historical Average,2016/2017,Utah,5.63704764333014e-08
+Dynamic Harmonic Model,2017/2018,Utah,0.999999931426003
+Historical Average,2017/2018,Utah,4.20432981654727e-08
+Subtype Historical Average,2017/2018,Utah,2.65306986995564e-08
+Dynamic Harmonic Model,2014/2015,Vermont,0.999999857341233
+Historical Average,2014/2015,Vermont,5.98856240676327e-08
+Subtype Historical Average,2014/2015,Vermont,8.27731429942871e-08
+Dynamic Harmonic Model,2015/2016,Vermont,0.999998164221897
+Historical Average,2015/2016,Vermont,1.66428863453654e-07
+Subtype Historical Average,2015/2016,Vermont,1.66934923913327e-06
+Dynamic Harmonic Model,2016/2017,Vermont,0.999999499812241
+Historical Average,2016/2017,Vermont,1.25243128381822e-07
+Subtype Historical Average,2016/2017,Vermont,3.74944631074751e-07
+Dynamic Harmonic Model,2017/2018,Vermont,0.999999780728355
+Historical Average,2017/2018,Vermont,3.87954234999102e-08
+Subtype Historical Average,2017/2018,Vermont,1.80476221895552e-07
+Dynamic Harmonic Model,2014/2015,Virginia,0.964701909294117
+Historical Average,2014/2015,Virginia,0.0011852808412673
+Subtype Historical Average,2014/2015,Virginia,0.0341128098646162
+Dynamic Harmonic Model,2015/2016,Virginia,0.956983365568538
+Historical Average,2015/2016,Virginia,3.92654617180667e-05
+Subtype Historical Average,2015/2016,Virginia,0.0429773689697443
+Dynamic Harmonic Model,2016/2017,Virginia,0.96783212601862
+Historical Average,2016/2017,Virginia,2.87780951042528e-05
+Subtype Historical Average,2016/2017,Virginia,0.0321390958862753
+Dynamic Harmonic Model,2017/2018,Virginia,0.99999993548039
+Historical Average,2017/2018,Virginia,1.01119326940535e-08
+Subtype Historical Average,2017/2018,Virginia,5.44076771564824e-08
+Dynamic Harmonic Model,2014/2015,Washington,0.996656600022501
+Historical Average,2014/2015,Washington,0.00333969432481607
+Subtype Historical Average,2014/2015,Washington,3.70565268323849e-06
+Dynamic Harmonic Model,2015/2016,Washington,0.983706811808818
+Historical Average,2015/2016,Washington,0.0162795384975625
+Subtype Historical Average,2015/2016,Washington,1.36496936190267e-05
+Dynamic Harmonic Model,2016/2017,Washington,0.998881988223926
+Historical Average,2016/2017,Washington,0.00111125714299403
+Subtype Historical Average,2016/2017,Washington,6.754633080115e-06
+Dynamic Harmonic Model,2017/2018,Washington,0.999999351884057
+Historical Average,2017/2018,Washington,2.15166348031031e-07
+Subtype Historical Average,2017/2018,Washington,4.32949595285735e-07
+Dynamic Harmonic Model,2014/2015,West Virginia,0.989696029683275
+Historical Average,2014/2015,West Virginia,0.0102783079168357
+Subtype Historical Average,2014/2015,West Virginia,2.56623998888662e-05
+Dynamic Harmonic Model,2015/2016,West Virginia,0.864576876719183
+Historical Average,2015/2016,West Virginia,0.135408317729763
+Subtype Historical Average,2015/2016,West Virginia,1.4805551054389e-05
+Dynamic Harmonic Model,2016/2017,West Virginia,0.891145829664715
+Historical Average,2016/2017,West Virginia,0.108845186282641
+Subtype Historical Average,2016/2017,West Virginia,8.98405264382091e-06
+Dynamic Harmonic Model,2017/2018,West Virginia,0.909325216508729
+Historical Average,2017/2018,West Virginia,0.0906474315049939
+Subtype Historical Average,2017/2018,West Virginia,2.73519862767331e-05
+Dynamic Harmonic Model,2014/2015,Wisconsin,0.982565410961454
+Historical Average,2014/2015,Wisconsin,0.000556687093424323
+Subtype Historical Average,2014/2015,Wisconsin,0.0168779019451213
+Dynamic Harmonic Model,2015/2016,Wisconsin,0.98770566160786
+Historical Average,2015/2016,Wisconsin,0.0122932790011086
+Subtype Historical Average,2015/2016,Wisconsin,1.05939103124142e-06
+Dynamic Harmonic Model,2016/2017,Wisconsin,0.980810766443337
+Historical Average,2016/2017,Wisconsin,0.0191867553440736
+Subtype Historical Average,2016/2017,Wisconsin,2.47821258939108e-06
+Dynamic Harmonic Model,2017/2018,Wisconsin,0.999999370126661
+Historical Average,2017/2018,Wisconsin,6.26740878703661e-07
+Subtype Historical Average,2017/2018,Wisconsin,3.13245994973199e-09
+Dynamic Harmonic Model,2014/2015,Wyoming,0.94030969277737
+Historical Average,2014/2015,Wyoming,0.0596878066452445
+Subtype Historical Average,2014/2015,Wyoming,2.50057738552549e-06
+Dynamic Harmonic Model,2015/2016,Wyoming,0.958097516574357
+Historical Average,2015/2016,Wyoming,0.0419011748962817
+Subtype Historical Average,2015/2016,Wyoming,1.30852936088711e-06
+Dynamic Harmonic Model,2016/2017,Wyoming,0.937136682381418
+Historical Average,2016/2017,Wyoming,0.062860982936127
+Subtype Historical Average,2016/2017,Wyoming,2.3346824551188e-06
+Dynamic Harmonic Model,2017/2018,Wyoming,0.999999396935251
+Historical Average,2017/2018,Wyoming,5.42598551701122e-07
+Subtype Historical Average,2017/2018,Wyoming,6.04661977168283e-08
+Dynamic Harmonic Model,2018/2019,Alabama,0.999998747536782
+Historical Average,2018/2019,Alabama,3.43307193948088e-07
+Subtype Historical Average,2018/2019,Alabama,9.09156023821168e-07
+Dynamic Harmonic Model,2018/2019,Alaska,0.998241264985028
+Historical Average,2018/2019,Alaska,5.6131102997033e-10
+Subtype Historical Average,2018/2019,Alaska,0.00175873445366125
+Dynamic Harmonic Model,2018/2019,Arizona,0.999999967341723
+Historical Average,2018/2019,Arizona,1.59667309525318e-08
+Subtype Historical Average,2018/2019,Arizona,1.66915455320006e-08
+Dynamic Harmonic Model,2018/2019,Arkansas,0.931907492913116
+Historical Average,2018/2019,Arkansas,0.0680843259299459
+Subtype Historical Average,2018/2019,Arkansas,8.18115693775112e-06
+Dynamic Harmonic Model,2018/2019,California,0.998819932921567
+Historical Average,2018/2019,California,0.000840407404966669
+Subtype Historical Average,2018/2019,California,0.000339659673466322
+Dynamic Harmonic Model,2018/2019,Colorado,0.885001975152087
+Historical Average,2018/2019,Colorado,0.114996026221425
+Subtype Historical Average,2018/2019,Colorado,1.99862648787051e-06
+Dynamic Harmonic Model,2018/2019,Connecticut,0.999999753253803
+Historical Average,2018/2019,Connecticut,1.12641679919051e-07
+Subtype Historical Average,2018/2019,Connecticut,1.34104517103956e-07
+Dynamic Harmonic Model,2018/2019,Delaware,0.996391948278379
+Historical Average,2018/2019,Delaware,0.00359557699808778
+Subtype Historical Average,2018/2019,Delaware,1.24747235328332e-05
+Dynamic Harmonic Model,2018/2019,Georgia,0.975724905293001
+Historical Average,2018/2019,Georgia,1.83884214395482e-05
+Subtype Historical Average,2018/2019,Georgia,0.0242567062855599
+Dynamic Harmonic Model,2018/2019,Hawaii,0.999999767073933
+Historical Average,2018/2019,Hawaii,1.29967317660224e-08
+Subtype Historical Average,2018/2019,Hawaii,2.19929335511887e-07
+Dynamic Harmonic Model,2018/2019,Idaho,0.942598854557655
+Historical Average,2018/2019,Idaho,0.057400347204953
+Subtype Historical Average,2018/2019,Idaho,7.98237392119632e-07
+Dynamic Harmonic Model,2018/2019,Illinois,0.999999515094681
+Historical Average,2018/2019,Illinois,8.57636329093543e-08
+Subtype Historical Average,2018/2019,Illinois,3.99141686337594e-07
+Dynamic Harmonic Model,2018/2019,Indiana,0.99382582037482
+Historical Average,2018/2019,Indiana,1.21519471263561e-06
+Subtype Historical Average,2018/2019,Indiana,0.00617296443046705
+Dynamic Harmonic Model,2018/2019,Iowa,0.961271194389629
+Historical Average,2018/2019,Iowa,0.0386993107541945
+Subtype Historical Average,2018/2019,Iowa,2.94948561761249e-05
+Dynamic Harmonic Model,2018/2019,Kansas,0.933673432567004
+Historical Average,2018/2019,Kansas,0.0662782148886564
+Subtype Historical Average,2018/2019,Kansas,4.83525443397274e-05
+Dynamic Harmonic Model,2018/2019,Kentucky,0.926825460137139
+Historical Average,2018/2019,Kentucky,0.0731728266472376
+Subtype Historical Average,2018/2019,Kentucky,1.71321562323024e-06
+Dynamic Harmonic Model,2018/2019,Maine,0.988895719380809
+Historical Average,2018/2019,Maine,0.0109451950217153
+Subtype Historical Average,2018/2019,Maine,0.000159085597475493
+Dynamic Harmonic Model,2018/2019,Maryland,0.880038874732645
+Historical Average,2018/2019,Maryland,0.119957030610708
+Subtype Historical Average,2018/2019,Maryland,4.09465664756453e-06
+Dynamic Harmonic Model,2018/2019,Massachusetts,0.999999920367264
+Historical Average,2018/2019,Massachusetts,3.73891898787585e-08
+Subtype Historical Average,2018/2019,Massachusetts,4.22435459527234e-08
+Dynamic Harmonic Model,2018/2019,Michigan,0.977615425666103
+Historical Average,2018/2019,Michigan,0.000109457232095177
+Subtype Historical Average,2018/2019,Michigan,0.0222751171018015
+Dynamic Harmonic Model,2018/2019,Minnesota,0.964430472360008
+Historical Average,2018/2019,Minnesota,0.0232024733991844
+Subtype Historical Average,2018/2019,Minnesota,0.0123670542408071
+Dynamic Harmonic Model,2018/2019,Mississippi,0.999999593026277
+Historical Average,2018/2019,Mississippi,2.82362892688633e-07
+Subtype Historical Average,2018/2019,Mississippi,1.2461083058232e-07
+Dynamic Harmonic Model,2018/2019,Missouri,0.985769309524303
+Historical Average,2018/2019,Missouri,0.00807012905540643
+Subtype Historical Average,2018/2019,Missouri,0.00616056142029024
+Dynamic Harmonic Model,2018/2019,Montana,0.999999832413107
+Historical Average,2018/2019,Montana,5.13346597234954e-09
+Subtype Historical Average,2018/2019,Montana,1.62453426731074e-07
+Dynamic Harmonic Model,2018/2019,Nebraska,0.997002297020246
+Historical Average,2018/2019,Nebraska,0.0029927750103948
+Subtype Historical Average,2018/2019,Nebraska,4.92796935906181e-06
+Dynamic Harmonic Model,2018/2019,Nevada,0.888049832577859
+Historical Average,2018/2019,Nevada,0.111949778367703
+Subtype Historical Average,2018/2019,Nevada,3.89054437803255e-07
+Dynamic Harmonic Model,2018/2019,New Hampshire,0.999999735086001
+Historical Average,2018/2019,New Hampshire,1.39498651794966e-07
+Subtype Historical Average,2018/2019,New Hampshire,1.25415346694186e-07
+Dynamic Harmonic Model,2018/2019,New Jersey,0.999999874357862
+Historical Average,2018/2019,New Jersey,1.07568838398812e-07
+Subtype Historical Average,2018/2019,New Jersey,1.80732991486089e-08
+Dynamic Harmonic Model,2018/2019,New Mexico,0.979066666842313
+Historical Average,2018/2019,New Mexico,0.0209112997902329
+Subtype Historical Average,2018/2019,New Mexico,2.20333674544123e-05
+Dynamic Harmonic Model,2018/2019,New York,0.999999902876316
+Historical Average,2018/2019,New York,4.88060327877522e-08
+Subtype Historical Average,2018/2019,New York,4.83176511339399e-08
+Dynamic Harmonic Model,2018/2019,North Carolina,0.981263945897565
+Historical Average,2018/2019,North Carolina,2.12031079095488e-06
+Subtype Historical Average,2018/2019,North Carolina,0.0187339337916444
+Dynamic Harmonic Model,2018/2019,North Dakota,0.956501783072665
+Historical Average,2018/2019,North Dakota,0.000884750671136048
+Subtype Historical Average,2018/2019,North Dakota,0.042613466256199
+Dynamic Harmonic Model,2018/2019,Ohio,0.989648729792364
+Historical Average,2018/2019,Ohio,5.59152248610573e-07
+Subtype Historical Average,2018/2019,Ohio,0.0103507110553872
+Dynamic Harmonic Model,2018/2019,Oklahoma,0.999999660170653
+Historical Average,2018/2019,Oklahoma,8.89203480032662e-08
+Subtype Historical Average,2018/2019,Oklahoma,2.50908999248173e-07
+Dynamic Harmonic Model,2018/2019,Oregon,0.999999856157403
+Historical Average,2018/2019,Oregon,1.06504051754833e-07
+Subtype Historical Average,2018/2019,Oregon,3.73385449133336e-08
+Dynamic Harmonic Model,2018/2019,Pennsylvania,0.921336555512691
+Historical Average,2018/2019,Pennsylvania,5.80483496425321e-05
+Subtype Historical Average,2018/2019,Pennsylvania,0.078605396137666
+Dynamic Harmonic Model,2018/2019,Rhode Island,0.999999923980003
+Historical Average,2018/2019,Rhode Island,4.74212125809188e-08
+Subtype Historical Average,2018/2019,Rhode Island,2.85987842148317e-08
+Dynamic Harmonic Model,2018/2019,South Carolina,0.999999943705246
+Historical Average,2018/2019,South Carolina,3.54679458514771e-08
+Subtype Historical Average,2018/2019,South Carolina,2.08268082696017e-08
+Dynamic Harmonic Model,2018/2019,South Dakota,0.99999981866785
+Historical Average,2018/2019,South Dakota,1.59956996381837e-07
+Subtype Historical Average,2018/2019,South Dakota,2.13751533970167e-08
+Dynamic Harmonic Model,2018/2019,Tennessee,0.999993605672353
+Historical Average,2018/2019,Tennessee,6.16589568838727e-06
+Subtype Historical Average,2018/2019,Tennessee,2.2843195903465e-07
+Dynamic Harmonic Model,2018/2019,Texas,0.999999455617798
+Historical Average,2018/2019,Texas,5.37886983079748e-07
+Subtype Historical Average,2018/2019,Texas,6.49521904784477e-09
+Dynamic Harmonic Model,2018/2019,Utah,0.999999916475008
+Historical Average,2018/2019,Utah,4.45461963897148e-08
+Subtype Historical Average,2018/2019,Utah,3.89787959781075e-08
+Dynamic Harmonic Model,2018/2019,Vermont,0.999999687293576
+Historical Average,2018/2019,Vermont,7.5898227025986e-08
+Subtype Historical Average,2018/2019,Vermont,2.3680819720107e-07
+Dynamic Harmonic Model,2018/2019,Virginia,0.976177910568424
+Historical Average,2018/2019,Virginia,3.88709985228682e-05
+Subtype Historical Average,2018/2019,Virginia,0.0237832184330527
+Dynamic Harmonic Model,2018/2019,Washington,0.998078456967168
+Historical Average,2018/2019,Washington,0.00191228496629269
+Subtype Historical Average,2018/2019,Washington,9.2580665397044e-06
+Dynamic Harmonic Model,2018/2019,West Virginia,0.90851566733879
+Historical Average,2018/2019,West Virginia,0.0914674244597157
+Subtype Historical Average,2018/2019,West Virginia,1.69082014945325e-05
+Dynamic Harmonic Model,2018/2019,Wisconsin,0.987950747756804
+Historical Average,2018/2019,Wisconsin,0.0120458955488447
+Subtype Historical Average,2018/2019,Wisconsin,3.35669435089742e-06
+Dynamic Harmonic Model,2018/2019,Wyoming,0.954559819206147
+Historical Average,2018/2019,Wyoming,0.0454378089510208
+Subtype Historical Average,2018/2019,Wyoming,2.37184283196407e-06

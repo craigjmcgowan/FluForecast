@@ -16,90 +16,42 @@ forecasts_1718 <- read_forecasts("State Forecasts/2017-2018", challenge = "state
 forecasts_1819 <- read_forecasts("State Forecasts/2018-2019", challenge = "state_ili")
 
 # Create observed ILI -----
-ILI_1415 <- Epidata$fluview(regions = list("pa", "de", "md",
-                                           "va", "wv"),
-                            epiweeks = list(Epidata$range(201440, 201528)),
-                            issue = 201740)$epidata %>%
-  modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
-  bind_rows() %>%
-  mutate(week = as.integer(substr(epiweek, 5, 6)),
-         location = case_when(
-           region == "pa" ~ "Pennsylvania",
-           region == "de" ~ "Delaware",
-           region == "md" ~ "Maryland",
-           region == "va" ~ "Virginia",
-           region == "wv" ~ "West Virginia"
-         ),
-         ili = round(ili, 1)) %>%
-  select(location, week, ILI = ili)
+load("Data/ili_state.Rdata")
 
-ILI_1516 <- Epidata$fluview(regions = list("pa", "de", "md",
-                                           "va", "wv"),
-                            epiweeks = list(Epidata$range(201540, 201628)),
-                            issue = 201740)$epidata %>%
-  modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
-  bind_rows() %>%
-  mutate(week = as.integer(substr(epiweek, 5, 6)),
-         location = case_when(
-           region == "pa" ~ "Pennsylvania",
-           region == "de" ~ "Delaware",
-           region == "md" ~ "Maryland",
-           region == "va" ~ "Virginia",
-           region == "wv" ~ "West Virginia"
-         ),
-         ili = round(ili, 1)) %>%
-  select(location, week, ILI = ili)
+ILI_1415 <- state_ili_init_pub_list[["201528"]] %>%
+  filter(week >= 40 | week < 25, season == "2014/2015") %>%
+  mutate(week = week_inorder(week, season)) %>%
+  arrange(location, week) %>%
+  mutate(week = week_reset(week, season)) %>%
+  select(location, week, ILI)
 
-ILI_1617 <-  Epidata$fluview(regions = list("pa", "de", "md",
-                                            "va", "wv"),
-                             epiweeks = list(Epidata$range(201640, 201728)),
-                             issue = 201740)$epidata %>%
-  modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
-  bind_rows() %>%
-  mutate(week = as.integer(substr(epiweek, 5, 6)),
-         location = case_when(
-           region == "pa" ~ "Pennsylvania",
-           region == "de" ~ "Delaware",
-           region == "md" ~ "Maryland",
-           region == "va" ~ "Virginia",
-           region == "wv" ~ "West Virginia"
-         ),
-         ili = round(ili, 1)) %>%
-  select(location, week, ILI = ili)
+ILI_1516 <- state_ili_init_pub_list[["201628"]] %>%
+  filter(week >= 40 | week < 25, season == "2015/2016") %>%
+  mutate(week = week_inorder(week, season)) %>%
+  arrange(location, week) %>%
+  mutate(week = week_reset(week, season)) %>%
+  select(location, week, ILI)
 
-ILI_1718 <-  Epidata$fluview(regions = list("pa", "de", "md",
-                                            "va", "wv"),
-                             epiweeks = list(Epidata$range(201740, 201828)),
-                             issue = 201828)$epidata %>%
-  modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
-  bind_rows() %>%
-  mutate(week = as.integer(substr(epiweek, 5, 6)),
-         location = case_when(
-           region == "pa" ~ "Pennsylvania",
-           region == "de" ~ "Delaware",
-           region == "md" ~ "Maryland",
-           region == "va" ~ "Virginia",
-           region == "wv" ~ "West Virginia"
-         ),
-         ili = round(ili, 1)) %>%
-  select(location, week, ILI = ili)
+ILI_1617 <-  state_ili_init_pub_list[["201728"]] %>%
+  filter(week >= 40 | week < 25, season == "2016/2017") %>%
+  mutate(week = week_inorder(week, season)) %>%
+  arrange(location, week) %>%
+  mutate(week = week_reset(week, season)) %>%
+  select(location, week, ILI)
 
-ILI_1819 <-  Epidata$fluview(regions = list("pa", "de", "md",
-                                            "va", "wv"),
-                             epiweeks = list(Epidata$range(201840, 201906)),
-                             issue = 201906)$epidata %>%
-  modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
-  bind_rows() %>%
-  mutate(week = as.integer(substr(epiweek, 5, 6)),
-         location = case_when(
-           region == "pa" ~ "Pennsylvania",
-           region == "de" ~ "Delaware",
-           region == "md" ~ "Maryland",
-           region == "va" ~ "Virginia",
-           region == "wv" ~ "West Virginia"
-         ),
-         ili = round(ili, 1)) %>%
-  select(location, week, ILI = ili)
+ILI_1718 <-  state_ili_init_pub_list[["201828"]] %>%
+  filter(week >= 40 | week < 25, season == "2017/2018") %>%
+  mutate(week = week_inorder(week, season)) %>%
+  arrange(location, week) %>%
+  mutate(week = week_reset(week, season)) %>%
+  select(location, week, ILI)
+
+ILI_1819 <-  state_ili_init_pub_list[["201917"]] %>%
+  filter(week >= 40 | week < 25, season == "2018/2019") %>%
+  mutate(week = week_inorder(week, season)) %>%
+  arrange(location, week) %>%
+  mutate(week = week_reset(week, season)) %>%
+  select(location, week, ILI)
 
 # Create truth ----------------------------------------------------------------
 truth_1415 <- create_truth(fluview = FALSE, year = 2014, weekILI = ILI_1415,
