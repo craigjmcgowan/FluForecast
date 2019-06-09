@@ -15,16 +15,6 @@ forecasts_1516 <- read_forecasts("Forecasts/2015-2016")
 forecasts_1617 <- read_forecasts("Forecasts/2016-2017")
 forecasts_1718 <- read_forecasts("Forecasts/2017-2018")
 
-# Save test historical average forecasts as separate RDS file -----
-bind_rows(
-  mutate(bind_rows(forecasts_1415$`Historical Average`), season = "2014/2015"),
-  mutate(bind_rows(forecasts_1516$`Historical Average`), season = "2015/2016"),
-  mutate(bind_rows(forecasts_1617$`Historical Average`), season = "2016/2017"),
-  mutate(bind_rows(forecasts_1718$`Historical Average`), season = "2017/2018")
-) %>%
-  saveRDS(file = "Data/hist_avg_forecasts.Rds")
-
-
 # Create observed ILI -----
 ILI_1011 <- ilinet(region = "national", year = 2010) %>%
   mutate(location = "US National") %>%

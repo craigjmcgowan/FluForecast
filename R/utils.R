@@ -10,23 +10,13 @@ pull_curr_epidata <- function(start, end) {
     bind_rows()
 }
 
-# Helper functions for reading in EpiData from wk 28 for scoring-------
-pull_scoring_epidata <- function(year) {
-  Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
-                       'hhs6', 'hhs7', 'hhs8', 'hhs9', 'hhs10'),
-                  list(Epidata$range(as.numeric(paste0(year - 1, 40)),
-                                     as.numeric(paste0(year, 25)))),
-                  issues = as.numeric(paste0(year, 28)))$epidata %>%
-    modify_depth(2, function(x) ifelse(is.null(x), NA, x)) %>%
-    bind_rows()
-}
-
 # Helper function for reading in weekly publications of EpiData -----
 pull_initpub_epidata <- function(issue) {
 
-  start_week <- ifelse(as.numeric(substr(issue - 26, 5, 6)) < 52,
-                       issue - 26,
-                       issue + 26 - 100) # Converts number to prior year, halfway through
+  start_week <- ifelse(as.numeric(substr(issue - 40, 5, 6)) < 52 & 
+                         as.numeric(substr(issue - 40, 5, 6)) > 0,
+                       issue - 40,
+                       issue - 40 - 48) # Converts to appropriate week of previous year
   
   Epidata$fluview(list('nat', 'hhs1', 'hhs2', 'hhs3', 'hhs4', 'hhs5',
                        'hhs6', 'hhs7', 'hhs8', 'hhs9', 'hhs10'),
@@ -49,6 +39,70 @@ US_flu_ratio <- function(gdata1, gdata2) {
     mutate(ratio = old_hits / new_hits) %>%
     pull(ratio) %>%
     mean()
+}
+
+# Helper function for pulling in Google Trends data for a region -------
+fetch_gtrend <- function(location) {
+  require(gtrendsR)
+  
+  # Fix location to be in gtrend format if it isn't already
+  if(!location %in% c("US", state.abb, paste0("US-", state.abb)))
+    stop("Invalid location provided. Must be 'US' or a two-digit state abbreviation")
+  
+  if(location %in% state.abb)
+    location <- paste0("US-", location)
+  
+  flu_0407 <- gtrends(keyword = "flu",
+                         geo = location,
+                         time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
+    mutate_at(vars(hits), as.character) %>%
+    mutate(hits = case_when(hits %in% c("0", "<1") ~ 0.1,
+                            TRUE ~ as.numeric(hits)))
+  
+  flu_0611 <- gtrends(keyword = "flu",
+                         geo = location,
+                         time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
+    mutate_at(vars(hits), as.character) %>%
+    mutate(hits = case_when(hits %in% c("0", "<1") ~ 0.1,
+                            TRUE ~ as.numeric(hits)))
+  
+  flu_1015 <- gtrends(keyword = "flu",
+                         geo = location,
+                         time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
+    mutate_at(vars(hits), as.character) %>%
+    mutate(hits = case_when(hits %in% c("0", "<1") ~ 0.1,
+                            TRUE ~ as.numeric(hits)))
+  
+  flu_1419 <- gtrends(keyword = "flu",
+                         geo = location)$interest_over_time %>%
+    mutate_at(vars(hits), as.character) %>%
+    mutate(hits = case_when(hits %in% c("0", "<1") ~ 0.1,
+                            TRUE ~ as.numeric(hits)))
+  
+  # Set up ratios to normalize all Gtrends data to scale from 2010-2015
+  gratio_0607 <- US_flu_ratio(flu_0407, flu_0611)
+  gratio_1011 <- US_flu_ratio(flu_0611, flu_1015)
+  inv_gratio_1415 <- US_flu_ratio(flu_1419, flu_1015)
+  
+  # Merge Gtrends data and rescale to 2010-2015 scale
+  temp <- filter(flu_0407, !date %in% flu_0611$date) %>%
+    mutate(hits = hits / gratio_0607) %>%
+    bind_rows(flu_0611) %>%
+    filter(!date %in% flu_1015$date) %>%
+    mutate(hits = hits / gratio_1011) %>%
+    bind_rows(flu_1015) %>%
+    filter(!date %in% flu_1419$date) %>%
+    bind_rows(flu_1419 %>%
+                mutate(hits = hits / inv_gratio_1415)) %>%
+    select(date, hits) %>%
+    do({tz(.$date) <- "America/New_York"; .}) %>%
+    mutate(week = MMWRweek(date)[[2]],
+           year = MMWRweek(date)[[1]],
+           season = ifelse(week >= 40,
+                           paste0(year, "/", year + 1),
+                           paste0(year - 1, "/", year)),
+           hits = case_when(near(hits, 0) ~ 1,
+                            TRUE ~ hits))
 }
 
 # Functions to keep weeks in order and reset them --------
@@ -121,9 +175,15 @@ create_pseudo_onset <- function(weekILI) {
 
 # Functions to read forecasts from directory into a list --------
 
-read_forecasts <- function(dir, these_weeks = NULL) {
+read_forecasts <- function(dir, challenge = 'ilinet', these_weeks = c(),
+                           these_teams = c()) {
+  require(stringr)
   
   teams <- list.dirs(path = dir, recursive = F)
+  
+  # Only read forecasts for certain teams if called
+  if(!is.null(these_teams))
+    teams <- teams[str_extract(teams, "[^/]+$") %in% these_teams]
   
   subs <- list()
   
@@ -161,7 +221,7 @@ read_forecasts <- function(dir, these_weeks = NULL) {
       
       tryCatch(
         {
-          verify_entry(subs[[team_name]][[week]])
+          verify_entry(subs[[team_name]][[week]], challenge = challenge)
         },
         error = function(cond) {
           message(paste("Errors in verifying submission for", team_name))
@@ -437,7 +497,7 @@ create_eval_scores <- function(scores, bounds, season, ...) {
 # Simulate predicted trajectories from ARIMA models ------
 sample_predictive_trajectories_arima <- function (object,
                                                   h = ifelse(object$arma[5] > 1, 2 * object$arma[5]),
-                                                  xreg = c(),
+                                                  xreg = NULL,
                                                   lambda = object$lambda,
                                                   npaths = 5000,
                                                   ...) {
@@ -457,8 +517,9 @@ sample_predictive_trajectories_arima <- function (object,
 }
 
 # Turn fitted forecast model into a CDC-style forecast ------
-fit_to_forecast <- function(object, xreg = c(), pred_data, location, season, 
-                            npaths = 1000, max_week = 52, ...){
+fit_to_forecast <- function(object, xreg, pred_data, location, season, 
+                            npaths = 1000, max_week = 52, 
+                            challenge = "ilinet", ...){
 
   # Simulate output
   sim_output <- sample_predictive_trajectories_arima(
@@ -545,37 +606,39 @@ fit_to_forecast <- function(object, xreg = c(), pred_data, location, season,
   }
 
   # Onset week
-  calc_onset <- rbind(
-    matrix(pred_data[pred_data$season == season, ] %>%
-             mutate(ILI = as.numeric(ILI)) %>% pull(ILI),
-           nrow = nrow(pred_data[pred_data$season == season, ]),
-           ncol = npaths),
-    t(sim_output)
-  ) %>% as.tibble()
-
-  onsets <- apply(calc_onset, 2, function(x) {
-    temp <- tibble(week = 40:(max_week + 25),
-                   location = location,
-                   ILI = x)
-    try(create_onset(temp, region = location, 
-                     year = as.numeric(substr(season, 1, 4)))$bin_start_incl, silent = TRUE)
-  }) %>%
-    trimws()
-
-  for (j in 40:(max_week + 20)) {
+  if(challenge == "ilinet") {
+    calc_onset <- rbind(
+      matrix(pred_data[pred_data$season == season, ] %>%
+               mutate(ILI = as.numeric(ILI)) %>% pull(ILI),
+             nrow = nrow(pred_data[pred_data$season == season, ]),
+             ncol = npaths),
+      t(sim_output)
+    ) %>% as.tibble()
+  
+    onsets <- apply(calc_onset, 2, function(x) {
+      temp <- tibble(week = 40:(max_week + 25),
+                     location = location,
+                     ILI = x)
+      try(create_onset(temp, region = location, 
+                       year = as.numeric(substr(season, 1, 4)))$bin_start_incl, silent = TRUE)
+    }) %>%
+      trimws()
+  
+    for (j in 40:(max_week + 20)) {
+      forecast_results <- bind_rows(
+        forecast_results,
+        tibble(target = "Season onset",
+               bin_start_incl = trimws(format(round(j, 1), nsmall = 1)),
+               value = sum(onsets == trimws(format(round(j, 1), nsmall = 1)))/length(onsets))
+      )
+    }
     forecast_results <- bind_rows(
       forecast_results,
       tibble(target = "Season onset",
-             bin_start_incl = trimws(format(round(j, 1), nsmall = 1)),
-             value = sum(onsets == trimws(format(round(j, 1), nsmall = 1)))/length(onsets))
+             bin_start_incl = "none",
+             value = sum((onsets == "none"))/length(onsets))
     )
   }
-  forecast_results <- bind_rows(
-    forecast_results,
-    tibble(target = "Season onset",
-           bin_start_incl = "none",
-           value = sum((onsets == "none"))/length(onsets))
-  )
 
   # Format in CDC style
   forecast_results <- forecast_results %>%
@@ -613,8 +676,8 @@ fit_to_forecast <- function(object, xreg = c(), pred_data, location, season,
   return(forecast_results)
 }
 
-
-stack_forecasts <- function(files, stacking_weights) {
+# Stack forecasts for ensembles -----
+stack_forecasts <- function(files, stacking_weights, challenge = "ilinet") {
   require(dplyr)
   require(FluSight)
   nfiles <- nrow(files)
@@ -647,7 +710,7 @@ stack_forecasts <- function(files, stacking_weights) {
   entries <- vector("list", nfiles)
   for(i in 1:nfiles) {
     entries[[i]] <- read_entry(files$file[i]) 
-    verify_entry(entries[[i]])
+    verify_entry(entries[[i]], challenge = challenge)
   }
   
   ## stack distributions
@@ -684,3 +747,4 @@ stack_forecasts <- function(files, stacking_weights) {
   ensemble_entry <- bind_rows(corrected_point_ests, ensemble_entry)
   return(ensemble_entry)
 }
+

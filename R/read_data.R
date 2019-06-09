@@ -12,7 +12,9 @@ source("R/utils.R")
 source('R/EpiDataAPI.R')
 
 # Save current MMWR week in format Epidata wants
-current_week <- as.numeric(paste0(MMWRweek(Sys.Date())[[1]], MMWRweek(Sys.Date())[[2]] ))
+current_week <- as.numeric(paste0(MMWRweek(Sys.Date())[[1]], 
+                                  str_pad(MMWRweek(Sys.Date())[[2]], width = 2,
+                                          side = "left", pad = "0")))
 
 pull_week <- case_when(
   MMWRweek(Sys.Date())[3] == 7 & substr(current_week, 5, 6) == "01" ~ 
@@ -32,7 +34,7 @@ ili_init_pub_list <- list()
 
 for(i in c(201040:201052, 201101:201152, 201201:201252, 201301:201338,
            201340:201352, 201401:201453, 201501:201552, 201601:201652,
-           201701:201752, 201801:pull_week)) {
+           201701:201752, 201801:201852, 201901:pull_week)) {
   ili_init_pub_list[[paste(i)]] <- pull_initpub_epidata(i) %>%
     mutate(year = as.integer(substr(epiweek, 1, 4)),
            week = as.integer(substr(epiweek, 5, 6)),
@@ -106,44 +108,10 @@ ili_backfill <- left_join(
 
 ili_backfill_avg <- ili_backfill %>%
   group_by(location, week) %>%
-  summarize(avg_backfill = mean(backfill),
-            sd_backfill = sd(backfill))
-
-# Save week 28 data from each year if available to serve as scoring truth
-ili_wk_28 <- bind_rows(
-  pull_scoring_epidata(2015),
-  pull_scoring_epidata(2016),
-  pull_scoring_epidata(2017),
-  pull_scoring_epidata(2018)
-  ) %>%
-  mutate(year = as.integer(substr(epiweek, 1, 4)),
-         week = as.integer(substr(epiweek, 5, 6)),
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         location = case_when(
-           region == "nat" ~ "US National",
-           region == "hhs1" ~ "HHS Region 1",
-           region == "hhs2" ~ "HHS Region 2",
-           region == "hhs3" ~ "HHS Region 3",
-           region == "hhs4" ~ "HHS Region 4",
-           region == "hhs5" ~ "HHS Region 5",
-           region == "hhs6" ~ "HHS Region 6",
-           region == "hhs7" ~ "HHS Region 7",
-           region == "hhs8" ~ "HHS Region 8",
-           region == "hhs9" ~ "HHS Region 9",
-           region == "hhs10" ~ "HHS Region 10"
-         )) %>%
-  rename(ILI = wili) %>%
-  select(-ili) %>%
-  # Make ILI always > 0
-  mutate(ILI = case_when(near(ILI, 0) ~ 0.1,
-                         TRUE ~ ILI))
+  summarize(avg_backfill = mean(backfill))
 
 save(ili_orig, ili_current, ili_init_pub_list, ili_backfill, ili_backfill_avg,
-     ili_wk_28, file = "Data/ili.Rdata")
-
-
+     file = "Data/ili.Rdata")
 
 # Fetch virologic data from CDC -----
 virologic_national <- who_nrevss(region = "national", years = c(1997:2018))

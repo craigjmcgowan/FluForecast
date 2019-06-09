@@ -22,7 +22,7 @@ cluster <- create_cluster(cores = parallel::detectCores())
 # Create truth for all seasons and combine datasets -------
 load("Data/truth_and_data.Rdata")
 # nested_truth <- ili_current %>%
-#   filter(year >= 2010, season != "2009/2010") %>%
+#   filter(year >= 2010, !season %in% c("2009/2010", "2018/2019")) %>%
 #   select(season, location, week, ILI) %>%
 #   nest(-season) %>%
 #   mutate(truth = map2(season, data,
@@ -66,22 +66,17 @@ load("Data/truth_and_data.Rdata")
 #     week < 40 ~ week + 52,
 #     TRUE ~ week
 #   )) %>%
-#   # Replace missing backfill data with Gaussian random draw from same season/week observed values
-  # mutate(
-  #   sim_backfill = map2_dbl(location, week, 
-  #                           ~ rnorm(1, 
-  #                              ili_backfill_avg$avg_backfill[
-  #                                ili_backfill_avg$location == .x &
-  #                                  ili_backfill_avg$week == .y],
-  #                              ili_backfill_avg$sd_backfill[
-  #                                ili_backfill_avg$location == .x &
-  #                                  ili_backfill_avg$week == .y])),
-  #   backfill = case_when(
-  #     !is.na(backfill) ~ backfill,
-  #     TRUE ~ sim_backfill
-  #     )
-  #   ) %>%
-  # select(-sim_backfill)
+#   # Replace missing backfill data with random draw from same season/week observed values
+#   mutate(
+#     sim_backfill = map2_dbl(location, week,
+#                         ~ sample(ili_backfill$backfill[ili_backfill$location == .x &
+#                                                          ili_backfill$week == .y], 1)),
+#     backfill = case_when(
+#       !is.na(backfill) ~ backfill,
+#       TRUE ~ sim_backfill
+#       )
+#     ) %>%
+#   select(-sim_backfill)
 # 
 # save(nested_truth, flu_data_merge, file = "Data/truth_and_data.Rdata")
 
@@ -114,7 +109,7 @@ load("Data/transform_fits.Rdata")
 # transform_fits_by_group <- transform_model_fit_data %>%
 #   partition(group, cluster = cluster)
 # 
-# transform_fits_by_group %>% 
+# transform_fits_by_group %>%
 #   cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek"))
 # 
 # transform_model_fits <- transform_fits_by_group %>%
@@ -193,7 +188,7 @@ transform_forecasts <- transform_by_group %>%
       list(pred_fit, pred_data, location, season, model, max_week),
       ~ fit_to_forecast(object = ..1,
                         xreg = fourier(..2$ILI, K = 1,
-                                       h = ..6 - 17 - nrow(..2[..2$season == ..4, ])),
+                                       h = ..6 - 14 - nrow(..2[..2$season == ..4, ])),
                         pred_data = ..2,
                         location = ..3,
                         season = ..4,
@@ -373,7 +368,7 @@ for (this_season in c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
         list(pred_fit, pred_data, location, season, model, max_week),
         ~ fit_to_forecast(object = ..1,
                           xreg = fourier(..2$ILI, K = as.numeric(str_extract(..5, "[1-9][0-9]|[0-9]")),
-                                         h = ..6 - 17 - nrow(..2[..2$season == ..4, ])),
+                                         h = ..6 - 14 - nrow(..2[..2$season == ..4, ])),
                           pred_data = ..2,
                           location = ..3,
                           season = ..4,
@@ -556,7 +551,7 @@ for(this_season in unique(arima_model_data_setup$season)) {
       list(pred_fit, pred_data, location, season, max_week, K),
       ~ fit_to_forecast(object = ..1,
                         xreg = fourier(..2$ILI, K = ..6,
-                                       h = ..5 - 17 - nrow(..2[..2$season == ..4, ])),
+                                       h = ..5 - 14 - nrow(..2[..2$season == ..4, ])),
                         pred_data = ..2,
                         location = ..3,
                         season = ..4,
