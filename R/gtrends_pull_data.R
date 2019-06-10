@@ -6,551 +6,142 @@ library(lubridate)
 
 source("R/utils.R")
 
+state_matchup <- tibble(state_abb = state.abb,
+                        location = state.name) 
 
 # Fetch Google Trends data -----
-US_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-US_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-US_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-US_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-gratio_0607 <- US_flu_ratio(US_flu_0407, US_flu_0611)
-gratio_1011 <- US_flu_ratio(US_flu_0611, US_flu_1015)
-inv_gratio_1415 <- US_flu_ratio(US_flu_1419, US_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_US_flu_merge <- filter(US_flu_0407, !date %in% US_flu_0611$date) %>%
-  mutate(hits = hits / gratio_0607) %>%
-  bind_rows(US_flu_0611) %>%
-  filter(!date %in% US_flu_1015$date) %>%
-  mutate(hits = hits / gratio_1011) %>%
-  bind_rows(US_flu_1015) %>%
-  filter(!date %in% US_flu_1419$date) %>%
-  bind_rows(US_flu_1419 %>%
-              mutate(hits = hits / inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
+gtrend_US_flu_merge <- fetch_gtrend("US")
 
 save(gtrend_US_flu_merge, file = "Data/Gtrends.Rdata")
 
-# Region 1 - Massachusetts
-MA_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US-MA",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
+# State Google Trends data
+gtrend_state_list <- tibble(state_abb = state.abb) %>%
+  mutate(data = map(state_abb, ~ fetch_gtrend(.)))
 
-MA_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US-MA",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
+gtrend_state_flu_merge <- unnest(gtrend_state_list) %>%
+  full_join(state_matchup, by = "state_abb") %>%
+  select(-state_abb)
 
-MA_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US-MA",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
+# # Region 1 - Massachusetts
+# gtrend_MA_flu_merge <- filter(gtrend_state_list, state_abb == "MA") %>%
+#   select(-state_abb)
+# gtrend_CT_flu_merge <- filter(gtrend_state_list, state_abb == "CT") %>%
+#   select(-state_abb)
+# gtrend_RI_flu_merge <- filter(gtrend_state_list, state_abb == "RI") %>%
+#   select(-state_abb)
+# gtrend_VT_flu_merge <- filter(gtrend_state_list, state_abb == "VT") %>%
+#   select(-state_abb)
+# gtrend_NH_flu_merge <- filter(gtrend_state_list, state_abb == "NH") %>%
+#   select(-state_abb)
+# gtrend_ME_flu_merge <- filter(gtrend_state_list, state_abb == "ME") %>%
+#   select(-state_abb)
+# 
+# # Region 2 - New York
+# gtrend_NY_flu_merge <- filter(gtrend_state_list, state_abb == "NY") %>%
+#   select(-state_abb)
+# gtrend_NJ_flu_merge <- filter(gtrend_state_list, state_abb == "NJ") %>%
+#   select(-state_abb)
+# 
+# # Region 3 - Pennsylvania
+# gtrend_PA_flu_merge <- filter(gtrend_state_list, state_abb == "PA") %>%
+#   select(-state_abb)
+# gtrend_DE_flu_merge <- filter(gtrend_state_list, state_abb == "DE") %>%
+#   select(-state_abb)
+# gtrend_MD_flu_merge <- filter(gtrend_state_list, state_abb == "MD") %>%
+#   select(-state_abb)
+# gtrend_VA_flu_merge <- filter(gtrend_state_list, state_abb == "VA") %>%
+#   select(-state_abb)
+# gtrend_WV_flu_merge <- filter(gtrend_state_list, state_abb == "WV") %>%
+#   select(-state_abb)
+# 
+# # Region 4 - Florida
+# gtrend_NC_flu_merge <- filter(gtrend_state_list, state_abb == "NC") %>%
+#   select(-state_abb)
+# gtrend_SC_flu_merge <- filter(gtrend_state_list, state_abb == "SC") %>%
+#   select(-state_abb)
+# gtrend_GA_flu_merge <- filter(gtrend_state_list, state_abb == "GA") %>%
+#   select(-state_abb)
+# gtrend_FL_flu_merge <- filter(gtrend_state_list, state_abb == "FL") %>%
+#   select(-state_abb)
+# gtrend_AL_flu_merge <- filter(gtrend_state_list, state_abb == "AL") %>%
+#   select(-state_abb)
+# gtrend_MS_flu_merge <- filter(gtrend_state_list, state_abb == "MS") %>%
+#   select(-state_abb)
+# gtrend_KY_flu_merge <- filter(gtrend_state_list, state_abb == "KY") %>%
+#   select(-state_abb)
+# gtrend_TN_flu_merge <- filter(gtrend_state_list, state_abb == "TN") %>%
+#   select(-state_abb)
+# 
+# # Region 5 - Illinois
+# gtrend_IN_flu_merge <- filter(gtrend_state_list, state_abb == "IN") %>%
+#   select(-state_abb)
+# gtrend_IL_flu_merge <- filter(gtrend_state_list, state_abb == "IL") %>%
+#   select(-state_abb)
+# gtrend_OH_flu_merge <- filter(gtrend_state_list, state_abb == "OH") %>%
+#   select(-state_abb)
+# gtrend_MI_flu_merge <- filter(gtrend_state_list, state_abb == "MI") %>%
+#   select(-state_abb)
+# gtrend_WI_flu_merge <- filter(gtrend_state_list, state_abb == "WI") %>%
+#   select(-state_abb)
+# gtrend_MN_flu_merge <- filter(gtrend_state_list, state_abb == "MN") %>%
+#   select(-state_abb)
+# 
+# # Region 6 - Texas
+# gtrend_LA_flu_merge <- filter(gtrend_state_list, state_abb == "LA") %>%
+#   select(-state_abb)
+# gtrend_AR_flu_merge <- filter(gtrend_state_list, state_abb == "AR") %>%
+#   select(-state_abb)
+# gtrend_OK_flu_merge <- filter(gtrend_state_list, state_abb == "OK") %>%
+#   select(-state_abb)
+# gtrend_TX_flu_merge <- filter(gtrend_state_list, state_abb == "TX") %>%
+#   select(-state_abb)
+# gtrend_NM_flu_merge <- filter(gtrend_state_list, state_abb == "NM") %>%
+#   select(-state_abb)
+# 
+# # Region 7 - Missouri
+# gtrend_IA_flu_merge <- filter(gtrend_state_list, state_abb == "IA") %>%
+#   select(-state_abb)
+# gtrend_MO_flu_merge <- filter(gtrend_state_list, state_abb == "MO") %>%
+#   select(-state_abb)
+# gtrend_NE_flu_merge <- filter(gtrend_state_list, state_abb == "NE") %>%
+#   select(-state_abb)
+# gtrend_KS_flu_merge <- filter(gtrend_state_list, state_abb == "KS") %>%
+#   select(-state_abb)
+# 
+# # Region 8 - Colorado
+# gtrend_ND_flu_merge <- filter(gtrend_state_list, state_abb == "ND") %>%
+#   select(-state_abb)
+# gtrend_SD_flu_merge <- filter(gtrend_state_list, state_abb == "SD") %>%
+#   select(-state_abb)
+# gtrend_MT_flu_merge <- filter(gtrend_state_list, state_abb == "MT") %>%
+#   select(-state_abb) 
+# gtrend_WY_flu_merge <- filter(gtrend_state_list, state_abb == "WY") %>%
+#   select(-state_abb)
+# gtrend_CO_flu_merge <- filter(gtrend_state_list, state_abb == "CO") %>%
+#   select(-state_abb)
+# gtrend_UT_flu_merge <- filter(gtrend_state_list, state_abb == "UT") %>%
+#   select(-state_abb)
+# 
+# # Region 9 - California
+# gtrend_CA_flu_merge <- filter(gtrend_state_list, state_abb == "CA") %>%
+#   select(-state_abb)
+# gtrend_NV_flu_merge <- filter(gtrend_state_list, state_abb == "NV") %>%
+#   select(-state_abb)
+# gtrend_AZ_flu_merge <- filter(gtrend_state_list, state_abb == "AZ") %>%
+#   select(-state_abb)
+# gtrend_HI_flu_merge <- filter(gtrend_state_list, state_abb == "HI") %>%
+#   select(-state_abb)
+# 
+# # Region 10 - Washington
+# gtrend_WA_flu_merge <- filter(gtrend_state_list, state_abb == "WA") %>%
+#   select(-state_abb)
+# gtrend_ID_flu_merge <- filter(gtrend_state_list, state_abb == "ID") %>%
+#   select(-state_abb)
+# gtrend_OR_flu_merge <- filter(gtrend_state_list, state_abb == "OR") %>%
+#   select(-state_abb)
+# gtrend_AK_flu_merge <- filter(gtrend_state_list, state_abb == "AK") %>%
+#   select(-state_abb)
 
-MA_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US-MA")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-MA_gratio_0607 <- US_flu_ratio(MA_flu_0407, MA_flu_0611)
-MA_gratio_1011 <- US_flu_ratio(MA_flu_0611, MA_flu_1015)
-MA_inv_gratio_1415 <- US_flu_ratio(MA_flu_1419, MA_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_MA_flu_merge <- filter(MA_flu_0407, !date %in% MA_flu_0611$date) %>%
-  mutate(hits = hits / MA_gratio_0607) %>%
-  bind_rows(MA_flu_0611) %>%
-  filter(!date %in% MA_flu_1015$date) %>%
-  mutate(hits = hits / MA_gratio_1011) %>%
-  bind_rows(MA_flu_1015) %>%
-  filter(!date %in% MA_flu_1419$date) %>%
-  bind_rows(MA_flu_1419 %>%
-              mutate(hits = hits / MA_inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-# Region 2 - New York
-NY_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US-NY",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-NY_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US-NY",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-NY_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US-NY",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-NY_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US-NY")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-NY_gratio_0607 <- US_flu_ratio(NY_flu_0407, NY_flu_0611)
-NY_gratio_1011 <- US_flu_ratio(NY_flu_0611, NY_flu_1015)
-NY_inv_gratio_1415 <- US_flu_ratio(NY_flu_1419, NY_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_NY_flu_merge <- filter(NY_flu_0407, !date %in% NY_flu_0611$date) %>%
-  mutate(hits = hits / NY_gratio_0607) %>%
-  bind_rows(NY_flu_0611) %>%
-  filter(!date %in% NY_flu_1015$date) %>%
-  mutate(hits = hits / NY_gratio_1011) %>%
-  bind_rows(NY_flu_1015) %>%
-  filter(!date %in% NY_flu_1419$date) %>%
-  bind_rows(NY_flu_1419 %>%
-              mutate(hits = hits / NY_inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-# Region 3 - Pennsylvania
-PA_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US-PA",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-PA_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US-PA",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-PA_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US-PA",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-PA_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US-PA")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-PA_gratio_0607 <- US_flu_ratio(PA_flu_0407, PA_flu_0611)
-PA_gratio_1011 <- US_flu_ratio(PA_flu_0611, PA_flu_1015)
-PA_inv_gratio_1415 <- US_flu_ratio(PA_flu_1419, PA_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_PA_flu_merge <- filter(PA_flu_0407, !date %in% PA_flu_0611$date) %>%
-  mutate(hits = hits / PA_gratio_0607) %>%
-  bind_rows(PA_flu_0611) %>%
-  filter(!date %in% PA_flu_1015$date) %>%
-  mutate(hits = hits / PA_gratio_1011) %>%
-  bind_rows(PA_flu_1015) %>%
-  filter(!date %in% PA_flu_1419$date) %>%
-  bind_rows(PA_flu_1419 %>%
-              mutate(hits = hits / PA_inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-
-# Region 4 - Florida
-FL_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US-FL",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-FL_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US-FL",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-FL_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US-FL",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-FL_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US-FL")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-FL_gratio_0607 <- US_flu_ratio(FL_flu_0407, FL_flu_0611)
-FL_gratio_1011 <- US_flu_ratio(FL_flu_0611, FL_flu_1015)
-FL_inv_gratio_1415 <- US_flu_ratio(FL_flu_1419, FL_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_FL_flu_merge <- filter(FL_flu_0407, !date %in% FL_flu_0611$date) %>%
-  mutate(hits = hits / FL_gratio_0607) %>%
-  bind_rows(FL_flu_0611) %>%
-  filter(!date %in% FL_flu_1015$date) %>%
-  mutate(hits = hits / FL_gratio_1011) %>%
-  bind_rows(FL_flu_1015) %>%
-  filter(!date %in% FL_flu_1419$date) %>%
-  bind_rows(FL_flu_1419 %>%
-              mutate(hits = hits / FL_inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-# Region 5 - Illinois
-IL_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US-IL",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-IL_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US-IL",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-IL_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US-IL",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-IL_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US-IL")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-IL_gratio_0607 <- US_flu_ratio(IL_flu_0407, IL_flu_0611)
-IL_gratio_1011 <- US_flu_ratio(IL_flu_0611, IL_flu_1015)
-IL_inv_gratio_1415 <- US_flu_ratio(IL_flu_1419, IL_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_IL_flu_merge <- filter(IL_flu_0407, !date %in% IL_flu_0611$date) %>%
-  mutate(hits = hits / IL_gratio_0607) %>%
-  bind_rows(IL_flu_0611) %>%
-  filter(!date %in% IL_flu_1015$date) %>%
-  mutate(hits = hits / IL_gratio_1011) %>%
-  bind_rows(IL_flu_1015) %>%
-  filter(!date %in% IL_flu_1419$date) %>%
-  bind_rows(IL_flu_1419 %>%
-              mutate(hits = hits / IL_inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-# Region 6 - Texas
-TX_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US-TX",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-TX_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US-TX",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-TX_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US-TX",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-TX_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US-TX")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-TX_gratio_0607 <- US_flu_ratio(TX_flu_0407, TX_flu_0611)
-TX_gratio_1011 <- US_flu_ratio(TX_flu_0611, TX_flu_1015)
-TX_inv_gratio_1415 <- US_flu_ratio(TX_flu_1419, TX_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_TX_flu_merge <- filter(TX_flu_0407, !date %in% TX_flu_0611$date) %>%
-  mutate(hits = hits / TX_gratio_0607) %>%
-  bind_rows(TX_flu_0611) %>%
-  filter(!date %in% TX_flu_1015$date) %>%
-  mutate(hits = hits / TX_gratio_1011) %>%
-  bind_rows(TX_flu_1015) %>%
-  filter(!date %in% TX_flu_1419$date) %>%
-  bind_rows(TX_flu_1419 %>%
-              mutate(hits = hits / TX_inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-# Region 7 - Missouri
-MO_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US-MO",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-MO_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US-MO",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-MO_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US-MO",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-MO_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US-MO")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-MO_gratio_0607 <- US_flu_ratio(MO_flu_0407, MO_flu_0611)
-MO_gratio_1011 <- US_flu_ratio(MO_flu_0611, MO_flu_1015)
-MO_inv_gratio_1415 <- US_flu_ratio(MO_flu_1419, MO_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_MO_flu_merge <- filter(MO_flu_0407, !date %in% MO_flu_0611$date) %>%
-  mutate(hits = hits / MO_gratio_0607) %>%
-  bind_rows(MO_flu_0611) %>%
-  filter(!date %in% MO_flu_1015$date) %>%
-  mutate(hits = hits / MO_gratio_1011) %>%
-  bind_rows(MO_flu_1015) %>%
-  filter(!date %in% MO_flu_1419$date) %>%
-  bind_rows(MO_flu_1419 %>%
-              mutate(hits = hits / MO_inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-# Region 8 - Colorado
-CO_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US-CO",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-CO_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US-CO",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-CO_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US-CO",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-CO_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US-CO")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-CO_gratio_0607 <- US_flu_ratio(CO_flu_0407, CO_flu_0611)
-CO_gratio_1011 <- US_flu_ratio(CO_flu_0611, CO_flu_1015)
-CO_inv_gratio_1415 <- US_flu_ratio(CO_flu_1419, CO_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_CO_flu_merge <- filter(CO_flu_0407, !date %in% CO_flu_0611$date) %>%
-  mutate(hits = hits / CO_gratio_0607) %>%
-  bind_rows(CO_flu_0611) %>%
-  filter(!date %in% CO_flu_1015$date) %>%
-  mutate(hits = hits / CO_gratio_1011) %>%
-  bind_rows(CO_flu_1015) %>%
-  filter(!date %in% CO_flu_1419$date) %>%
-  bind_rows(CO_flu_1419 %>%
-              mutate(hits = hits / CO_inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-# Region 9 - California
-CA_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US-CA",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-CA_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US-CA",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-CA_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US-CA",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-CA_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US-CA")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-CA_gratio_0607 <- US_flu_ratio(CA_flu_0407, CA_flu_0611)
-CA_gratio_1011 <- US_flu_ratio(CA_flu_0611, CA_flu_1015)
-CA_inv_gratio_1415 <- US_flu_ratio(CA_flu_1419, CA_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_CA_flu_merge <- filter(CA_flu_0407, !date %in% CA_flu_0611$date) %>%
-  mutate(hits = hits / CA_gratio_0607) %>%
-  bind_rows(CA_flu_0611) %>%
-  filter(!date %in% CA_flu_1015$date) %>%
-  mutate(hits = hits / CA_gratio_1011) %>%
-  bind_rows(CA_flu_1015) %>%
-  filter(!date %in% CA_flu_1419$date) %>%
-  bind_rows(CA_flu_1419 %>%
-              mutate(hits = hits / CA_inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-# Region 10 - Washington
-WA_flu_0407 <- gtrends(keyword = "flu",
-                       geo = "US-WA",
-                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-WA_flu_0611 <- gtrends(keyword = "flu",
-                       geo = "US-WA",
-                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-WA_flu_1015 <- gtrends(keyword = "flu",
-                       geo = "US-WA",
-                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-WA_flu_1419 <- gtrends(keyword = "flu",
-                       geo = "US-WA")$interest_over_time %>%
-  mutate(hits = case_when(hits == "<1" ~ 1,
-                          TRUE ~ as.numeric(hits)))
-
-# Set up ratios to normalize all Gtrends data to scale from 2010-2015
-WA_gratio_0607 <- US_flu_ratio(WA_flu_0407, WA_flu_0611)
-WA_gratio_1011 <- US_flu_ratio(WA_flu_0611, WA_flu_1015)
-WA_inv_gratio_1415 <- US_flu_ratio(WA_flu_1419, WA_flu_1015)
-
-# Merge Gtrends data and rescale to 2010-2015 scale
-gtrend_WA_flu_merge <- filter(WA_flu_0407, !date %in% WA_flu_0611$date) %>%
-  mutate(hits = hits / WA_gratio_0607) %>%
-  bind_rows(WA_flu_0611) %>%
-  filter(!date %in% WA_flu_1015$date) %>%
-  mutate(hits = hits / WA_gratio_1011) %>%
-  bind_rows(WA_flu_1015) %>%
-  filter(!date %in% WA_flu_1419$date) %>%
-  bind_rows(WA_flu_1419 %>%
-              mutate(hits = hits / WA_inv_gratio_1415)) %>%
-  select(date, hits) %>%
-  do({tz(.$date) <- "America/New_York"; .}) %>%
-  mutate(week = MMWRweek(date)[[2]],
-         year = MMWRweek(date)[[1]],
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         hits = case_when(near(hits, 0) ~ 1,
-                          TRUE ~ hits))
-
-save(gtrend_MA_flu_merge, gtrend_NY_flu_merge, gtrend_PA_flu_merge,
-     gtrend_FL_flu_merge, gtrend_IL_flu_merge, gtrend_TX_flu_merge,
-     gtrend_MO_flu_merge, gtrend_CO_flu_merge, gtrend_CA_flu_merge,
-     gtrend_WA_flu_merge, file = "Data/state_gtrend.Rdata")
+save(gtrend_state_flu_merge,
+     file = "Data/state_gtrend.Rdata")
 

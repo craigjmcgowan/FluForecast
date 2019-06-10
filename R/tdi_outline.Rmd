@@ -1,0 +1,1956 @@
+---
+title: "Prospective TDI Incubator Outline"
+author: "Craig McGowan"
+date: "February 15, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(MMWRweek)
+library(FluSight)
+library(urbnmapr)
+library(ggthemes)
+
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_knit$set(root.dir = "..")
+```
+
+
+```{r load functions and data}
+source("R/utils.R")
+source('R/EpiDataAPI.R')
+
+# Extract legend
+g_legend <- function(a.gplot){
+  tmp <- ggplot_gtable(ggplot_build(a.gplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)
+}
+
+load("Data/state_model_scores.Rdata")
+load("Data/model_scores.Rdata")
+
+forecast_data <- readRDS("Data/nat_state_forecasts.Rds") %>%
+  mutate(year = ifelse(forecast_week < 40, as.numeric(substr(season, 6, 9)),
+                       as.numeric(substr(season, 1, 4))),
+         forecast_date = MMWRweek2Date(year, forecast_week))
+
+truth <- readRDS("Data/truth_from_1415.Rds")
+
+obs_ILI <- readRDS("Data/obs_ili_1819.Rds")
+
+# State to region mappers
+state_region <- tibble(
+  state_name = state.name,
+  region = c("HHS Region 4", "HHS Region 10", "HHS Region 9", "HHS Region 6",
+             "HHS Region 9", "HHS Region 8", "HHS Region 1", "HHS Region 3",
+             "HHS Region 4", "HHS Region 4", "HHS Region 9", "HHS Region 10",
+             "HHS Region 5", "HHS Region 5", "HHS Region 7", "HHS Region 7",
+             "HHS Region 4", "HHS Region 6", "HHS Region 1", "HHS Region 3",
+             "HHS Region 1", "HHS Region 5", "HHS Region 5", "HHS Region 4",
+             "HHS Region 7", "HHS Region 8", "HHS Region 7", "HHS Region 9",
+             "HHS Region 1", "HHS Region 2", "HHS Region 6", "HHS Region 2",
+             "HHS Region 4", "HHS Region 8", "HHS Region 5", "HHS Region 6",
+             "HHS Region 10", "HHS Region 3", "HHS Region 1", "HHS Region 4",
+             "HHS Region 8", "HHS Region 4", "HHS Region 6", "HHS Region 8",
+             "HHS Region 1", "HHS Region 3", "HHS Region 10", "HHS Region 3",
+             "HHS Region 5", "HHS Region 8"),
+  nation = rep("US National", 50)
+) %>%
+  left_join(select(urbnmapr::statedata, state_name, state_fips),
+            by = "state_name")
+
+
+plot_data_prep <- obs_ILI %>%
+  group_by(location) %>%
+  mutate(diff = ILI - lag(ILI)) %>%
+  rename(forecast_week = week) %>%
+  ungroup()
+
+# plot_data_prep <- forecast_data %>%
+#   filter(type == "Point") %>%
+#   filter(season == "2018/2019",
+#          target %in% c("1 wk ahead", "2 wk ahead", "3 wk ahead", "4 wk ahead")) %>%
+#   left_join(select(obs_ILI, location, forecast_week = week, obs_ILI = ILI),
+#             by = c("location", "forecast_week")) %>%
+#   mutate(diff = value - obs_ILI)
+
+```
+
+```{r calculate MAE, warning = FALSE, message = FALSE}
+week_AE <- filter(forecast_data, type == "Point",
+                  target %in% c("1 wk ahead", "2 wk ahead",
+                                "3 wk ahead", "4 wk ahead")) %>%
+  mutate(week_being_forecast = forecast_week + 
+           as.numeric(substr(target, 1, 1))) %>%
+  left_join(rename(truth, truth = bin_start_incl), 
+            by = c("target", "location", "forecast_week", "season")) %>%
+  mutate(AE = abs(value - as.numeric(truth))) %>%
+  select(season, target, location, forecast_week, value, truth, AE)
+
+avg_MAE <- group_by(week_AE, location, season) %>%
+  summarize(MAE = mean(AE, na.rm = T))
+
+tgt_avg_MAE <- group_by(week_AE, location, season, target) %>%
+  summarize(MAE = mean(AE, na.rm = T)) %>%
+  ungroup()
+
+tgt_avg_MAE %>%
+  filter(season == "2018/2019") %>%
+  select(-season) %>%
+  mutate(MAE = round(MAE, 2)) %>%
+  spread(key = "target", value = "MAE") %>%
+  filter(location %in% c("US National", "HHS Region 3", "Pennsylvania", "Virginia")) %>%
+  mutate(location =  factor(location, levels = c("US National", "HHS Region 1",
+                                           "HHS Region 2", "HHS Region 3", 
+                                           "HHS Region 4", "HHS Region 5",
+                                           "HHS Region 6", "HHS Region 7", 
+                                           "HHS Region 8", "HHS Region 9",
+                                           "HHS Region 10", "Delaware",
+                                           "Maryland", "Pennsylvania",
+                                           "Virginia", "West Virginia"))) %>%
+  arrange(location) %>%
+  pander::pander()
+
+```
+
+
+```{r geom mean avg scores}
+scores <- filter(all_full_scores, season == "2018/2019",
+                 target %in% c("1 wk ahead", "2 wk ahead", "3 wk ahead",
+                               "4 wk ahead"),
+                 team == "ens-month-target-type-based-weights",
+                 (forecast_week >= 40 | forecast_week <= 5),
+                 !(forecast_week == 5 & target %in% c("2 wk ahead", "3 wk ahead",
+                                                      "4 wk ahead")),
+                 !(forecast_week == 4 & target %in% c("3 wk ahead", "4 wk ahead")),
+                 !(forecast_week == 3 & target %in% c("4 wk ahead"))) %>%
+  bind_rows(
+    filter(state_full_scores, season == "2018/2019",
+           target %in% c("1 wk ahead", "2 wk ahead", "3 wk ahead",
+                               "4 wk ahead"),
+           team == "ens-optimal-state",
+           (forecast_week >= 40 | forecast_week <= 5),
+           !(forecast_week == 5 & target %in% c("2 wk ahead", 
+                                                "3 wk ahead", "4 wk ahead")),
+           !(forecast_week == 4 & target %in% c("3 wk ahead", "4 wk ahead")),
+           !(forecast_week == 3 & target %in% c("4 wk ahead")))
+  )
+
+tgt_avg_skill <- group_by(scores, location, target) %>%
+  summarize(avg_skill = exp(mean(score, na.rm = T))) %>%
+  ungroup()
+
+tgt_avg_skill %>%
+  mutate(avg_skill = round(avg_skill, 2)) %>%
+  spread(key = "target", value = "avg_skill") %>%
+  filter(location %in% c("US National", "HHS Region 3", "Pennsylvania", "Virginia")) %>%
+  mutate(location =  factor(location, levels = c("US National", "HHS Region 1",
+                                           "HHS Region 2", "HHS Region 3", 
+                                           "HHS Region 4", "HHS Region 5",
+                                           "HHS Region 6", "HHS Region 7", 
+                                           "HHS Region 8", "HHS Region 9",
+                                           "HHS Region 10", "Delaware",
+                                           "Maryland", "Pennsylvania",
+                                           "Virginia", "West Virginia"))) %>%
+  arrange(location) %>%
+  pander::pander(caption = "Geom. mean prob assigned to observed outcome")
+
+
+```
+
+
+
+```{r next 4 weeks plot}
+temp <- forecast_data %>%
+  filter(type == "Point", target %in% c("1 wk ahead", "2 wk ahead",
+                                        "3 wk ahead", "4 wk ahead"),
+         season == "2018/2019") %>%
+  mutate(location = factor(location, levels = c("US National", "HHS Region 1",
+                                           "HHS Region 2", "HHS Region 3", 
+                                           "HHS Region 4", "HHS Region 5",
+                                           "HHS Region 6", "HHS Region 7", 
+                                           "HHS Region 8", "HHS Region 9",
+                                           "HHS Region 10", "Delaware",
+                                           "Maryland", "Pennsylvania",
+                                           "Virginia", "West Virginia")))
+  
+plot_truth <- obs_ILI %>%
+  mutate(
+    year = ifelse(week < 40, 2019, 2018),
+    date = MMWRweek2Date(year, week),
+    week = ifelse(week < 40, week + 52, week),
+    hidden_min = 0 ,
+    location = factor(location, levels = c("US National", "HHS Region 1",
+                                           "HHS Region 2", "HHS Region 3", 
+                                           "HHS Region 4", "HHS Region 5",
+                                           "HHS Region 6", "HHS Region 7", 
+                                           "HHS Region 8", "HHS Region 9",
+                                           "HHS Region 10", "Delaware",
+                                           "Maryland", "Pennsylvania",
+                                           "Virginia", "West Virginia"))
+  ) %>%
+  select(location, week, ILI, date, hidden_min)
+
+plot_points <- temp %>%
+  filter(forecast_week == 6) %>%
+  select(year, location, target, value, forecast_week, forecast_date) %>%
+  # Note week is the week BEING forecast, NOT the week forecast received
+  mutate(
+    target_week = forecast_week + as.numeric(gsub(" wk ahead", "", target)),
+    target_year = ifelse(target_week > 52 | target_week < 40, 2019, 2018),
+    date = MMWRweek2Date(target_year, ifelse(target_week > 52, 
+                                             target_week - 52, target_week))
+  ) %>%
+  select(-target, -target_week, -target_year)  %>%
+  # Attach forecast bins to point prediction of last observed value
+  bind_rows(filter(plot_truth, date %in% .$forecast_date) %>%
+              select(-week, value = ILI) %>%
+              distinct())
+
+# Confidence bounds
+# Determine confidence bands
+bounds <- forecast_data %>%
+  # Select forecasts for week ahead targets
+  filter(type == "Bin", forecast_week == 6, season == "2018/2019",
+         target %in% c("1 wk ahead", "2 wk ahead",
+                       "3 wk ahead", "4 wk ahead")) %>%
+  # Determine upper and lower bounds for each target
+  group_by(location, forecast_week, target) %>%
+  # Calculate cumulative probability for each bin
+  mutate(cumprob = cumsum(value)) %>%
+  # Only keep the rows within the 80% confidence range
+  filter(row_number() %in% 
+           c(max(which(cumprob < 0.1)), min(which(cumprob > 0.9)))) %>%
+  # Create lower and upper bounds as min and max of the remaining probabilities
+  mutate(
+    lower = min(as.numeric(bin_start_incl)),
+    upper = max(as.numeric(bin_start_incl)),
+    target_week = forecast_week + as.numeric(gsub(" wk ahead", "", target)),
+    target_year = ifelse(target_week > 52 | target_week < 40, 2019, 2018),
+    date = MMWRweek2Date(target_year, 
+                         ifelse(target_week > 52, target_week - 52, target_week))
+  ) %>%
+  ungroup() %>%
+  # Only keep one copy of each week's upper and lower bound
+  select(location, forecast_week, forecast_date, date, lower, upper) %>%
+  distinct() %>%
+  mutate(location = factor(location, levels = c("US National", "HHS Region 1",
+                                           "HHS Region 2", "HHS Region 3", 
+                                           "HHS Region 4", "HHS Region 5",
+                                           "HHS Region 6", "HHS Region 7", 
+                                           "HHS Region 8", "HHS Region 9",
+                                           "HHS Region 10", "Delaware",
+                                           "Maryland", "Pennsylvania",
+                                           "Virginia", "West Virginia"))) %>%
+  # Attach forecast bins to point prediction of last observed value
+  bind_rows(filter(plot_truth, date %in% .$forecast_date) %>%
+              mutate(lower = ILI,
+                     upper = ILI) %>%
+              select(-ILI, -week)) 
+
+```
+
+### Week ahead plots
+```{r}
+ggplot(plot_points) +
+  # Add shading for 80% CI for average
+  geom_ribbon(data = bounds,
+              aes(x = date, ymin = lower, ymax = upper, fill = "80% prediction interval"),
+              alpha = 0.3) +
+  # Add point prediction lines for each team
+  geom_line(aes(date, value, color = "Predicted values")) +
+  # Add observed values
+  geom_line(data = plot_truth,
+            aes(date, ILI), color = "black") +
+  # geom_blank to make all plots start at 0
+  geom_blank(data = plot_truth, aes(date, hidden_min)) + 
+  # Make pretty
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  labs(x = "Date", y = "Percent outpatient visits due to ILI",
+       linetype = "", color = "", fill = "") +
+  guides(linetype = guide_legend(order = 1),
+         color = guide_legend(order = 2),
+         fill = guide_legend(order = 3)) +
+  facet_wrap( ~ location, scales = "free_y")
+
+ggplot(filter(plot_points, location %in% c("US National", "HHS Region 3"))) +
+  # Add shading for 80% CI for average
+  geom_ribbon(data = filter(bounds,  location %in% c("US National", "HHS Region 3")),
+              aes(x = date, ymin = lower, ymax = upper, fill = "80% prediction interval"),
+              alpha = 0.3) +
+  # Add point prediction lines for each team
+  geom_line(aes(date, value, color = "Predicted values")) +
+  # Add observed values
+  geom_line(data = filter(plot_truth, location %in% c("US National", "HHS Region 3")),
+            aes(date, ILI), color = "black") +
+  # geom_blank to make all plots start at 0
+  geom_blank(data = filter(plot_truth, location %in% c("US National", "HHS Region 3")),
+             aes(date, hidden_min)) + 
+  # Make pretty
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  labs(x = "Date", y = "Percent outpatient visits due to ILI",
+       linetype = "", color = "", fill = "") +
+  guides(linetype = guide_legend(order = 1),
+         color = guide_legend(order = 2),
+         fill = guide_legend(order = 3)) +
+  facet_wrap( ~ location)
+
+ggplot(filter(plot_points, location %in% state.name)) +
+  # Add shading for 80% CI for average
+  geom_ribbon(data = filter(bounds,  location %in% state.name),
+              aes(x = date, ymin = lower, ymax = upper, fill = "80% prediction interval"),
+              alpha = 0.3) +
+  # Add point prediction lines for each team
+  geom_line(aes(date, value, color = "Predicted values")) +
+  # Add observed values
+  geom_line(data = filter(plot_truth, location %in% state.name),
+            aes(date, ILI), color = "black") +
+  # geom_blank to make all plots start at 0
+  geom_blank(data = filter(plot_truth, location %in% state.name),
+             aes(date, hidden_min)) + 
+  # Make pretty
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  labs(x = "Date", y = "Percent outpatient visits due to ILI",
+       linetype = "", color = "", fill = "") +
+  guides(linetype = guide_legend(order = 1),
+         color = guide_legend(order = 2),
+         fill = guide_legend(order = 3)) +
+  facet_wrap( ~ location)
+
+
+wk_ahead_p <- ggplot(filter(plot_points, location %in% c("US National", "HHS Region 3",
+                                                         "Pennsylvania", "Virginia"))) +
+  # Add shading for 80% CI for average
+  geom_ribbon(data = filter(bounds,  location %in% c("US National", "HHS Region 3",
+                                                         "Pennsylvania", "Virginia")),
+              aes(x = date, ymin = lower, ymax = upper, fill = "80% prediction interval"),
+              alpha = 0.3) +
+  # Add point prediction lines for each team
+  geom_line(aes(date, value, color = "Predicted values")) +
+  # Add observed values
+  geom_line(data = filter(plot_truth, location %in% c("US National", "HHS Region 3",
+                                                         "Pennsylvania", "Virginia")),
+            aes(date, ILI), color = "black") +
+  # geom_blank to make all plots start at 0
+  geom_blank(data = filter(plot_truth, location %in% c("US National", "HHS Region 3",
+                                                         "Pennsylvania", "Virginia")),
+             aes(date, hidden_min)) + 
+  # Make pretty
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  labs(x = "Date", y = "Percent outpatient visits due to ILI",
+       linetype = "", color = "", fill = "") +
+  guides(linetype = guide_legend(order = 1),
+         color = guide_legend(order = 2),
+         fill = guide_legend(order = 3)) +
+  facet_wrap( ~ location)
+
+wk_ahead_p
+
+ggsave("Plots/next_4wks.png", plot = wk_ahead_p, # bg = "transparent",
+       width = 6, height = 4.5)
+
+```
+
+
+## Outline
+
+### Intro
+All had flu, terrible, no good, very bad
+
+
+### Technical nature
+Challenge not size of data, but combining data from multiple sources storing dates differently. Computational effort to fix weekly training forecasts across multiple seasons.
+
+### Takeaways
+
+#### Technical
+
+Accuracy measures - compare MAE of forecasts at different resolutions?
+
+#### Fun facts
+Look at forecasts for coming weeks - anything there?
+
+Been putting off flu shot - need to get it by X to have it be effective!
+
+Comparison between states - you live in Maryland but sis in PA, maybe don't visit
+
+In states in Region 3 - emphasize how using finer resolution forecasts provide different information than national ones (hopefully!)  Illustrate with plots of ILI trends across states - maybe overlay different forecasts to show how state one tracks better - but don't want to undercut own work
+
+### Accomplish at TDI
+Finish building out state forecasts and create interactive web application so users (individuals, regional health care providers, media, etc) can explore forecasts at different resolutions, including measures of accuracy.
+
+
+
+
+### Week 40
+```{r}
+
+plot_week <- 40
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 41
+```{r}
+
+plot_week <- 41
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 42
+```{r}
+
+plot_week <- 42
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 43
+```{r}
+
+plot_week <- 43
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+
+### Week 44
+```{r}
+
+plot_week <- 44
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 45
+```{r}
+
+plot_week <- 45
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 46
+```{r}
+
+plot_week <- 46
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 47
+```{r}
+
+plot_week <- 47
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 48
+```{r}
+
+plot_week <- 48
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 49
+```{r}
+
+plot_week <- 49
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 50
+```{r}
+
+plot_week <- 50
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 51
+```{r}
+
+plot_week <- 51
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 52
+```{r}
+
+plot_week <- 52
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 1
+```{r}
+
+plot_week <- 1
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 2
+```{r}
+
+plot_week <- 2
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 3
+```{r}
+
+plot_week <- 3
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 4
+```{r}
+
+plot_week <- 4
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 5
+```{r}
+
+plot_week <- 5
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+### Week 6
+```{r}
+
+plot_week <- 6
+
+nat_plot_data <- filter(plot_data_prep, location == "US National") %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, nation, state_name),
+            by = c("location" = "nation")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+reg_plot_data <- filter(plot_data_prep, str_detect(location, "HHS Region")) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(select(state_region, region, state_name),
+            by = c("location" = "region")) %>%
+  left_join(urbnmapr::states, by = "state_name")
+
+state_plot_data <- filter(plot_data_prep, location %in% state.name) %>%
+  filter(forecast_week == plot_week) %>%
+  select(location, forecast_week, diff) %>%
+  left_join(urbnmapr::states, by = c("location" = "state_name"))
+
+low_bound <- floor(
+  min(
+    min(nat_plot_data$diff),
+    min(reg_plot_data$diff), 
+    min(state_plot_data$diff)
+  ) * 2
+) / 2
+
+high_bound <- ceiling(
+  max(
+    max(nat_plot_data$diff),
+    max(reg_plot_data$diff), 
+    max(state_plot_data$diff)
+  ) * 2
+) / 2
+              
+p_nat <- nat_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom",
+        legend.background = element_rect(fill = "white"))
+
+# Save legend
+mylegend <- g_legend(p_nat)
+
+# Remove legend from p_nat
+p_nat <- p_nat +
+  theme(legend.position = "none")
+
+p_reg <- reg_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom",
+        legend.background = element_rect(fill = "white"))
+
+p_reg_noleg <- p_reg +
+  theme(legend.position = "none")
+
+p_state <- state_plot_data %>%
+  ggplot(aes(x = long, y = lat, group = group, fill = diff)) +
+  geom_polygon(color = 'black') +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  scale_fill_gradient2(midpoint = 0, low = scales::muted("blue"),
+                       high = scales::muted("red"),
+                       limits = c(low_bound, high_bound)) +
+  labs(x = "", y = "", fill = "Change in ILI from previous week") +
+  # facet_wrap(~ target) +
+  theme_void() +
+  theme(legend.position = "bottom",
+        legend.background = element_rect(fill = "white"))
+
+
+p_state_noleg <- p_state +
+  theme(legend.position = "none")
+
+p_nat
+p_reg_noleg
+p_state_noleg
+
+```
+
+
+
+```{r save plots for presentation}
+nat_wk_ahead <- ggplot(filter(plot_points, location %in% c("US National"))) +
+  # Add shading for 80% CI for average
+  geom_ribbon(data = filter(bounds,  location %in% c("US National")),
+              aes(x = date, ymin = lower, ymax = upper, fill = "80% pred. int."),
+              alpha = 0.3) +
+  # Add point prediction lines for each team
+  geom_line(aes(date, value, color = "Predicted values")) +
+  # Add observed values
+  geom_line(data = filter(plot_truth, location %in% c("US National")),
+            aes(date, ILI), color = "black") +
+  # geom_blank to make all plots start at 0
+  geom_blank(data = filter(plot_truth, location %in% c("US National")),
+             aes(date, hidden_min)) + 
+  # Make pretty
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  labs(x = "Date", y = "Percent outpatient visits due to ILI",
+       linetype = "", color = "", fill = "") +
+  guides(linetype = guide_legend(order = 1),
+         color = guide_legend(order = 2),
+         fill = guide_legend(order = 3)) #+
+  # facet_wrap( ~ location)
+
+
+hhs3_wk_ahead <- ggplot(filter(plot_points, location %in% c("HHS Region 3"))) +
+  # Add shading for 80% CI for average
+  geom_ribbon(data = filter(bounds,  location %in% c("HHS Region 3")),
+              aes(x = date, ymin = lower, ymax = upper, fill = "80% pred. int."),
+              alpha = 0.3) +
+  # Add point prediction lines for each team
+  geom_line(aes(date, value, color = "Predicted values")) +
+  # Add observed values
+  geom_line(data = filter(plot_truth, location %in% c("HHS Region 3")),
+            aes(date, ILI), color = "black") +
+  # geom_blank to make all plots start at 0
+  geom_blank(data = filter(plot_truth, location %in% c("HHS Region 3")),
+             aes(date, hidden_min)) + 
+  # Make pretty
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  labs(x = "Date", y = "Percent outpatient visits due to ILI",
+       linetype = "", color = "", fill = "") +
+  guides(linetype = guide_legend(order = 1),
+         color = guide_legend(order = 2),
+         fill = guide_legend(order = 3)) #+
+  # facet_wrap( ~ location)
+
+
+
+ggsave("Plots/nat_chloro.png", plot = p_nat, bg = "transparent",
+       width = 8, height = 6)
+
+ggsave("Plots/reg_chloro.png", plot = p_reg_noleg, bg = "transparent",
+       width = 8, height = 6)
+
+ggsave("Plots/state_chloro.png", plot = p_state_noleg, bg = "transparent",
+       width = 6, height = 6)
+
+ggsave("Plots/chloro_legend.png", grid::grid.draw(mylegend),
+       width = 4, height = 0.7)
+
+# Save plot of regional activity and national forecasts
+p_comb_nat <- cowplot::plot_grid(p_reg, nat_wk_ahead, align = "v",
+                   rel_widths = c(1.5, 1), rel_heights = c(1.5, 1))
+
+ggsave("Plots/combined_nat.png", p_comb_nat, 
+       width = 8, height = 4)
+
+p_comb_hhs3 <- cowplot::plot_grid(p_state, hhs3_wk_ahead, align = "v",
+                   rel_widths = c(1.5, 1), rel_heights = c(1.5, 1))
+
+ggsave("Plots/combined_hhs3.png", p_comb_hhs3, 
+       width = 8, height = 4)
+
+```
