@@ -186,3 +186,21 @@ save(virologic_combined,
      file = "Data/virologic.Rdata")
 
 
+# Read in Google Trends data ------
+state_matchup <- tibble(state_abb = state.abb,
+                        location = state.name) 
+
+# Fetch Google Trends data -----
+gtrend_US_flu_merge <- fetch_gtrend("US") %>%
+  mutate(location = "US National")
+
+gtrend_state_list <- tibble(state_abb = state.abb) %>%
+  mutate(data = map(state_abb, ~ fetch_gtrend(.)))
+
+gtrend_state_flu_merge <- unnest(gtrend_state_list) %>%
+  full_join(state_matchup, by = "state_abb") %>%
+  select(-state_abb)
+
+gtrend_merge <- bind_rows(gtrend_US_flu_merge, gtrend_state_flu_merge)
+
+saveRDS(gtrend_merge, "Data/gtrend.Rds")
