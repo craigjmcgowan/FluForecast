@@ -1,0 +1,28 @@
+# To Do
+
+# Clean up
+- Integrate read_data, read_data_state, and read_gtrend; single file to update all data
+- Integrate create_prospective_forecast and create_prospective_forecast_state; single file to generate all forecasts
+- Any way to make model fitting run faster?
+- 
+
+
+# Upgrades
+- Probabilistic measure for if onset has already happened?
+- Estimate virologic backfill
+- Other ways to integrate backfill rather than simple regression term
+- Pull information across regions for regional/state forecasts?
+  - Maybe lagged terms as covariates? (k = 1, 2, 3, etc weeks)
+- Automatic runs on Monday mornings
+- Automatic commit of Monday forecasts
+- Automatic push of Monday forecasts
+
+
+# Papers to read
+- LANL's papers on methods
+- new CU papers
+- 
+
+# Manuscript
+- Figure out journal
+- Talk to Nick / Emory ID person about being on paper
