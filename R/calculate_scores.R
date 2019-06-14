@@ -14,6 +14,7 @@ forecasts_1415 <- read_forecasts("Forecasts/2014-2015")
 forecasts_1516 <- read_forecasts("Forecasts/2015-2016")
 forecasts_1617 <- read_forecasts("Forecasts/2016-2017")
 forecasts_1718 <- read_forecasts("Forecasts/2017-2018")
+forecasts_1819 <- read_forecasts("Forecasts/2018-2019")
 
 # Create observed ILI -----
 ILI_1011 <- ilinet(region = "national", year = 2010) %>%
@@ -98,6 +99,16 @@ ILI_1718 <- read_csv("Data/ILINet_US_wk28_2018.csv") %>%
   ) %>%
   mutate(ILI = round(ILI, 1))
 
+ILI_1819 <- ilinet(region = "national", year = 2018) %>%
+  mutate(location = "US National") %>%
+  select(location, week, ILI = weighted_ili) %>%
+  bind_rows(
+    ilinet(region = "hhs", year = 2018) %>%
+      mutate(location = paste("HHS", region)) %>%
+      select(location, week, ILI = weighted_ili)
+  ) %>%
+  mutate(ILI = round(ILI, 1))
+
 # Create truth ----------------------------------------------------------------
 truth_1011 <- create_truth(fluview = FALSE, year = 2010, weekILI = ILI_1011,
                            challenge = "ilinet", start_wk = 40, end_wk = 20)
@@ -121,6 +132,9 @@ truth_1617 <- create_truth(fluview = FALSE, year = 2016, weekILI = ILI_1617,
                            challenge = "ilinet", start_wk = 40, end_wk = 20)
 
 truth_1718 <- create_truth(fluview = FALSE, year = 2017, weekILI = ILI_1718,
+                           challenge = "ilinet", start_wk = 40, end_wk = 20)
+
+truth_1819 <- create_truth(fluview = FALSE, year = 2018, weekILI = ILI_1819,
                            challenge = "ilinet", start_wk = 40, end_wk = 20)
 
 
@@ -149,6 +163,9 @@ exp_truth_1617 <- expand_truth(truth_1617, week_expand = 1, percent_expand = 5,
 exp_truth_1718 <- expand_truth(truth_1718, week_expand = 1, percent_expand = 5,
                                challenge = "ilinet")
 
+exp_truth_1819 <- expand_truth(truth_1819, week_expand = 1, percent_expand = 5,
+                               challenge = "ilinet")
+
 # Create evaluation period -----
 eval_period_1011 <- create_eval_period(ILI_1011, truth_1011, "2010/2011")
 
@@ -165,6 +182,8 @@ eval_period_1516 <- create_eval_period(ILI_1516, truth_1516, "2015/2016")
 eval_period_1617 <- create_eval_period(ILI_1617, truth_1617, "2016/2017")
 
 eval_period_1718 <- create_eval_period(ILI_1718, truth_1718, "2017/2018")
+
+eval_period_1819 <- create_eval_period(ILI_1819, truth_1819, "2018/2019")
 
 
 # Score entries -----
@@ -200,6 +219,10 @@ full_scores_1718 <- calc_scores(forecasts_1718, exp_truth_1718,
                                 season = "2017/2018", exclude = FALSE, 
                                 eval = FALSE)
 
+full_scores_1819 <- calc_scores(forecasts_1819, exp_truth_1819, 
+                                season = "2018/2019", exclude = FALSE, 
+                                eval = FALSE)
+
 eval_scores_1011 <- calc_scores(forecasts_1011, exp_truth_1011, 
                                 season = "2010/2011", exclude = FALSE, 
                                 eval = TRUE, eval_period = eval_period_1011)
@@ -232,15 +255,21 @@ eval_scores_1718 <- calc_scores(forecasts_1718, exp_truth_1718,
                                 season = "2017/2018", exclude = FALSE, 
                                 eval = TRUE, eval_period = eval_period_1718)
 
+eval_scores_1819 <- calc_scores(forecasts_1819, exp_truth_1819, 
+                                season = "2018/2019", exclude = FALSE, 
+                                eval = TRUE, eval_period = eval_period_1819)
+
 all_full_scores <- bind_rows(full_scores_1011, full_scores_1112, 
                              full_scores_1213, full_scores_1314,
                              full_scores_1415, full_scores_1516, 
-                             full_scores_1617, full_scores_1718)
+                             full_scores_1617, full_scores_1718,
+                             full_scores_1819)
 
 all_eval_scores <- bind_rows(eval_scores_1011, eval_scores_1112, 
                              eval_scores_1213, eval_scores_1314,
                              eval_scores_1415, eval_scores_1516, 
-                             eval_scores_1617, eval_scores_1718)
+                             eval_scores_1617, eval_scores_1718,
+                             eval_scores_1819)
 
 # Save scores -----
 save(all_full_scores, all_eval_scores,

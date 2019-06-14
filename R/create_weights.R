@@ -17,6 +17,9 @@ source("R/degenerate_em_functions.R")
 # Set up cores
 options(mc.cores=parallel::detectCores()-1L)
 
+# Define prospective season
+pro_season <- "2018/2019"
+
 # Define weight structures
 #   Equal weights
 #   Constant weights
@@ -40,14 +43,11 @@ options(mc.cores=parallel::detectCores()-1L)
 
 # Create equal weights ------
 nteams <- length(unique(all_eval_scores$team[!grepl('ens', all_eval_scores$team)]))
+cv_seasons <- unique(all_eval_scores$season)[-which(unique(all_eval_scores$season) == pro_season)]
 
 equal_weights_df <- crossing(component_model_id = 
                                unique(all_eval_scores$team[!grepl('ens', all_eval_scores$team)]),
-                             season = c(unique(all_eval_scores$season),
-                                        paste0(substr(last(unique(all_eval_scores$season)),
-                                                      6, 9), "/",
-                                               as.numeric(substr(last(unique(all_eval_scores$season)),
-                                                      6, 9)) + 1)),
+                             season = c(cv_seasons, pro_season),
                              target = unique(all_eval_scores$target)) %>%
   mutate(weight = 1 / nteams)
 
@@ -105,6 +105,8 @@ week.partial.indexer.lists <- list(
 
 # Set up variable with scores grouped by necessary variables
 cv_full_scores <- all_full_scores %>%
+  # Remove prospective season scores if they exist
+  filter(season != pro_season) %>%
   # Remove ensemble models
   filter(!grepl('ens', team), !grepl('Ens', team)) %>%
   # Create ordered week variable

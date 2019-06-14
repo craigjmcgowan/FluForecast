@@ -1424,7 +1424,7 @@ final_forecast_data_setup <- crossing(season = c("2014/2015", "2015/2016",
                                       week = c(40:73),
                                       location = unique(state_flu_data_merge$location)) %>%
   filter((week < 73 | season == "2014/2015") & 
-         (season != "2018/2019" | week <= 69)) %>%
+           (season != "2018/2019" | week <= 70)) %>%
   mutate(
     epiweek = case_when(
       season == "2014/2015" & week > 53 ~ 
@@ -1451,7 +1451,8 @@ for(this_season in unique(final_forecast_data_setup$season)) {
 
   dir.create(season_path, showWarnings = FALSE)
   
-  for(this_week in 69) {#unique(final_forecast_data_setup$week[final_forecast_data_setup$season == this_season])) {
+
+  for(this_week in unique(final_forecast_data_setup$week[final_forecast_data_setup$season == this_season])) {
 
     temp <- final_forecast_data_setup %>%
       filter(season == this_season, week == this_week) %>%

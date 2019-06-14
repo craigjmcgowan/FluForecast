@@ -34,7 +34,11 @@ Observed training data and predicted 1 week ahead forecasts during the training 
 Current performance in 2018/2019
 --------------------------------
 
+<<<<<<< HEAD
 During the ongoing 2018/2019 influenza season, I have used the model described above to make weekly prospective forecasts of influenza activity at the national and regional level. Snapshots of prospective forecasts for national level influenza activity made based on data from four dates are illustrated in the plot below. Performance of the 1 and 2 week ahead forecasts is quite good, reflected in MAE values of 0.28 and 0.4, respectively. Forecasts of influenza 3 and 4 weeks ahead are less accurate, with MAE values of 0.49 and 0.49, though it remains to be seen whether they will predict the season's second inflection point correctly.
+=======
+During the ongoing 2018/2019 influenza season, I have used the model described above to make weekly prospective forecasts of influenza activity at the national and regional level. Snapshots of prospective forecasts for national level influenza activity made based on data from four dates are illustrated in the plot below. Performance of the 1 and 2 week ahead forecasts is quite good, reflected in MAE values of 0.23 and 0.31, respectively. Forecasts of influenza 3 and 4 weeks ahead are less accurate, with MAE values of 0.44 and 0.51, though it remains to be seen whether they will predict the season's second inflection point correctly.
+>>>>>>> master
 
 <img src="README_files/figure-markdown_github/all predictions US data-1.png" alt="Prospective forecasts of national influenza activity at four weeks of the 2018/2019 influenza season" width="672" />
 <p class="caption">

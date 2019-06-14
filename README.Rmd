@@ -16,6 +16,14 @@ library(FluSight)
 ```{r load data}
 load("Data/ili.Rdata")
 
+<<<<<<< HEAD
+=======
+last_week <- last(ili_current$week)
+last_year <- last(ili_current$year)
+
+last_plot_week <- ifelse(last_week < 40, last_week + 52, last_week)
+
+>>>>>>> master
 ```
 
 

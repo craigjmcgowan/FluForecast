@@ -1,4 +1,5 @@
 location,target,unit,value,type,bin_start_incl,bin_end_notincl
+<<<<<<< HEAD
 Georgia,1 wk ahead,percent,1.8,Point,NA,NA
 Georgia,2 wk ahead,percent,1.6,Point,NA,NA
 Georgia,3 wk ahead,percent,1.5,Point,NA,NA
@@ -18069,6 +18070,8 @@ Oregon,Season peak week,week,0.00205134279362056,Bin,17.0,18.0
 Oregon,Season peak week,week,0.00202671326023958,Bin,18.0,19.0
 Oregon,Season peak week,week,2.26891360850315e-05,Bin,19.0,20.0
 Oregon,Season peak week,week,0.00199944884265224,Bin,20.0,21.0
+=======
+>>>>>>> master
 Alaska,1 wk ahead,percent,0,Bin,0.0,0.1
 Alaska,1 wk ahead,percent,0.002,Bin,0.1,0.2
 Alaska,1 wk ahead,percent,0.042,Bin,0.2,0.3

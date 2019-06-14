@@ -45,7 +45,7 @@ for(j in 1:length(weight_files)) {
   }
 
   ## loop through each season and each season-week to make stacked forecasts
-  for(i in 1:length(seasons)){
+for(i in 1:length(seasons)){
     
     loso_season =  seasons[i]
     wt_subset <- filter(stacking_weights, season==loso_season) %>%
@@ -63,10 +63,9 @@ for(j in 1:length(weight_files)) {
 
     # Only create forecasts for weeks with forecasts in current season
     if (loso_season == "2018/2019")
-      week_names <- week_names[1:30]
-  
+      week_names <- week_names[1:31]
+
     for (k in 1:length(week_names)) {
-  
       this_week <- week_names[k]
       message(paste(stacked_name, "::", this_week, "::", Sys.time()))
       
