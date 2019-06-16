@@ -48,7 +48,7 @@ current_epidata <- function(start_wk, end_wk) {
                    "mi", "mn", "ms", "mo", "mt", "ne", "nv", "nh", "nj", "nm", 
                    "ny", "nc", "nd", "oh", "ok", "or", "pa", "ri", "sc", "sd", 
                    "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy", "nat",
-                   "hhs1", "hhs2", "hh3", "hhs4", "hhs5", "hhs6", "hhs7", "hhs8",
+                   "hhs1", "hhs2", "hhs3", "hhs4", "hhs5", "hhs6", "hhs7", "hhs8",
                    "hhs9", "hhs10"),
     epiweeks = list(Epidata$range(start_wk, end_wk))
   )$epidata %>%
@@ -232,7 +232,8 @@ virologic_combined <- bind_rows(
   ungroup() %>%
   select(location = region, season, year, week, a_h1, a_2009_h1n1, a_h3, 
          a_subtyping_not_performed, a_unable_to_subtype, b, bvic, byam, 
-         h1per_of_a, h3per_of_a, cum_h1per, cum_h3per, cum_bper)
+         h1per_of_a, h3per_of_a, cum_h1per, cum_h3per, cum_bper, total_specimens,
+         percent_positive)
 
 saveRDS(virologic_combined, file = "Data/virologic.Rds")
 
