@@ -39,75 +39,6 @@ state_matchup <- tibble(abb = tolower(state.abb),
                     "HHS Region 8", "HHS Region 9", "HHS Region 10"))
   )
 
-# Fetch wILI data from EpiData API -------
-# Save ILINet values for previous 26 weeks for each week's publication available
-ili_init_pub_list <- list()
-
-for(i in c(201040:201052, 201101:201152, 201201:201252, 201301:201338,
-           201340:201352, 201401:201453, 201501:201552, 201601:201652,
-           201701:201752, 201801:201852, 201901:pull_week)) {
-  ili_init_pub_list[[paste(i)]] <- pull_initpub_epidata(i) %>%
-    mutate(year = as.integer(substr(epiweek, 1, 4)),
-           week = as.integer(substr(epiweek, 5, 6)),
-           season = ifelse(week >= 40,
-                           paste0(year, "/", year + 1),
-                           paste0(year - 1, "/", year)),
-           location = case_when(
-             region == "nat" ~ "US National",
-             region == "hhs1" ~ "HHS Region 1",
-             region == "hhs2" ~ "HHS Region 2",
-             region == "hhs3" ~ "HHS Region 3",
-             region == "hhs4" ~ "HHS Region 4",
-             region == "hhs5" ~ "HHS Region 5",
-             region == "hhs6" ~ "HHS Region 6",
-             region == "hhs7" ~ "HHS Region 7",
-             region == "hhs8" ~ "HHS Region 8",
-             region == "hhs9" ~ "HHS Region 9",
-             region == "hhs10" ~ "HHS Region 10"
-           )) %>%
-    rename(ILI = wili) %>%
-    select(-ili) %>%
-    # Make ILI always > 0
-    mutate(ILI = case_when(near(ILI, 0) ~ 0.1,
-                           TRUE ~ ILI))
-}
-
-# Original ILI data for each week
-ili_orig <- bind_rows(ili_init_pub_list) %>%
-  filter(lag == 0)
-  
-# ILI currently ------
-ili_current <- bind_rows(
-  pull_curr_epidata(199740, 200139),
-  pull_curr_epidata(200140, 200439),
-  pull_curr_epidata(200440, 200739),
-  pull_curr_epidata(200740, 201039),
-  pull_curr_epidata(201040, 201339),
-  pull_curr_epidata(201340, 201639),
-  pull_curr_epidata(201640, pull_week)) %>%
-  mutate(year = as.integer(substr(epiweek, 1, 4)),
-         week = as.integer(substr(epiweek, 5, 6)),
-         season = ifelse(week >= 40,
-                         paste0(year, "/", year + 1),
-                         paste0(year - 1, "/", year)),
-         location = case_when(
-           region == "nat" ~ "US National",
-           region == "hhs1" ~ "HHS Region 1",
-             region == "hhs2" ~ "HHS Region 2",
-             region == "hhs3" ~ "HHS Region 3",
-             region == "hhs4" ~ "HHS Region 4",
-             region == "hhs5" ~ "HHS Region 5",
-             region == "hhs6" ~ "HHS Region 6",
-             region == "hhs7" ~ "HHS Region 7",
-             region == "hhs8" ~ "HHS Region 8",
-             region == "hhs9" ~ "HHS Region 9",
-             region == "hhs10" ~ "HHS Region 10"
-         )) %>%
-  rename(ILI = wili) %>%
-  select(-ili) %>%
-  # Make ILI always > 0
-  mutate(ILI = case_when(near(ILI, 0) ~ 0.1,
-                         TRUE ~ ILI))
 
 # ILI data ------
 current_epidata <- function(start_wk, end_wk) {
@@ -126,6 +57,16 @@ current_epidata <- function(start_wk, end_wk) {
 }
 
 ili_current <- bind_rows(
+  current_epidata(200040, 200139),
+  current_epidata(200140, 200239),
+  current_epidata(200240, 200339),
+  current_epidata(200340, 200439),
+  current_epidata(200440, 200539),
+  current_epidata(200540, 200639),
+  current_epidata(200640, 200739),
+  current_epidata(200740, 200839),
+  current_epidata(200840, 200939),
+  current_epidata(200940, 201039),
   current_epidata(201040, 201139),
   current_epidata(201140, 201239),
   current_epidata(201240, 201339),
