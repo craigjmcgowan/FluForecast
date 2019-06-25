@@ -1,7 +1,6 @@
 # To Do
 
 # Clean up
-- Integrate read_data, read_data_state, and read_gtrend; single file to update all data
 - Integrate create_prospective_forecast and create_prospective_forecast_state; single file to generate all forecasts
 - Any way to make model fitting run faster?
 - 

@@ -1,11 +1,12 @@
 # Log virus subtype data throughout season
 library(cdcfluview)
 library(MMWRweek)
+library(tidyverse)
 
 # Assign year based on current week
 MMWR_week <- MMWRweek(Sys.Date())
 
-year <- dplyr::case_when(
+year <- case_when(
   MMWR_week$MMWRweek[1] < 40 ~ MMWR_week$MMWRyear[1] - 1,
   TRUE ~ MMWR_week$MMWRyear[1]
 )
