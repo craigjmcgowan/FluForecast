@@ -1,0 +1,12 @@
+Error in str_pad(tail(WHO_national$public_health_labs$week, 1), 2, "left",  : 
+  could not find function "str_pad"
+Execution halted
+Error in str_pad(tail(WHO_national$public_health_labs$week, 1), 2, "left",  : 
+  could not find function "str_pad"
+Execution halted
+Error in str_pad(tail(WHO_national$public_health_labs$week, 1), 2, "left",  : 
+  could not find function "str_pad"
+Execution halted
+Error in str_pad(tail(WHO_national$public_health_labs$week, 1), 2, "left",  : 
+  could not find function "str_pad"
+Execution halted

@@ -1,0 +1,1880 @@
+"location","target","score","forecast_week","skill","competition_week"
+"HHS Region 1","Season onset",-1.0300194972025,42,0.357,1
+"HHS Region 1","Season peak week",-0.120912928665311,42,0.886111111111111,1
+"HHS Region 10","Season onset",-1.43129172705063,42,0.239,1
+"HHS Region 10","Season peak week",-4.18109548863076,42,0.0152817574021012,1
+"HHS Region 2","Season onset",-2.07147337203066,42,0.126,1
+"HHS Region 2","Season peak week",-1.43695019747227,42,0.237651444547996,1
+"HHS Region 3","Season onset",-0.928869514081015,42,0.395,1
+"HHS Region 3","Season peak week",-2.09118335955652,42,0.123540856031128,1
+"HHS Region 4","Season onset",-0.928869514081015,42,0.395,1
+"HHS Region 4","Season peak week",-0.575771228157708,42,0.562271062271062,1
+"HHS Region 5","Season onset",-0.999672340813206,42,0.368,1
+"HHS Region 5","Season peak week",-2.32254583555658,42,0.0980237154150198,1
+"HHS Region 6","Season onset",-1.28961463077052,42,0.275376884422111,1
+"HHS Region 6","Season peak week",-1.57205038036248,42,0.207619047619048,1
+"HHS Region 7","Season onset",-1.01611106715637,42,0.362,1
+"HHS Region 7","Season peak week",-3.45717664940406,42,0.0315186246418338,1
+"HHS Region 8","Season onset",-2.70306265959117,42,0.067,1
+"HHS Region 8","Season peak week",-2.91028706759711,42,0.0544600938967136,1
+"HHS Region 9","Season onset",-0.522560879984412,42,0.593,1
+"HHS Region 9","Season peak week",-1.97375797643109,42,0.138933764135703,1
+"US National","Season onset",-1.27654349716077,42,0.279,1
+"US National","Season peak week",-1.77486717566355,42,0.169505962521295,1
+"HHS Region 1","Season peak percentage",-1.8773173575897,42,0.153,1
+"HHS Region 10","Season peak percentage",-1.76609172247948,42,0.171,1
+"HHS Region 2","Season peak percentage",-2.64507540194082,42,0.071,1
+"HHS Region 3","Season peak percentage",-2.70306265959117,42,0.067,1
+"HHS Region 4","Season peak percentage",-2.15416508787577,42,0.116,1
+"HHS Region 5","Season peak percentage",-0.727738625329564,42,0.483,1
+"HHS Region 6","Season peak percentage",-2.64507540194082,42,0.071,1
+"HHS Region 7","Season peak percentage",-1.8773173575897,42,0.153,1
+"HHS Region 8","Season peak percentage",-1.41469383564159,42,0.243,1
+"HHS Region 9","Season peak percentage",-1.4961092271271,42,0.224,1
+"US National","Season peak percentage",-1.52785792544168,42,0.217,1
+"HHS Region 8","1 wk ahead",-0.162518929497775,42,0.85,1
+"HHS Region 8","2 wk ahead",-0.346724613085564,42,0.707,1
+"HHS Region 8","3 wk ahead",-0.789658080940789,42,0.454,1
+"HHS Region 8","4 wk ahead",-1.21066179247673,42,0.298,1
+"HHS Region 1","Season onset",-0.889162064485903,43,0.411,2
+"HHS Region 1","Season peak week",-0.123014914415716,43,0.884250474383302,2
+"HHS Region 10","Season onset",-1.46967597005894,43,0.23,2
+"HHS Region 10","Season peak week",-3.96745771231625,43,0.0189214758751183,2
+"HHS Region 2","Season onset",-2.07944154167984,43,0.125,2
+"HHS Region 2","Season peak week",-1.49620880723107,43,0.223977695167286,2
+"HHS Region 3","Season onset",-0.800732391239883,43,0.449,2
+"HHS Region 3","Season peak week",-2.27441421602735,43,0.102857142857143,2
+"HHS Region 4","Season onset",-0.850971265753513,43,0.427,2
+"HHS Region 4","Season peak week",-0.579288553534128,43,0.560296846011132,2
+"HHS Region 5","Season onset",-0.941608539858445,43,0.39,2
+"HHS Region 5","Season peak week",-2.20211456263041,43,0.110569105691057,2
+"HHS Region 6","Season onset",-1.25878104082093,43,0.284,2
+"HHS Region 6","Season peak week",-1.59620520516753,43,0.202664129400571,2
+"HHS Region 7","Season onset",-0.867500567704723,43,0.42,2
+"HHS Region 7","Season peak week",-3.65880199887666,43,0.025763358778626,2
+"HHS Region 8","Season onset",-2.97592964625781,43,0.051,2
+"HHS Region 8","Season peak week",-2.66290204540981,43,0.0697455230914232,2
+"HHS Region 9","Season onset",-0.45886588483528,43,0.632,2
+"HHS Region 9","Season peak week",-2.26305425423741,43,0.104032258064516,2
+"US National","Season onset",-1.39836694235416,43,0.247,2
+"US National","Season peak week",-1.74296930505862,43,0.175,2
+"HHS Region 1","Season peak percentage",-2.04022082852655,43,0.13,2
+"HHS Region 10","Season peak percentage",-1.49165487677772,43,0.225,2
+"HHS Region 2","Season peak percentage",-2.29263476214088,43,0.101,2
+"HHS Region 3","Season peak percentage",-2.55104645229255,43,0.0779999999999999,2
+"HHS Region 4","Season peak percentage",-1.96611285637283,43,0.14,2
+"HHS Region 5","Season peak percentage",-0.636766847123838,43,0.529,2
+"HHS Region 6","Season peak percentage",-2.81341071676004,43,0.06,2
+"HHS Region 7","Season peak percentage",-1.85150947363383,43,0.157,2
+"HHS Region 8","Season peak percentage",-1.51868354916564,43,0.219,2
+"HHS Region 9","Season peak percentage",-2.59026716544583,43,0.075,2
+"US National","Season peak percentage",-1.57987911019256,43,0.206,2
+"HHS Region 4","1 wk ahead",-0.0565703514883942,43,0.945,2
+"HHS Region 8","1 wk ahead",-0.173163619009189,43,0.841,2
+"HHS Region 4","2 wk ahead",-0.20089294237939,43,0.818,2
+"HHS Region 8","2 wk ahead",-0.49758039701597,43,0.608,2
+"HHS Region 4","3 wk ahead",-0.390084006069862,43,0.677,2
+"HHS Region 8","3 wk ahead",-1.07880966137193,43,0.34,2
+"HHS Region 4","4 wk ahead",-0.520875959619492,43,0.594,2
+"HHS Region 8","4 wk ahead",-1.70925824771631,43,0.181,2
+"HHS Region 1","Season onset",-0.809680996815897,44,0.445,3
+"HHS Region 1","Season peak week",-0.156947884448319,44,0.854748603351956,3
+"HHS Region 10","Season onset",-1.19072757757592,44,0.304,3
+"HHS Region 10","Season peak week",-4.65776263610726,44,0.0094876660341556,3
+"HHS Region 2","Season onset",-1.6094379124341,44,0.2,3
+"HHS Region 2","Season peak week",-1.36338909954098,44,0.255792400370714,3
+"HHS Region 3","Season onset",-1.03282454813011,44,0.356,3
+"HHS Region 3","Season peak week",-1.89900499958165,44,0.149717514124294,3
+"HHS Region 4","Season onset",-0.543004522130226,44,0.581,3
+"HHS Region 4","Season peak week",-0.605678869589325,44,0.545703839122486,3
+"HHS Region 5","Season onset",-1.21402314017944,44,0.297,3
+"HHS Region 5","Season peak week",-2.42036812865043,44,0.0888888888888888,3
+"HHS Region 6","Season onset",-1.26030637866823,44,0.283567134268537,3
+"HHS Region 6","Season peak week",-1.69319839695915,44,0.183930300096805,3
+"HHS Region 7","Season onset",-1.49165487677772,44,0.225,3
+"HHS Region 7","Season peak week",-4.8607809274398,44,0.00774443368828654,3
+"HHS Region 8","Season onset",-2.43041846450393,44,0.088,3
+"HHS Region 8","Season peak week",-2.77258872223978,44,0.0625,3
+"HHS Region 9","Season onset",-0.409473129505703,44,0.664,3
+"HHS Region 9","Season peak week",-1.93419584094842,44,0.144540455616653,3
+"US National","Season onset",-1.25526609871349,44,0.285,3
+"US National","Season peak week",-1.62483599254522,44,0.196943972835314,3
+"HHS Region 1","Season peak percentage",-1.98050159382493,44,0.138,3
+"HHS Region 10","Season peak percentage",-1.61445045425764,44,0.199,3
+"HHS Region 2","Season peak percentage",-2.17155683058764,44,0.114,3
+"HHS Region 3","Season peak percentage",-2.60369018577797,44,0.074,3
+"HHS Region 4","Season peak percentage",-1.90380897303668,44,0.149,3
+"HHS Region 5","Season peak percentage",-0.606969484318893,44,0.545,3
+"HHS Region 6","Season peak percentage",-2.64507540194082,44,0.071,3
+"HHS Region 7","Season peak percentage",-2.37515578582888,44,0.093,3
+"HHS Region 8","Season peak percentage",-1.70925824771631,44,0.181,3
+"HHS Region 9","Season peak percentage",-1.9241486572738,44,0.146,3
+"US National","Season peak percentage",-1.41058705368894,44,0.244,3
+"HHS Region 4","1 wk ahead",-0.0768810443359576,44,0.926,3
+"HHS Region 8","1 wk ahead",-0.261364764134408,44,0.77,3
+"HHS Region 9","1 wk ahead",-0.143870370419702,44,0.866,3
+"HHS Region 4","2 wk ahead",-0.226900600191922,44,0.797,3
+"HHS Region 8","2 wk ahead",-0.650087691099498,44,0.522,3
+"HHS Region 9","2 wk ahead",-0.267879445155601,44,0.765,3
+"HHS Region 4","3 wk ahead",-0.373966441048793,44,0.688,3
+"HHS Region 8","3 wk ahead",-1.51868354916564,44,0.219,3
+"HHS Region 9","3 wk ahead",-0.3051673867928,44,0.737,3
+"HHS Region 4","4 wk ahead",-0.605136303237232,44,0.546,3
+"HHS Region 8","4 wk ahead",-1.22077992264232,44,0.295,3
+"HHS Region 9","4 wk ahead",-0.301456857700351,44,0.73973973973974,3
+"HHS Region 1","Season onset",-0.832409247893453,45,0.435,4
+"HHS Region 1","Season peak week",-0.14161037173694,45,0.867959372114498,4
+"HHS Region 10","Season onset",-1.2623083813389,45,0.283,4
+"HHS Region 10","Season peak week",-3.43113684626079,45,0.0323501427212178,4
+"HHS Region 2","Season onset",-1.34707364796661,45,0.26,4
+"HHS Region 2","Season peak week",-1.42310833424261,45,0.240963855421687,4
+"HHS Region 3","Season onset",-1.0700248318162,45,0.343,4
+"HHS Region 3","Season peak week",-2.09376159545458,45,0.123222748815166,4
+"HHS Region 4","Season onset",-0.376877651256252,45,0.686,4
+"HHS Region 4","Season peak week",-0.577062701539143,45,0.561545372866128,4
+"HHS Region 5","Season onset",-0.898942093539542,45,0.407,4
+"HHS Region 5","Season peak week",-2.22663846254251,45,0.107890499194847,4
+"HHS Region 6","Season onset",-1.23243000913997,45,0.291583166332666,4
+"HHS Region 6","Season peak week",-1.63388900829827,45,0.195169082125604,4
+"HHS Region 7","Season onset",-1.4961092271271,45,0.224,4
+"HHS Region 7","Season peak week",-4.75359019110637,45,0.00862068965517241,4
+"HHS Region 8","Season onset",-1.74296930505862,45,0.175,4
+"HHS Region 8","Season peak week",-3.00952559568633,45,0.0493150684931507,4
+"HHS Region 9","Season onset",-0.424647927524938,45,0.654,4
+"HHS Region 9","Season peak week",-1.95294967753884,45,0.141855027279813,4
+"US National","Season onset",-1.05268335677971,45,0.349,4
+"US National","Season peak week",-1.6695418365038,45,0.188333333333334,4
+"HHS Region 1","Season peak percentage",-1.80788885115794,45,0.164,4
+"HHS Region 10","Season peak percentage",-1.38629436111989,45,0.25,4
+"HHS Region 2","Season peak percentage",-1.98777435315401,45,0.137,4
+"HHS Region 3","Season peak percentage",-2.79688141480883,45,0.061,4
+"HHS Region 4","Season peak percentage",-1.78379129957888,45,0.168,4
+"HHS Region 5","Season peak percentage",-0.671385688778433,45,0.511,4
+"HHS Region 6","Season peak percentage",-2.57702193869581,45,0.076,4
+"HHS Region 7","Season peak percentage",-2.25379492882461,45,0.105,4
+"HHS Region 8","Season peak percentage",-1.52326021619305,45,0.218,4
+"HHS Region 9","Season peak percentage",-2.17155683058764,45,0.114,4
+"US National","Season peak percentage",-1.40649706843741,45,0.245,4
+"US National","1 wk ahead",-0.0161293819298836,45,0.984,4
+"HHS Region 1","1 wk ahead",-0.0345914447696191,45,0.966,4
+"HHS Region 2","1 wk ahead",-0.436955775199535,45,0.646,4
+"HHS Region 4","1 wk ahead",-0.0629397997738742,45,0.939,4
+"HHS Region 8","1 wk ahead",-0.265268477614881,45,0.767,4
+"HHS Region 9","1 wk ahead",-0.105360515657826,45,0.9,4
+"US National","2 wk ahead",-0.0910193983871685,45,0.913,4
+"HHS Region 1","2 wk ahead",-0.251028754803745,45,0.778,4
+"HHS Region 2","2 wk ahead",-0.669430653942629,45,0.512,4
+"HHS Region 4","2 wk ahead",-0.25231492861449,45,0.777,4
+"HHS Region 8","2 wk ahead",-0.802962046567152,45,0.448,4
+"HHS Region 9","2 wk ahead",-0.236255186453585,45,0.789579158316633,4
+"US National","3 wk ahead",-0.396009949337409,45,0.673,4
+"HHS Region 1","3 wk ahead",-0.109814866007207,45,0.896,4
+"HHS Region 2","3 wk ahead",-1.22077992264232,45,0.295,4
+"HHS Region 4","3 wk ahead",-0.505838082254952,45,0.603,4
+"HHS Region 8","3 wk ahead",-0.82098055206983,45,0.44,4
+"HHS Region 9","3 wk ahead",-0.275753501586507,45,0.759,4
+"US National","4 wk ahead",-0.471604910612709,45,0.624,4
+"HHS Region 1","4 wk ahead",-0.481266821524446,45,0.618,4
+"HHS Region 2","4 wk ahead",-1.13943428318836,45,0.32,4
+"HHS Region 4","4 wk ahead",-0.763569644856491,45,0.466,4
+"HHS Region 8","4 wk ahead",-1.13320373343773,45,0.322,4
+"HHS Region 9","4 wk ahead",-0.388607991041741,45,0.678,4
+"HHS Region 1","Season onset",-0.663588378318401,46,0.515,5
+"HHS Region 1","Season peak week",-0.135002472796203,46,0.873713751169317,5
+"HHS Region 10","Season onset",-1.25878104082093,46,0.284,5
+"HHS Region 10","Season peak week",-3.62338809822109,46,0.0266920877025739,5
+"HHS Region 2","Season onset",-2.01740615076038,46,0.133,5
+"HHS Region 2","Season peak week",-1.51917720323203,46,0.2188919164396,5
+"HHS Region 3","Season onset",-0.980829253011726,46,0.375,5
+"HHS Region 3","Season peak week",-2.03119470814045,46,0.131178707224334,5
+"HHS Region 4","Season onset",-0.261364764134408,46,0.77,5
+"HHS Region 4","Season peak week",-0.635886459696531,46,0.529465930018416,5
+"HHS Region 5","Season onset",-1.19072757757592,46,0.304,5
+"HHS Region 5","Season peak week",-2.33823243172428,46,0.0964980544747082,5
+"HHS Region 6","Season onset",-1.19402247347277,46,0.303,5
+"HHS Region 6","Season peak week",-1.56611663755877,46,0.208854667949952,5
+"HHS Region 7","Season onset",-0.772190387900398,46,0.462,5
+"HHS Region 7","Season peak week",-4.11664311094456,46,0.0162991371045062,5
+"HHS Region 8","Season onset",-1.85150947363383,46,0.157,5
+"HHS Region 8","Season peak week",-2.65287606632285,46,0.070448307410796,5
+"HHS Region 9","Season onset",-0.623621117911335,46,0.536,5
+"HHS Region 9","Season peak week",-1.79491404597657,46,0.166141732283464,5
+"US National","Season onset",-0.512493680866688,46,0.599,5
+"US National","Season peak week",-1.64373654838196,46,0.193256578947368,5
+"HHS Region 1","Season peak percentage",-1.8773173575897,46,0.153,5
+"HHS Region 10","Season peak percentage",-1.25526609871349,46,0.285,5
+"HHS Region 2","Season peak percentage",-2.0874737133771,46,0.124,5
+"HHS Region 3","Season peak percentage",-2.33304430047875,46,0.097,5
+"HHS Region 4","Season peak percentage",-1.81400507817537,46,0.163,5
+"HHS Region 5","Season peak percentage",-0.687165108882398,46,0.503,5
+"HHS Region 6","Season peak percentage",-2.91877123241786,46,0.054,5
+"HHS Region 7","Season peak percentage",-1.96611285637283,46,0.14,5
+"HHS Region 8","Season peak percentage",-1.95899538860397,46,0.141,5
+"HHS Region 9","Season peak percentage",-1.03282454813011,46,0.356,5
+"US National","Season peak percentage",-1.39030238251743,46,0.249,5
+"US National","1 wk ahead",-0.0161293819298836,46,0.984,5
+"HHS Region 1","1 wk ahead",-0.167235919375914,46,0.846,5
+"HHS Region 2","1 wk ahead",-0.906340401020987,46,0.404,5
+"HHS Region 3","1 wk ahead",-0.0618754037180874,46,0.94,5
+"HHS Region 4","1 wk ahead",-0.114289146402128,46,0.892,5
+"HHS Region 7","1 wk ahead",-0.179126665897435,46,0.836,5
+"HHS Region 8","1 wk ahead",-0.502526820951296,46,0.605,5
+"HHS Region 9","1 wk ahead",-2.06846886301036,46,0.126379137412237,5
+"HHS Region 10","1 wk ahead",-0.114289146402128,46,0.892,5
+"US National","2 wk ahead",-0.138113302129634,46,0.871,5
+"HHS Region 1","2 wk ahead",-0.107585210679937,46,0.898,5
+"HHS Region 2","2 wk ahead",-1.67131331615219,46,0.188,5
+"HHS Region 3","2 wk ahead",-0.310609577095486,46,0.733,5
+"HHS Region 4","2 wk ahead",-0.505838082254952,46,0.603,5
+"HHS Region 7","2 wk ahead",-0.334075112021491,46,0.716,5
+"HHS Region 8","2 wk ahead",-0.579818495252942,46,0.56,5
+"HHS Region 9","2 wk ahead",-0.807678994145224,46,0.445891783567134,5
+"HHS Region 10","2 wk ahead",-0.366725279792234,46,0.693,5
+"US National","3 wk ahead",-0.275753501586507,46,0.759,5
+"HHS Region 1","3 wk ahead",-0.345311185288417,46,0.708,5
+"HHS Region 2","3 wk ahead",-1.38230233985035,46,0.251,5
+"HHS Region 3","3 wk ahead",-0.802962046567152,46,0.448,5
+"HHS Region 4","3 wk ahead",-0.802962046567152,46,0.448,5
+"HHS Region 7","3 wk ahead",-0.482886255076749,46,0.617,5
+"HHS Region 8","3 wk ahead",-0.936493439191674,46,0.392,5
+"HHS Region 9","3 wk ahead",-0.3078847797693,46,0.735,5
+"HHS Region 10","3 wk ahead",-0.707246104939447,46,0.493,5
+"US National","4 wk ahead",-0.376877651256252,46,0.686,5
+"HHS Region 1","4 wk ahead",-0.338273858567841,46,0.713,5
+"HHS Region 2","4 wk ahead",-1.33560124680437,46,0.263,5
+"HHS Region 3","4 wk ahead",-0.500875292912823,46,0.606,5
+"HHS Region 4","4 wk ahead",-0.669430653942629,46,0.512,5
+"HHS Region 7","4 wk ahead",-0.71743987312899,46,0.488,5
+"HHS Region 8","4 wk ahead",-1.81400507817537,46,0.163,5
+"HHS Region 9","4 wk ahead",-0.335472736288129,46,0.715,5
+"HHS Region 10","4 wk ahead",-0.605136303237232,46,0.546,5
+"HHS Region 1","Season onset",-0.398986142010455,47,0.671,6
+"HHS Region 1","Season peak week",-0.116840972468484,47,0.889726672950046,6
+"HHS Region 10","Season onset",-0.994252273343867,47,0.37,6
+"HHS Region 10","Season peak week",-3.31558362893916,47,0.0363128491620112,6
+"HHS Region 2","Season onset",-1.8578992717326,47,0.156,6
+"HHS Region 2","Season peak week",-1.46111352027464,47,0.231977818853974,6
+"HHS Region 3","Season onset",-0.959720289801491,47,0.383,6
+"HHS Region 3","Season peak week",-1.95532641448683,47,0.141518275538894,6
+"HHS Region 4","Season onset",-0.135819723142535,47,0.873,6
+"HHS Region 4","Season peak week",-0.692234355302584,47,0.500456621004567,6
+"HHS Region 5","Season onset",-1.09064411901893,47,0.336,6
+"HHS Region 5","Season peak week",-2.40194550109739,47,0.0905416329830235,6
+"HHS Region 6","Season onset",-1.09861228866811,47,0.333333333333333,6
+"HHS Region 6","Season peak week",-1.49057670955737,47,0.225242718446602,6
+"HHS Region 7","Season onset",-0.877070018720874,47,0.416,6
+"HHS Region 7","Season peak week",-4.16666522380173,47,0.0155038759689922,6
+"HHS Region 8","Season onset",-0.785262469467751,47,0.456,6
+"HHS Region 8","Season peak week",-3.0547408266821,47,0.0471349353049907,6
+"HHS Region 9","Season onset",-0.113168698105638,47,0.893,6
+"HHS Region 9","Season peak week",-2.08653656553044,47,0.124116260801257,6
+"US National","Season onset",-3.35240721749272,47,0.035,6
+"US National","Season peak week",-1.49231255519669,47,0.224852071005917,6
+"HHS Region 1","Season peak percentage",-2.39689577246529,47,0.091,6
+"HHS Region 10","Season peak percentage",-1.25176346816228,47,0.286,6
+"HHS Region 2","Season peak percentage",-1.8773173575897,47,0.153,6
+"HHS Region 3","Season peak percentage",-2.00991547903123,47,0.134,6
+"HHS Region 4","Season peak percentage",-1.81400507817537,47,0.163,6
+"HHS Region 5","Season peak percentage",-0.675307262431614,47,0.509,6
+"HHS Region 6","Season peak percentage",-2.57702193869581,47,0.076,6
+"HHS Region 7","Season peak percentage",-2.43041846450393,47,0.0879999999999999,6
+"HHS Region 8","Season peak percentage",-1.32425897020044,47,0.266,6
+"HHS Region 9","Season peak percentage",-2.60369018577797,47,0.074,6
+"US National","Season peak percentage",-1.29098418131557,47,0.275,6
+"US National","1 wk ahead",-0.336872316642553,47,0.714,6
+"HHS Region 1","1 wk ahead",-0.115410851511328,47,0.891,6
+"HHS Region 2","1 wk ahead",-1.08175517160169,47,0.339,6
+"HHS Region 3","1 wk ahead",-0.186329578191493,47,0.83,6
+"HHS Region 4","1 wk ahead",-0.45886588483528,47,0.632,6
+"HHS Region 5","1 wk ahead",-0.0768810443359576,47,0.926,6
+"HHS Region 6","1 wk ahead",-0.683196849706777,47,0.505,6
+"HHS Region 7","1 wk ahead",-0.313341819232359,47,0.731,6
+"HHS Region 8","1 wk ahead",-0.320205264157341,47,0.726,6
+"HHS Region 9","1 wk ahead",-0.157824085193567,47,0.854,6
+"HHS Region 10","1 wk ahead",-0.198450938723838,47,0.82,6
+"US National","2 wk ahead",-0.53785429615391,47,0.584,6
+"HHS Region 1","2 wk ahead",-0.216913001563574,47,0.805,6
+"HHS Region 2","2 wk ahead",-0.825536368605691,47,0.438,6
+"HHS Region 3","2 wk ahead",-0.807436326962073,47,0.446,6
+"HHS Region 4","2 wk ahead",-0.84629836005412,47,0.429,6
+"HHS Region 5","2 wk ahead",-0.245900538436826,47,0.782,6
+"HHS Region 6","2 wk ahead",-1.0300194972025,47,0.357,6
+"HHS Region 7","2 wk ahead",-0.669430653942629,47,0.512,6
+"HHS Region 8","2 wk ahead",-0.563874844855806,47,0.569,6
+"HHS Region 9","2 wk ahead",-0.457284856837961,47,0.633,6
+"HHS Region 10","2 wk ahead",-0.52932909533055,47,0.589,6
+"US National","3 wk ahead",-0.49429632181478,47,0.61,6
+"HHS Region 1","3 wk ahead",-0.327116141697188,47,0.721,6
+"HHS Region 2","3 wk ahead",-0.936493439191674,47,0.392,6
+"HHS Region 3","3 wk ahead",-0.478035800943,47,0.62,6
+"HHS Region 4","3 wk ahead",-0.750776293396582,47,0.472,6
+"HHS Region 5","3 wk ahead",-0.273121921120451,47,0.761,6
+"HHS Region 6","3 wk ahead",-1.06611312127515,47,0.344344344344345,6
+"HHS Region 7","3 wk ahead",-0.687165108882398,47,0.503,6
+"HHS Region 8","3 wk ahead",-1.43969513784701,47,0.237,6
+"HHS Region 9","3 wk ahead",-0.391562202939173,47,0.676,6
+"HHS Region 10","3 wk ahead",-0.514164525031505,47,0.598,6
+"US National","4 wk ahead",-0.486133011175619,47,0.615,6
+"HHS Region 1","4 wk ahead",-0.567395975254385,47,0.567,6
+"HHS Region 2","4 wk ahead",-1.04412410338404,47,0.352,6
+"HHS Region 3","4 wk ahead",-0.519193873436507,47,0.595,6
+"HHS Region 4","4 wk ahead",-0.894040122939335,47,0.409,6
+"HHS Region 5","4 wk ahead",-0.32989392126109,47,0.719,6
+"HHS Region 6","4 wk ahead",-1.2507629678287,47,0.286286286286286,6
+"HHS Region 7","4 wk ahead",-0.911303190363116,47,0.402,6
+"HHS Region 8","4 wk ahead",-1.74296930505862,47,0.175,6
+"HHS Region 9","4 wk ahead",-0.612489277542491,47,0.542,6
+"HHS Region 10","4 wk ahead",-0.65200523722877,47,0.521,6
+"HHS Region 1","Season onset",-0.297059234264378,48,0.743,7
+"HHS Region 1","Season peak week",-0.115815556287843,48,0.890639481000926,7
+"HHS Region 10","Season onset",-0.166054584330083,48,0.847,7
+"HHS Region 10","Season peak week",-4.32790980899872,48,0.0131950989632422,7
+"HHS Region 2","Season onset",-0.3147107448397,48,0.73,7
+"HHS Region 2","Season peak week",-1.42802503357636,48,0.239782016348774,7
+"HHS Region 3","Season onset",-0.208254938820459,48,0.812,7
+"HHS Region 3","Season peak week",-1.88259786964099,48,0.15219421101774,7
+"HHS Region 4","Season onset",-0.251028754803745,48,0.778,7
+"HHS Region 4","Season peak week",-0.614089348097922,48,0.541133455210237,7
+"HHS Region 5","Season onset",-0.653926467406664,48,0.52,7
+"HHS Region 5","Season peak week",-2.27726728500976,48,0.102564102564103,7
+"HHS Region 6","Season onset",-0.709276562489829,48,0.492,7
+"HHS Region 6","Season peak week",-1.47649911241951,48,0.228436018957346,7
+"HHS Region 7","Season onset",-1.55589714550607,48,0.211,7
+"HHS Region 7","Season peak week",-4.54908071933705,48,0.0105769230769231,7
+"HHS Region 8","Season onset",-0.287682072451781,48,0.75,7
+"HHS Region 8","Season peak week",-2.93277442340151,48,0.0532490974729242,7
+"HHS Region 9","Season onset",-0.105360515657826,48,0.9,7
+"HHS Region 9","Season peak week",-1.96699644379502,48,0.139876352395672,7
+"US National","Season onset",-0.166054584330083,48,0.847,7
+"US National","Season peak week",-1.58733304186678,48,0.204470198675497,7
+"HHS Region 1","Season peak percentage",-2.18925640768704,48,0.112,7
+"HHS Region 10","Season peak percentage",-1.34323487165944,48,0.261,7
+"HHS Region 2","Season peak percentage",-1.50507789710986,48,0.222,7
+"HHS Region 3","Season peak percentage",-1.81400507817537,48,0.163,7
+"HHS Region 4","Season peak percentage",-1.76609172247948,48,0.171,7
+"HHS Region 5","Season peak percentage",-0.697155201957484,48,0.498,7
+"HHS Region 6","Season peak percentage",-2.86470401114759,48,0.057,7
+"HHS Region 7","Season peak percentage",-2.40794560865187,48,0.09,7
+"HHS Region 8","Season peak percentage",-1.69281952137315,48,0.184,7
+"HHS Region 9","Season peak percentage",-2.37515578582888,48,0.093,7
+"US National","Season peak percentage",-1.36649173382371,48,0.255,7
+"US National","1 wk ahead",-0.0161293819298836,48,0.984,7
+"HHS Region 1","1 wk ahead",-0.17197526473981,48,0.842,7
+"HHS Region 2","1 wk ahead",-0.362405618647717,48,0.696,7
+"HHS Region 3","1 wk ahead",-0.107585210679937,48,0.898,7
+"HHS Region 4","1 wk ahead",-0.143870370419702,48,0.866,7
+"HHS Region 5","1 wk ahead",-0.0650719967437149,48,0.937,7
+"HHS Region 6","1 wk ahead",-0.468404907882039,48,0.626,7
+"HHS Region 7","1 wk ahead",-0.61803970807314,48,0.539,7
+"HHS Region 8","1 wk ahead",-0.412489723045129,48,0.662,7
+"HHS Region 9","1 wk ahead",-0.168418651624963,48,0.845,7
+"HHS Region 10","1 wk ahead",-0.151986356997882,48,0.859,7
+"US National","2 wk ahead",-0.133531392624523,48,0.875,7
+"HHS Region 1","2 wk ahead",-0.29035230100766,48,0.748,7
+"HHS Region 2","2 wk ahead",-0.719491155899547,48,0.487,7
+"HHS Region 3","2 wk ahead",-0.199671195129068,48,0.819,7
+"HHS Region 4","2 wk ahead",-0.400477566597125,48,0.67,7
+"HHS Region 5","2 wk ahead",-0.124430078378177,48,0.883,7
+"HHS Region 6","2 wk ahead",-0.85566611005772,48,0.425,7
+"HHS Region 7","2 wk ahead",-0.659712404473708,48,0.517,7
+"HHS Region 8","2 wk ahead",-1.04696905551627,48,0.351,7
+"HHS Region 9","2 wk ahead",-0.281037529733112,48,0.755,7
+"HHS Region 10","2 wk ahead",-0.285018955032297,48,0.752,7
+"US National","3 wk ahead",-0.447850824604602,48,0.639,7
+"HHS Region 1","3 wk ahead",-0.432322562278047,48,0.649,7
+"HHS Region 2","3 wk ahead",-1.06711362160874,48,0.344,7
+"HHS Region 3","3 wk ahead",-0.349557476169868,48,0.705,7
+"HHS Region 4","3 wk ahead",-0.665532013526972,48,0.514,7
+"HHS Region 5","3 wk ahead",-0.3147107448397,48,0.73,7
+"HHS Region 6","3 wk ahead",-1.27654349716077,48,0.279,7
+"HHS Region 7","3 wk ahead",-0.944175935363691,48,0.389,7
+"HHS Region 8","3 wk ahead",-1.77195684193188,48,0.17,7
+"HHS Region 9","3 wk ahead",-0.553385238184787,48,0.575,7
+"HHS Region 10","3 wk ahead",-0.519193873436507,48,0.595,7
+"US National","4 wk ahead",-1.41881755282545,48,0.242,7
+"HHS Region 1","4 wk ahead",-0.84863208340034,48,0.428,7
+"HHS Region 2","4 wk ahead",-1.32050662058189,48,0.267,7
+"HHS Region 3","4 wk ahead",-0.619896718820353,48,0.538,7
+"HHS Region 4","4 wk ahead",-1.07587280169862,48,0.341,7
+"HHS Region 5","4 wk ahead",-1.36257783450257,48,0.256,7
+"HHS Region 6","4 wk ahead",-1.99510039324608,48,0.136,7
+"HHS Region 7","4 wk ahead",-1.58963528513792,48,0.204,7
+"HHS Region 8","4 wk ahead",-3.54045944899566,48,0.029,7
+"HHS Region 9","4 wk ahead",-0.975510091534126,48,0.377,7
+"HHS Region 10","4 wk ahead",-0.549913012474038,48,0.577,7
+"HHS Region 1","Season onset",-0.147340587898709,49,0.863,8
+"HHS Region 1","Season peak week",-0.140279967299031,49,0.869114877589455,8
+"HHS Region 10","Season onset",-0.177931208492662,49,0.837,8
+"HHS Region 10","Season peak week",-4.19154689017846,49,0.0151228733459357,8
+"HHS Region 2","Season onset",-0.174353387144778,49,0.84,8
+"HHS Region 2","Season peak week",-1.37983975134321,49,0.251618871415356,8
+"HHS Region 3","Season onset",-0.262664309476493,49,0.769,8
+"HHS Region 3","Season peak week",-1.98122980543568,49,0.137899543378995,8
+"HHS Region 4","Season onset",-10,49,4.53999297624849e-05,8
+"HHS Region 4","Season peak week",-0.672837431692361,49,0.510258697591437,8
+"HHS Region 5","Season onset",-0.404965233066513,49,0.667,8
+"HHS Region 5","Season peak week",-2.1608281549447,49,0.115229653505238,8
+"HHS Region 6","Season onset",-0.59783700075562,49,0.55,8
+"HHS Region 6","Season peak week",-1.33538100594664,49,0.263057929724596,8
+"HHS Region 7","Season onset",-0.209487224866724,49,0.811,8
+"HHS Region 7","Season peak week",-4.06617368525541,49,0.0171428571428571,8
+"HHS Region 8","Season onset",0,49,1,8
+"HHS Region 8","Season peak week",-2.72912290023745,49,0.0652765185856755,8
+"HHS Region 9","Season onset",-10,49,4.53999297624849e-05,8
+"HHS Region 9","Season peak week",-2.09109215889981,49,0.123552123552124,8
+"US National","Season onset",-0.161343150408763,49,0.851,8
+"US National","Season peak week",-1.67585235533311,49,0.18714859437751,8
+"HHS Region 1","Season peak percentage",-2.67364877438488,49,0.069,8
+"HHS Region 10","Season peak percentage",-1.2801341652915,49,0.278,8
+"HHS Region 2","Season peak percentage",-1.50507789710986,49,0.222,8
+"HHS Region 3","Season peak percentage",-1.55116900431012,49,0.212,8
+"HHS Region 4","Season peak percentage",-1.66600826392249,49,0.189,8
+"HHS Region 5","Season peak percentage",-0.744440474947496,49,0.475,8
+"HHS Region 6","Season peak percentage",-2.79688141480883,49,0.061,8
+"HHS Region 7","Season peak percentage",-1.95192822138088,49,0.142,8
+"HHS Region 8","Season peak percentage",-1.6194882482876,49,0.198,8
+"HHS Region 9","Season peak percentage",-2.07147337203066,49,0.126,8
+"US National","Season peak percentage",-1.3130438993803,49,0.269,8
+"US National","1 wk ahead",-0.0725706928348355,49,0.93,8
+"HHS Region 1","1 wk ahead",-0.289016295464918,49,0.749,8
+"HHS Region 2","1 wk ahead",-0.398986142010455,49,0.671,8
+"HHS Region 3","1 wk ahead",-0.133531392624523,49,0.875,8
+"HHS Region 4","1 wk ahead",-0.236988958136263,49,0.789,8
+"HHS Region 5","1 wk ahead",-0.0202027073175195,49,0.98,8
+"HHS Region 6","1 wk ahead",-0.596020469829223,49,0.551,8
+"HHS Region 7","1 wk ahead",-0.349557476169868,49,0.705,8
+"HHS Region 8","1 wk ahead",-1.25526609871349,49,0.285,8
+"HHS Region 9","1 wk ahead",-0.166054584330083,49,0.847,8
+"HHS Region 10","1 wk ahead",-0.154317360384357,49,0.857,8
+"US National","2 wk ahead",-0.407968238326283,49,0.665,8
+"HHS Region 1","2 wk ahead",-0.473208760194684,49,0.623,8
+"HHS Region 2","2 wk ahead",-0.823255865906966,49,0.439,8
+"HHS Region 3","2 wk ahead",-0.262664309476493,49,0.769,8
+"HHS Region 4","2 wk ahead",-0.543004522130226,49,0.581,8
+"HHS Region 5","2 wk ahead",-0.447850824604602,49,0.639,8
+"HHS Region 6","2 wk ahead",-1.32050662058189,49,0.267,8
+"HHS Region 7","2 wk ahead",-0.665532013526972,49,0.514,8
+"HHS Region 8","2 wk ahead",-1.62455155024415,49,0.197,8
+"HHS Region 9","2 wk ahead",-0.260066905418808,49,0.771,8
+"HHS Region 10","2 wk ahead",-0.438504962186365,49,0.645,8
+"US National","3 wk ahead",-1.75446368448436,49,0.173,8
+"HHS Region 1","3 wk ahead",-0.691149177897272,49,0.501,8
+"HHS Region 2","3 wk ahead",-1.1679623668029,49,0.311,8
+"HHS Region 3","3 wk ahead",-0.627359440021942,49,0.534,8
+"HHS Region 4","3 wk ahead",-1.06711362160874,49,0.344,8
+"HHS Region 5","3 wk ahead",-1.98777435315401,49,0.137,8
+"HHS Region 6","3 wk ahead",-2.03255795578099,49,0.131,8
+"HHS Region 7","3 wk ahead",-1.75446368448436,49,0.173,8
+"HHS Region 8","3 wk ahead",-3.44201937618241,49,0.032,8
+"HHS Region 9","3 wk ahead",-0.763569644856491,49,0.466,8
+"HHS Region 10","3 wk ahead",-0.520875959619492,49,0.594,8
+"US National","4 wk ahead",-0.731888008876376,49,0.481,8
+"HHS Region 1","4 wk ahead",-0.787457860031187,49,0.455,8
+"HHS Region 2","4 wk ahead",-1.06131650392441,49,0.346,8
+"HHS Region 3","4 wk ahead",-0.583396316600826,49,0.558,8
+"HHS Region 4","4 wk ahead",-0.898942093539542,49,0.407,8
+"HHS Region 5","4 wk ahead",-0.436955775199535,49,0.646,8
+"HHS Region 6","4 wk ahead",-1.39432653281715,49,0.248,8
+"HHS Region 7","4 wk ahead",-1.21739582465808,49,0.296,8
+"HHS Region 8","4 wk ahead",-1.91054300521802,49,0.148,8
+"HHS Region 9","4 wk ahead",-1.50507789710986,49,0.222,8
+"HHS Region 10","4 wk ahead",-0.752897184965719,49,0.471,8
+"HHS Region 1","Season onset",-0.0693500781347932,50,0.933,9
+"HHS Region 1","Season peak week",-0.147399731823276,50,0.862948960302458,9
+"HHS Region 10","Season onset",-0.281037529733112,50,0.755,9
+"HHS Region 10","Season peak week",-3.18635263316264,50,0.0413223140495868,9
+"HHS Region 2","Season onset",-0.123298216344494,50,0.884,9
+"HHS Region 2","Season peak week",-1.43342843879434,50,0.238489871086556,9
+"HHS Region 3","Season onset",-0.185125484126689,50,0.831,9
+"HHS Region 3","Season peak week",-1.92623738345661,50,0.145695364238411,9
+"HHS Region 4","Season onset",-10,50,4.53999297624849e-05,9
+"HHS Region 4","Season peak week",-0.676399323258723,50,0.508444444444444,9
+"HHS Region 5","Season onset",-0.244622582991334,50,0.783,9
+"HHS Region 5","Season peak week",-2.22600354188626,50,0.10795902285264,9
+"HHS Region 6","Season onset",-0.482886255076749,50,0.617,9
+"HHS Region 6","Season peak week",-1.43718596841628,50,0.237595419847328,9
+"HHS Region 7","Season onset",-0.0460439385014068,50,0.955,9
+"HHS Region 7","Season peak week",-4.98848706087324,50,0.0068159688412853,9
+"HHS Region 8","Season onset",0,50,1,9
+"HHS Region 8","Season peak week",-3.19367197050491,50,0.04102096627165,9
+"HHS Region 9","Season onset",0,50,1,9
+"HHS Region 9","Season peak week",-1.83896107071235,50,0.158982511923688,9
+"US National","Season onset",0,50,1,9
+"US National","Season peak week",-1.51102328782738,50,0.220684039087948,9
+"HHS Region 1","Season peak percentage",-2.31263542884755,50,0.099,9
+"HHS Region 10","Season peak percentage",-1.23787435600162,50,0.29,9
+"HHS Region 2","Season peak percentage",-1.3704210119636,50,0.254,9
+"HHS Region 3","Season peak percentage",-1.55116900431012,50,0.212,9
+"HHS Region 4","Season peak percentage",-1.39836694235416,50,0.247,9
+"HHS Region 5","Season peak percentage",-0.725670372265505,50,0.484,9
+"HHS Region 6","Season peak percentage",-2.65926003693278,50,0.07,9
+"HHS Region 7","Season peak percentage",-2.7333680090865,50,0.065,9
+"HHS Region 8","Season peak percentage",-1.4784096500277,50,0.228,9
+"HHS Region 9","Season peak percentage",-1.78976146656538,50,0.167,9
+"US National","Season peak percentage",-1.07587280169862,50,0.341,9
+"US National","1 wk ahead",-0.0747235461959364,50,0.928,9
+"HHS Region 1","1 wk ahead",-0.230671817735001,50,0.794,9
+"HHS Region 2","1 wk ahead",-0.913793851675568,50,0.401,9
+"HHS Region 3","1 wk ahead",-0.150822889734584,50,0.86,9
+"HHS Region 4","1 wk ahead",-0.359536176219765,50,0.698,9
+"HHS Region 5","1 wk ahead",-0.150822889734584,50,0.86,9
+"HHS Region 6","1 wk ahead",-0.95711272639441,50,0.384,9
+"HHS Region 7","1 wk ahead",-0.827822083886547,50,0.437,9
+"HHS Region 8","1 wk ahead",-1.32802545299591,50,0.265,9
+"HHS Region 9","1 wk ahead",-0.208254938820459,50,0.812,9
+"HHS Region 10","1 wk ahead",-0.167235919375914,50,0.846,9
+"US National","2 wk ahead",-0.869884359059999,50,0.419,9
+"HHS Region 1","2 wk ahead",-0.655851395816248,50,0.519,9
+"HHS Region 2","2 wk ahead",-1.35867919408692,50,0.257,9
+"HHS Region 3","2 wk ahead",-0.470003629245736,50,0.625,9
+"HHS Region 4","2 wk ahead",-1.03563748950672,50,0.355,9
+"HHS Region 5","2 wk ahead",-1.71479842809193,50,0.18,9
+"HHS Region 6","2 wk ahead",-2.04794287462046,50,0.129,9
+"HHS Region 7","2 wk ahead",-1.2413285908697,50,0.289,9
+"HHS Region 8","2 wk ahead",-2.7646205525906,50,0.063,9
+"HHS Region 9","2 wk ahead",-0.727738625329564,50,0.483,9
+"HHS Region 10","2 wk ahead",-0.372514007968478,50,0.689,9
+"US National","3 wk ahead",-0.457284856837961,50,0.633,9
+"HHS Region 1","3 wk ahead",-0.681218609694672,50,0.506,9
+"HHS Region 2","3 wk ahead",-1.06131650392441,50,0.346,9
+"HHS Region 3","3 wk ahead",-0.525939261576039,50,0.591,9
+"HHS Region 4","3 wk ahead",-0.800732391239883,50,0.449,9
+"HHS Region 5","3 wk ahead",-0.350976922824095,50,0.704,9
+"HHS Region 6","3 wk ahead",-1.32050662058189,50,0.267,9
+"HHS Region 7","3 wk ahead",-1.73727128394399,50,0.176,9
+"HHS Region 8","3 wk ahead",-1.46967597005894,50,0.23,9
+"HHS Region 9","3 wk ahead",-1.50507789710986,50,0.222,9
+"HHS Region 10","3 wk ahead",-0.586986984731555,50,0.556,9
+"US National","4 wk ahead",-1.1239300966524,50,0.325,9
+"HHS Region 1","4 wk ahead",-0.783071888087932,50,0.457,9
+"HHS Region 2","4 wk ahead",-1.01335244471729,50,0.363,9
+"HHS Region 3","4 wk ahead",-1.25176346816228,50,0.286,9
+"HHS Region 4","4 wk ahead",-1.73727128394399,50,0.176,9
+"HHS Region 5","4 wk ahead",-0.421594490038048,50,0.656,9
+"HHS Region 6","4 wk ahead",-1.34323487165944,50,0.261,9
+"HHS Region 7","4 wk ahead",-2.91877123241786,50,0.054,9
+"HHS Region 8","4 wk ahead",-0.928869514081015,50,0.395,9
+"HHS Region 9","4 wk ahead",-2.1803674602698,50,0.113,9
+"HHS Region 10","4 wk ahead",-1.1679623668029,50,0.311,9
+"HHS Region 1","Season onset",-0.0151136378100482,51,0.985,10
+"HHS Region 1","Season peak week",-0.123388632063112,51,0.883920076117983,10
+"HHS Region 10","Season onset",-10,51,4.53999297624849e-05,10
+"HHS Region 10","Season peak week",-3.28310942147223,51,0.0375114364135408,10
+"HHS Region 2","Season onset",0,51,1,10
+"HHS Region 2","Season peak week",-1.38537142612129,51,0.250230840258541,10
+"HHS Region 3","Season onset",-0.00803217169726427,51,0.992,10
+"HHS Region 3","Season peak week",-1.84241530558043,51,0.158434296365331,10
+"HHS Region 4","Season onset",-10,51,4.53999297624849e-05,10
+"HHS Region 4","Season peak week",-0.709768061795986,51,0.491758241758241,10
+"HHS Region 5","Season onset",-0.00200200267067308,51,0.998,10
+"HHS Region 5","Season peak week",-2.64804799091145,51,0.0707892595606184,10
+"HHS Region 6","Season onset",-0.321963386262837,51,0.724724724724725,10
+"HHS Region 6","Season peak week",-1.46283443824222,51,0.231578947368421,10
+"HHS Region 7","Season onset",0,51,1,10
+"HHS Region 7","Season peak week",-4.63763737612559,51,0.00968054211035818,10
+"HHS Region 8","Season onset",0,51,1,10
+"HHS Region 8","Season peak week",-3.41256114031247,51,0.0329566854990583,10
+"HHS Region 9","Season onset",0,51,1,10
+"HHS Region 9","Season peak week",-1.84346727139356,51,0.158267716535433,10
+"US National","Season onset",0,51,1,10
+"US National","Season peak week",-1.5255564284534,51,0.2175,10
+"HHS Region 1","Season peak percentage",-2.48891467118554,51,0.083,10
+"HHS Region 10","Season peak percentage",-1.29098418131557,51,0.275,10
+"HHS Region 2","Season peak percentage",-1.50058350752202,51,0.223,10
+"HHS Region 3","Season peak percentage",-2.53830742651512,51,0.0789999999999999,10
+"HHS Region 4","Season peak percentage",-1.50058350752202,51,0.223,10
+"HHS Region 5","Season peak percentage",-0.61803970807314,51,0.539,10
+"HHS Region 6","Season peak percentage",-2.95651156040071,51,0.052,10
+"HHS Region 7","Season peak percentage",-2.44184716032755,51,0.0869999999999999,10
+"HHS Region 8","Season peak percentage",-1.22758266996507,51,0.293,10
+"HHS Region 9","Season peak percentage",-1.32425897020044,51,0.266,10
+"US National","Season peak percentage",-0.962334670375562,51,0.382,10
+"US National","1 wk ahead",-0.481266821524446,51,0.618,10
+"HHS Region 1","1 wk ahead",-0.636766847123838,51,0.529,10
+"HHS Region 2","1 wk ahead",-0.748659890490204,51,0.473,10
+"HHS Region 3","1 wk ahead",-0.512493680866688,51,0.599,10
+"HHS Region 4","1 wk ahead",-0.614336000135655,51,0.541,10
+"HHS Region 5","1 wk ahead",-0.335472736288129,51,0.715,10
+"HHS Region 6","1 wk ahead",-1.91054300521802,51,0.148,10
+"HHS Region 7","1 wk ahead",-1.41058705368894,51,0.244,10
+"HHS Region 8","1 wk ahead",-1.59948758158093,51,0.202,10
+"HHS Region 9","1 wk ahead",-0.155484902840395,51,0.856,10
+"HHS Region 10","1 wk ahead",-0.321583624127462,51,0.725,10
+"US National","2 wk ahead",-0.581605805827038,51,0.559,10
+"HHS Region 1","2 wk ahead",-0.632993257740198,51,0.531,10
+"HHS Region 2","2 wk ahead",-0.901402119380404,51,0.406,10
+"HHS Region 3","2 wk ahead",-0.99695863494161,51,0.369,10
+"HHS Region 4","2 wk ahead",-1.09661428600544,51,0.334,10
+"HHS Region 5","2 wk ahead",-0.482886255076749,51,0.617,10
+"HHS Region 6","2 wk ahead",-1.17341350175081,51,0.309309309309309,10
+"HHS Region 7","2 wk ahead",-1.69826912614072,51,0.183,10
+"HHS Region 8","2 wk ahead",-0.816445396904439,51,0.442,10
+"HHS Region 9","2 wk ahead",-0.994252273343867,51,0.37,10
+"HHS Region 10","2 wk ahead",-0.381260419411347,51,0.683,10
+"US National","3 wk ahead",-1.73160554640831,51,0.177,10
+"HHS Region 1","3 wk ahead",-0.723606388044654,51,0.485,10
+"HHS Region 2","3 wk ahead",-1.18090753139494,51,0.307,10
+"HHS Region 3","3 wk ahead",-2.5133061243097,51,0.081,10
+"HHS Region 4","3 wk ahead",-2.52572864430826,51,0.08,10
+"HHS Region 5","3 wk ahead",-0.811930716549912,51,0.444,10
+"HHS Region 6","3 wk ahead",-1.25878104082093,51,0.284,10
+"HHS Region 7","3 wk ahead",-2.81341071676004,51,0.06,10
+"HHS Region 8","3 wk ahead",-1.1679623668029,51,0.311,10
+"HHS Region 9","3 wk ahead",-1.93794197940614,51,0.144,10
+"HHS Region 10","3 wk ahead",-0.926341067727656,51,0.396,10
+"US National","4 wk ahead",-1.63475572041839,51,0.195,10
+"HHS Region 1","4 wk ahead",-0.84863208340034,51,0.428,10
+"HHS Region 2","4 wk ahead",-1.07587280169862,51,0.341,10
+"HHS Region 3","4 wk ahead",-2.86470401114759,51,0.057,10
+"HHS Region 4","4 wk ahead",-2.44184716032755,51,0.087,10
+"HHS Region 5","4 wk ahead",-0.715392789507265,51,0.489,10
+"HHS Region 6","4 wk ahead",-1.38030033717968,51,0.251503006012024,10
+"HHS Region 7","4 wk ahead",-2.67364877438488,51,0.069,10
+"HHS Region 8","4 wk ahead",-1.69281952137315,51,0.184,10
+"HHS Region 9","4 wk ahead",-2.84731226843572,51,0.058,10
+"HHS Region 10","4 wk ahead",-1.3704210119636,51,0.254,10
+"HHS Region 1","Season onset",0,52,1,11
+"HHS Region 1","Season peak week",-0.126183421068274,52,0.881453154875717,11
+"HHS Region 10","Season onset",0,52,1,11
+"HHS Region 10","Season peak week",-3.0162745458543,52,0.0489833641404807,11
+"HHS Region 2","Season onset",0,52,1,11
+"HHS Region 2","Season peak week",-1.28222500122568,52,0.27741935483871,11
+"HHS Region 3","Season onset",0,52,1,11
+"HHS Region 3","Season peak week",-1.94872573045548,52,0.142455482661668,11
+"HHS Region 4","Season onset",-10,52,4.53999297624849e-05,11
+"HHS Region 4","Season peak week",-0.735990477175533,52,0.479030754892824,11
+"HHS Region 5","Season onset",0,52,1,11
+"HHS Region 5","Season peak week",-4.17524160570155,52,0.0153714773697695,11
+"HHS Region 6","Season onset",-0.0534007767271153,52,0.948,11
+"HHS Region 6","Season peak week",-1.55741672768322,52,0.210679611650486,11
+"HHS Region 7","Season onset",0,52,1,11
+"HHS Region 7","Season peak week",-4.37624069760684,52,0.0125725338491296,11
+"HHS Region 8","Season onset",0,52,1,11
+"HHS Region 8","Season peak week",-3.88623888827243,52,0.0205223880597015,11
+"HHS Region 9","Season onset",0,52,1,11
+"HHS Region 9","Season peak week",-1.5952755986216,52,0.202852614896989,11
+"US National","Season onset",0,52,1,11
+"US National","Season peak week",-1.58966932711168,52,0.203993055555555,11
+"HHS Region 1","Season peak percentage",-2.86470401114759,52,0.057,11
+"HHS Region 10","Season peak percentage",-1.30563645810244,52,0.271,11
+"HHS Region 2","Season peak percentage",-1.42711635564015,52,0.24,11
+"HHS Region 3","Season peak percentage",-2.00991547903123,52,0.134,11
+"HHS Region 4","Season peak percentage",-1.57021719928082,52,0.208,11
+"HHS Region 5","Season peak percentage",-0.770028224895903,52,0.463,11
+"HHS Region 6","Season peak percentage",-2.29263476214088,52,0.101,11
+"HHS Region 7","Season peak percentage",-2.09557092360972,52,0.123,11
+"HHS Region 8","Season peak percentage",-0.691149177897272,52,0.501,11
+"HHS Region 9","Season peak percentage",-1.16475209117265,52,0.312,11
+"US National","Season peak percentage",-1.13631415585212,52,0.321,11
+"US National","1 wk ahead",-1.4784096500277,52,0.228,11
+"HHS Region 1","1 wk ahead",-0.313341819232359,52,0.731,11
+"HHS Region 2","1 wk ahead",-0.569161200778954,52,0.566,11
+"HHS Region 3","1 wk ahead",-0.283690051182243,52,0.753,11
+"HHS Region 4","1 wk ahead",-1.46533756846034,52,0.231,11
+"HHS Region 5","1 wk ahead",-2.99573227355399,52,0.05,11
+"HHS Region 6","1 wk ahead",-1.29098418131557,52,0.275,11
+"HHS Region 7","1 wk ahead",-1.94491064872223,52,0.143,11
+"HHS Region 8","1 wk ahead",-0.921303273697699,52,0.398,11
+"HHS Region 9","1 wk ahead",-0.134674903326602,52,0.874,11
+"HHS Region 10","1 wk ahead",-0.261364764134408,52,0.77,11
+"US National","2 wk ahead",-4.3428059215206,52,0.013,11
+"HHS Region 1","2 wk ahead",-0.514164525031505,52,0.598,11
+"HHS Region 2","2 wk ahead",-1.10563690360507,52,0.331,11
+"HHS Region 3","2 wk ahead",-2.3434070875143,52,0.096,11
+"HHS Region 4","2 wk ahead",-3.9633162998157,52,0.019,11
+"HHS Region 5","2 wk ahead",-3.07911388249304,52,0.046,11
+"HHS Region 6","2 wk ahead",-1.83584656774161,52,0.159478435305918,11
+"HHS Region 7","2 wk ahead",-2.83021783507642,52,0.059,11
+"HHS Region 8","2 wk ahead",-1.73727128394399,52,0.176,11
+"HHS Region 9","2 wk ahead",-1.77195684193188,52,0.17,11
+"HHS Region 10","2 wk ahead",-1.26940060964839,52,0.281,11
+"US National","3 wk ahead",-3.44201937618241,52,0.032,11
+"HHS Region 1","3 wk ahead",-0.898942093539542,52,0.407,11
+"HHS Region 2","3 wk ahead",-1.0300194972025,52,0.357,11
+"HHS Region 3","3 wk ahead",-2.90042209374967,52,0.055,11
+"HHS Region 4","3 wk ahead",-3.32423634052603,52,0.036,11
+"HHS Region 5","3 wk ahead",-2.00248050054371,52,0.135,11
+"HHS Region 6","3 wk ahead",-1.54345860425241,52,0.213640922768305,11
+"HHS Region 7","3 wk ahead",-2.37515578582888,52,0.093,11
+"HHS Region 8","3 wk ahead",-2.3434070875143,52,0.096,11
+"HHS Region 9","3 wk ahead",-2.7333680090865,52,0.065,11
+"HHS Region 10","3 wk ahead",-1.70374859190534,52,0.182,11
+"US National","4 wk ahead",-2.46510402249182,52,0.085,11
+"HHS Region 1","4 wk ahead",-1.43969513784701,52,0.237,11
+"HHS Region 2","4 wk ahead",-1.23787435600162,52,0.29,11
+"HHS Region 3","4 wk ahead",-3.10109278921182,52,0.045,11
+"HHS Region 4","4 wk ahead",-2.25379492882461,52,0.105,11
+"HHS Region 5","4 wk ahead",-1.44392347395653,52,0.236,11
+"HHS Region 6","4 wk ahead",-1.84115222455763,52,0.15863453815261,11
+"HHS Region 7","4 wk ahead",-2.1119647333854,52,0.121,11
+"HHS Region 8","4 wk ahead",-1.80788885115794,52,0.164,11
+"HHS Region 9","4 wk ahead",-2.46510402249182,52,0.085,11
+"HHS Region 10","4 wk ahead",-1.30195321268614,52,0.272,11
+"HHS Region 1","Season onset",0,1,1,12
+"HHS Region 1","Season peak week",-0.124088451824241,1,0.883301707779886,12
+"HHS Region 10","Season onset",0,1,1,12
+"HHS Region 10","Season peak week",-2.99016122850453,1,0.0502793296089386,12
+"HHS Region 2","Season onset",0,1,1,12
+"HHS Region 2","Season peak week",-1.3328056761689,1,0.263736263736264,12
+"HHS Region 3","Season onset",0,1,1,12
+"HHS Region 3","Season peak week",-1.9831104327414,1,0.137640449438203,12
+"HHS Region 4","Season onset",0,1,1,12
+"HHS Region 4","Season peak week",-0.664471380583278,1,0.514545454545455,12
+"HHS Region 5","Season onset",0,1,1,12
+"HHS Region 5","Season peak week",-2.53673171765259,1,0.0791245791245791,12
+"HHS Region 6","Season onset",0,1,1,12
+"HHS Region 6","Season peak week",-1.5002714930386,1,0.223069590085796,12
+"HHS Region 7","Season onset",0,1,1,12
+"HHS Region 7","Season peak week",-4.5442614329011,1,0.0106280193236715,12
+"HHS Region 8","Season peak week",-3.28278915061186,1,0.0375234521575984,12
+"HHS Region 9","Season onset",0,1,1,12
+"HHS Region 9","Season peak week",-1.3523392633544,1,0.25863453815261,12
+"US National","Season onset",0,1,1,12
+"US National","Season peak week",-1.40169244123101,1,0.246179966044143,12
+"HHS Region 1","Season peak percentage",-3.57555076880693,1,0.028,12
+"HHS Region 10","Season peak percentage",-1.13010295575948,1,0.323,12
+"HHS Region 2","Season peak percentage",-1.22417551164346,1,0.294,12
+"HHS Region 3","Season peak percentage",-1.68739945390381,1,0.185,12
+"HHS Region 4","Season peak percentage",-1.2623083813389,1,0.283,12
+"HHS Region 5","Season peak percentage",-0.161343150408763,1,0.851,12
+"HHS Region 6","Season peak percentage",-2.84731226843572,1,0.058,12
+"HHS Region 7","Season peak percentage",-2.13707065451647,1,0.118,12
+"HHS Region 8","Season peak percentage",-1.13010295575948,1,0.323,12
+"HHS Region 9","Season peak percentage",-0.738144546490681,1,0.478,12
+"US National","Season peak percentage",-0.872273846457381,1,0.418,12
+"US National","1 wk ahead",-0.403467105445491,1,0.668,12
+"HHS Region 1","1 wk ahead",-0.532730459154041,1,0.587,12
+"HHS Region 2","1 wk ahead",-1.05843049903528,1,0.347,12
+"HHS Region 3","1 wk ahead",-0.962334670375562,1,0.382,12
+"HHS Region 4","1 wk ahead",-0.823255865906966,1,0.439,12
+"HHS Region 5","1 wk ahead",-0.452556715642015,1,0.636,12
+"HHS Region 6","1 wk ahead",-1.29828348379718,1,0.273,12
+"HHS Region 7","1 wk ahead",-1.9241486572738,1,0.146,12
+"HHS Region 8","1 wk ahead",-0.592397277459802,1,0.553,12
+"HHS Region 9","1 wk ahead",-0.13010868534702,1,0.878,12
+"HHS Region 10","1 wk ahead",-0.345311185288417,1,0.708,12
+"US National","2 wk ahead",-1.65548185093551,1,0.191,12
+"HHS Region 1","2 wk ahead",-1.05555279920766,1,0.348,12
+"HHS Region 2","2 wk ahead",-0.970219073899711,1,0.379,12
+"HHS Region 3","2 wk ahead",-2.55104645229255,1,0.078,12
+"HHS Region 4","2 wk ahead",-2.47693848013882,1,0.084,12
+"HHS Region 5","2 wk ahead",-0.463624022281697,1,0.629,12
+"HHS Region 6","2 wk ahead",-1.11474167059799,1,0.328,12
+"HHS Region 7","2 wk ahead",-2.71810053695571,1,0.066,12
+"HHS Region 8","2 wk ahead",-2.12863178587061,1,0.119,12
+"HHS Region 9","2 wk ahead",-2.28278246569787,1,0.102,12
+"HHS Region 10","2 wk ahead",-1.58963528513792,1,0.204,12
+"US National","3 wk ahead",-1.07587280169862,1,0.341,12
+"HHS Region 1","3 wk ahead",-1.65548185093551,1,0.191,12
+"HHS Region 2","3 wk ahead",-1.04696905551627,1,0.351,12
+"HHS Region 3","3 wk ahead",-2.28278246569787,1,0.102,12
+"HHS Region 4","3 wk ahead",-1.33941077522104,1,0.262,12
+"HHS Region 5","3 wk ahead",-0.527632742082372,1,0.59,12
+"HHS Region 6","3 wk ahead",-1.74196880472504,1,0.175175175175175,12
+"HHS Region 7","3 wk ahead",-2.46510402249182,1,0.085,12
+"HHS Region 8","3 wk ahead",-1.74869997976761,1,0.174,12
+"HHS Region 9","3 wk ahead",-2.24431618487007,1,0.106,12
+"HHS Region 10","3 wk ahead",-1.30563645810244,1,0.271,12
+"US National","4 wk ahead",-0.827822083886547,1,0.437,12
+"HHS Region 1","4 wk ahead",-3.01593498087151,1,0.049,12
+"HHS Region 2","4 wk ahead",-1.14570389620196,1,0.318,12
+"HHS Region 3","4 wk ahead",-2.55104645229255,1,0.078,12
+"HHS Region 4","4 wk ahead",-1.14256417619729,1,0.319,12
+"HHS Region 5","4 wk ahead",-0.567395975254385,1,0.567,12
+"HHS Region 6","4 wk ahead",-2.91877123241786,1,0.054,12
+"HHS Region 7","4 wk ahead",-1.91054300521802,1,0.148,12
+"HHS Region 8","4 wk ahead",-1.26584820804402,1,0.282,12
+"HHS Region 9","4 wk ahead",-0.916290731874155,1,0.4,12
+"HHS Region 10","4 wk ahead",-1.0106014113454,1,0.364,12
+"HHS Region 1","Season onset",0,2,1,13
+"HHS Region 1","Season peak week",-0.0999317940386057,2,0.904899135446686,13
+"HHS Region 10","Season onset",0,2,1,13
+"HHS Region 10","Season peak week",-3.28746861633381,2,0.0373482726423902,13
+"HHS Region 2","Season onset",0,2,1,13
+"HHS Region 2","Season peak week",-1.32130222237418,2,0.266787658802178,13
+"HHS Region 3","Season onset",0,2,1,13
+"HHS Region 3","Season peak week",-1.34144379495454,2,0.261467889908257,13
+"HHS Region 4","Season peak week",-0.726299387876845,2,0.483695652173914,13
+"HHS Region 5","Season onset",0,2,1,13
+"HHS Region 5","Season peak week",-2.36862489049826,2,0.0936093609360936,13
+"HHS Region 6","Season onset",0,2,1,13
+"HHS Region 6","Season peak week",-1.40406383163186,2,0.24559686888454,13
+"HHS Region 7","Season onset",0,2,1,13
+"HHS Region 7","Season peak week",-4.18395672091179,2,0.0152380952380952,13
+"HHS Region 8","Season peak week",-2.92056273017531,2,0.0539033457249071,13
+"HHS Region 9","Season onset",0,2,1,13
+"HHS Region 9","Season peak week",-0.968170856139803,2,0.379777070063694,13
+"US National","Season onset",-10,2,4.53999297624849e-05,13
+"US National","Season peak week",-1.60263516511135,2,0.20136518771331,13
+"HHS Region 1","Season peak percentage",-4.07454193492592,2,0.017,13
+"HHS Region 10","Season peak percentage",-1.2623083813389,2,0.283,13
+"HHS Region 2","Season peak percentage",-0.772190387900398,2,0.462,13
+"HHS Region 3","Season peak percentage",-0.936493439191674,2,0.392,13
+"HHS Region 4","Season peak percentage",-2.03255795578099,2,0.131,13
+"HHS Region 5","Season peak percentage",-0.0736465401682986,2,0.929,13
+"HHS Region 6","Season peak percentage",-3.12356564506388,2,0.044,13
+"HHS Region 7","Season peak percentage",-1.4740332754279,2,0.229,13
+"HHS Region 8","Season peak percentage",-1.48722027970985,2,0.226,13
+"HHS Region 9","Season peak percentage",-0.360969868221613,2,0.697,13
+"US National","Season peak percentage",-1.30563645810244,2,0.271,13
+"US National","1 wk ahead",-0.154317360384357,2,0.857,13
+"HHS Region 1","1 wk ahead",-0.479650006297541,2,0.619,13
+"HHS Region 2","1 wk ahead",-0.71743987312899,2,0.488,13
+"HHS Region 3","1 wk ahead",-0.218156009803171,2,0.804,13
+"HHS Region 4","1 wk ahead",-0.244622582991334,2,0.783,13
+"HHS Region 5","1 wk ahead",-0.0877389143080067,2,0.916,13
+"HHS Region 6","1 wk ahead",-1.21739582465808,2,0.296,13
+"HHS Region 7","1 wk ahead",-0.802962046567152,2,0.448,13
+"HHS Region 8","1 wk ahead",-0.507497833673316,2,0.602,13
+"HHS Region 9","1 wk ahead",-0.414001439130451,2,0.661,13
+"HHS Region 10","1 wk ahead",-0.301105092783922,2,0.74,13
+"US National","2 wk ahead",-0.379797361359587,2,0.684,13
+"HHS Region 1","2 wk ahead",-2.16282315061889,2,0.115,13
+"HHS Region 2","2 wk ahead",-0.99695863494161,2,0.369,13
+"HHS Region 3","2 wk ahead",-1.46101790731583,2,0.232,13
+"HHS Region 4","2 wk ahead",-0.638658995275876,2,0.528,13
+"HHS Region 5","2 wk ahead",-0.208254938820459,2,0.812,13
+"HHS Region 6","2 wk ahead",-2.19722457733622,2,0.111111111111111,13
+"HHS Region 7","2 wk ahead",-1.73160554640831,2,0.177,13
+"HHS Region 8","2 wk ahead",-1.23443201181064,2,0.291,13
+"HHS Region 9","2 wk ahead",-1.52326021619305,2,0.218,13
+"HHS Region 10","2 wk ahead",-1.41881755282545,2,0.242,13
+"US National","3 wk ahead",-0.578034373459441,2,0.561,13
+"HHS Region 1","3 wk ahead",-3.91202300542815,2,0.02,13
+"HHS Region 2","3 wk ahead",-1.04128722204884,2,0.353,13
+"HHS Region 3","3 wk ahead",-1.50959257746438,2,0.221,13
+"HHS Region 4","3 wk ahead",-1.21402314017944,2,0.297,13
+"HHS Region 5","3 wk ahead",-0.29975465368605,2,0.741,13
+"HHS Region 6","3 wk ahead",-3.19318271194425,2,0.041041041041041,13
+"HHS Region 7","3 wk ahead",-1.48280526150073,2,0.227,13
+"HHS Region 8","3 wk ahead",-1.00512194558077,2,0.366,13
+"HHS Region 9","3 wk ahead",-0.567395975254385,2,0.567,13
+"HHS Region 10","3 wk ahead",-1.11474167059799,2,0.328,13
+"US National","4 wk ahead",-1.6094379124341,2,0.2,13
+"HHS Region 1","4 wk ahead",-3.05760767727208,2,0.047,13
+"HHS Region 2","4 wk ahead",-1.19732826160727,2,0.302,13
+"HHS Region 3","4 wk ahead",-0.82098055206983,2,0.44,13
+"HHS Region 4","4 wk ahead",-2.52572864430826,2,0.08,13
+"HHS Region 5","4 wk ahead",-0.41703174447963,2,0.659,13
+"HHS Region 6","4 wk ahead",-3.86223234092513,2,0.021021021021021,13
+"HHS Region 7","4 wk ahead",-1.6194882482876,2,0.198,13
+"HHS Region 8","4 wk ahead",-1.44816976483798,2,0.235,13
+"HHS Region 9","4 wk ahead",-0.502526820951296,2,0.605,13
+"HHS Region 10","4 wk ahead",-0.964955903855436,2,0.381,13
+"HHS Region 1","Season onset",0,3,1,14
+"HHS Region 1","Season peak week",-0.101986408703069,3,0.903041825095057,14
+"HHS Region 10","Season onset",0,3,1,14
+"HHS Region 10","Season peak week",-2.89037175789616,3,0.0555555555555556,14
+"HHS Region 2","Season onset",0,3,1,14
+"HHS Region 2","Season peak week",-1.22657263624318,3,0.293296089385475,14
+"HHS Region 3","Season onset",0,3,1,14
+"HHS Region 3","Season peak week",-1.40050587458085,3,0.246472248353716,14
+"HHS Region 4","Season peak week",-0.469448741596244,3,0.625346901017576,14
+"HHS Region 5","Season onset",0,3,1,14
+"HHS Region 5","Season peak week",-2.40500009842212,3,0.0902654867256637,14
+"HHS Region 6","Season onset",0,3,1,14
+"HHS Region 6","Season peak week",-1.35502701058837,3,0.257940327237728,14
+"HHS Region 7","Season onset",0,3,1,14
+"HHS Region 7","Season peak week",-3.98898404656428,3,0.0185185185185185,14
+"HHS Region 8","Season peak week",-2.68746949340219,3,0.0680529300567108,14
+"HHS Region 9","Season peak week",-0.541341167691942,3,0.581967213114754,14
+"US National","Season onset",-10,3,4.53999297624849e-05,14
+"US National","Season peak week",-1.29840847598533,3,0.272965879265092,14
+"HHS Region 1","Season peak percentage",-3.86323284125871,3,0.021,14
+"HHS Region 10","Season peak percentage",-1.49165487677772,3,0.225,14
+"HHS Region 2","Season peak percentage",-0.837017550979647,3,0.433,14
+"HHS Region 3","Season peak percentage",-0.853315932712767,3,0.426,14
+"HHS Region 4","Season peak percentage",-1.9241486572738,3,0.146,14
+"HHS Region 5","Season peak percentage",-0.0725706928348355,3,0.93,14
+"HHS Region 6","Season peak percentage",-2.97592964625781,3,0.051,14
+"HHS Region 7","Season peak percentage",-1.70374859190534,3,0.182,14
+"HHS Region 8","Season peak percentage",-1.82015894374975,3,0.162,14
+"HHS Region 9","Season peak percentage",-0.156653810045377,3,0.855,14
+"US National","Season peak percentage",-1.0700248318162,3,0.343,14
+"US National","1 wk ahead",-0.366725279792234,3,0.693,14
+"HHS Region 1","1 wk ahead",-0.484508315448617,3,0.616,14
+"HHS Region 2","1 wk ahead",-0.655851395816248,3,0.519,14
+"HHS Region 3","1 wk ahead",-0.478035800943,3,0.62,14
+"HHS Region 4","1 wk ahead",-1.60445037092306,3,0.201,14
+"HHS Region 5","1 wk ahead",-0.127833371509885,3,0.88,14
+"HHS Region 6","1 wk ahead",-1.8578992717326,3,0.156,14
+"HHS Region 7","1 wk ahead",-1.04982212449868,3,0.35,14
+"HHS Region 8","1 wk ahead",-0.605136303237232,3,0.546,14
+"HHS Region 9","1 wk ahead",-0.218156009803171,3,0.804,14
+"HHS Region 10","1 wk ahead",-0.41855034765682,3,0.658,14
+"US National","2 wk ahead",-0.414001439130451,3,0.661,14
+"HHS Region 1","2 wk ahead",-3.68887945411394,3,0.025,14
+"HHS Region 2","2 wk ahead",-0.903868211875598,3,0.405,14
+"HHS Region 3","2 wk ahead",-1.61445045425764,3,0.199,14
+"HHS Region 4","2 wk ahead",-1.08470938349912,3,0.338,14
+"HHS Region 5","2 wk ahead",-0.275753501586507,3,0.759,14
+"HHS Region 6","2 wk ahead",-2.76362005225702,3,0.0630630630630631,14
+"HHS Region 7","2 wk ahead",-2.00991547903123,3,0.134,14
+"HHS Region 8","2 wk ahead",-0.867500567704723,3,0.42,14
+"HHS Region 9","2 wk ahead",-0.257476230394715,3,0.773,14
+"HHS Region 10","2 wk ahead",-0.978166135592243,3,0.376,14
+"US National","3 wk ahead",-1.22417551164346,3,0.294,14
+"HHS Region 1","3 wk ahead",-3.19418321227783,3,0.041,14
+"HHS Region 2","3 wk ahead",-1.01611106715637,3,0.362,14
+"HHS Region 3","3 wk ahead",-0.807436326962073,3,0.446,14
+"HHS Region 4","3 wk ahead",-2.44184716032755,3,0.087,14
+"HHS Region 5","3 wk ahead",-0.435408984481236,3,0.647,14
+"HHS Region 6","3 wk ahead",-3.41124771751566,3,0.033,14
+"HHS Region 7","3 wk ahead",-1.80180980508156,3,0.165,14
+"HHS Region 8","3 wk ahead",-1.51412773262978,3,0.22,14
+"HHS Region 9","3 wk ahead",-0.311974765020825,3,0.732,14
+"HHS Region 10","3 wk ahead",-0.84863208340034,3,0.428,14
+"US National","4 wk ahead",-1.82635091399767,3,0.161,14
+"HHS Region 1","4 wk ahead",-2.81341071676004,3,0.06,14
+"HHS Region 2","4 wk ahead",-1.2801341652915,3,0.278,14
+"HHS Region 3","4 wk ahead",-0.944175935363691,3,0.389,14
+"HHS Region 4","4 wk ahead",-2.61729583783375,3,0.073,14
+"HHS Region 5","4 wk ahead",-0.449416995637347,3,0.638,14
+"HHS Region 6","4 wk ahead",-3.86223234092513,3,0.021021021021021,14
+"HHS Region 7","4 wk ahead",-1.56064774826467,3,0.21,14
+"HHS Region 8","4 wk ahead",-2.99573227355399,3,0.05,14
+"HHS Region 9","4 wk ahead",-0.479650006297541,3,0.619,14
+"HHS Region 10","4 wk ahead",-1.46533756846034,3,0.231,14
+"HHS Region 1","Season peak week",-0.122602322092333,4,0.884615384615384,15
+"HHS Region 10","Season onset",0,4,1,15
+"HHS Region 10","Season peak week",-2.53958567896968,4,0.0788990825688074,15
+"HHS Region 2","Season peak week",-1.09203640776195,4,0.335532516493874,15
+"HHS Region 3","Season onset",0,4,1,15
+"HHS Region 3","Season peak week",-0.804699666465694,4,0.447222222222222,15
+"HHS Region 4","Season peak week",-0.259200588245438,4,0.771668219944083,15
+"HHS Region 5","Season onset",0,4,1,15
+"HHS Region 5","Season peak week",-2.37937622503113,4,0.0926083262531861,15
+"HHS Region 6","Season onset",0,4,1,15
+"HHS Region 6","Season peak week",-1.16160162281885,4,0.312984496124031,15
+"HHS Region 7","Season onset",0,4,1,15
+"HHS Region 7","Season peak week",-3.80955684779668,4,0.0221579961464354,15
+"HHS Region 8","Season peak week",-2.90839026339884,4,0.0545634920634921,15
+"HHS Region 9","Season peak week",-0.342831026454139,4,0.709758131776481,15
+"US National","Season peak week",-0.260477556212748,4,0.77068345323741,15
+"HHS Region 1","Season peak percentage",-3.91202300542815,4,0.02,15
+"HHS Region 10","Season peak percentage",-1.52326021619305,4,0.218,15
+"HHS Region 2","Season peak percentage",-0.70117935225721,4,0.496,15
+"HHS Region 3","Season peak percentage",-0.805196684368568,4,0.447,15
+"HHS Region 4","Season peak percentage",-1.46533756846034,4,0.231,15
+"HHS Region 5","Season peak percentage",-0.787457860031187,4,0.455,15
+"HHS Region 6","Season peak percentage",-2.7646205525906,4,0.063,15
+"HHS Region 7","Season peak percentage",-1.52326021619305,4,0.218,15
+"HHS Region 8","Season peak percentage",-0.0779615414697119,4,0.925,15
+"HHS Region 9","Season peak percentage",-0.131248286609954,4,0.877,15
+"US National","Season peak percentage",-0.707246104939447,4,0.493,15
+"US National","1 wk ahead",-0.257476230394715,4,0.773,15
+"HHS Region 1","1 wk ahead",-1.43548460531066,4,0.238,15
+"HHS Region 2","1 wk ahead",-0.671385688778433,4,0.511,15
+"HHS Region 3","1 wk ahead",-0.311974765020825,4,0.732,15
+"HHS Region 4","1 wk ahead",-1.46533756846034,4,0.231,15
+"HHS Region 5","1 wk ahead",-0.192371892647456,4,0.825,15
+"HHS Region 6","1 wk ahead",-2.47693848013882,4,0.084,15
+"HHS Region 7","1 wk ahead",-0.944175935363691,4,0.389,15
+"HHS Region 8","1 wk ahead",-1.53711725085447,4,0.215,15
+"HHS Region 9","1 wk ahead",-0.16369609267079,4,0.849,15
+"HHS Region 10","1 wk ahead",-0.524248644098131,4,0.592,15
+"US National","2 wk ahead",-0.570929547835696,4,0.565,15
+"HHS Region 1","2 wk ahead",-3.29683736633791,4,0.037,15
+"HHS Region 2","2 wk ahead",-0.999672340813206,4,0.368,15
+"HHS Region 3","2 wk ahead",-0.791863153499103,4,0.453,15
+"HHS Region 4","2 wk ahead",-1.51412773262978,4,0.22,15
+"HHS Region 5","2 wk ahead",-0.536143431750281,4,0.585,15
+"HHS Region 6","2 wk ahead",-3.91102250509456,4,0.02002002002002,15
+"HHS Region 7","2 wk ahead",-1.67131331615219,4,0.188,15
+"HHS Region 8","2 wk ahead",-1.70374859190534,4,0.182,15
+"HHS Region 9","2 wk ahead",-0.263965545834465,4,0.768,15
+"HHS Region 10","2 wk ahead",-0.814185508937001,4,0.443,15
+"US National","3 wk ahead",-1.21066179247673,4,0.298,15
+"HHS Region 1","3 wk ahead",-3.29683736633791,4,0.037,15
+"HHS Region 2","3 wk ahead",-1.05268335677971,4,0.349,15
+"HHS Region 3","3 wk ahead",-0.874669057183336,4,0.417,15
+"HHS Region 4","3 wk ahead",-2.09557092360972,4,0.123,15
+"HHS Region 5","3 wk ahead",-0.429245636773568,4,0.651,15
+"HHS Region 6","3 wk ahead",-3.81671282562382,4,0.022,15
+"HHS Region 7","3 wk ahead",-1.41469383564159,4,0.243,15
+"HHS Region 8","3 wk ahead",-3.2188758248682,4,0.04,15
+"HHS Region 9","3 wk ahead",-0.390084006069862,4,0.677,15
+"HHS Region 10","3 wk ahead",-1.3130438993803,4,0.269,15
+"US National","4 wk ahead",-1.52785792544168,4,0.217,15
+"HHS Region 1","4 wk ahead",-1.75446368448436,4,0.173,15
+"HHS Region 2","4 wk ahead",-1.19402247347277,4,0.303,15
+"HHS Region 3","4 wk ahead",-1.39432653281715,4,0.248,15
+"HHS Region 4","4 wk ahead",-1.98050159382493,4,0.138,15
+"HHS Region 5","4 wk ahead",-0.525939261576039,4,0.591,15
+"HHS Region 6","4 wk ahead",-3.29683736633791,4,0.037,15
+"HHS Region 7","4 wk ahead",-2.03255795578099,4,0.131,15
+"HHS Region 8","4 wk ahead",-3.72970144863419,4,0.024,15
+"HHS Region 9","4 wk ahead",-0.499226487922639,4,0.607,15
+"HHS Region 10","4 wk ahead",-1.4961092271271,4,0.224,15
+"HHS Region 1","Season peak week",-0.22145741337408,5,0.801350048216007,16
+"HHS Region 10","Season peak week",-2.34088963567555,5,0.0962419798350137,16
+"HHS Region 2","Season peak week",-0.930038281879747,5,0.394538606403013,16
+"HHS Region 3","Season peak week",-0.0671258447025219,5,0.935077519379845,16
+"HHS Region 4","Season peak week",-0.080665372699881,5,0.92250233426704,16
+"HHS Region 5","Season onset",0,5,1,16
+"HHS Region 5","Season peak week",-2.15948424935337,5,0.115384615384615,16
+"HHS Region 6","Season onset",0,5,1,16
+"HHS Region 6","Season peak week",-0.890542406339626,5,0.410433070866142,16
+"HHS Region 7","Season peak week",-2.79069307570577,5,0.0613786591123702,16
+"HHS Region 8","Season peak week",-2.48686551427333,5,0.0831702544031311,16
+"HHS Region 9","Season peak week",-0.188636855898428,5,0.828087167070217,16
+"US National","Season peak week",-0.330907192189821,5,0.718271827182718,16
+"HHS Region 1","Season peak percentage",-2.41911890925,5,0.089,16
+"HHS Region 10","Season peak percentage",-1.75446368448436,5,0.173,16
+"HHS Region 2","Season peak percentage",-0.605136303237232,5,0.546,16
+"HHS Region 3","Season peak percentage",-0.889162064485903,5,0.411,16
+"HHS Region 4","Season peak percentage",-1.08175517160169,5,0.339,16
+"HHS Region 5","Season peak percentage",-1.08470938349912,5,0.338,16
+"HHS Region 6","Season peak percentage",-2.37515578582888,5,0.093,16
+"HHS Region 7","Season peak percentage",-1.56064774826467,5,0.21,16
+"HHS Region 8","Season peak percentage",-0.075801713416282,5,0.927,16
+"HHS Region 9","Season peak percentage",-0.16960278438618,5,0.844,16
+"US National","Season peak percentage",-0.63487827243597,5,0.53,16
+"US National","1 wk ahead",-0.763569644856491,5,0.466,16
+"HHS Region 1","1 wk ahead",-0.886731929632611,5,0.412,16
+"HHS Region 2","1 wk ahead",-0.794073099149906,5,0.452,16
+"HHS Region 3","1 wk ahead",-0.903868211875598,5,0.405,16
+"HHS Region 4","1 wk ahead",-1.95899538860397,5,0.141,16
+"HHS Region 5","1 wk ahead",-0.214431610712188,5,0.807,16
+"HHS Region 6","1 wk ahead",-2.84631176810213,5,0.0580580580580581,16
+"HHS Region 7","1 wk ahead",-0.884307686021104,5,0.413,16
+"HHS Region 8","1 wk ahead",-1.40649706843741,5,0.245,16
+"HHS Region 9","1 wk ahead",-0.218156009803171,5,0.804,16
+"HHS Region 10","1 wk ahead",-1.0300194972025,5,0.357,16
+"US National","2 wk ahead",-0.689155159290408,5,0.502,16
+"HHS Region 1","2 wk ahead",-2.52572864430826,5,0.08,16
+"HHS Region 2","2 wk ahead",-1.10563690360507,5,0.331,16
+"HHS Region 3","2 wk ahead",-0.889162064485903,5,0.411,16
+"HHS Region 4","2 wk ahead",-1.12701176318981,5,0.324,16
+"HHS Region 5","2 wk ahead",-0.265268477614881,5,0.767,16
+"HHS Region 6","2 wk ahead",-3.77025906038231,5,0.0230460921843688,16
+"HHS Region 7","2 wk ahead",-1.23100147671386,5,0.292,16
+"HHS Region 8","2 wk ahead",-2.3538783873816,5,0.095,16
+"HHS Region 9","2 wk ahead",-0.218156009803171,5,0.804,16
+"HHS Region 10","2 wk ahead",-1.20064501423326,5,0.301,16
+"US National","3 wk ahead",-1.22758266996507,5,0.293,16
+"HHS Region 1","3 wk ahead",-1.19402247347277,5,0.303,16
+"HHS Region 2","3 wk ahead",-1.18417017702976,5,0.306,16
+"HHS Region 3","3 wk ahead",-1.12085789761543,5,0.326,16
+"HHS Region 4","3 wk ahead",-1.39836694235416,5,0.247,16
+"HHS Region 5","3 wk ahead",-0.553385238184787,5,0.575,16
+"HHS Region 6","3 wk ahead",-3.5055573969864,5,0.03003003003003,16
+"HHS Region 7","3 wk ahead",-2.14558134418438,5,0.117,16
+"HHS Region 8","3 wk ahead",-3.44201937618241,5,0.032,16
+"HHS Region 9","3 wk ahead",-0.365283318475332,5,0.694,16
+"HHS Region 10","3 wk ahead",-1.46533756846034,5,0.231,16
+"US National","4 wk ahead",-1.24479479884619,5,0.288,16
+"HHS Region 1","4 wk ahead",-0.898942093539542,5,0.407,16
+"HHS Region 2","4 wk ahead",-1.04982212449868,5,0.35,16
+"HHS Region 3","4 wk ahead",-1.63475572041839,5,0.195,16
+"HHS Region 4","4 wk ahead",-1.16155208844198,5,0.313,16
+"HHS Region 5","4 wk ahead",-0.791863153499103,5,0.453,16
+"HHS Region 6","4 wk ahead",-3.72870094830061,5,0.024024024024024,16
+"HHS Region 7","4 wk ahead",-2.36446049671213,5,0.094,16
+"HHS Region 8","4 wk ahead",-4.13516655674236,5,0.016,16
+"HHS Region 9","4 wk ahead",-0.841647188878389,5,0.431,16
+"HHS Region 10","4 wk ahead",-1.45671682541644,5,0.233,16
+"HHS Region 1","Season peak week",-1.31643606335651,6,0.26808905380334,17
+"HHS Region 10","Season peak week",-1.99798059522086,6,0.135608856088561,17
+"HHS Region 2","Season peak week",-0.484125008462945,6,0.616236162361624,17
+"HHS Region 3","Season peak week",-0.635988766719997,6,0.529411764705882,17
+"HHS Region 4","Season peak week",-0.157264976956618,6,0.854477611940298,17
+"HHS Region 5","Season peak week",-2.07674005421968,6,0.125338142470694,17
+"HHS Region 6","Season peak week",-0.163806156871116,6,0.848906560636182,17
+"HHS Region 7","Season peak week",-2.7293895171372,6,0.0652591170825337,17
+"HHS Region 8","Season peak week",-1.783977328786,6,0.16796875,17
+"HHS Region 9","Season peak week",-0.952048238102817,6,0.38594969644406,17
+"US National","Season peak week",-0.176395097056305,6,0.838286713286713,17
+"HHS Region 1","Season peak percentage",-0.491022996469811,6,0.612,17
+"HHS Region 10","Season peak percentage",-2.52572864430826,6,0.08,17
+"HHS Region 2","Season peak percentage",-0.572701027484078,6,0.564,17
+"HHS Region 3","Season peak percentage",-0.196014883925957,6,0.822,17
+"HHS Region 4","Season peak percentage",-0.29169009384932,6,0.747,17
+"HHS Region 5","Season peak percentage",-1.4740332754279,6,0.229,17
+"HHS Region 6","Season peak percentage",-0.365283318475332,6,0.694,17
+"HHS Region 7","Season peak percentage",-1.79576749062559,6,0.166,17
+"HHS Region 8","Season peak percentage",-0.0899247075279871,6,0.914,17
+"HHS Region 9","Season peak percentage",-0.0779615414697118,6,0.925,17
+"US National","Season peak percentage",-0.151986356997882,6,0.859,17
+"US National","1 wk ahead",-0.465215112513938,6,0.628,17
+"HHS Region 1","1 wk ahead",-0.470003629245736,6,0.625,17
+"HHS Region 2","1 wk ahead",-0.755022584278033,6,0.47,17
+"HHS Region 3","1 wk ahead",-0.789658080940789,6,0.454,17
+"HHS Region 4","1 wk ahead",-0.886731929632611,6,0.412,17
+"HHS Region 5","1 wk ahead",-0.0921152889078056,6,0.912,17
+"HHS Region 6","1 wk ahead",-3.44101887584883,6,0.032032032032032,17
+"HHS Region 7","1 wk ahead",-1.00239343092757,6,0.367,17
+"HHS Region 8","1 wk ahead",-1.83885107676191,6,0.159,17
+"HHS Region 9","1 wk ahead",-0.970219073899711,6,0.379,17
+"HHS Region 10","1 wk ahead",-2.50103603171788,6,0.082,17
+"US National","2 wk ahead",-0.610645959048202,6,0.543,17
+"HHS Region 1","2 wk ahead",-0.699165252885508,6,0.497,17
+"HHS Region 2","2 wk ahead",-0.975510091534126,6,0.377,17
+"HHS Region 3","2 wk ahead",-0.894040122939335,6,0.409,17
+"HHS Region 4","2 wk ahead",-0.853315932712767,6,0.426,17
+"HHS Region 5","2 wk ahead",-0.631111789640493,6,0.532,17
+"HHS Region 6","2 wk ahead",-2.76161604357031,6,0.0631895687061183,17
+"HHS Region 7","2 wk ahead",-2.04794287462046,6,0.129,17
+"HHS Region 8","2 wk ahead",-2.70306265959117,6,0.067,17
+"HHS Region 9","2 wk ahead",-0.588787165235703,6,0.555,17
+"HHS Region 10","2 wk ahead",-1.63475572041839,6,0.195,17
+"US National","3 wk ahead",-0.765717873394781,6,0.465,17
+"HHS Region 1","3 wk ahead",-0.62548853208613,6,0.535,17
+"HHS Region 2","3 wk ahead",-0.967584026261706,6,0.38,17
+"HHS Region 3","3 wk ahead",-1.29828348379718,6,0.273,17
+"HHS Region 4","3 wk ahead",-0.936493439191674,6,0.392,17
+"HHS Region 5","3 wk ahead",-0.891598119283784,6,0.41,17
+"HHS Region 6","3 wk ahead",-3.07711187982237,6,0.0460921843687375,17
+"HHS Region 7","3 wk ahead",-2.14558134418438,6,0.117,17
+"HHS Region 8","3 wk ahead",-3.41124771751566,6,0.033,17
+"HHS Region 9","3 wk ahead",-1.0700248318162,6,0.343,17
+"HHS Region 10","3 wk ahead",-1.54177926396029,6,0.214,17
+"US National","4 wk ahead",-0.891598119283784,6,0.41,17
+"HHS Region 1","4 wk ahead",-0.721546655081643,6,0.486,17
+"HHS Region 2","4 wk ahead",-0.999672340813206,6,0.368,17
+"HHS Region 3","4 wk ahead",-1.52785792544168,6,0.217,17
+"HHS Region 4","4 wk ahead",-0.99695863494161,6,0.369,17
+"HHS Region 5","4 wk ahead",-1.53247687129797,6,0.216,17
+"HHS Region 6","4 wk ahead",-3.32323584019244,6,0.0360360360360361,17
+"HHS Region 7","4 wk ahead",-2.99573227355399,6,0.05,17
+"HHS Region 8","4 wk ahead",-4.01738352108597,6,0.018,17
+"HHS Region 9","4 wk ahead",-1.42295834549148,6,0.241,17
+"HHS Region 10","4 wk ahead",-2.84731226843572,6,0.058,17
+"HHS Region 1","Season peak week",-0.485985484766183,7,0.615090735434575,18
+"HHS Region 10","Season peak week",-2.19146087261947,7,0.111753371868979,18
+"HHS Region 2","Season peak week",-0.558916405694534,7,0.571828358208956,18
+"HHS Region 3","Season peak week",-0.0722970991805016,7,0.930254476908577,18
+"HHS Region 4","Season peak week",-0.198544392300841,7,0.81992337164751,18
+"HHS Region 5","Season peak week",-1.97113334518467,7,0.13929889298893,18
+"HHS Region 6","Season peak week",-0.208701983474059,7,0.81163708086785,18
+"HHS Region 7","Season peak week",-2.9041650800285,7,0.0547945205479453,18
+"HHS Region 8","Season peak week",-0.0368751295915609,7,0.963796477495108,18
+"HHS Region 9","Season peak week",-0.0407496591735561,7,0.960069444444445,18
+"US National","Season peak week",-0.24725196236626,7,0.780943900267142,18
+"HHS Region 1","Season peak percentage",-0.18152187662339,7,0.834,18
+"HHS Region 10","Season peak percentage",-1.65025990695436,7,0.192,18
+"HHS Region 2","Season peak percentage",-0.576253429088446,7,0.562,18
+"HHS Region 3","Season peak percentage",-0.179126665897435,7,0.836,18
+"HHS Region 4","Season peak percentage",-0.187535123846842,7,0.829,18
+"HHS Region 5","Season peak percentage",-1.48280526150073,7,0.227,18
+"HHS Region 6","Season peak percentage",-0.388607991041741,7,0.678,18
+"HHS Region 7","Season peak percentage",-0.207024169434327,7,0.813,18
+"HHS Region 8","Season peak percentage",-0.075801713416282,7,0.927,18
+"HHS Region 9","Season peak percentage",-0.0779615414697118,7,0.925,18
+"US National","Season peak percentage",-0.16369609267079,7,0.849,18
+"US National","1 wk ahead",-0.281037529733112,7,0.755,18
+"HHS Region 1","1 wk ahead",-0.505838082254952,7,0.603,18
+"HHS Region 2","1 wk ahead",-0.659712404473708,7,0.517,18
+"HHS Region 3","1 wk ahead",-0.62548853208613,7,0.535,18
+"HHS Region 4","1 wk ahead",-0.553385238184787,7,0.575,18
+"HHS Region 5","1 wk ahead",-0.328504066972036,7,0.72,18
+"HHS Region 6","1 wk ahead",-2.06156618985287,7,0.127254509018036,18
+"HHS Region 7","1 wk ahead",-1.2837377727948,7,0.277,18
+"HHS Region 8","1 wk ahead",-2.13707065451647,7,0.118,18
+"HHS Region 9","1 wk ahead",-0.16369609267079,7,0.849,18
+"HHS Region 10","1 wk ahead",-0.752897184965719,7,0.471,18
+"US National","2 wk ahead",-0.515838165589535,7,0.597,18
+"HHS Region 1","2 wk ahead",-0.486133011175619,7,0.615,18
+"HHS Region 2","2 wk ahead",-0.964955903855436,7,0.381,18
+"HHS Region 3","2 wk ahead",-0.962334670375562,7,0.382,18
+"HHS Region 4","2 wk ahead",-0.941608539858445,7,0.39,18
+"HHS Region 5","2 wk ahead",-0.677273831403655,7,0.508,18
+"HHS Region 6","2 wk ahead",-2.82620981367888,7,0.0592369477911647,18
+"HHS Region 7","2 wk ahead",-1.80180980508156,7,0.165,18
+"HHS Region 8","2 wk ahead",-2.68824757380603,7,0.068,18
+"HHS Region 9","2 wk ahead",-0.52932909533055,7,0.589,18
+"HHS Region 10","2 wk ahead",-0.825536368605691,7,0.438,18
+"US National","3 wk ahead",-0.697155201957484,7,0.498,18
+"HHS Region 1","3 wk ahead",-0.663588378318401,7,0.515,18
+"HHS Region 2","3 wk ahead",-1.04412410338404,7,0.352,18
+"HHS Region 3","3 wk ahead",-1.17441400208439,7,0.309,18
+"HHS Region 4","3 wk ahead",-0.869884359059999,7,0.419,18
+"HHS Region 5","3 wk ahead",-1.6094379124341,7,0.2,18
+"HHS Region 6","3 wk ahead",-2.70206215925759,7,0.0670670670670671,18
+"HHS Region 7","3 wk ahead",-2.61729583783375,7,0.073,18
+"HHS Region 8","3 wk ahead",-3.77226106305299,7,0.023,18
+"HHS Region 9","3 wk ahead",-1.10262031006565,7,0.332,18
+"HHS Region 10","3 wk ahead",-1.65548185093551,7,0.191,18
+"US National","4 wk ahead",-0.776528789498996,7,0.46,18
+"HHS Region 1","4 wk ahead",-0.671385688778433,7,0.511,18
+"HHS Region 2","4 wk ahead",-1.03282454813011,7,0.356,18
+"HHS Region 3","4 wk ahead",-1.88387475813586,7,0.152,18
+"HHS Region 4","4 wk ahead",-0.913793851675568,7,0.401,18
+"HHS Region 5","4 wk ahead",-2.67364877438488,7,0.069,18
+"HHS Region 6","4 wk ahead",-2.65825953659919,7,0.0700700700700701,18
+"HHS Region 7","4 wk ahead",-4.01738352108597,7,0.018,18
+"HHS Region 8","4 wk ahead",-3.61191841297781,7,0.027,18
+"HHS Region 9","4 wk ahead",-1.36257783450257,7,0.256,18
+"HHS Region 10","4 wk ahead",-3.27016911925575,7,0.038,18
+"HHS Region 1","Season peak week",-0.374010155940278,8,0.68796992481203,19
+"HHS Region 10","Season peak week",-2.05297496849167,8,0.128352490421456,19
+"HHS Region 2","Season peak week",-0.647579092650435,8,0.523311132254995,19
+"HHS Region 3","Season peak week",-0.0836307990724108,8,0.919770773638969,19
+"HHS Region 4","Season peak week",-0.224113954107488,8,0.799224054316198,19
+"HHS Region 5","Season peak week",-1.47513994253938,8,0.22874671340929,19
+"HHS Region 6","Season peak week",-0.307087164461469,8,0.73558648111332,19
+"HHS Region 7","Season peak week",-3.25612220371777,8,0.0385375494071146,19
+"HHS Region 8","Season peak week",-0.0329864989963065,8,0.967551622418879,19
+"HHS Region 9","Season peak week",-0.0489776231633259,8,0.952202436738519,19
+"US National","Season peak week",-0.486192356595654,8,0.614963503649635,19
+"HHS Region 1","Season peak percentage",-0.150822889734584,8,0.86,19
+"HHS Region 10","Season peak percentage",-1.89047544216721,8,0.151,19
+"HHS Region 2","Season peak percentage",-0.365283318475332,8,0.694,19
+"HHS Region 3","Season peak percentage",-0.174353387144778,8,0.84,19
+"HHS Region 4","Season peak percentage",-0.105360515657826,8,0.9,19
+"HHS Region 5","Season peak percentage",-0.823255865906966,8,0.439,19
+"HHS Region 6","Season peak percentage",-0.258770728957361,8,0.772,19
+"HHS Region 7","Season peak percentage",-0.115410851511328,8,0.891,19
+"HHS Region 8","Season peak percentage",-10,8,4.53999297624849e-05,19
+"HHS Region 9","Season peak percentage",-0.0534007767271152,8,0.948,19
+"US National","Season peak percentage",-0.103140758919513,8,0.902,19
+"US National","1 wk ahead",-0.265268477614881,8,0.767,19
+"HHS Region 1","1 wk ahead",-0.352398387171472,8,0.703,19
+"HHS Region 2","1 wk ahead",-0.770028224895903,8,0.463,19
+"HHS Region 3","1 wk ahead",-0.409473129505703,8,0.664,19
+"HHS Region 4","1 wk ahead",-0.814185508937001,8,0.443,19
+"HHS Region 5","1 wk ahead",-0.209487224866724,8,0.811,19
+"HHS Region 6","1 wk ahead",-2.68624557113536,8,0.0681362725450903,19
+"HHS Region 7","1 wk ahead",-1.08767234862978,8,0.337,19
+"HHS Region 8","1 wk ahead",-0.951917909517306,8,0.386,19
+"HHS Region 9","1 wk ahead",-0.229413164327805,8,0.795,19
+"HHS Region 10","1 wk ahead",-0.655851395816248,8,0.519,19
+"US National","2 wk ahead",-0.441610554744518,8,0.643,19
+"HHS Region 1","2 wk ahead",-0.515838165589535,8,0.597,19
+"HHS Region 2","2 wk ahead",-0.891598119283784,8,0.41,19
+"HHS Region 3","2 wk ahead",-0.748659890490204,8,0.473,19
+"HHS Region 4","2 wk ahead",-0.798507696217772,8,0.45,19
+"HHS Region 5","2 wk ahead",-0.791863153499103,8,0.453,19
+"HHS Region 6","2 wk ahead",-2.39489376979461,8,0.0911823647294591,19
+"HHS Region 7","2 wk ahead",-2.52572864430826,8,0.08,19
+"HHS Region 8","2 wk ahead",-2.2730262907525,8,0.103,19
+"HHS Region 9","2 wk ahead",-1.04128722204884,8,0.353,19
+"HHS Region 10","2 wk ahead",-1.59948758158093,8,0.202,19
+"US National","3 wk ahead",-0.610645959048202,8,0.543,19
+"HHS Region 1","3 wk ahead",-0.481266821524446,8,0.618,19
+"HHS Region 2","3 wk ahead",-0.959720289801491,8,0.383,19
+"HHS Region 3","3 wk ahead",-1.49165487677772,8,0.225,19
+"HHS Region 4","3 wk ahead",-0.867500567704723,8,0.42,19
+"HHS Region 5","3 wk ahead",-1.83885107676191,8,0.159,19
+"HHS Region 6","3 wk ahead",-2.60369018577797,8,0.074,19
+"HHS Region 7","3 wk ahead",-3.86323284125871,8,0.021,19
+"HHS Region 8","3 wk ahead",-2.7333680090865,8,0.065,19
+"HHS Region 9","3 wk ahead",-1.56542102701733,8,0.209,19
+"HHS Region 10","3 wk ahead",-3.47376807449699,8,0.031,19
+"US National","4 wk ahead",-0.638658995275876,8,0.528,19
+"HHS Region 1","4 wk ahead",-0.665532013526972,8,0.514,19
+"HHS Region 2","4 wk ahead",-0.946749939358864,8,0.388,19
+"HHS Region 3","4 wk ahead",-1.15201306539522,8,0.316,19
+"HHS Region 4","4 wk ahead",-0.959720289801491,8,0.383,19
+"HHS Region 5","4 wk ahead",-1.65548185093551,8,0.191,19
+"HHS Region 6","4 wk ahead",-1.72036947314138,8,0.179,19
+"HHS Region 7","4 wk ahead",-4.3428059215206,8,0.013,19
+"HHS Region 8","4 wk ahead",-2.04022082852655,8,0.13,19
+"HHS Region 9","4 wk ahead",-2.46510402249182,8,0.085,19
+"HHS Region 10","4 wk ahead",-3.17008566069877,8,0.042,19
+"HHS Region 1","Season peak week",-0.264986516249306,9,0.76721629485936,20
+"HHS Region 10","Season peak week",-1.54076529715485,9,0.214217098943324,20
+"HHS Region 2","Season peak week",-0.333956025093306,9,0.71608527131783,20
+"HHS Region 3","Season peak week",-0.150731873078473,9,0.860078277886497,20
+"HHS Region 4","Season peak week",-0.0345211943682332,9,0.966067864271457,20
+"HHS Region 5","Season peak week",-0.998400138263579,9,0.368468468468468,20
+"HHS Region 6","Season peak week",-0.26864638115404,9,0.76441351888668,20
+"HHS Region 7","Season peak week",-2.04307389750896,9,0.129629629629629,20
+"HHS Region 8","Season peak week",-0.0935260580108231,9,0.910714285714286,20
+"HHS Region 9","Season peak week",-0.0490834623090916,9,0.952101661779081,20
+"US National","Season peak week",-0.203444326427398,9,0.815915627996165,20
+"HHS Region 1","Season peak percentage",-0.114289146402128,9,0.892,20
+"HHS Region 10","Season peak percentage",-2.10373423424888,9,0.122,20
+"HHS Region 2","Season peak percentage",-0.183922838160928,9,0.832,20
+"HHS Region 3","Season peak percentage",-0.0682788407532944,9,0.934,20
+"HHS Region 4","Season peak percentage",-0.0222456089473197,9,0.978,20
+"HHS Region 5","Season peak percentage",-0.059750004405774,9,0.942,20
+"HHS Region 6","Season peak percentage",-0.233193887167711,9,0.792,20
+"HHS Region 7","Season peak percentage",-0.0555127099302587,9,0.946,20
+"HHS Region 8","Season peak percentage",-0.0629397997738741,9,0.939,20
+"HHS Region 9","Season peak percentage",-0.0502412164367468,9,0.951,20
+"US National","Season peak percentage",-0.0345914447696191,9,0.966,20
+"US National","1 wk ahead",-0.198450938723838,9,0.82,20
+"HHS Region 1","1 wk ahead",-0.325730140089311,9,0.722,20
+"HHS Region 2","1 wk ahead",-0.517514611916787,9,0.596,20
+"HHS Region 3","1 wk ahead",-0.468404907882039,9,0.626,20
+"HHS Region 4","1 wk ahead",-0.355247391947547,9,0.701,20
+"HHS Region 5","1 wk ahead",-0.234457311214483,9,0.791,20
+"HHS Region 6","1 wk ahead",-1.901806970366,9,0.149298597194389,20
+"HHS Region 7","1 wk ahead",-1.72597172869005,9,0.178,20
+"HHS Region 8","1 wk ahead",-2.41911890925,9,0.089,20
+"HHS Region 9","1 wk ahead",-0.193584749072665,9,0.824,20
+"HHS Region 10","1 wk ahead",-1.20397280432594,9,0.3,20
+"US National","2 wk ahead",-0.432322562278047,9,0.649,20
+"HHS Region 1","2 wk ahead",-0.429245636773568,9,0.651,20
+"HHS Region 2","2 wk ahead",-0.740238788093796,9,0.477,20
+"HHS Region 3","2 wk ahead",-1.53711725085447,9,0.215,20
+"HHS Region 4","2 wk ahead",-0.569161200778954,9,0.566,20
+"HHS Region 5","2 wk ahead",-1.19402247347277,9,0.303,20
+"HHS Region 6","2 wk ahead",-2.06256769218996,9,0.127127127127127,20
+"HHS Region 7","2 wk ahead",-3.86323284125871,9,0.021,20
+"HHS Region 8","2 wk ahead",-2.65926003693278,9,0.07,20
+"HHS Region 9","2 wk ahead",-0.778705068921592,9,0.459,20
+"HHS Region 10","2 wk ahead",-3.35240721749272,9,0.035,20
+"US National","3 wk ahead",-0.509160344446929,9,0.601,20
+"HHS Region 1","3 wk ahead",-0.473208760194684,9,0.623,20
+"HHS Region 2","3 wk ahead",-0.865122445299756,9,0.421,20
+"HHS Region 3","3 wk ahead",-1.14256417619729,9,0.319,20
+"HHS Region 4","3 wk ahead",-0.636766847123838,9,0.529,20
+"HHS Region 5","3 wk ahead",-1.09961278900169,9,0.333,20
+"HHS Region 6","3 wk ahead",-1.56064774826467,9,0.21,20
+"HHS Region 7","3 wk ahead",-3.81671282562382,9,0.022,20
+"HHS Region 8","3 wk ahead",-1.98050159382493,9,0.138,20
+"HHS Region 9","3 wk ahead",-2.07147337203066,9,0.126,20
+"HHS Region 10","3 wk ahead",-3.2188758248682,9,0.04,20
+"US National","4 wk ahead",-0.61803970807314,9,0.539,20
+"HHS Region 1","4 wk ahead",-0.750776293396582,9,0.472,20
+"HHS Region 2","4 wk ahead",-0.884307686021104,9,0.413,20
+"HHS Region 3","4 wk ahead",-0.84629836005412,9,0.429,20
+"HHS Region 4","4 wk ahead",-0.63487827243597,9,0.53,20
+"HHS Region 5","4 wk ahead",-0.638658995275876,9,0.528,20
+"HHS Region 6","4 wk ahead",-1.30933331998376,9,0.27,20
+"HHS Region 7","4 wk ahead",-3.50655789731998,9,0.03,20
+"HHS Region 8","4 wk ahead",-1.42711635564015,9,0.24,20
+"HHS Region 9","4 wk ahead",-1.51412773262978,9,0.22,20
+"HHS Region 10","4 wk ahead",-1.10866262452161,9,0.33,20
+"HHS Region 1","Season peak week",-0.211822221190652,10,0.809108527131783,21
+"HHS Region 10","Season peak week",-0.0356473387302373,10,0.964980544747082,21
+"HHS Region 2","Season peak week",-0.163914927863155,10,0.848814229249012,21
+"HHS Region 3","Season peak week",-0.109085730878468,10,0.896653543307087,21
+"HHS Region 4","Season peak week",-0.00904074465214907,10,0.991,21
+"HHS Region 5","Season peak week",-0.0227282510775565,10,0.97752808988764,21
+"HHS Region 6","Season peak week",-0.167144365889247,10,0.846077457795432,21
+"HHS Region 7","Season peak week",-0.00496772010193444,10,0.995044598612488,21
+"HHS Region 8","Season peak week",-10,10,4.53999297624849e-05,21
+"HHS Region 9","Season peak week",-0.0604382574736063,10,0.941351888667992,21
+"US National","Season peak week",-0.105574625496991,10,0.89980732177264,21
+"HHS Region 1","Season peak percentage",-0.07149600170507,10,0.931,21
+"HHS Region 10","Season peak percentage",-0.0943106794712413,10,0.91,21
+"HHS Region 2","Season peak percentage",-0.102032725565152,10,0.903,21
+"HHS Region 3","Season peak percentage",-0.0491902441907717,10,0.952,21
+"HHS Region 4","Season peak percentage",-0.00702461493696447,10,0.993,21
+"HHS Region 5","Season peak percentage",-0.0171461588349705,10,0.983,21
+"HHS Region 6","Season peak percentage",-0.145025772050258,10,0.865,21
+"HHS Region 7","Season peak percentage",-10,10,4.53999297624849e-05,21
+"HHS Region 8","Season peak percentage",-0.0693500781347932,10,0.933,21
+"HHS Region 9","Season peak percentage",-0.028399474521698,10,0.972,21
+"US National","Season peak percentage",-0.0222456089473196,10,0.978,21
+"US National","1 wk ahead",-0.209487224866724,10,0.811,21
+"HHS Region 1","1 wk ahead",-0.302457358033935,10,0.739,21
+"HHS Region 2","1 wk ahead",-0.484508315448617,10,0.616,21
+"HHS Region 3","1 wk ahead",-0.798507696217772,10,0.45,21
+"HHS Region 4","1 wk ahead",-0.285018955032297,10,0.752,21
+"HHS Region 5","1 wk ahead",-0.874669057183336,10,0.417,21
+"HHS Region 6","1 wk ahead",-1.88187275546519,10,0.152304609218437,21
+"HHS Region 7","1 wk ahead",-1.54177926396029,10,0.214,21
+"HHS Region 8","1 wk ahead",-0.908818717035454,10,0.403,21
+"HHS Region 9","1 wk ahead",-0.191160505461159,10,0.826,21
+"HHS Region 10","1 wk ahead",-1.70925824771631,10,0.181,21
+"US National","2 wk ahead",-0.440056552877783,10,0.644,21
+"HHS Region 1","2 wk ahead",-0.433864582629862,10,0.648,21
+"HHS Region 2","2 wk ahead",-0.675307262431614,10,0.509,21
+"HHS Region 3","2 wk ahead",-0.794073099149906,10,0.452,21
+"HHS Region 4","2 wk ahead",-0.466808738349216,10,0.627,21
+"HHS Region 5","2 wk ahead",-0.818710403535291,10,0.441,21
+"HHS Region 6","2 wk ahead",-1.27554299682719,10,0.279279279279279,21
+"HHS Region 7","2 wk ahead",-2.60369018577797,10,0.074,21
+"HHS Region 8","2 wk ahead",-0.928869514081015,10,0.395,21
+"HHS Region 9","2 wk ahead",-1.8578992717326,10,0.156,21
+"HHS Region 10","2 wk ahead",-2.1982250776698,10,0.111,21
+"US National","3 wk ahead",-0.736054681571222,10,0.479,21
+"HHS Region 1","3 wk ahead",-0.657780036722654,10,0.518,21
+"HHS Region 2","3 wk ahead",-0.7339691750802,10,0.48,21
+"HHS Region 3","3 wk ahead",-0.713349887877465,10,0.49,21
+"HHS Region 4","3 wk ahead",-0.534435489405125,10,0.586,21
+"HHS Region 5","3 wk ahead",-0.522560879984412,10,0.593,21
+"HHS Region 6","3 wk ahead",-1.22758266996507,10,0.293,21
+"HHS Region 7","3 wk ahead",-2.67364877438488,10,0.069,21
+"HHS Region 8","3 wk ahead",-0.772190387900398,10,0.462,21
+"HHS Region 9","3 wk ahead",-1.25176346816228,10,0.286,21
+"HHS Region 10","3 wk ahead",-0.832409247893453,10,0.435,21
+"US National","4 wk ahead",-0.827822083886547,10,0.437,21
+"HHS Region 1","4 wk ahead",-0.616186139423817,10,0.54,21
+"HHS Region 2","4 wk ahead",-0.75928698306449,10,0.468,21
+"HHS Region 3","4 wk ahead",-0.487760350834995,10,0.614,21
+"HHS Region 4","4 wk ahead",-0.586986984731555,10,0.556,21
+"HHS Region 5","4 wk ahead",-0.338273858567841,10,0.713,21
+"HHS Region 6","4 wk ahead",-1.00785792539965,10,0.365,21
+"HHS Region 7","4 wk ahead",-1.22417551164346,10,0.294,21
+"HHS Region 8","4 wk ahead",-1.3704210119636,10,0.254,21
+"HHS Region 9","4 wk ahead",-1.74669797709693,10,0.17434869739479,21
+"HHS Region 10","4 wk ahead",-0.358104536748327,10,0.699,21
+"HHS Region 1","Season peak week",-0.179763255683984,11,0.835467980295567,22
+"HHS Region 10","Season peak week",-0.0358961769925764,11,0.964740450538688,22
+"HHS Region 2","Season peak week",-0.140507006360948,11,0.868917576961271,22
+"HHS Region 3","Season peak week",-0.0531279168389737,11,0.948258706467662,22
+"HHS Region 4","Season peak week",-0.0060241146033809,11,0.993993993993994,22
+"HHS Region 5","Season peak week",-0.0357698839955477,11,0.964862298195632,22
+"HHS Region 6","Season peak week",-0.0973061884510392,11,0.90727816550349,22
+"HHS Region 7","Season peak week",-0.0120121564480037,11,0.988059701492537,22
+"HHS Region 8","Season peak week",-0.0428637044317824,11,0.958041958041958,22
+"HHS Region 9","Season peak week",-0.095212528322386,11,0.9091796875,22
+"US National","Season peak week",-0.0620432804969267,11,0.939842209072978,22
+"HHS Region 1","Season peak percentage",-0.0693500781347933,11,0.933,22
+"HHS Region 10","Season peak percentage",-0.0998203352822109,11,0.905,22
+"HHS Region 2","Season peak percentage",-0.08446915662645,11,0.919,22
+"HHS Region 3","Season peak percentage",-0.0202027073175195,11,0.98,22
+"HHS Region 4","Season peak percentage",-0.00601807232556302,11,0.994,22
+"HHS Region 5","Season peak percentage",-0.0429075010112765,11,0.958,22
+"HHS Region 6","Season peak percentage",-0.0822952427268302,11,0.921,22
+"HHS Region 7","Season peak percentage",-10,11,4.53999297624849e-05,22
+"HHS Region 8","Season peak percentage",-0.027371196796132,11,0.973,22
+"HHS Region 9","Season peak percentage",-0.0366639843715914,11,0.964,22
+"US National","Season peak percentage",-0.00601807232556302,11,0.994,22
+"US National","1 wk ahead",-0.484508315448617,11,0.616,22
+"HHS Region 1","1 wk ahead",-0.29975465368605,11,0.741,22
+"HHS Region 2","1 wk ahead",-0.487760350834995,11,0.614,22
+"HHS Region 3","1 wk ahead",-0.32989392126109,11,0.719,22
+"HHS Region 4","1 wk ahead",-0.218156009803171,11,0.804,22
+"HHS Region 5","1 wk ahead",-0.187535123846842,11,0.829,22
+"HHS Region 6","1 wk ahead",-1.06131650392441,11,0.346,22
+"HHS Region 7","1 wk ahead",-1.14256417619729,11,0.319,22
+"HHS Region 8","1 wk ahead",-0.576253429088446,11,0.562,22
+"HHS Region 9","1 wk ahead",-0.293029678778376,11,0.746,22
+"HHS Region 10","1 wk ahead",-0.999672340813206,11,0.368,22
+"US National","2 wk ahead",-0.972861083362549,11,0.378,22
+"HHS Region 1","2 wk ahead",-0.470003629245736,11,0.625,22
+"HHS Region 2","2 wk ahead",-0.707246104939447,11,0.493,22
+"HHS Region 3","2 wk ahead",-0.465215112513938,11,0.628,22
+"HHS Region 4","2 wk ahead",-0.373966441048793,11,0.688,22
+"HHS Region 5","2 wk ahead",-0.275753501586507,11,0.759,22
+"HHS Region 6","2 wk ahead",-0.999672340813206,11,0.368,22
+"HHS Region 7","2 wk ahead",-1.44816976483798,11,0.235,22
+"HHS Region 8","2 wk ahead",-0.653926467406664,11,0.52,22
+"HHS Region 9","2 wk ahead",-0.52932909533055,11,0.589,22
+"HHS Region 10","2 wk ahead",-0.627359440021942,11,0.534,22
+"US National","3 wk ahead",-1.02443289049386,11,0.359,22
+"HHS Region 1","3 wk ahead",-0.468404907882039,11,0.626,22
+"HHS Region 2","3 wk ahead",-0.725670372265505,11,0.484,22
+"HHS Region 3","3 wk ahead",-0.360969868221613,11,0.697,22
+"HHS Region 4","3 wk ahead",-0.433864582629862,11,0.648,22
+"HHS Region 5","3 wk ahead",-0.263965545834465,11,0.768,22
+"HHS Region 6","3 wk ahead",-1.0300194972025,11,0.357,22
+"HHS Region 7","3 wk ahead",-0.800732391239883,11,0.449,22
+"HHS Region 8","3 wk ahead",-1.16155208844198,11,0.313,22
+"HHS Region 9","3 wk ahead",-1.36649173382371,11,0.255,22
+"HHS Region 10","3 wk ahead",-0.519193873436507,11,0.595,22
+"US National","4 wk ahead",-1.13943428318836,11,0.32,22
+"HHS Region 1","4 wk ahead",-0.474815186242958,11,0.622,22
+"HHS Region 2","4 wk ahead",-0.750776293396582,11,0.472,22
+"HHS Region 3","4 wk ahead",-0.294371060602578,11,0.745,22
+"HHS Region 4","4 wk ahead",-0.460449416440924,11,0.631,22
+"HHS Region 5","4 wk ahead",-0.22314355131421,11,0.8,22
+"HHS Region 6","4 wk ahead",-0.841647188878389,11,0.431,22
+"HHS Region 7","4 wk ahead",-0.729811164931537,11,0.482,22
+"HHS Region 8","4 wk ahead",-1.17441400208439,11,0.309,22
+"HHS Region 9","4 wk ahead",-0.619896718820353,11,0.538,22
+"HHS Region 10","4 wk ahead",-0.715392789507265,11,0.489,22
+"HHS Region 1","Season peak week",-0.164197704965132,12,0.848574237954769,23
+"HHS Region 10","Season peak week",-0.0840307488514918,12,0.919402985074627,23
+"HHS Region 2","Season peak week",-0.0937209859855539,12,0.910536779324056,23
+"HHS Region 3","Season peak week",-0.0161131381431317,12,0.984015984015984,23
+"HHS Region 4","Season peak week",-0.00501757199197948,12,0.994994994994995,23
+"HHS Region 5","Season peak week",-0.075469030964967,12,0.927308447937132,23
+"HHS Region 6","Season peak week",-0.0500871165136489,12,0.951146560319043,23
+"HHS Region 7","Season peak week",-0.0181639706276712,12,0.982,23
+"HHS Region 8","Season peak week",-0.0171461588349705,12,0.983,23
+"HHS Region 9","Season peak week",-0.0985763775909456,12,0.906126482213439,23
+"US National","Season peak week",-0.00200200267067308,12,0.998,23
+"HHS Region 1","Season peak percentage",-0.0555127099302588,12,0.946,23
+"HHS Region 10","Season peak percentage",-0.0534007767271152,12,0.948,23
+"HHS Region 2","Season peak percentage",-0.0534007767271152,12,0.948,23
+"HHS Region 3","Season peak percentage",-0.00200200267067308,12,0.998,23
+"HHS Region 4","Season peak percentage",-0.00200200267067308,12,0.998,23
+"HHS Region 5","Season peak percentage",-0.0161293819298836,12,0.984,23
+"HHS Region 6","Season peak percentage",-0.0449973659307358,12,0.956,23
+"HHS Region 7","Season peak percentage",-0.0151136378100482,12,0.985,23
+"HHS Region 8","Season peak percentage",-0.0130852395486555,12,0.987,23
+"HHS Region 9","Season peak percentage",-0.0491902441907717,12,0.952,23
+"US National","Season peak percentage",-0.00100050033358353,12,0.999,23
+"US National","1 wk ahead",-0.3147107448397,12,0.73,23
+"HHS Region 1","1 wk ahead",-0.293029678778376,12,0.746,23
+"HHS Region 2","1 wk ahead",-0.412489723045129,12,0.662,23
+"HHS Region 3","1 wk ahead",-0.285018955032297,12,0.752,23
+"HHS Region 4","1 wk ahead",-0.155484902840395,12,0.856,23
+"HHS Region 5","1 wk ahead",-0.393042588109607,12,0.675,23
+"HHS Region 6","1 wk ahead",-0.770028224895903,12,0.463,23
+"HHS Region 7","1 wk ahead",-1.22077992264232,12,0.295,23
+"HHS Region 8","1 wk ahead",-0.313341819232359,12,0.731,23
+"HHS Region 9","1 wk ahead",-0.140412153716745,12,0.869,23
+"HHS Region 10","1 wk ahead",-0.879476758751439,12,0.415,23
+"US National","2 wk ahead",-0.49429632181478,12,0.61,23
+"HHS Region 1","2 wk ahead",-0.346724613085564,12,0.707,23
+"HHS Region 2","2 wk ahead",-0.53785429615391,12,0.584,23
+"HHS Region 3","2 wk ahead",-0.265268477614881,12,0.767,23
+"HHS Region 4","2 wk ahead",-0.27443684570176,12,0.76,23
+"HHS Region 5","2 wk ahead",-0.379797361359587,12,0.684,23
+"HHS Region 6","2 wk ahead",-0.865122445299756,12,0.421,23
+"HHS Region 7","2 wk ahead",-0.709276562489829,12,0.492,23
+"HHS Region 8","2 wk ahead",-1.07587280169862,12,0.341,23
+"HHS Region 9","2 wk ahead",-0.582395816267243,12,0.558558558558558,23
+"HHS Region 10","2 wk ahead",-0.75928698306449,12,0.468,23
+"US National","3 wk ahead",-0.791863153499103,12,0.453,23
+"HHS Region 1","3 wk ahead",-0.379797361359587,12,0.684,23
+"HHS Region 2","3 wk ahead",-0.560366069326127,12,0.571,23
+"HHS Region 3","3 wk ahead",-0.2484613592985,12,0.78,23
+"HHS Region 4","3 wk ahead",-0.309246250367621,12,0.734,23
+"HHS Region 5","3 wk ahead",-0.24079848655293,12,0.786,23
+"HHS Region 6","3 wk ahead",-0.755022584278033,12,0.47,23
+"HHS Region 7","3 wk ahead",-0.711311151187616,12,0.491,23
+"HHS Region 8","3 wk ahead",-0.959720289801491,12,0.383,23
+"HHS Region 9","3 wk ahead",-0.450985623409974,12,0.637,23
+"HHS Region 10","3 wk ahead",-1.03563748950672,12,0.355,23
+"US National","4 wk ahead",-0.918793862092274,12,0.399,23
+"HHS Region 1","4 wk ahead",-0.39452516806983,12,0.674,23
+"HHS Region 2","4 wk ahead",-0.592397277459802,12,0.553,23
+"HHS Region 3","4 wk ahead",-0.302457358033935,12,0.739,23
+"HHS Region 4","4 wk ahead",-0.335472736288129,12,0.715,23
+"HHS Region 5","4 wk ahead",-0.136965855073157,12,0.872,23
+"HHS Region 6","4 wk ahead",-0.590590592234853,12,0.554,23
+"HHS Region 7","4 wk ahead",-0.289016295464918,12,0.749,23
+"HHS Region 8","4 wk ahead",-1.70925824771631,12,0.181,23
+"HHS Region 9","4 wk ahead",-0.350976922824095,12,0.704,23
+"HHS Region 10","4 wk ahead",-0.572701027484078,12,0.564,23
+"HHS Region 1","Season peak week",-0.0813624043348797,13,0.921859545004946,24
+"HHS Region 10","Season peak week",-0.0283419780022749,13,0.972055888223553,24
+"HHS Region 2","Season peak week",-0.0670008389557106,13,0.935194416749751,24
+"HHS Region 3","Season peak week",-0.00501254182354429,13,0.995,24
+"HHS Region 4","Season peak week",-0.00100050033358353,13,0.999,24
+"HHS Region 5","Season peak week",-0.000999500333083499,13,0.999000999000999,24
+"HHS Region 6","Season peak week",-0.0253178079842899,13,0.975,24
+"HHS Region 7","Season peak week",-0.0212022076506031,13,0.979020979020979,24
+"HHS Region 8","Season peak week",-0.014084739881739,13,0.986013986013986,24
+"HHS Region 9","Season peak week",-0.059997308578374,13,0.941767068273092,24
+"US National","Season peak week",0,13,1,24
+"HHS Region 1","Season peak percentage",-0.03252319170556,13,0.968,24
+"HHS Region 10","Season peak percentage",-0.0110609473594249,13,0.989,24
+"HHS Region 2","Season peak percentage",-0.0408219945202552,13,0.96,24
+"HHS Region 3","Season peak percentage",-0.00400802139753882,13,0.996,24
+"HHS Region 4","Season peak percentage",-0.00100050033358353,13,0.999,24
+"HHS Region 5","Season peak percentage",0,13,1,24
+"HHS Region 6","Season peak percentage",-0.0253178079842899,13,0.975,24
+"HHS Region 7","Season peak percentage",-0.0151136378100482,13,0.985,24
+"HHS Region 8","Season peak percentage",-0.0120725812342692,13,0.988,24
+"HHS Region 9","Season peak percentage",-0.0181639706276712,13,0.982,24
+"US National","Season peak percentage",0,13,1,24
+"US National","1 wk ahead",-0.0921152889078056,13,0.912,24
+"HHS Region 1","1 wk ahead",-0.22314355131421,13,0.8,24
+"HHS Region 2","1 wk ahead",-0.350976922824095,13,0.704,24
+"HHS Region 3","1 wk ahead",-0.173163619009189,13,0.841,24
+"HHS Region 4","1 wk ahead",-0.118783535989967,13,0.888,24
+"HHS Region 5","1 wk ahead",-0.0661398025045451,13,0.936,24
+"HHS Region 6","1 wk ahead",-0.551647618286246,13,0.576,24
+"HHS Region 7","1 wk ahead",-0.588787165235702,13,0.555,24
+"HHS Region 8","1 wk ahead",-0.879476758751439,13,0.415,24
+"HHS Region 9","1 wk ahead",-0.260066905418808,13,0.771,24
+"HHS Region 10","1 wk ahead",-0.738144546490681,13,0.478,24
+"US National","2 wk ahead",-0.273121921120451,13,0.761,24
+"HHS Region 1","2 wk ahead",-0.306525160253261,13,0.736,24
+"HHS Region 2","2 wk ahead",-0.569161200778954,13,0.566,24
+"HHS Region 3","2 wk ahead",-0.209487224866724,13,0.811,24
+"HHS Region 4","2 wk ahead",-0.186329578191493,13,0.83,24
+"HHS Region 5","2 wk ahead",-0.0932123817221787,13,0.911,24
+"HHS Region 6","2 wk ahead",-0.644357016390513,13,0.525,24
+"HHS Region 7","2 wk ahead",-0.54818141030976,13,0.578,24
+"HHS Region 8","2 wk ahead",-0.853315932712767,13,0.426,24
+"HHS Region 9","2 wk ahead",-0.401971218853909,13,0.669,24
+"HHS Region 10","2 wk ahead",-0.983499481567605,13,0.374,24
+"US National","3 wk ahead",-0.436955775199535,13,0.646,24
+"HHS Region 1","3 wk ahead",-0.295714244149045,13,0.744,24
+"HHS Region 2","3 wk ahead",-0.648173814917214,13,0.523,24
+"HHS Region 3","3 wk ahead",-0.379797361359587,13,0.684,24
+"HHS Region 4","3 wk ahead",-0.219400565035375,13,0.803,24
+"HHS Region 5","3 wk ahead",-0.104250021373799,13,0.901,24
+"HHS Region 6","3 wk ahead",-0.579818495252942,13,0.56,24
+"HHS Region 7","3 wk ahead",-0.301105092783922,13,0.74,24
+"HHS Region 8","3 wk ahead",-1.55589714550607,13,0.211,24
+"HHS Region 9","3 wk ahead",-0.401971218853909,13,0.669,24
+"HHS Region 10","3 wk ahead",-0.452556715642015,13,0.636,24
+"US National","4 wk ahead",-0.601479992034121,13,0.548,24
+"HHS Region 1","4 wk ahead",-0.294371060602578,13,0.745,24
+"HHS Region 2","4 wk ahead",-0.579818495252942,13,0.56,24
+"HHS Region 3","4 wk ahead",-0.466808738349216,13,0.627,24
+"HHS Region 4","4 wk ahead",-0.258770728957361,13,0.772,24
+"HHS Region 5","4 wk ahead",-0.0877389143080069,13,0.916,24
+"HHS Region 6","4 wk ahead",-0.460449416440924,13,0.631,24
+"HHS Region 7","4 wk ahead",-0.199671195129068,13,0.819,24
+"HHS Region 8","4 wk ahead",-1.73160554640831,13,0.177,24
+"HHS Region 9","4 wk ahead",-0.328504066972036,13,0.72,24
+"HHS Region 10","4 wk ahead",-0.371063681390832,13,0.69,24
+"HHS Region 1","Season peak week",-0.0519200571783596,14,0.949404761904762,25
+"HHS Region 10","Season peak week",-0.00100050033358353,14,0.999,25
+"HHS Region 2","Season peak week",-0.0222456089473197,14,0.978,25
+"HHS Region 3","Season peak week",-0.00100050033358353,14,0.999,25
+"HHS Region 4","Season peak week",0,14,1,25
+"HHS Region 5","Season peak week",0,14,1,25
+"HHS Region 6","Season peak week",-0.0181456591680541,14,0.982017982017982,25
+"HHS Region 7","Season peak week",-0.00200200267067308,14,0.998,25
+"HHS Region 8","Season peak week",-0.0110609473594249,14,0.989,25
+"HHS Region 9","Season peak week",-0.0508672185396051,14,0.950404858299595,25
+"US National","Season peak week",0,14,1,25
+"HHS Region 1","Season peak percentage",-0.0253178079842899,14,0.975,25
+"HHS Region 10","Season peak percentage",-0.00100050033358353,14,0.999,25
+"HHS Region 2","Season peak percentage",-0.0151136378100482,14,0.985,25
+"HHS Region 3","Season peak percentage",0,14,1,25
+"HHS Region 4","Season peak percentage",0,14,1,25
+"HHS Region 5","Season peak percentage",0,14,1,25
+"HHS Region 6","Season peak percentage",-0.0161293819298836,14,0.984,25
+"HHS Region 7","Season peak percentage",0,14,1,25
+"HHS Region 8","Season peak percentage",-0.00904074465214907,14,0.991,25
+"HHS Region 9","Season peak percentage",-0.0161293819298836,14,0.984,25
+"US National","Season peak percentage",0,14,1,25
+"US National","1 wk ahead",-0.0932123817221787,14,0.911,25
+"HHS Region 1","1 wk ahead",-0.257476230394715,14,0.773,25
+"HHS Region 2","1 wk ahead",-0.289016295464918,14,0.749,25
+"HHS Region 3","1 wk ahead",-0.138113302129634,14,0.871,25
+"HHS Region 4","1 wk ahead",-0.0747235461959364,14,0.928,25
+"HHS Region 5","1 wk ahead",-0.0345914447696191,14,0.966,25
+"HHS Region 6","1 wk ahead",-0.520875959619492,14,0.594,25
+"HHS Region 7","1 wk ahead",-0.32989392126109,14,0.719,25
+"HHS Region 8","1 wk ahead",-0.244622582991334,14,0.783,25
+"HHS Region 9","1 wk ahead",-0.108699416923341,14,0.897,25
+"HHS Region 10","1 wk ahead",-0.748659890490204,14,0.473,25
+"US National","2 wk ahead",-0.278392025544688,14,0.757,25
+"HHS Region 1","2 wk ahead",-0.260066905418808,14,0.771,25
+"HHS Region 2","2 wk ahead",-0.462035459596559,14,0.63,25
+"HHS Region 3","2 wk ahead",-0.320205264157341,14,0.726,25
+"HHS Region 4","2 wk ahead",-0.164874643190234,14,0.848,25
+"HHS Region 5","2 wk ahead",-0.0576291128366364,14,0.944,25
+"HHS Region 6","2 wk ahead",-0.454130280089445,14,0.635,25
+"HHS Region 7","2 wk ahead",-0.322963886596421,14,0.724,25
+"HHS Region 8","2 wk ahead",-0.951917909517306,14,0.386,25
+"HHS Region 9","2 wk ahead",-0.221894331913778,14,0.801,25
+"HHS Region 10","2 wk ahead",-0.421594490038048,14,0.656,25
+"US National","3 wk ahead",-0.430782916092454,14,0.65,25
+"HHS Region 1","3 wk ahead",-0.32989392126109,14,0.719,25
+"HHS Region 2","3 wk ahead",-0.482886255076749,14,0.617,25
+"HHS Region 3","3 wk ahead",-0.444725822061467,14,0.641,25
+"HHS Region 4","3 wk ahead",-0.202116184122134,14,0.817,25
+"HHS Region 5","3 wk ahead",-0.0597500044057739,14,0.942,25
+"HHS Region 6","3 wk ahead",-0.375420986759788,14,0.687,25
+"HHS Region 7","3 wk ahead",-0.189950583958446,14,0.827,25
+"HHS Region 8","3 wk ahead",-1.14256417619729,14,0.319,25
+"HHS Region 9","3 wk ahead",-0.281037529733112,14,0.755,25
+"HHS Region 10","3 wk ahead",-0.287682072451781,14,0.75,25
+"US National","4 wk ahead",-0.362405618647717,14,0.696,25
+"HHS Region 1","4 wk ahead",-0.214431610712188,14,0.807,25
+"HHS Region 2","4 wk ahead",-0.465215112513938,14,0.628,25
+"HHS Region 3","4 wk ahead",-0.359536176219765,14,0.698,25
+"HHS Region 4","4 wk ahead",-0.191160505461159,14,0.826,25
+"HHS Region 5","4 wk ahead",-0.0304592074847086,14,0.97,25
+"HHS Region 6","4 wk ahead",-0.372514007968478,14,0.689,25
+"HHS Region 7","4 wk ahead",-0.138113302129634,14,0.871,25
+"HHS Region 8","4 wk ahead",-2.06356819252355,14,0.127,25
+"HHS Region 9","4 wk ahead",-0.359536176219765,14,0.698,25
+"HHS Region 10","4 wk ahead",-0.177931208492662,14,0.837,25
+"HHS Region 1","Season peak week",-0.0171981982972206,15,0.982948846539619,26
+"HHS Region 10","Season peak week",0,15,1,26
+"HHS Region 2","Season peak week",-0.0253434750060184,15,0.974974974974975,26
+"HHS Region 3","Season peak week",0,15,1,26
+"HHS Region 4","Season peak week",0,15,1,26
+"HHS Region 5","Season peak week",0,15,1,26
+"HHS Region 6","Season peak week",-0.00702461493696447,15,0.993,26
+"HHS Region 7","Season peak week",-0.00200200267067308,15,0.998,26
+"HHS Region 8","Season peak week",-0.00501254182354429,15,0.995,26
+"HHS Region 9","Season peak week",-0.0278512070957652,15,0.972533062054934,26
+"US National","Season peak week",0,15,1,26
+"HHS Region 1","Season peak percentage",-0.0100503358535015,15,0.99,26
+"HHS Region 10","Season peak percentage",0,15,1,26
+"HHS Region 2","Season peak percentage",-0.0171461588349705,15,0.983,26
+"HHS Region 3","Season peak percentage",0,15,1,26
+"HHS Region 4","Season peak percentage",0,15,1,26
+"HHS Region 5","Season peak percentage",0,15,1,26
+"HHS Region 6","Season peak percentage",-0.00702461493696447,15,0.993,26
+"HHS Region 7","Season peak percentage",-0.00200200267067308,15,0.998,26
+"HHS Region 8","Season peak percentage",-0.00300450902029872,15,0.997,26
+"HHS Region 9","Season peak percentage",-0.0202027073175195,15,0.98,26
+"US National","Season peak percentage",0,15,1,26
+"US National","1 wk ahead",-0.0397808700118446,15,0.961,26
+"HHS Region 1","1 wk ahead",-0.147340587898709,15,0.863,26
+"HHS Region 2","1 wk ahead",-0.321583624127462,15,0.725,26
+"HHS Region 3","1 wk ahead",-0.126697653045958,15,0.881,26
+"HHS Region 4","1 wk ahead",-0.0491902441907718,15,0.952,26
+"HHS Region 5","1 wk ahead",-0.0202027073175194,15,0.98,26
+"HHS Region 6","1 wk ahead",-0.309246250367621,15,0.734,26
+"HHS Region 7","1 wk ahead",-0.262664309476493,15,0.769,26
+"HHS Region 8","1 wk ahead",-0.809680996815897,15,0.445,26
+"HHS Region 9","1 wk ahead",-0.149660774554406,15,0.861,26
+"HHS Region 10","1 wk ahead",-0.0812100554255432,15,0.922,26
+"US National","2 wk ahead",-0.17197526473981,15,0.842,26
+"HHS Region 1","2 wk ahead",-0.234457311214483,15,0.791,26
+"HHS Region 2","2 wk ahead",-0.465215112513938,15,0.628,26
+"HHS Region 3","2 wk ahead",-0.243346258631729,15,0.784,26
+"HHS Region 4","2 wk ahead",-0.0888312137066157,15,0.915,26
+"HHS Region 5","2 wk ahead",-0.0377018671840114,15,0.963,26
+"HHS Region 6","2 wk ahead",-0.328504066972036,15,0.72,26
+"HHS Region 7","2 wk ahead",-0.16960278438618,15,0.844,26
+"HHS Region 8","2 wk ahead",-1.03845836584836,15,0.354,26
+"HHS Region 9","2 wk ahead",-0.242071561199729,15,0.785,26
+"HHS Region 10","2 wk ahead",-0.0954101848046582,15,0.909,26
+"US National","3 wk ahead",-0.162518929497775,15,0.85,26
+"HHS Region 1","3 wk ahead",-0.146182510178081,15,0.864,26
+"HHS Region 2","3 wk ahead",-0.420071260497527,15,0.657,26
+"HHS Region 3","3 wk ahead",-0.24079848655293,15,0.786,26
+"HHS Region 4","3 wk ahead",-0.150822889734584,15,0.86,26
+"HHS Region 5","3 wk ahead",-0.0335567835288428,15,0.967,26
+"HHS Region 6","3 wk ahead",-0.32989392126109,15,0.719,26
+"HHS Region 7","3 wk ahead",-0.105360515657826,15,0.9,26
+"HHS Region 8","3 wk ahead",-2.00248050054371,15,0.135,26
+"HHS Region 9","3 wk ahead",-0.394007946666736,15,0.67434869739479,26
+"HHS Region 10","3 wk ahead",-0.0943106794712413,15,0.91,26
+"US National","4 wk ahead",-0.153151179494175,15,0.858,26
+"HHS Region 1","4 wk ahead",-0.107585210679937,15,0.898,26
+"HHS Region 2","4 wk ahead",-0.441610554744518,15,0.643,26
+"HHS Region 3","4 wk ahead",-0.226900600191922,15,0.797,26
+"HHS Region 4","4 wk ahead",-0.147340587898709,15,0.863,26
+"HHS Region 5","4 wk ahead",-0.0181639706276712,15,0.982,26
+"HHS Region 6","4 wk ahead",-0.253602758798918,15,0.776,26
+"HHS Region 7","4 wk ahead",-0.08446915662645,15,0.919,26
+"HHS Region 8","4 wk ahead",-2.50103603171788,15,0.082,26
+"HHS Region 9","4 wk ahead",-0.344310684954834,15,0.708708708708709,26
+"HHS Region 10","4 wk ahead",-0.0512932943875505,15,0.95,26
+"HHS Region 1","Season peak week",-0.00808085205393901,16,0.991951710261569,27
+"HHS Region 2","Season peak week",-0.0151594616073728,16,0.984954864593781,27
+"HHS Region 3","Season peak week",0,16,1,27
+"HHS Region 5","Season peak week",0,16,1,27
+"HHS Region 7","Season peak week",-0.00100050033358353,16,0.999,27
+"HHS Region 8","Season peak week",-0.00400802139753882,16,0.996,27
+"HHS Region 9","Season peak week",-0.0268057286942126,16,0.973550356052899,27
+"US National","Season peak week",0,16,1,27
+"HHS Region 1","Season peak percentage",-0.00702461493696447,16,0.993,27
+"HHS Region 2","Season peak percentage",-0.00803217169726427,16,0.992,27
+"HHS Region 3","Season peak percentage",0,16,1,27
+"HHS Region 5","Season peak percentage",0,16,1,27
+"HHS Region 7","Season peak percentage",-0.00100050033358353,16,0.999,27
+"HHS Region 8","Season peak percentage",-0.00300450902029872,16,0.997,27
+"HHS Region 9","Season peak percentage",-0.00904074465214907,16,0.991,27
+"US National","Season peak percentage",0,16,1,27
+"US National","1 wk ahead",-0.0586889963486795,16,0.943,27
+"HHS Region 1","1 wk ahead",-0.265268477614881,16,0.767,27
+"HHS Region 2","1 wk ahead",-0.556869562267398,16,0.573,27
+"HHS Region 3","1 wk ahead",-0.148500008318444,16,0.862,27
+"HHS Region 4","1 wk ahead",-0.0325231917055601,16,0.968,27
+"HHS Region 5","1 wk ahead",-0.0151136378100482,16,0.985,27
+"HHS Region 6","1 wk ahead",-0.269187489815617,16,0.764,27
+"HHS Region 7","1 wk ahead",-0.0661398025045451,16,0.936,27
+"HHS Region 8","1 wk ahead",-0.400477566597125,16,0.67,27
+"HHS Region 9","1 wk ahead",-0.161343150408763,16,0.851,27
+"HHS Region 10","1 wk ahead",-0.0429075010112765,16,0.958,27
+"US National","2 wk ahead",-0.0910193983871685,16,0.913,27
+"HHS Region 1","2 wk ahead",-0.134674903326602,16,0.874,27
+"HHS Region 2","2 wk ahead",-0.463624022281697,16,0.629,27
+"HHS Region 3","2 wk ahead",-0.174353387144778,16,0.84,27
+"HHS Region 4","2 wk ahead",-0.0910193983871685,16,0.913,27
+"HHS Region 5","2 wk ahead",-0.0171461588349705,16,0.983,27
+"HHS Region 6","2 wk ahead",-0.262664309476493,16,0.769,27
+"HHS Region 7","2 wk ahead",-0.0965109003808437,16,0.908,27
+"HHS Region 8","2 wk ahead",-1.4961092271271,16,0.224,27
+"HHS Region 9","2 wk ahead",-0.443166975292176,16,0.642,27
+"HHS Region 10","2 wk ahead",-0.0491902441907717,16,0.952,27
+"US National","3 wk ahead",-0.0954101848046582,16,0.909,27
+"HHS Region 1","3 wk ahead",-0.105360515657826,16,0.9,27
+"HHS Region 2","3 wk ahead",-0.362405618647717,16,0.696,27
+"HHS Region 3","3 wk ahead",-0.211956361923645,16,0.809,27
+"HHS Region 4","3 wk ahead",-0.135819723142535,16,0.873,27
+"HHS Region 5","3 wk ahead",-0.0110609473594249,16,0.989,27
+"HHS Region 6","3 wk ahead",-0.25231492861449,16,0.777,27
+"HHS Region 7","3 wk ahead",-0.0779615414697118,16,0.925,27
+"HHS Region 8","3 wk ahead",-1.9173226922034,16,0.147,27
+"HHS Region 9","3 wk ahead",-0.395009449003826,16,0.673673673673674,27
+"HHS Region 10","3 wk ahead",-0.0439518875291828,16,0.957,27
+"US National","4 wk ahead",-0.0661398025045451,16,0.936,27
+"HHS Region 1","4 wk ahead",-0.102032725565152,16,0.903,27
+"HHS Region 2","4 wk ahead",-0.590590592234853,16,0.554,27
+"HHS Region 3","4 wk ahead",-0.243346258631729,16,0.784,27
+"HHS Region 4","4 wk ahead",-0.164874643190234,16,0.848,27
+"HHS Region 5","4 wk ahead",-0.027371196796132,16,0.973,27
+"HHS Region 6","4 wk ahead",-0.287682072451781,16,0.75,27
+"HHS Region 7","4 wk ahead",-0.108699416923341,16,0.897,27
+"HHS Region 8","4 wk ahead",-2.88240358824699,16,0.056,27
+"HHS Region 9","4 wk ahead",-0.370512005297805,16,0.690380761523046,27
+"HHS Region 10","4 wk ahead",-0.0335567835288428,16,0.967,27
+"HHS Region 1","Season peak week",0,17,1,28
+"HHS Region 8","Season peak week",0,17,1,28
+"HHS Region 9","Season peak week",-0.00814668456781836,17,0.991886409736308,28
+"HHS Region 1","Season peak percentage",-0.00200200267067308,17,0.998,28
+"HHS Region 8","Season peak percentage",0,17,1,28
+"HHS Region 9","Season peak percentage",-0.00300450902029872,17,0.997,28
+"US National","1 wk ahead",-0.00200200267067308,17,0.998,28
+"HHS Region 1","1 wk ahead",-0.0460439385014068,17,0.955,28
+"HHS Region 2","1 wk ahead",-0.309246250367621,17,0.734,28
+"HHS Region 3","1 wk ahead",-0.0325231917055601,17,0.968,28
+"HHS Region 4","1 wk ahead",-0.0242926925690446,17,0.976,28
+"HHS Region 5","1 wk ahead",-0.00601807232556302,17,0.994,28
+"HHS Region 6","1 wk ahead",-0.153151179494175,17,0.858,28
+"HHS Region 7","1 wk ahead",-0.0429075010112765,17,0.958,28
+"HHS Region 8","1 wk ahead",-1.05268335677971,17,0.349,28
+"HHS Region 9","1 wk ahead",-0.180323554131282,17,0.835,28
+"HHS Region 10","1 wk ahead",-0.0460439385014068,17,0.955,28
+"US National","2 wk ahead",-0.0161293819298836,17,0.984,28
+"HHS Region 1","2 wk ahead",-0.048140375327935,17,0.953,28
+"HHS Region 2","2 wk ahead",-0.334075112021491,17,0.716,28
+"HHS Region 3","2 wk ahead",-0.06720874969345,17,0.935,28
+"HHS Region 4","2 wk ahead",-0.0672087496934501,17,0.935,28
+"HHS Region 5","2 wk ahead",-0.0171461588349705,17,0.983,28
+"HHS Region 6","2 wk ahead",-0.164874643190234,17,0.848,28
+"HHS Region 7","2 wk ahead",-0.048140375327935,17,0.953,28
+"HHS Region 8","2 wk ahead",-1.61445045425764,17,0.199,28
+"HHS Region 9","2 wk ahead",-0.258770728957361,17,0.772,28
+"HHS Region 10","2 wk ahead",-0.0408219945202552,17,0.96,28
+"US National","3 wk ahead",-0.0439518875291828,17,0.957,28
+"HHS Region 1","3 wk ahead",-0.0855578883616465,17,0.918,28
+"HHS Region 2","3 wk ahead",-0.534435489405125,17,0.586,28
+"HHS Region 3","3 wk ahead",-0.138113302129634,17,0.871,28
+"HHS Region 4","3 wk ahead",-0.0877389143080067,17,0.916,28
+"HHS Region 5","3 wk ahead",-0.0682788407532944,17,0.934,28
+"HHS Region 6","3 wk ahead",-0.251028754803745,17,0.778,28
+"HHS Region 7","3 wk ahead",-0.0987159729391577,17,0.906,28
+"HHS Region 8","3 wk ahead",-2.86470401114759,17,0.057,28
+"HHS Region 9","3 wk ahead",-0.318828801448618,17,0.727,28
+"HHS Region 10","3 wk ahead",-0.0418642040986989,17,0.959,28
+"US National","4 wk ahead",-0.0565703514883944,17,0.945,28
+"HHS Region 1","4 wk ahead",-0.0491902441907717,17,0.952,28
+"HHS Region 2","4 wk ahead",-0.532730459154041,17,0.587,28
+"HHS Region 3","4 wk ahead",-0.0921152889078056,17,0.912,28
+"HHS Region 4","4 wk ahead",-0.100925918589961,17,0.904,28
+"HHS Region 5","4 wk ahead",-0.0335567835288428,17,0.967,28
+"HHS Region 6","4 wk ahead",-1.1551826401565,17,0.315,28
+"HHS Region 7","4 wk ahead",-0.167235919375914,17,0.846,28
+"HHS Region 8","4 wk ahead",-3.05760767727208,17,0.047,28
+"HHS Region 9","4 wk ahead",-0.285349126884419,17,0.751751751751752,28
+"HHS Region 10","4 wk ahead",-0.0449973659307358,17,0.956,28
+"HHS Region 8","Season peak week",-0.00100050033358353,18,0.999,29
+"HHS Region 8","Season peak percentage",-0.00100050033358353,18,0.999,29
+"US National","1 wk ahead",0,18,1,29
+"HHS Region 1","1 wk ahead",-0.0242926925690446,18,0.976,29
+"HHS Region 2","1 wk ahead",-0.153151179494175,18,0.858,29
+"HHS Region 3","1 wk ahead",-0.0242926925690446,18,0.976,29
+"HHS Region 5","1 wk ahead",0,18,1,29
+"HHS Region 7","1 wk ahead",-0.0314906670913708,18,0.969,29
+"HHS Region 8","1 wk ahead",-0.447850824604602,18,0.639,29
+"HHS Region 9","1 wk ahead",-0.136965855073157,18,0.872,29
+"US National","2 wk ahead",-0.0161293819298836,18,0.984,29
+"HHS Region 1","2 wk ahead",-0.0502412164367467,18,0.951,29
+"HHS Region 2","2 wk ahead",-0.570929547835696,18,0.565,29
+"HHS Region 3","2 wk ahead",-0.0618754037180875,18,0.94,29
+"HHS Region 5","2 wk ahead",-0.00501254182354429,18,0.995,29
+"HHS Region 7","2 wk ahead",-0.0661398025045449,18,0.936,29
+"HHS Region 8","2 wk ahead",-1.63475572041839,18,0.195,29
+"HHS Region 9","2 wk ahead",-0.257770228623778,18,0.772772772772773,29
+"US National","3 wk ahead",-0.0377018671840115,18,0.963,29
+"HHS Region 1","3 wk ahead",-0.0661398025045451,18,0.936,29
+"HHS Region 2","3 wk ahead",-0.505838082254952,18,0.603,29
+"HHS Region 3","3 wk ahead",-0.0439518875291828,18,0.957,29
+"HHS Region 5","3 wk ahead",-0.00501254182354429,18,0.995,29
+"HHS Region 7","3 wk ahead",-0.125563222975346,18,0.882,29
+"HHS Region 8","3 wk ahead",-2.26336437984076,18,0.104,29
+"HHS Region 9","3 wk ahead",-0.298798912558121,18,0.741708542713568,29
+"US National","4 wk ahead",-0.0833816089390511,18,0.92,29
+"HHS Region 1","4 wk ahead",-0.0693500781347932,18,0.933,29
+"HHS Region 2","4 wk ahead",-0.605136303237232,18,0.546,29
+"HHS Region 3","4 wk ahead",-0.0954101848046582,18,0.909,29
+"HHS Region 5","4 wk ahead",-0.160168752152821,18,0.852,29
+"HHS Region 7","4 wk ahead",-0.00601807232556302,18,0.994,29
+"HHS Region 8","4 wk ahead",-3.03655426807425,18,0.048,29
+"HHS Region 9","4 wk ahead",-0.374328419322373,18,0.687751004016064,29

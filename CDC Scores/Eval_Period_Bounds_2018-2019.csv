@@ -1,0 +1,78 @@
+target,location,start_week,end_week
+Season onset,HHS Region 1,42,3
+Season onset,HHS Region 10,42,4
+Season onset,HHS Region 2,42,3
+Season onset,HHS Region 3,42,4
+Season onset,HHS Region 4,42,1
+Season onset,HHS Region 5,42,5
+Season onset,HHS Region 6,42,5
+Season onset,HHS Region 7,42,4
+Season onset,HHS Region 8,42,52
+Season onset,HHS Region 9,42,2
+Season onset,US National,42,3
+Season peak week,HHS Region 1,42,17
+Season peak week,HHS Region 10,42,15
+Season peak week,HHS Region 2,42,16
+Season peak week,HHS Region 3,42,16
+Season peak week,HHS Region 4,42,15
+Season peak week,HHS Region 5,42,16
+Season peak week,HHS Region 6,42,15
+Season peak week,HHS Region 7,42,16
+Season peak week,HHS Region 8,42,18
+Season peak week,HHS Region 9,42,17
+Season peak week,US National,42,16
+Season peak percentage,HHS Region 1,42,17
+Season peak percentage,HHS Region 10,42,15
+Season peak percentage,HHS Region 2,42,16
+Season peak percentage,HHS Region 3,42,16
+Season peak percentage,HHS Region 4,42,15
+Season peak percentage,HHS Region 5,42,16
+Season peak percentage,HHS Region 6,42,15
+Season peak percentage,HHS Region 7,42,16
+Season peak percentage,HHS Region 8,42,18
+Season peak percentage,HHS Region 9,42,17
+Season peak percentage,US National,42,16
+1 wk ahead,HHS Region 1,45,18
+1 wk ahead,HHS Region 10,46,17
+1 wk ahead,HHS Region 2,45,18
+1 wk ahead,HHS Region 3,46,18
+1 wk ahead,HHS Region 4,43,17
+1 wk ahead,HHS Region 5,47,18
+1 wk ahead,HHS Region 6,47,17
+1 wk ahead,HHS Region 7,46,18
+1 wk ahead,HHS Region 8,42,18
+1 wk ahead,HHS Region 9,44,18
+1 wk ahead,US National,45,18
+2 wk ahead,HHS Region 1,45,18
+2 wk ahead,HHS Region 10,46,17
+2 wk ahead,HHS Region 2,45,18
+2 wk ahead,HHS Region 3,46,18
+2 wk ahead,HHS Region 4,43,17
+2 wk ahead,HHS Region 5,47,18
+2 wk ahead,HHS Region 6,47,17
+2 wk ahead,HHS Region 7,46,18
+2 wk ahead,HHS Region 8,42,18
+2 wk ahead,HHS Region 9,44,18
+2 wk ahead,US National,45,18
+3 wk ahead,HHS Region 1,45,18
+3 wk ahead,HHS Region 10,46,17
+3 wk ahead,HHS Region 2,45,18
+3 wk ahead,HHS Region 3,46,18
+3 wk ahead,HHS Region 4,43,17
+3 wk ahead,HHS Region 5,47,18
+3 wk ahead,HHS Region 6,47,17
+3 wk ahead,HHS Region 7,46,18
+3 wk ahead,HHS Region 8,42,18
+3 wk ahead,HHS Region 9,44,18
+3 wk ahead,US National,45,18
+4 wk ahead,HHS Region 1,45,18
+4 wk ahead,HHS Region 10,46,17
+4 wk ahead,HHS Region 2,45,18
+4 wk ahead,HHS Region 3,46,18
+4 wk ahead,HHS Region 4,43,17
+4 wk ahead,HHS Region 5,47,18
+4 wk ahead,HHS Region 6,47,17
+4 wk ahead,HHS Region 7,46,18
+4 wk ahead,HHS Region 8,42,18
+4 wk ahead,HHS Region 9,44,18
+4 wk ahead,US National,45,18
