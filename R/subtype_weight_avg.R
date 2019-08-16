@@ -4,9 +4,9 @@ library(FluSight)
 library(zoo)
 
 # Load data -------
-load("Data/ili.Rdata")
-load("Data/virologic.Rdata")
-load("Data/pseudo_onsets_2003_2006.Rdata")
+ili_current <- readRDS("Data/ili_current.RDS")
+virologic_combined <- readRDS("Data/virologic.RDS")
+pseudo_onsets <- readRDS("Data/pseudo_onsets.RDS")
 
 # Load functions 
 source("R/create_subtype_forecast.R")
