@@ -3,19 +3,21 @@
 # Including 2007 as a test
 library(tidyverse)
 
+source("R/utils.R")
+
 # Load data -------
-load("Data/ili.Rdata")
-load("Data/virologic.Rdata")
-source("R/week_order_functions.R")
+ili_current <- readRDS("Data/ili_current.RDS")
+virologic_combined <- readRDS("Data/virologic.RDS")
+
 
 # Only keep years with full season data and before onset was officially calculated
 ILI_collapse <- ili_current %>%
-  filter(season %in% c("2002/2003", "2003/2004", "2004/2005", "2005/2006", "2006/2007")) %>%
+  filter(season %in% c("2002/2003", "2003/2004", "2004/2005", "2005/2006", "2006/2007"),
+         !location %in% state.name) %>%
   # filter(season %in% c("2014/2015", "2015/2016", "2016/2017")) %>%
   select(location, season, week, year, ILI) %>%
   left_join(virologic_combined %>%
               filter(season %in% c("2002/2003", "2003/2004", "2004/2005", "2005/2006", "2006/2007")) %>%
-              # filter(season %in% c("2014/2015", "2015/2016", "2016/2017")) %>%
               select(location, season, week, year, total_specimens,
                      percent_positive),
             by = c("location", "season", "week", "year")) %>%
@@ -38,7 +40,8 @@ ILI_collapse <- ili_current %>%
          #     (percent_total <= 0.02 & lead_percent <= 0.02),
          #   1, 0
          #  )
-         non_season_week = ifelse(percent_total <= 0.02, 1, 0)
+         non_season_week = ifelse(percent_total <= 0.02 & 
+                                    (lag_percent <= 0.02 | lead_percent <= 0.02), 1, 0)
          ) %>%
   ungroup() %>%
   # Only keep non-season weeks
@@ -87,16 +90,24 @@ pseudo_baselines <- ILI_collapse %>%
 
 # Merge baselines into ILI ------
 pseudo_onsets <- ili_current %>%
-  filter(season %in% c("2003/2004", "2004/2005", "2005/2006", "2006/2007")) %>%
+  filter(season %in% c("2003/2004", "2004/2005", "2005/2006", "2006/2007"),
+         location != "HHS Region 10") %>%
   left_join(pseudo_baselines,
             by = c("location", "season")) %>%
   group_by(location, season) %>%
   do(create_pseudo_onset(.)) %>%
   ungroup() 
 
+# HHS Region 10 data no longer available as of 6/2019 - use previously calculated
+region10_onsets <- tibble(
+  season = c("2003/2004", "2004/2005", "2005/2006", "2006/2007"), 
+  target = c("Season onset", "Season onset", "Season onset", "Season onset"), 
+  location = c("HHS Region 10", "HHS Region 10","HHS Region 10", "HHS Region 10"),
+  forecast_week = c(NA_integer_, NA_integer_, NA_integer_, NA_integer_), 
+  bin_start_incl = c("44.0", "52.0", "51.0", "2.0")
+)
   
-  
-  
+pseudo_onsets <- bind_rows(pseudo_onsets, region10_onsets)  
+
 # Save results
-save(pseudo_baselines, pseudo_onsets,
-     file = "Data/pseudo_onsets_2003_2006.Rdata")
+saveRDS(pseudo_onsets, "Data/pseudo_onsets.RDS")
