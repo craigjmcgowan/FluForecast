@@ -1,9 +1,15 @@
 # To Do
 
 # Clean up
-- Integrate create_prospective_forecast and create_prospective_forecast_state; single file to generate all forecasts
-- Any way to make model fitting run faster?
-- 
+- Files to integrate:
+  - subtype_weight_avg
+  - create_prospective_forecast
+- Files to update data sources:
+  - create_dynamic_regression
+  - create_dynamic_regression_state
+  - calculate_scores
+  - calculate_scores_state
+  - 
 
 
 # Upgrades
