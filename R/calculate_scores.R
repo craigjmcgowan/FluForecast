@@ -47,66 +47,46 @@ ILI_1213 <- ilinet(region = "national", year = 2012) %>%
     ) %>%
     mutate(ILI = round(ILI, 1))
 
-ILI_1314 <- ilinet(region = "national", year = 2013) %>%
-  mutate(location = "US National") %>%
-  select(location, week, ILI = weighted_ili) %>%
-  bind_rows(
-    ilinet(region = "hhs", year = 2013) %>%
-      mutate(location = paste("HHS", region)) %>%
-      select(location, week, ILI = weighted_ili)
-  ) %>%
+ILI_1314 <- readRDS("Data/ili_init_pub_list.rds")[['201428']] %>%
+  filter(!location %in% state.name) %>%
+  mutate(order_week = week_inorder(week, "2013/2014")) %>%
+  arrange(location, order_week) %>%
+  select(location, week, ILI) %>%
   mutate(ILI = round(ILI, 1))
 
-ILI_1415 <- ilinet(region = "national", year = 2014) %>%
-  mutate(location = "US National") %>%
-  select(location, week, ILI = weighted_ili) %>%
-  bind_rows(
-    ilinet(region = "hhs", year = 2014) %>%
-      mutate(location = paste("HHS", region)) %>%
-      select(location, week, ILI = weighted_ili)
-  ) %>%
+ILI_1415 <- readRDS("Data/ili_init_pub_list.rds")[['201528']] %>%
+  filter(!location %in% state.name) %>%
+  mutate(order_week = week_inorder(week, "2014/2015")) %>%
+  arrange(location, order_week) %>%
+  select(location, week, ILI) %>%
   mutate(ILI = round(ILI, 1))
 
-ILI_1516 <- read_csv("Data/ILINet_US_wk28_2016.csv") %>%
-  select(week = WEEK, location = REGION.TYPE, ILI = X..WEIGHTED.ILI) %>%
-  filter(week >= 42 | week <= 22) %>%
-  mutate(location = paste0("US ", location), ILI = round(ILI, 1)) %>%
-  bind_rows(
-    read_csv("Data/ILINet_Regional_wk28_2016.csv") %>%
-      select(location = REGION, week = WEEK,  ILI = X..WEIGHTED.ILI) %>%
-      filter(week >= 42 | week <= 22) %>%
-      mutate(location = paste0("HHS ", location), ILI = round(ILI, 1))
-  )
-
-ILI_1617 <- read_csv(paste0("Data/ILINet_Regional_wk28_2017.csv")) %>%
-  select(REGION, `% WEIGHTED ILI`, WEEK) %>%
-  mutate(REGION = paste("HHS", REGION)) %>%
-  bind_rows(read_csv(paste0("Data/ILINet_US_wk28_2017.csv")) %>%
-              select(REGION, `% WEIGHTED ILI`, WEEK) %>%
-              mutate(REGION = "US National")) %>%
-  rename(location = REGION,
-         ILI = `% WEIGHTED ILI`,
-         week = WEEK) %>%
+ILI_1516 <- readRDS("Data/ili_init_pub_list.rds")[['201628']] %>%
+  filter(!location %in% state.name) %>%
+  mutate(order_week = week_inorder(week, "2015/2016")) %>%
+  arrange(location, order_week) %>%
+  select(location, week, ILI) %>%
   mutate(ILI = round(ILI, 1))
 
-ILI_1718 <- read_csv("Data/ILINet_US_wk28_2018.csv") %>%
-  mutate(location = "US National") %>%
-  select(location, week, ILI = weighted_ili) %>%
-  bind_rows(
-    read_csv("Data/ILINet_Regional_wk28_2018.csv") %>%
-      mutate(location = paste("HHS", region)) %>%
-      select(location, week, ILI = weighted_ili)
-  ) %>%
+ILI_1617 <- readRDS("Data/ili_init_pub_list.rds")[['201728']] %>%
+  filter(!location %in% state.name) %>%
+  mutate(order_week = week_inorder(week, "2016/2017")) %>%
+  arrange(location, order_week) %>%
+  select(location, week, ILI) %>%
   mutate(ILI = round(ILI, 1))
 
-ILI_1819 <- ilinet(region = "national", year = 2018) %>%
-  mutate(location = "US National") %>%
-  select(location, week, ILI = weighted_ili) %>%
-  bind_rows(
-    ilinet(region = "hhs", year = 2018) %>%
-      mutate(location = paste("HHS", region)) %>%
-      select(location, week, ILI = weighted_ili)
-  ) %>%
+ILI_1718 <- readRDS("Data/ili_init_pub_list.rds")[['201828']] %>%
+  filter(!location %in% state.name) %>%
+  mutate(order_week = week_inorder(week, "2017/2018")) %>%
+  arrange(location, order_week) %>%
+  select(location, week, ILI) %>%
+  mutate(ILI = round(ILI, 1))
+
+ILI_1819 <- readRDS("Data/ili_init_pub_list.rds")[['201928']] %>%
+  filter(!location %in% state.name) %>%
+  mutate(order_week = week_inorder(week, "2018/2019")) %>%
+  arrange(location, order_week) %>%
+  select(location, week, ILI) %>%
   mutate(ILI = round(ILI, 1))
 
 # Create truth ----------------------------------------------------------------

@@ -368,15 +368,16 @@ create_eval_period <- function(ILI, truth, season) {
   
   # Boundaries of MMWR weeks ILINet was above baseline
   wks_abv_baseline <- ILI %>%
+    mutate(ILI = round(ILI, 1)) %>%
     left_join(FluSight::past_baselines %>%
                 filter(year == as.numeric(substr(season, 1, 4))),
               by = "location") %>%
-    group_by(location) %>%
     filter(ILI >= value) %>%
+    group_by(location) %>%
     summarize(end_week = last(week)) %>%
     left_join(truth %>% filter(target == "Season onset") %>% 
                 mutate(start_week = case_when(
-                  bin_start_incl == "none" ~ 43,
+                  bin_start_incl == "none" ~ 42,
                   TRUE ~ as.numeric(bin_start_incl)
                 )) %>%
                 select(location, start_week),
@@ -386,7 +387,7 @@ create_eval_period <- function(ILI, truth, season) {
   seasonal_eval_period <- truth %>%
     # Onset weekly bins
     filter(target == "Season onset") %>%
-    mutate(start_week = 43,
+    mutate(start_week = 42,
            end_week = case_when(
              bin_start_incl == "none" ~ 18,
              TRUE ~ as.numeric(bin_start_incl) + 6
@@ -403,7 +404,7 @@ create_eval_period <- function(ILI, truth, season) {
     bind_rows(truth %>%
                 filter(target == "Season peak week") %>%
                 left_join(wks_abv_baseline, by = "location") %>%
-                mutate(start_week = 43,
+                mutate(start_week = 42,
                        end_week = case_when(
                          is.na(end_week) ~ 18,
                          TRUE ~ as.numeric(end_week) + 1
@@ -419,7 +420,7 @@ create_eval_period <- function(ILI, truth, season) {
     bind_rows(truth %>%
                 filter(target == "Season peak week") %>%
                 left_join(wks_abv_baseline, by = "location") %>%
-                mutate(start_week = 43,
+                mutate(start_week = 42,
                        end_week = case_when(
                          is.na(end_week) ~ 18,
                          TRUE ~ as.numeric(end_week) + 1
@@ -439,9 +440,9 @@ create_eval_period <- function(ILI, truth, season) {
   single_week_eval_period <- truth %>%
     filter(target == "Season onset") %>%
     mutate(start_week = case_when(
-      bin_start_incl == "none" ~ 43,
+      bin_start_incl == "none" ~ 42,
       as.numeric(bin_start_incl) - 4 < 1 ~ as.numeric(bin_start_incl) + 48,
-      as.numeric(bin_start_incl) - 4 < 43 & as.numeric(bin_start_incl) > 17 ~ 43,
+      as.numeric(bin_start_incl) - 4 < 42 & as.numeric(bin_start_incl) > 17 ~ 42,
       TRUE ~ as.numeric(bin_start_incl) - 4
     )) %>%
     left_join(wks_abv_baseline %>% select(-start_week), by = "location") %>%

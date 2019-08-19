@@ -18,6 +18,7 @@ theme_set(theme_minimal())
 load("Data/model_scores.Rdata")
 
 all_eval_scores <- all_eval_scores %>%
+  filter(season != "2018/2019") %>%
   # Shorter names for ensembles
   mutate(team = case_when(
     team == "ens-constant-weights" ~ "Ens-CW",
@@ -139,15 +140,20 @@ ggplot(scores_by_season,
     ggtitle("Average model scores by season")
 ```
 
+##### Team scores across all seasons
+
 ```{r}
 midpt <- mean(filter(scores_by_team, team=="Historical Average")$avg_score)
+
 ggplot(scores_by_team, 
     aes(x=1, fill=avg_score, y=team)) + 
     geom_tile() + ylab(NULL) + xlab(NULL) +
     geom_text(aes(label=round(avg_score, 2))) +
     scale_fill_gradient2(midpoint = midpt) +
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-    ggtitle("team scores across all seasons")
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank()) +
+    labs(fill = "Avg Score")
+
 ```
 
 ```{r}
