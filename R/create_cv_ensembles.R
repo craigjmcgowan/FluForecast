@@ -22,8 +22,8 @@ for(j in 1:length(weight_files)) {
   
   # Remove future season from weights
   seasons <- unique(stacking_weights$season)
-  if("2018/2019" %in% seasons)
-    seasons <- seasons[-which(seasons=="2018/2019")]
+  if("2019/2020" %in% seasons)
+    seasons <- seasons[-which(seasons=="2019/2020")]
   
   # If weights by week included, reset to MMWR week
   if (any(grepl("Model.Week", names(stacking_weights)))) {

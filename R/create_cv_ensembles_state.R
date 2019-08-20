@@ -5,7 +5,7 @@ library(tidyverse)
 library(FluSight)
 
 source("R/utils.R")
-load("Data/state_best_model_fits.Rdata") 
+scores_by_state <- readRDS("Data/state_best_model_fits.Rds") 
 
 # List forecast files to be weighted
 model_files <- list.files(path = "State Forecasts", recursive = TRUE, full.names = T)
@@ -62,7 +62,7 @@ for(j in 1:length(weight_files)) {
                     paste0("EW", str_pad(1:20, 2, "left", pad = 0)))
 
     # Only create forecasts for weeks with forecasts in current season
-    if (loso_season == "2018/2019")
+    if (loso_season == "2019/2020")
       week_names <- week_names[1:31]
   
     for (k in length(week_names)) {#1:length(week_names)) {
