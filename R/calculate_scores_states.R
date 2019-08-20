@@ -16,38 +16,43 @@ forecasts_1718 <- read_forecasts("State Forecasts/2017-2018", challenge = "state
 forecasts_1819 <- read_forecasts("State Forecasts/2018-2019", challenge = "state_ili")
 
 # Create observed ILI -----
-load("Data/ili_state.Rdata")
+ili_init_pub_list <- readRDS('Data/ili_init_pub_list.Rds')
 
-ILI_1415 <- state_ili_init_pub_list[["201528"]] %>%
-  filter(week >= 40 | week < 25, season == "2014/2015") %>%
+ILI_1415 <- ili_init_pub_list[["201740"]] %>%
+  filter(week >= 40 | week < 25, season == "2014/2015",
+         location %in% state.name) %>%
   mutate(week = week_inorder(week, season)) %>%
   arrange(location, week) %>%
   mutate(week = week_reset(week, season)) %>%
   select(location, week, ILI)
 
-ILI_1516 <- state_ili_init_pub_list[["201628"]] %>%
-  filter(week >= 40 | week < 25, season == "2015/2016") %>%
+ILI_1516 <- ili_init_pub_list[["201740"]] %>%
+  filter(week >= 40 | week < 25, season == "2015/2016",
+         location %in% state.name) %>%
   mutate(week = week_inorder(week, season)) %>%
   arrange(location, week) %>%
   mutate(week = week_reset(week, season)) %>%
   select(location, week, ILI)
 
-ILI_1617 <-  state_ili_init_pub_list[["201728"]] %>%
-  filter(week >= 40 | week < 25, season == "2016/2017") %>%
+ILI_1617 <-  ili_init_pub_list[["201740"]] %>%
+  filter(week >= 40 | week < 25, season == "2016/2017",
+         location %in% state.name) %>%
   mutate(week = week_inorder(week, season)) %>%
   arrange(location, week) %>%
   mutate(week = week_reset(week, season)) %>%
   select(location, week, ILI)
 
-ILI_1718 <-  state_ili_init_pub_list[["201828"]] %>%
-  filter(week >= 40 | week < 25, season == "2017/2018") %>%
+ILI_1718 <-  ili_init_pub_list[["201828"]] %>%
+  filter(week >= 40 | week < 25, season == "2017/2018",
+         location %in% state.name) %>%
   mutate(week = week_inorder(week, season)) %>%
   arrange(location, week) %>%
   mutate(week = week_reset(week, season)) %>%
   select(location, week, ILI)
 
-ILI_1819 <-  state_ili_init_pub_list[["201917"]] %>%
-  filter(week >= 40 | week < 25, season == "2018/2019") %>%
+ILI_1819 <-  ili_init_pub_list[["201928"]] %>%
+  filter(week >= 40 | week < 25, season == "2018/2019",
+         location %in% state.name) %>%
   mutate(week = week_inorder(week, season)) %>%
   arrange(location, week) %>%
   mutate(week = week_reset(week, season)) %>%
@@ -112,8 +117,7 @@ state_full_scores <- bind_rows(full_scores_1415, full_scores_1516,
                                full_scores_1819)
 
 # Save scores -----
-save(state_full_scores,
-     file = "Data/state_model_scores.Rdata")
+saveRDS(state_full_scores, file = "Data/state_full_model_scores.Rds")
 
 
 # Determine best fitting model by state
@@ -131,5 +135,4 @@ scores_by_state <- state_full_scores %>%
   ungroup() %>%
   select(team, location)
 
-save(scores_by_state,
-     file = "Data/state_best_model_fits.Rdata")
+saveRDS(scores_by_state, file = "Data/state_best_model_fits.Rds")

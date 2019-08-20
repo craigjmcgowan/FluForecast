@@ -252,6 +252,6 @@ all_eval_scores <- bind_rows(eval_scores_1011, eval_scores_1112,
                              eval_scores_1819)
 
 # Save scores -----
-save(all_full_scores, all_eval_scores,
-     file = "Data/model_scores.Rdata")
+saveRDS(all_full_scores, "Data/full_model_scores.Rds")
+saveRDS(all_eval_scores, "Data/eval_model_scores.Rds")
 
