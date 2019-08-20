@@ -10,7 +10,9 @@ library(pipeR)
 library(parallel)
 
 # Load scores
-load("Data/model_scores.Rdata")
+all_eval_scores <- readRDS("Data/eval_model_scores.Rds")
+all_full_scores <- readRDS("Data/full_model_scores.Rds")
+
 source("R/utils.R")
 source("R/degenerate_em_functions.R")
 
@@ -18,7 +20,7 @@ source("R/degenerate_em_functions.R")
 options(mc.cores=parallel::detectCores()-1L)
 
 # Define prospective season
-pro_season <- "2018/2019"
+pro_season <- "2019/2020"
 
 # Define weight structures
 #   Equal weights
