@@ -244,7 +244,7 @@ gtrend_US_flu_merge <- fetch_gtrend("US") %>%
 gtrend_state_list <- tibble(state_abb = state.abb) %>%
   mutate(data = map(state_abb, ~ fetch_gtrend(.)))
 
-gtrend_state_flu_merge <- unnest(gtrend_state_list) %>%
+gtrend_state_flu_merge <- unnest(gtrend_state_list, col = c(data)) %>%
   inner_join(mutate(state_matchup, state_abb = toupper(abb)), by = "state_abb") %>%
   select(-state_abb, -abb, location = name)
 
