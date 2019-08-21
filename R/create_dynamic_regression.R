@@ -310,7 +310,7 @@ for (this_season in c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
     nest(data = c(target, bin_start_incl, value, type, unit, bin_end_notincl, 
                   forecast_week, location)) %>%
     left_join(nested_truth, by = "season") %>%
-    mutate(scores = map2(data, exp_truth,
+    mutate(scores = map2(data, truth,
                          ~ score_entry(.x, .y)),
            eval_scores = pmap(list(scores, eval_period, season),
                               ~ create_eval_scores(..1, ..2, ..3))) %>%
@@ -483,7 +483,7 @@ for(this_season in unique(arima_model_data_setup$season)) {
     nest(data = c(target, bin_start_incl, value, type, unit, bin_end_notincl, 
                   forecast_week, location)) %>%
     left_join(nested_truth, by = "season") %>%
-    mutate(scores = map2(data, exp_truth,
+    mutate(scores = map2(data, truth,
                          ~ score_entry(.x, .y)),
            eval_scores = pmap(list(scores, eval_period, season),
                               ~ create_eval_scores(..1, ..2, ..3))) %>%
@@ -1037,7 +1037,7 @@ for (this_season in unique(covar_model_data_setup$season)) {
     nest(data = c(target, bin_start_incl, value, type, unit, bin_end_notincl, 
                   forecast_week, location)) %>%
     left_join(nested_truth, by = "season") %>%
-    mutate(scores = map2(data, exp_truth,
+    mutate(scores = map2(data, truth,
                          ~ score_entry(.x, .y)),
            eval_scores = pmap(list(scores, eval_period, season),
                               ~ create_eval_scores(..1, ..2, ..3))) %>%
