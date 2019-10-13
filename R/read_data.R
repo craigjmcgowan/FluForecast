@@ -6,6 +6,7 @@ library(gtrendsR)
 library(lubridate)
 library(FluSight)
 library(epiforecast)
+library(zoo)
 
 # Load functions
 source("R/utils.R")
@@ -75,7 +76,8 @@ ili_current <- bind_rows(
   current_epidata(201540, 201639),
   current_epidata(201640, 201739),
   current_epidata(201740, 201839),
-  current_epidata(201840, pull_week)
+  current_epidata(201840, 201939),
+  current_epidata(201940, pull_week)
 ) %>%
   # Add in location name
   left_join(rename(state_matchup, location = name), by = c("region" = "abb")) %>%
@@ -154,18 +156,26 @@ ili_backfill <- left_join(
 
 ili_backfill_avg <- ili_backfill %>%
   group_by(location, week) %>%
-  summarize(avg_backfill = mean(backfill))
+  summarize(avg_backfill = mean(backfill),
+            sd_backfill = sd(backfill))
+
+ili_backfill_month_avg <- ili_backfill %>%
+  mutate(month = month(MMWRweek2Date(year, week))) %>%
+  group_by(location, month) %>%
+  summarize(avg_backfill = mean(backfill),
+            sd_backfill = sd(backfill))
 
 saveRDS(ili_orig, "Data/ili_orig.RDS")
 saveRDS(ili_current, "Data/ili_current.RDS")
 saveRDS(ili_init_pub_list, "Data/ili_init_pub_list.RDS")
 saveRDS(ili_backfill, "Data/ili_backfill.RDS")
 saveRDS(ili_backfill_avg, "Data/ili_backfill_avg.RDS")
+saveRDS(ili_backfill_month_avg, "Data/ili_backfill_month_avg.RDS")
 
 # Fetch virologic data from CDC -----
-virologic_national <- who_nrevss(region = "national", years = c(1997:2018))
-virologic_region <- who_nrevss(region = "hhs", years = c(1997:2018))
-virologic_state <- who_nrevss(region = "state", years = c(2010:2018))
+virologic_national <- who_nrevss(region = "national", years = c(1997:2019))
+virologic_region <- who_nrevss(region = "hhs", years = c(1997:2019))
+virologic_state <- who_nrevss(region = "state", years = c(2010:2019))
 
 virologic_before_1516 <- bind_rows(
   virologic_national[[1]],
@@ -174,17 +184,66 @@ virologic_before_1516 <- bind_rows(
     mutate_at(c("a_2009_h1n1", "a_h1", "a_h3", "a_subtyping_not_performed",
                 "a_unable_to_subtype", "b", "h3n2v", "total_specimens",
                 "percent_positive"),
-              as.integer)
+              as.integer) %>%
+    filter(region %in% state.name)
 )
 
 virologic_ph_lab <- bind_rows(
   virologic_national[[2]], 
-  virologic_region[[2]], 
-  virologic_state[[2]] %>%
-    mutate_at(c("a_2009_h1n1", "a_h3", "a_subtyping_not_performed",
-                 "b", "bvic", "byam", "h3n2v", "total_specimens"),
-              as.integer)
+  virologic_region[[2]]#, 
+  # virologic_state[[2]] %>%
+  #   mutate_at(c("a_2009_h1n1", "a_h3", "a_subtyping_not_performed",
+  #                "b", "bvic", "byam", "h3n2v", "total_specimens"),
+  #             as.integer)
 )
+
+
+ 
+virologic_ph_lab_state <- virologic_state[[2]] %>%
+  mutate(season = paste(substr(season_description, 8, 11), 
+                        as.numeric(substr(season_description, 8, 11)) + 1,
+                        sep = "/")) %>%
+  mutate_at(c("a_2009_h1n1", "a_h3", "a_subtyping_not_performed",
+              "b", "bvic", "byam", "h3n2v", "total_specimens"),
+            as.integer) %>%
+  select(-region_type, -season_description, -wk_date) %>%
+  mutate_at(vars(c("a_2009_h1n1", "a_h3", "a_subtyping_not_performed",
+                   "b", "bvic", "byam", "h3n2v")),
+            function(x) ifelse(is.na(x), 0, x)) %>%
+  # Create mock H1 and H3 percents if all A samples had been tested
+  rowwise() %>%
+  mutate(h1sum = sum(a_2009_h1n1),
+         h3sum = sum(a_h3, h3n2v),
+         asum = sum(a_2009_h1n1, a_h3, a_subtyping_not_performed, h3n2v),
+         bsum = sum(b, bvic, byam),
+         # Subtype percentages of typed As
+         h1per_of_a = ifelse(is.na(h1sum / (h1sum + h3sum)), 0.5, 
+                             h1sum / (h1sum + h3sum)),
+         h3per_of_a = ifelse(is.na(h3sum / (h1sum + h3sum)), 0.5, 
+                             h3sum / (h1sum + h3sum)),
+         # Cumulative percentages of each type, assuming A type %s are representative
+         cum_bper = bsum / (asum + bsum),
+         cum_h1per = h1per_of_a * asum / (asum + bsum),
+         cum_h3per = h3per_of_a * asum / (asum + bsum),
+         # If no samples reported, make each type 33%
+         cum_h1per = ifelse(is.na(cum_h1per), 1/3, cum_h1per),
+         cum_h3per = ifelse(is.na(cum_h3per), 1/3, cum_h3per),
+         cum_bper = ifelse(is.na(cum_bper), 1/3, cum_bper)) %>% 
+  ungroup() %>%
+  # Create dataset with all weeks, with each week having the cumulative measure
+  full_join(crossing(season = c('2015/2016', '2016/2017', '2017/2018', '2018/2019'),
+                     week = c(1:52)),
+            by = "season") %>%
+  # Add year variable for future use
+  mutate(year = case_when(week < 40 ~ as.numeric(substr(season, 6, 9)),
+                          TRUE ~ as.numeric(substr(season, 1, 4)))) %>%
+  # Select variables of interest
+  select(location = region, season, week, year, a_2009_h1n1, a_h3, 
+         a_subtyping_not_performed, b, bvic, byam, 
+         h1per_of_a, h3per_of_a, cum_h1per, cum_h3per, cum_bper, total_specimens)
+  
+saveRDS(virologic_ph_lab_state, "Data/virologic_ph_lab_state.RDS")  
+
 
 virologic_combined <- bind_rows(
   virologic_before_1516, virologic_ph_lab
@@ -209,31 +268,47 @@ virologic_combined <- bind_rows(
   mutate_at(vars(c("a_2009_h1n1", "a_h1", "a_h3", "a_subtyping_not_performed",
                    "a_unable_to_subtype", "b", "bvic", "byam")),
             function(x) ifelse(is.na(x), 0, x)) %>%
-  # Create cumulative influenza percentage measures
+  # Create cumulative and rolling week influenza percentage measures
   group_by(season, region) %>%
   arrange(wk_date, .by_group = TRUE) %>%
-  mutate(h1sum = cumsum(a_2009_h1n1) + cumsum(a_h1),
+  mutate(h1sum_6wk = rollapply(a_2009_h1n1, 6, sum, align = 'right', partial = TRUE) + 
+           rollapply(a_h1, 6, sum, align = 'right', partial = TRUE),
+         h3sum_6wk = rollapply(a_h3, 6, sum, align = 'right', partial = TRUE),
+         asum_6wk = rollapply(a_pos_samples, 6, sum, align = 'right', partial = TRUE),
+         bsum_6wk = rollapply(b_pos_samples, 6, sum, align = 'right', partial = TRUE),
+         h1sum = cumsum(a_2009_h1n1) + cumsum(a_h1),
          h3sum = cumsum(a_h3),
          asum = cumsum(a_pos_samples),
          bsum = cumsum(b_pos_samples),
          # Subtype percentages of typed As
+         h1per_of_a_6wk = ifelse(is.na(h1sum_6wk / (h1sum_6wk + h3sum_6wk)), 0.5, 
+                                 h1sum_6wk / (h1sum_6wk + h3sum_6wk)),
+         h3per_of_a_6wk = ifelse(is.na(h3sum_6wk / (h1sum_6wk + h3sum_6wk)), 0.5, 
+                                 h3sum_6wk / (h1sum_6wk + h3sum_6wk)),
          h1per_of_a = ifelse(is.na(h1sum / (h1sum + h3sum)), 0.5, 
                              h1sum / (h1sum + h3sum)),
          h3per_of_a = ifelse(is.na(h3sum / (h1sum + h3sum)), 0.5, 
                              h3sum / (h1sum + h3sum)),
          # Cumulative percentages of each type, assuming A type %s are representative
+         cum_bper_6wk = bsum_6wk / (asum_6wk + bsum_6wk),
+         cum_h1per_6wk = h1per_of_a_6wk * asum_6wk / (asum_6wk + bsum_6wk),
+         cum_h3per_6wk = h3per_of_a_6wk * asum_6wk / (asum_6wk + bsum_6wk),
          cum_bper = bsum / (asum + bsum),
          cum_h1per = h1per_of_a * asum / (asum + bsum),
          cum_h3per = h3per_of_a * asum / (asum + bsum)) %>%
   # If no samples reported, make each type 33%
-  mutate(cum_h1per = ifelse(is.na(cum_h1per), 1/3, cum_h1per),
+  mutate(cum_h1per_6wk = ifelse(is.na(cum_h1per_6wk), 1/3, cum_h1per_6wk),
+         cum_h3per_6wk = ifelse(is.na(cum_h3per_6wk), 1/3, cum_h3per_6wk),
+         cum_bper_6wk = ifelse(is.na(cum_bper_6wk), 1/3, cum_bper_6wk),
+         cum_h1per = ifelse(is.na(cum_h1per), 1/3, cum_h1per),
          cum_h3per = ifelse(is.na(cum_h3per), 1/3, cum_h3per),
          cum_bper = ifelse(is.na(cum_bper), 1/3, cum_bper)) %>% 
   ungroup() %>%
   select(location = region, season, year, week, a_h1, a_2009_h1n1, a_h3, 
          a_subtyping_not_performed, a_unable_to_subtype, b, bvic, byam, 
-         h1per_of_a, h3per_of_a, cum_h1per, cum_h3per, cum_bper, total_specimens,
-         percent_positive)
+         h1per_of_a_6wk, h1per_of_a, h3per_of_a_6wk, h3per_of_a,
+         cum_h1per_6wk, cum_h1per, cum_h3per_6wk, cum_h3per, 
+         cum_bper_6wk, cum_bper, total_specimens, percent_positive)
 
 saveRDS(virologic_combined, file = "Data/virologic.Rds")
 
