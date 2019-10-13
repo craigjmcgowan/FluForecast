@@ -518,17 +518,57 @@ sample_predictive_trajectories_arima <- function (object,
 }
 
 # Turn fitted forecast model into a CDC-style forecast ------
-fit_to_forecast <- function(object, xreg, pred_data, location, season, 
-                            npaths = 1000, max_week = 52, 
+fit_to_forecast <- function(object, k, pred_data, location, season, week,
+                            xreg = c(), forecast_xreg = c(),
+                            backfill, npaths = 1000, max_week = 52, 
                             challenge = "ilinet", ...){
 
-  # Simulate output
-  sim_output <- sample_predictive_trajectories_arima(
-    object, 
-    h = max_week - 14 - nrow(pred_data[pred_data$season == season, ]),
-    xreg = xreg,
-    npaths = npaths
-  )
+  # Create empty matrices to fill in while simulating
+  sim_season <- matrix(nrow = npaths,
+                       ncol = nrow(pred_data[pred_data$season == season, ]))
+  
+  sim_output <- matrix(nrow = npaths, 
+                       ncol = max_week - 14 - nrow(pred_data[pred_data$season == season, ]))
+  
+  for(i in 1:npaths) {
+  
+    # Simulate backfill and create ILI time-series
+    pred_data_temp <- pred_data %>%
+      left_join(
+        backfill %>%
+          mutate(adjust = map2_dbl(data, density_bw,
+                               ~ sample(.x$backfill, 1) + rnorm(1, 0, .y)),
+                 season = season) %>%
+          select(season, order_week = measure_week, adjust),
+        by = c('season', 'order_week')
+      ) %>%
+      mutate(adjust = case_when(is.na(adjust) ~ 0,
+                                TRUE ~ adjust),
+             ILI = ILI + adjust,
+             ILI = ts(ILI, frequency = 52, start = c(2006, 40)))
+    
+    xreg_temp = cbind(fourier(pred_data_temp$ILI, K = k), xreg)
+    
+    forecast_xreg_temp = cbind(fourier(pred_data_temp$ILI, K = k,
+                                       h = max_week - 14 - 
+                                         nrow(pred_data[pred_data$season == season, ])),
+                               forecast_xreg)
+    
+    # Save matrix of current season estimates for use in onset later
+    sim_season[i, ] <- pred_data_temp[pred_data_temp$season == season, ] %>%
+                                mutate(ILI = as.numeric(ILI)) %>% pull(ILI)
+    
+    
+    # Simulate output
+    sim_output[i, ] <- sample_predictive_trajectories_arima(
+        Arima(pred_data_temp$ILI, xreg = xreg_temp, model = object), 
+        h = max_week - 14 - nrow(pred_data_temp[pred_data_temp$season == season, ]),
+        xreg = forecast_xreg_temp,
+        npaths = 1
+      )
+    
+  }
+  
   
   # Calculate forecast probabilities
   current_week <- ifelse(last(pred_data$week) < 40, last(pred_data$week) + max_week,
@@ -608,13 +648,9 @@ fit_to_forecast <- function(object, xreg, pred_data, location, season,
 
   # Onset week
   if(challenge == "ilinet") {
-    calc_onset <- rbind(
-      matrix(pred_data[pred_data$season == season, ] %>%
-               mutate(ILI = as.numeric(ILI)) %>% pull(ILI),
-             nrow = nrow(pred_data[pred_data$season == season, ]),
-             ncol = npaths),
-      t(sim_output)
-    ) %>% as.tibble()
+    calc_onset <- cbind(sim_season, sim_output) %>% 
+      t() %>%
+      as_tibble(.name_repair = 'minimal')
   
     onsets <- apply(calc_onset, 2, function(x) {
       temp <- tibble(week = 40:(max_week + 25),
@@ -676,6 +712,7 @@ fit_to_forecast <- function(object, xreg, pred_data, location, season,
   
   return(forecast_results)
 }
+
 
 # Stack forecasts for ensembles -----
 stack_forecasts <- function(files, stacking_weights, challenge = "ilinet") {
