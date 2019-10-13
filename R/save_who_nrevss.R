@@ -20,26 +20,26 @@ last_week <- str_pad(tail(WHO_national$public_health_labs$week, 1), 2, "left", "
 
 # Save data
 write_csv(WHO_national$public_health_labs,
-          path = paste0("Data/WHO-NREVSS Data/EW", last_week,
+          path = paste0("Data/2019-2020/WHO-NREVSS Data/EW", last_week,
                         "Nat_PH_labs.csv"))
 
 write_csv(WHO_national$clinical_labs,
-          path = paste0("Data/WHO-NREVSS Data/EW", last_week,
+          path = paste0("Data/2019-2020/WHO-NREVSS Data/EW", last_week,
                         "Nat_clin_labs.csv"))
 
 write_csv(WHO_regional$public_health_labs,
-          path = paste0("Data/WHO-NREVSS Data/EW", last_week,
+          path = paste0("Data/2019-2020/WHO-NREVSS Data/EW", last_week,
                         "Reg_PH_labs.csv"))
 
 write_csv(WHO_regional$clinical_labs,
-          path = paste0("Data/WHO-NREVSS Data/EW", last_week,
+          path = paste0("Data/2019-2020/WHO-NREVSS Data/EW", last_week,
                         "Reg_clin_labs.csv"))
           
 write_csv(WHO_state$public_health_labs,
-          path = paste0("Data/WHO-NREVSS Data/EW", last_week,
+          path = paste0("Data/2019-2020/WHO-NREVSS Data/EW", last_week,
                         "State_PH_labs.csv"))
 
 write_csv(WHO_state$clinical_labs,
-          path = paste0("Data/WHO-NREVSS Data/EW", last_week,
+          path = paste0("Data/2019-2020/WHO-NREVSS Data/EW", last_week,
                         "State_clin_labs.csv"))
           
