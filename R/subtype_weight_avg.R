@@ -102,7 +102,9 @@ for(i in 40:72) {
     pub_week = i,
     season = "2010/2011",
     prob_no_onset = filter(prob_no_onset, season == "2010/2011")
-  )
+  ) 
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
@@ -153,6 +155,8 @@ for(i in 40:72) {
     prob_no_onset = filter(prob_no_onset, season == "2011/2012")
   )
   
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
@@ -201,6 +205,8 @@ for(i in 40:72) {
     season = "2012/2013",
     prob_no_onset = filter(prob_no_onset, season == "2012/2013")
   )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
@@ -252,12 +258,14 @@ for(i in 40:72) {
     prob_no_onset = filter(prob_no_onset, season == "2013/2014")
   )
   
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
             path = paste0("Forecasts/Training/2013-2014/Subtype Historical Average/EW", j, ".csv"))
   
-  year <- ifelse(i > 53, 2014, 2013)
+  year <- ifelse(i > 52, 2014, 2013)
   write_csv(temp,
             path = paste0(kudu_path, "/EW", j, "-", year, "-Protea_Kudu.csv"))
   
@@ -300,6 +308,8 @@ for(i in 40:73) {
     season = "2014/2015",
     prob_no_onset = filter(prob_no_onset, season == "2014/2015")
   )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
   
   j <- str_pad(ifelse(i > 53, i - 53, i), 2, pad = "0")
   
@@ -349,6 +359,8 @@ for(i in 40:72) {
     season = "2015/2016",
     prob_no_onset = filter(prob_no_onset, season == "2015/2016")
   )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
@@ -400,6 +412,8 @@ for(i in 40:72) {
     prob_no_onset = filter(prob_no_onset, season == "2016/2017")
   )
   
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
@@ -449,6 +463,8 @@ for(i in 40:72) {
     prob_no_onset = filter(prob_no_onset, season == "2017/2018")
   )
   
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
@@ -497,6 +513,8 @@ for(i in 40:72) {
     season = "2018/2019",
     prob_no_onset = filter(prob_no_onset, season == "2018/2019")
   )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
   
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   

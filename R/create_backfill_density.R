@@ -18,7 +18,7 @@ fit_density <- function(x) {
 # Load data and  create densities for each location, week, lag combination
 ili_current <- readRDS('Data/ili_current.RDS') %>%
   mutate(release_date = as.Date(release_date)) %>%
-  filter(!location %in% state.name)
+  filter(!location %in% state.name, season != "2019/2020")
 
 ili_scored <- readRDS('Data/ili_init_pub_list.RDS')[c('201428', '201528', '201628', 
                                                       '201728', '201828', '201928')] %>%
@@ -39,6 +39,11 @@ ili_backfill <- readRDS('Data/ili_init_pub_list.RDS') %>%
 
 
 ili_backfill_densities <- ili_backfill %>%
+  # Add in rows for 2019/2020
+  bind_rows(filter(ili_backfill, season == '2018/2019') %>%
+              mutate(print_year = print_year + 1,
+                     season = '2019/2020',
+                     backfill = NA_real_)) %>%
   select(location, print_year, season, week, measure_week) %>%
   mutate(full_data = pmap(list(location, week, measure_week),
                           ~ filter(ili_backfill, location == ..1,
@@ -54,7 +59,6 @@ ili_backfill_densities <- ili_backfill %>%
          density_bw = map(data,
                           ~ fit_density(.$backfill))) %>%
   select(location, season, week, measure_week, data, density_bw) 
-
 
 # Create entries for regional week 40s in early seasons
 ili_fill_densities <- crossing(location = c("HHS Region 1", "HHS Region 2", "HHS Region 3",

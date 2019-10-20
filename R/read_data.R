@@ -323,6 +323,6 @@ gtrend_state_flu_merge <- unnest(gtrend_state_list, col = c(data)) %>%
   inner_join(mutate(state_matchup, state_abb = toupper(abb)), by = "state_abb") %>%
   select(-state_abb, -abb, location = name)
 
-gtrend_merge <- bind_rows(gtrend_US_flu_merge, gtrend_state_flu_merge)
+gtrend <- bind_rows(gtrend_US_flu_merge, gtrend_state_flu_merge)
 
-saveRDS(gtrend_merge, "Data/gtrend.Rds")
+saveRDS(gtrend, "Data/gtrend.Rds")

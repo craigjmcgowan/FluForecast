@@ -498,7 +498,7 @@ train_ili_1920<- ili_current %>%
          !location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("Forecasts/2019-2020/Historical Average",
+dir.create("Forecasts/Training/2019-2020/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -521,7 +521,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/2019-2020/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Live/2019-2020/Historical Average/EW", j, ".csv"))
   
 }
 

@@ -15,10 +15,12 @@ theme_set(theme_minimal())
 ```
 
 ```{r}
-load("Data/model_scores.Rdata")
+
+all_full_scores <- readRDS("Data/full_model_scores.Rds")
+all_eval_scores <- readRDS("Data/eval_model_scores.Rds")
 
 all_eval_scores <- all_eval_scores %>%
-  filter(season != "2018/2019") %>%
+  filter(season != "2019/2020") %>%
   # Shorter names for ensembles
   mutate(team = case_when(
     team == "ens-constant-weights" ~ "Ens-CW",

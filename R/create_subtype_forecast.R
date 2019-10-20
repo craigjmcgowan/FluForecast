@@ -921,10 +921,11 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
   
   # Combine predictions together, normalize probabilities, 
   #   generate point forecasts, return prediction
-  
-   normalize_probs(pred) %>%
+  normalize_probs(pred) %>%
+    # mutate(value = round(value, 6)) %>%
     bind_rows(generate_point_forecasts(.), .) %>%
-    select(location, target, unit, type, bin_start_incl, 
-           bin_end_notincl, value)
+    select(Location = location, Target = target, Type = type, 
+           Unit = unit, Bin_start_incl = bin_start_incl, 
+           Bin_end_notincl = bin_end_notincl, Value = value)
 
 }

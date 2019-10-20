@@ -5,7 +5,7 @@ library(FluSight)
 source("R/utils.R")
 
 # List forecast files to be weighted
-model_files <- list.files(path = "Forecasts", recursive = TRUE, full.names = T)
+model_files <- list.files(path = "Forecasts/Training", recursive = TRUE, full.names = T)
 model_files <- model_files[!grepl('ens', model_files)]
 
 # List weighting schemes to be calculated
@@ -46,7 +46,7 @@ for(j in 1:length(weight_files)) {
     wt_subset <- filter(stacking_weights, season==loso_season) %>%
       dplyr::select(-season)
     
-    dir.create(file.path("Forecasts", sub("/", "-", loso_season),
+    dir.create(file.path("Forecasts/Training", sub("/", "-", loso_season),
                          paste0("ens-", stacked_name)), 
                showWarnings = FALSE)
     
@@ -74,12 +74,12 @@ for(j in 1:length(weight_files)) {
 
       file_df <- data.frame(
         file = files_to_stack, 
-        model_id = word(files_to_stack, start = 3, end = 3, sep = "/"),
+        model_id = word(files_to_stack, start = 4, end = 4, sep = "/"),
         stringsAsFactors = FALSE)
       
       stacked_entry <- stack_forecasts(file_df, wt_sub_subset)
       stacked_file_name <- paste0(
-        "Forecasts/", sub("/", "-", loso_season), "/ens-",
+        "Forecasts/Training/", sub("/", "-", loso_season), "/ens-",
         stacked_name, "/", this_week, ".csv"
       )
       write.csv(stacked_entry, file=stacked_file_name, 
