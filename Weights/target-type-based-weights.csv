@@ -1,190 +1,211 @@
 component_model_id,season,target,weight
-Dynamic Harmonic Model,2010/2011,Season onset,0.916943640551437
-Dynamic Harmonic Model,2010/2011,Season peak week,0.916943640551437
-Dynamic Harmonic Model,2010/2011,Season peak percentage,0.916943640551437
-Historical Average,2010/2011,Season onset,1.76457757326189e-06
-Historical Average,2010/2011,Season peak week,1.76457757326189e-06
-Historical Average,2010/2011,Season peak percentage,1.76457757326189e-06
-Subtype Historical Average,2010/2011,Season onset,0.0830545948709893
-Subtype Historical Average,2010/2011,Season peak week,0.0830545948709893
-Subtype Historical Average,2010/2011,Season peak percentage,0.0830545948709893
-Dynamic Harmonic Model,2011/2012,Season onset,0.903512801978937
-Dynamic Harmonic Model,2011/2012,Season peak week,0.903512801978937
-Dynamic Harmonic Model,2011/2012,Season peak percentage,0.903512801978937
-Historical Average,2011/2012,Season onset,1.3513269257932e-06
-Historical Average,2011/2012,Season peak week,1.3513269257932e-06
-Historical Average,2011/2012,Season peak percentage,1.3513269257932e-06
-Subtype Historical Average,2011/2012,Season onset,0.0964858466941373
-Subtype Historical Average,2011/2012,Season peak week,0.0964858466941373
-Subtype Historical Average,2011/2012,Season peak percentage,0.0964858466941373
-Dynamic Harmonic Model,2012/2013,Season onset,0.920601458181213
-Dynamic Harmonic Model,2012/2013,Season peak week,0.920601458181213
-Dynamic Harmonic Model,2012/2013,Season peak percentage,0.920601458181213
-Historical Average,2012/2013,Season onset,1.77682851916094e-06
-Historical Average,2012/2013,Season peak week,1.77682851916094e-06
-Historical Average,2012/2013,Season peak percentage,1.77682851916094e-06
-Subtype Historical Average,2012/2013,Season onset,0.0793967649902679
-Subtype Historical Average,2012/2013,Season peak week,0.0793967649902679
-Subtype Historical Average,2012/2013,Season peak percentage,0.0793967649902679
-Dynamic Harmonic Model,2013/2014,Season onset,0.914709366871165
-Dynamic Harmonic Model,2013/2014,Season peak week,0.914709366871165
-Dynamic Harmonic Model,2013/2014,Season peak percentage,0.914709366871165
-Historical Average,2013/2014,Season onset,4.74670479007683e-06
-Historical Average,2013/2014,Season peak week,4.74670479007683e-06
-Historical Average,2013/2014,Season peak percentage,4.74670479007683e-06
-Subtype Historical Average,2013/2014,Season onset,0.0852858864240449
-Subtype Historical Average,2013/2014,Season peak week,0.0852858864240449
-Subtype Historical Average,2013/2014,Season peak percentage,0.0852858864240449
-Dynamic Harmonic Model,2014/2015,Season onset,0.927984989484179
-Dynamic Harmonic Model,2014/2015,Season peak week,0.927984989484179
-Dynamic Harmonic Model,2014/2015,Season peak percentage,0.927984989484179
-Historical Average,2014/2015,Season onset,6.44517772949185e-06
-Historical Average,2014/2015,Season peak week,6.44517772949185e-06
-Historical Average,2014/2015,Season peak percentage,6.44517772949185e-06
-Subtype Historical Average,2014/2015,Season onset,0.0720085653380912
-Subtype Historical Average,2014/2015,Season peak week,0.0720085653380912
-Subtype Historical Average,2014/2015,Season peak percentage,0.0720085653380912
-Dynamic Harmonic Model,2015/2016,Season onset,0.930495626303336
-Dynamic Harmonic Model,2015/2016,Season peak week,0.930495626303336
-Dynamic Harmonic Model,2015/2016,Season peak percentage,0.930495626303336
-Historical Average,2015/2016,Season onset,1.94219246173199e-06
-Historical Average,2015/2016,Season peak week,1.94219246173199e-06
-Historical Average,2015/2016,Season peak percentage,1.94219246173199e-06
-Subtype Historical Average,2015/2016,Season onset,0.069502431504202
-Subtype Historical Average,2015/2016,Season peak week,0.069502431504202
-Subtype Historical Average,2015/2016,Season peak percentage,0.069502431504202
-Dynamic Harmonic Model,2016/2017,Season onset,0.909444736335399
-Dynamic Harmonic Model,2016/2017,Season peak week,0.909444736335399
-Dynamic Harmonic Model,2016/2017,Season peak percentage,0.909444736335399
-Historical Average,2016/2017,Season onset,1.56582902206381e-06
-Historical Average,2016/2017,Season peak week,1.56582902206381e-06
-Historical Average,2016/2017,Season peak percentage,1.56582902206381e-06
-Subtype Historical Average,2016/2017,Season onset,0.0905536978355793
-Subtype Historical Average,2016/2017,Season peak week,0.0905536978355793
-Subtype Historical Average,2016/2017,Season peak percentage,0.0905536978355793
-Dynamic Harmonic Model,2017/2018,Season onset,0.905955196317337
-Dynamic Harmonic Model,2017/2018,Season peak week,0.905955196317337
-Dynamic Harmonic Model,2017/2018,Season peak percentage,0.905955196317337
-Historical Average,2017/2018,Season onset,1.48553370156973e-06
-Historical Average,2017/2018,Season peak week,1.48553370156973e-06
-Historical Average,2017/2018,Season peak percentage,1.48553370156973e-06
-Subtype Historical Average,2017/2018,Season onset,0.0940433181489619
-Subtype Historical Average,2017/2018,Season peak week,0.0940433181489619
-Subtype Historical Average,2017/2018,Season peak percentage,0.0940433181489619
-Dynamic Harmonic Model,2010/2011,1 wk ahead,0.960913914607786
-Dynamic Harmonic Model,2010/2011,2 wk ahead,0.960913914607786
-Dynamic Harmonic Model,2010/2011,3 wk ahead,0.960913914607786
-Dynamic Harmonic Model,2010/2011,4 wk ahead,0.960913914607786
-Historical Average,2010/2011,1 wk ahead,7.00192032725913e-07
-Historical Average,2010/2011,2 wk ahead,7.00192032725913e-07
-Historical Average,2010/2011,3 wk ahead,7.00192032725913e-07
-Historical Average,2010/2011,4 wk ahead,7.00192032725913e-07
-Subtype Historical Average,2010/2011,1 wk ahead,0.0390853852001813
-Subtype Historical Average,2010/2011,2 wk ahead,0.0390853852001813
-Subtype Historical Average,2010/2011,3 wk ahead,0.0390853852001813
-Subtype Historical Average,2010/2011,4 wk ahead,0.0390853852001813
-Dynamic Harmonic Model,2011/2012,1 wk ahead,0.951923015174922
-Dynamic Harmonic Model,2011/2012,2 wk ahead,0.951923015174922
-Dynamic Harmonic Model,2011/2012,3 wk ahead,0.951923015174922
-Dynamic Harmonic Model,2011/2012,4 wk ahead,0.951923015174922
-Historical Average,2011/2012,1 wk ahead,6.94316696679966e-07
-Historical Average,2011/2012,2 wk ahead,6.94316696679966e-07
-Historical Average,2011/2012,3 wk ahead,6.94316696679966e-07
-Historical Average,2011/2012,4 wk ahead,6.94316696679966e-07
-Subtype Historical Average,2011/2012,1 wk ahead,0.0480762905083813
-Subtype Historical Average,2011/2012,2 wk ahead,0.0480762905083813
-Subtype Historical Average,2011/2012,3 wk ahead,0.0480762905083813
-Subtype Historical Average,2011/2012,4 wk ahead,0.0480762905083813
-Dynamic Harmonic Model,2012/2013,1 wk ahead,0.967476662700727
-Dynamic Harmonic Model,2012/2013,2 wk ahead,0.967476662700727
-Dynamic Harmonic Model,2012/2013,3 wk ahead,0.967476662700727
-Dynamic Harmonic Model,2012/2013,4 wk ahead,0.967476662700727
-Historical Average,2012/2013,1 wk ahead,6.81161943951927e-07
-Historical Average,2012/2013,2 wk ahead,6.81161943951927e-07
-Historical Average,2012/2013,3 wk ahead,6.81161943951927e-07
-Historical Average,2012/2013,4 wk ahead,6.81161943951927e-07
-Subtype Historical Average,2012/2013,1 wk ahead,0.0325226561373287
-Subtype Historical Average,2012/2013,2 wk ahead,0.0325226561373287
-Subtype Historical Average,2012/2013,3 wk ahead,0.0325226561373287
-Subtype Historical Average,2012/2013,4 wk ahead,0.0325226561373287
-Dynamic Harmonic Model,2013/2014,1 wk ahead,0.969218235993443
-Dynamic Harmonic Model,2013/2014,2 wk ahead,0.969218235993443
-Dynamic Harmonic Model,2013/2014,3 wk ahead,0.969218235993443
-Dynamic Harmonic Model,2013/2014,4 wk ahead,0.969218235993443
-Historical Average,2013/2014,1 wk ahead,1.15283193832855e-06
-Historical Average,2013/2014,2 wk ahead,1.15283193832855e-06
-Historical Average,2013/2014,3 wk ahead,1.15283193832855e-06
-Historical Average,2013/2014,4 wk ahead,1.15283193832855e-06
-Subtype Historical Average,2013/2014,1 wk ahead,0.0307806111746184
-Subtype Historical Average,2013/2014,2 wk ahead,0.0307806111746184
-Subtype Historical Average,2013/2014,3 wk ahead,0.0307806111746184
-Subtype Historical Average,2013/2014,4 wk ahead,0.0307806111746184
-Dynamic Harmonic Model,2014/2015,1 wk ahead,0.983692984460229
-Dynamic Harmonic Model,2014/2015,2 wk ahead,0.983692984460229
-Dynamic Harmonic Model,2014/2015,3 wk ahead,0.983692984460229
-Dynamic Harmonic Model,2014/2015,4 wk ahead,0.983692984460229
-Historical Average,2014/2015,1 wk ahead,2.54841310548437e-06
-Historical Average,2014/2015,2 wk ahead,2.54841310548437e-06
-Historical Average,2014/2015,3 wk ahead,2.54841310548437e-06
-Historical Average,2014/2015,4 wk ahead,2.54841310548437e-06
-Subtype Historical Average,2014/2015,1 wk ahead,0.0163044671266653
-Subtype Historical Average,2014/2015,2 wk ahead,0.0163044671266653
-Subtype Historical Average,2014/2015,3 wk ahead,0.0163044671266653
-Subtype Historical Average,2014/2015,4 wk ahead,0.0163044671266653
-Dynamic Harmonic Model,2015/2016,1 wk ahead,0.961067792823064
-Dynamic Harmonic Model,2015/2016,2 wk ahead,0.961067792823064
-Dynamic Harmonic Model,2015/2016,3 wk ahead,0.961067792823064
-Dynamic Harmonic Model,2015/2016,4 wk ahead,0.961067792823064
-Historical Average,2015/2016,1 wk ahead,6.77413461801142e-07
-Historical Average,2015/2016,2 wk ahead,6.77413461801142e-07
-Historical Average,2015/2016,3 wk ahead,6.77413461801142e-07
-Historical Average,2015/2016,4 wk ahead,6.77413461801142e-07
-Subtype Historical Average,2015/2016,1 wk ahead,0.0389315297634746
-Subtype Historical Average,2015/2016,2 wk ahead,0.0389315297634746
-Subtype Historical Average,2015/2016,3 wk ahead,0.0389315297634746
-Subtype Historical Average,2015/2016,4 wk ahead,0.0389315297634746
-Dynamic Harmonic Model,2016/2017,1 wk ahead,0.956369182285864
-Dynamic Harmonic Model,2016/2017,2 wk ahead,0.956369182285864
-Dynamic Harmonic Model,2016/2017,3 wk ahead,0.956369182285864
-Dynamic Harmonic Model,2016/2017,4 wk ahead,0.956369182285864
-Historical Average,2016/2017,1 wk ahead,7.38828148053103e-07
-Historical Average,2016/2017,2 wk ahead,7.38828148053103e-07
-Historical Average,2016/2017,3 wk ahead,7.38828148053103e-07
-Historical Average,2016/2017,4 wk ahead,7.38828148053103e-07
-Subtype Historical Average,2016/2017,1 wk ahead,0.0436300788859882
-Subtype Historical Average,2016/2017,2 wk ahead,0.0436300788859882
-Subtype Historical Average,2016/2017,3 wk ahead,0.0436300788859882
-Subtype Historical Average,2016/2017,4 wk ahead,0.0436300788859882
-Dynamic Harmonic Model,2017/2018,1 wk ahead,0.964400470495285
-Dynamic Harmonic Model,2017/2018,2 wk ahead,0.964400470495285
-Dynamic Harmonic Model,2017/2018,3 wk ahead,0.964400470495285
-Dynamic Harmonic Model,2017/2018,4 wk ahead,0.964400470495285
-Historical Average,2017/2018,1 wk ahead,5.00782900778629e-07
-Historical Average,2017/2018,2 wk ahead,5.00782900778629e-07
-Historical Average,2017/2018,3 wk ahead,5.00782900778629e-07
-Historical Average,2017/2018,4 wk ahead,5.00782900778629e-07
-Subtype Historical Average,2017/2018,1 wk ahead,0.0355990287218142
-Subtype Historical Average,2017/2018,2 wk ahead,0.0355990287218142
-Subtype Historical Average,2017/2018,3 wk ahead,0.0355990287218142
-Subtype Historical Average,2017/2018,4 wk ahead,0.0355990287218142
-Dynamic Harmonic Model,2018/2019,Season onset,0.916632309820675
-Dynamic Harmonic Model,2018/2019,Season peak week,0.916632309820675
-Dynamic Harmonic Model,2018/2019,Season peak percentage,0.916632309820675
-Historical Average,2018/2019,Season onset,2.06634538542577e-06
-Historical Average,2018/2019,Season peak week,2.06634538542577e-06
-Historical Average,2018/2019,Season peak percentage,2.06634538542577e-06
-Subtype Historical Average,2018/2019,Season onset,0.0833656238339391
-Subtype Historical Average,2018/2019,Season peak week,0.0833656238339391
-Subtype Historical Average,2018/2019,Season peak percentage,0.0833656238339391
-Dynamic Harmonic Model,2018/2019,1 wk ahead,0.964981144823459
-Dynamic Harmonic Model,2018/2019,2 wk ahead,0.964981144823459
-Dynamic Harmonic Model,2018/2019,3 wk ahead,0.964981144823459
-Dynamic Harmonic Model,2018/2019,4 wk ahead,0.964981144823459
-Historical Average,2018/2019,1 wk ahead,8.21407276803569e-07
-Historical Average,2018/2019,2 wk ahead,8.21407276803569e-07
-Historical Average,2018/2019,3 wk ahead,8.21407276803569e-07
-Historical Average,2018/2019,4 wk ahead,8.21407276803569e-07
-Subtype Historical Average,2018/2019,1 wk ahead,0.0350180337692641
-Subtype Historical Average,2018/2019,2 wk ahead,0.0350180337692641
-Subtype Historical Average,2018/2019,3 wk ahead,0.0350180337692641
-Subtype Historical Average,2018/2019,4 wk ahead,0.0350180337692641
+Dynamic Harmonic Model,2010/2011,Season onset,0.796347061536879
+Dynamic Harmonic Model,2010/2011,Season peak week,0.796347061536879
+Dynamic Harmonic Model,2010/2011,Season peak percentage,0.796347061536879
+Historical Average,2010/2011,Season onset,4.54925495716355e-05
+Historical Average,2010/2011,Season peak week,4.54925495716355e-05
+Historical Average,2010/2011,Season peak percentage,4.54925495716355e-05
+Subtype Historical Average,2010/2011,Season onset,0.203607445913549
+Subtype Historical Average,2010/2011,Season peak week,0.203607445913549
+Subtype Historical Average,2010/2011,Season peak percentage,0.203607445913549
+Dynamic Harmonic Model,2011/2012,Season onset,0.765752303321149
+Dynamic Harmonic Model,2011/2012,Season peak week,0.765752303321149
+Dynamic Harmonic Model,2011/2012,Season peak percentage,0.765752303321149
+Historical Average,2011/2012,Season onset,4.9768097636924e-05
+Historical Average,2011/2012,Season peak week,4.9768097636924e-05
+Historical Average,2011/2012,Season peak percentage,4.9768097636924e-05
+Subtype Historical Average,2011/2012,Season onset,0.234197928581214
+Subtype Historical Average,2011/2012,Season peak week,0.234197928581214
+Subtype Historical Average,2011/2012,Season peak percentage,0.234197928581214
+Dynamic Harmonic Model,2012/2013,Season onset,0.796640208621301
+Dynamic Harmonic Model,2012/2013,Season peak week,0.796640208621301
+Dynamic Harmonic Model,2012/2013,Season peak percentage,0.796640208621301
+Historical Average,2012/2013,Season onset,0.000178410388907543
+Historical Average,2012/2013,Season peak week,0.000178410388907543
+Historical Average,2012/2013,Season peak percentage,0.000178410388907543
+Subtype Historical Average,2012/2013,Season onset,0.203181380989791
+Subtype Historical Average,2012/2013,Season peak week,0.203181380989791
+Subtype Historical Average,2012/2013,Season peak percentage,0.203181380989791
+Dynamic Harmonic Model,2013/2014,Season onset,0.792710343000822
+Dynamic Harmonic Model,2013/2014,Season peak week,0.792710343000822
+Dynamic Harmonic Model,2013/2014,Season peak percentage,0.792710343000822
+Historical Average,2013/2014,Season onset,4.09559213504987e-05
+Historical Average,2013/2014,Season peak week,4.09559213504987e-05
+Historical Average,2013/2014,Season peak percentage,4.09559213504987e-05
+Subtype Historical Average,2013/2014,Season onset,0.207248701077828
+Subtype Historical Average,2013/2014,Season peak week,0.207248701077828
+Subtype Historical Average,2013/2014,Season peak percentage,0.207248701077828
+Dynamic Harmonic Model,2014/2015,Season onset,0.798188518901554
+Dynamic Harmonic Model,2014/2015,Season peak week,0.798188518901554
+Dynamic Harmonic Model,2014/2015,Season peak percentage,0.798188518901554
+Historical Average,2014/2015,Season onset,0.000176935642680142
+Historical Average,2014/2015,Season peak week,0.000176935642680142
+Historical Average,2014/2015,Season peak percentage,0.000176935642680142
+Subtype Historical Average,2014/2015,Season onset,0.201634545455766
+Subtype Historical Average,2014/2015,Season peak week,0.201634545455766
+Subtype Historical Average,2014/2015,Season peak percentage,0.201634545455766
+Dynamic Harmonic Model,2015/2016,Season onset,0.801096766782739
+Dynamic Harmonic Model,2015/2016,Season peak week,0.801096766782739
+Dynamic Harmonic Model,2015/2016,Season peak percentage,0.801096766782739
+Historical Average,2015/2016,Season onset,0.000572035519815584
+Historical Average,2015/2016,Season peak week,0.000572035519815584
+Historical Average,2015/2016,Season peak percentage,0.000572035519815584
+Subtype Historical Average,2015/2016,Season onset,0.198331197697446
+Subtype Historical Average,2015/2016,Season peak week,0.198331197697446
+Subtype Historical Average,2015/2016,Season peak percentage,0.198331197697446
+Dynamic Harmonic Model,2016/2017,Season onset,0.793622107842571
+Dynamic Harmonic Model,2016/2017,Season peak week,0.793622107842571
+Dynamic Harmonic Model,2016/2017,Season peak percentage,0.793622107842571
+Historical Average,2016/2017,Season onset,0.00012158481467027
+Historical Average,2016/2017,Season peak week,0.00012158481467027
+Historical Average,2016/2017,Season peak percentage,0.00012158481467027
+Subtype Historical Average,2016/2017,Season onset,0.206256307342758
+Subtype Historical Average,2016/2017,Season peak week,0.206256307342758
+Subtype Historical Average,2016/2017,Season peak percentage,0.206256307342758
+Dynamic Harmonic Model,2017/2018,Season onset,0.79045795120407
+Dynamic Harmonic Model,2017/2018,Season peak week,0.79045795120407
+Dynamic Harmonic Model,2017/2018,Season peak percentage,0.79045795120407
+Historical Average,2017/2018,Season onset,0.000261278430459175
+Historical Average,2017/2018,Season peak week,0.000261278430459175
+Historical Average,2017/2018,Season peak percentage,0.000261278430459175
+Subtype Historical Average,2017/2018,Season onset,0.20928077036547
+Subtype Historical Average,2017/2018,Season peak week,0.20928077036547
+Subtype Historical Average,2017/2018,Season peak percentage,0.20928077036547
+Dynamic Harmonic Model,2018/2019,Season onset,0.792633875553842
+Dynamic Harmonic Model,2018/2019,Season peak week,0.792633875553842
+Dynamic Harmonic Model,2018/2019,Season peak percentage,0.792633875553842
+Historical Average,2018/2019,Season onset,6.20457423221121e-05
+Historical Average,2018/2019,Season peak week,6.20457423221121e-05
+Historical Average,2018/2019,Season peak percentage,6.20457423221121e-05
+Subtype Historical Average,2018/2019,Season onset,0.207304078703836
+Subtype Historical Average,2018/2019,Season peak week,0.207304078703836
+Subtype Historical Average,2018/2019,Season peak percentage,0.207304078703836
+Dynamic Harmonic Model,2010/2011,1 wk ahead,0.950507164717518
+Dynamic Harmonic Model,2010/2011,2 wk ahead,0.950507164717518
+Dynamic Harmonic Model,2010/2011,3 wk ahead,0.950507164717518
+Dynamic Harmonic Model,2010/2011,4 wk ahead,0.950507164717518
+Historical Average,2010/2011,1 wk ahead,0.0258080595731311
+Historical Average,2010/2011,2 wk ahead,0.0258080595731311
+Historical Average,2010/2011,3 wk ahead,0.0258080595731311
+Historical Average,2010/2011,4 wk ahead,0.0258080595731311
+Subtype Historical Average,2010/2011,1 wk ahead,0.0236847757093507
+Subtype Historical Average,2010/2011,2 wk ahead,0.0236847757093507
+Subtype Historical Average,2010/2011,3 wk ahead,0.0236847757093507
+Subtype Historical Average,2010/2011,4 wk ahead,0.0236847757093507
+Dynamic Harmonic Model,2011/2012,1 wk ahead,0.945725273951367
+Dynamic Harmonic Model,2011/2012,2 wk ahead,0.945725273951367
+Dynamic Harmonic Model,2011/2012,3 wk ahead,0.945725273951367
+Dynamic Harmonic Model,2011/2012,4 wk ahead,0.945725273951367
+Historical Average,2011/2012,1 wk ahead,0.0241829828586682
+Historical Average,2011/2012,2 wk ahead,0.0241829828586682
+Historical Average,2011/2012,3 wk ahead,0.0241829828586682
+Historical Average,2011/2012,4 wk ahead,0.0241829828586682
+Subtype Historical Average,2011/2012,1 wk ahead,0.0300917431899653
+Subtype Historical Average,2011/2012,2 wk ahead,0.0300917431899653
+Subtype Historical Average,2011/2012,3 wk ahead,0.0300917431899653
+Subtype Historical Average,2011/2012,4 wk ahead,0.0300917431899653
+Dynamic Harmonic Model,2012/2013,1 wk ahead,0.952607789958558
+Dynamic Harmonic Model,2012/2013,2 wk ahead,0.952607789958558
+Dynamic Harmonic Model,2012/2013,3 wk ahead,0.952607789958558
+Dynamic Harmonic Model,2012/2013,4 wk ahead,0.952607789958558
+Historical Average,2012/2013,1 wk ahead,0.0247819271673024
+Historical Average,2012/2013,2 wk ahead,0.0247819271673024
+Historical Average,2012/2013,3 wk ahead,0.0247819271673024
+Historical Average,2012/2013,4 wk ahead,0.0247819271673024
+Subtype Historical Average,2012/2013,1 wk ahead,0.0226102828741398
+Subtype Historical Average,2012/2013,2 wk ahead,0.0226102828741398
+Subtype Historical Average,2012/2013,3 wk ahead,0.0226102828741398
+Subtype Historical Average,2012/2013,4 wk ahead,0.0226102828741398
+Dynamic Harmonic Model,2013/2014,1 wk ahead,0.951697194619332
+Dynamic Harmonic Model,2013/2014,2 wk ahead,0.951697194619332
+Dynamic Harmonic Model,2013/2014,3 wk ahead,0.951697194619332
+Dynamic Harmonic Model,2013/2014,4 wk ahead,0.951697194619332
+Historical Average,2013/2014,1 wk ahead,0.0155082567723749
+Historical Average,2013/2014,2 wk ahead,0.0155082567723749
+Historical Average,2013/2014,3 wk ahead,0.0155082567723749
+Historical Average,2013/2014,4 wk ahead,0.0155082567723749
+Subtype Historical Average,2013/2014,1 wk ahead,0.0327945486082927
+Subtype Historical Average,2013/2014,2 wk ahead,0.0327945486082927
+Subtype Historical Average,2013/2014,3 wk ahead,0.0327945486082927
+Subtype Historical Average,2013/2014,4 wk ahead,0.0327945486082927
+Dynamic Harmonic Model,2014/2015,1 wk ahead,0.958737865339971
+Dynamic Harmonic Model,2014/2015,2 wk ahead,0.958737865339971
+Dynamic Harmonic Model,2014/2015,3 wk ahead,0.958737865339971
+Dynamic Harmonic Model,2014/2015,4 wk ahead,0.958737865339971
+Historical Average,2014/2015,1 wk ahead,0.0215762768023709
+Historical Average,2014/2015,2 wk ahead,0.0215762768023709
+Historical Average,2014/2015,3 wk ahead,0.0215762768023709
+Historical Average,2014/2015,4 wk ahead,0.0215762768023709
+Subtype Historical Average,2014/2015,1 wk ahead,0.0196858578576578
+Subtype Historical Average,2014/2015,2 wk ahead,0.0196858578576578
+Subtype Historical Average,2014/2015,3 wk ahead,0.0196858578576578
+Subtype Historical Average,2014/2015,4 wk ahead,0.0196858578576578
+Dynamic Harmonic Model,2015/2016,1 wk ahead,0.947494807957939
+Dynamic Harmonic Model,2015/2016,2 wk ahead,0.947494807957939
+Dynamic Harmonic Model,2015/2016,3 wk ahead,0.947494807957939
+Dynamic Harmonic Model,2015/2016,4 wk ahead,0.947494807957939
+Historical Average,2015/2016,1 wk ahead,0.0217542026635177
+Historical Average,2015/2016,2 wk ahead,0.0217542026635177
+Historical Average,2015/2016,3 wk ahead,0.0217542026635177
+Historical Average,2015/2016,4 wk ahead,0.0217542026635177
+Subtype Historical Average,2015/2016,1 wk ahead,0.0307509893785433
+Subtype Historical Average,2015/2016,2 wk ahead,0.0307509893785433
+Subtype Historical Average,2015/2016,3 wk ahead,0.0307509893785433
+Subtype Historical Average,2015/2016,4 wk ahead,0.0307509893785433
+Dynamic Harmonic Model,2016/2017,1 wk ahead,0.950954321923215
+Dynamic Harmonic Model,2016/2017,2 wk ahead,0.950954321923215
+Dynamic Harmonic Model,2016/2017,3 wk ahead,0.950954321923215
+Dynamic Harmonic Model,2016/2017,4 wk ahead,0.950954321923215
+Historical Average,2016/2017,1 wk ahead,0.0250839040144733
+Historical Average,2016/2017,2 wk ahead,0.0250839040144733
+Historical Average,2016/2017,3 wk ahead,0.0250839040144733
+Historical Average,2016/2017,4 wk ahead,0.0250839040144733
+Subtype Historical Average,2016/2017,1 wk ahead,0.0239617740623119
+Subtype Historical Average,2016/2017,2 wk ahead,0.0239617740623119
+Subtype Historical Average,2016/2017,3 wk ahead,0.0239617740623119
+Subtype Historical Average,2016/2017,4 wk ahead,0.0239617740623119
+Dynamic Harmonic Model,2017/2018,1 wk ahead,0.956505226054657
+Dynamic Harmonic Model,2017/2018,2 wk ahead,0.956505226054657
+Dynamic Harmonic Model,2017/2018,3 wk ahead,0.956505226054657
+Dynamic Harmonic Model,2017/2018,4 wk ahead,0.956505226054657
+Historical Average,2017/2018,1 wk ahead,0.0292584056305423
+Historical Average,2017/2018,2 wk ahead,0.0292584056305423
+Historical Average,2017/2018,3 wk ahead,0.0292584056305423
+Historical Average,2017/2018,4 wk ahead,0.0292584056305423
+Subtype Historical Average,2017/2018,1 wk ahead,0.0142363683148006
+Subtype Historical Average,2017/2018,2 wk ahead,0.0142363683148006
+Subtype Historical Average,2017/2018,3 wk ahead,0.0142363683148006
+Subtype Historical Average,2017/2018,4 wk ahead,0.0142363683148006
+Dynamic Harmonic Model,2018/2019,1 wk ahead,0.943315243681689
+Dynamic Harmonic Model,2018/2019,2 wk ahead,0.943315243681689
+Dynamic Harmonic Model,2018/2019,3 wk ahead,0.943315243681689
+Dynamic Harmonic Model,2018/2019,4 wk ahead,0.943315243681689
+Historical Average,2018/2019,1 wk ahead,0.0139105002218791
+Historical Average,2018/2019,2 wk ahead,0.0139105002218791
+Historical Average,2018/2019,3 wk ahead,0.0139105002218791
+Historical Average,2018/2019,4 wk ahead,0.0139105002218791
+Subtype Historical Average,2018/2019,1 wk ahead,0.042774256096432
+Subtype Historical Average,2018/2019,2 wk ahead,0.042774256096432
+Subtype Historical Average,2018/2019,3 wk ahead,0.042774256096432
+Subtype Historical Average,2018/2019,4 wk ahead,0.042774256096432
+Dynamic Harmonic Model,2019/2020,Season onset,0.792286341358247
+Dynamic Harmonic Model,2019/2020,Season peak week,0.792286341358247
+Dynamic Harmonic Model,2019/2020,Season peak percentage,0.792286341358247
+Historical Average,2019/2020,Season onset,9.44002873983557e-05
+Historical Average,2019/2020,Season peak week,9.44002873983557e-05
+Historical Average,2019/2020,Season peak percentage,9.44002873983557e-05
+Subtype Historical Average,2019/2020,Season onset,0.207619258354354
+Subtype Historical Average,2019/2020,Season peak week,0.207619258354354
+Subtype Historical Average,2019/2020,Season peak percentage,0.207619258354354
+Dynamic Harmonic Model,2019/2020,1 wk ahead,0.950922284061067
+Dynamic Harmonic Model,2019/2020,2 wk ahead,0.950922284061067
+Dynamic Harmonic Model,2019/2020,3 wk ahead,0.950922284061067
+Dynamic Harmonic Model,2019/2020,4 wk ahead,0.950922284061067
+Historical Average,2019/2020,1 wk ahead,0.0238030528401967
+Historical Average,2019/2020,2 wk ahead,0.0238030528401967
+Historical Average,2019/2020,3 wk ahead,0.0238030528401967
+Historical Average,2019/2020,4 wk ahead,0.0238030528401967
+Subtype Historical Average,2019/2020,1 wk ahead,0.0252746630987362
+Subtype Historical Average,2019/2020,2 wk ahead,0.0252746630987362
+Subtype Historical Average,2019/2020,3 wk ahead,0.0252746630987362
+Subtype Historical Average,2019/2020,4 wk ahead,0.0252746630987362

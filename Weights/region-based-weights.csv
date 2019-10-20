@@ -1,298 +1,331 @@
 component_model_id,season,location,weight
-Dynamic Harmonic Model,2010/2011,HHS Region 1,0.965382884833547
-Historical Average,2010/2011,HHS Region 1,1.0558406899379e-06
-Subtype Historical Average,2010/2011,HHS Region 1,0.034616059325763
-Dynamic Harmonic Model,2011/2012,HHS Region 1,0.978153494596989
-Historical Average,2011/2012,HHS Region 1,6.27505810554828e-07
-Subtype Historical Average,2011/2012,HHS Region 1,0.0218458778972006
-Dynamic Harmonic Model,2012/2013,HHS Region 1,0.966259017167317
-Historical Average,2012/2013,HHS Region 1,1.20084897099447e-06
-Subtype Historical Average,2012/2013,HHS Region 1,0.0337397819837123
-Dynamic Harmonic Model,2013/2014,HHS Region 1,0.967190331849961
-Historical Average,2013/2014,HHS Region 1,2.53322118226535e-06
-Subtype Historical Average,2013/2014,HHS Region 1,0.0328071349288571
-Dynamic Harmonic Model,2014/2015,HHS Region 1,0.977695824452171
-Historical Average,2014/2015,HHS Region 1,2.89703481972003e-06
-Subtype Historical Average,2014/2015,HHS Region 1,0.0223012785130098
-Dynamic Harmonic Model,2015/2016,HHS Region 1,0.965822293744148
-Historical Average,2015/2016,HHS Region 1,8.972724046432e-07
-Subtype Historical Average,2015/2016,HHS Region 1,0.0341768089834476
-Dynamic Harmonic Model,2016/2017,HHS Region 1,0.962486722550683
-Historical Average,2016/2017,HHS Region 1,9.60385425605646e-07
-Subtype Historical Average,2016/2017,HHS Region 1,0.0375123170638918
-Dynamic Harmonic Model,2017/2018,HHS Region 1,0.951692138757875
-Historical Average,2017/2018,HHS Region 1,1.26087369233191e-06
-Subtype Historical Average,2017/2018,HHS Region 1,0.0483066003684332
-Dynamic Harmonic Model,2010/2011,HHS Region 10,0.984004530623229
-Historical Average,2010/2011,HHS Region 10,3.8292378954207e-06
-Subtype Historical Average,2010/2011,HHS Region 10,0.0159916401388756
-Dynamic Harmonic Model,2011/2012,HHS Region 10,0.985069855697808
-Historical Average,2011/2012,HHS Region 10,4.90286825538781e-06
-Subtype Historical Average,2011/2012,HHS Region 10,0.0149252414339362
-Dynamic Harmonic Model,2012/2013,HHS Region 10,0.978180794212375
-Historical Average,2012/2013,HHS Region 10,6.39741414805916e-06
-Subtype Historical Average,2012/2013,HHS Region 10,0.0218128083734772
-Dynamic Harmonic Model,2013/2014,HHS Region 10,0.985070220644294
-Historical Average,2013/2014,HHS Region 10,2.45579286633727e-05
-Subtype Historical Average,2013/2014,HHS Region 10,0.0149052214270431
-Dynamic Harmonic Model,2014/2015,HHS Region 10,0.977827758888452
-Historical Average,2014/2015,HHS Region 10,1.14417236881372e-05
-Subtype Historical Average,2014/2015,HHS Region 10,0.0221607993878596
-Dynamic Harmonic Model,2015/2016,HHS Region 10,0.976694436811213
-Historical Average,2015/2016,HHS Region 10,4.68022009637967e-06
-Subtype Historical Average,2015/2016,HHS Region 10,0.0233008829686906
-Dynamic Harmonic Model,2016/2017,HHS Region 10,0.981163768190391
-Historical Average,2016/2017,HHS Region 10,3.7291334317938e-06
-Subtype Historical Average,2016/2017,HHS Region 10,0.0188325026761769
-Dynamic Harmonic Model,2017/2018,HHS Region 10,0.976382891576506
-Historical Average,2017/2018,HHS Region 10,4.39128660848335e-06
-Subtype Historical Average,2017/2018,HHS Region 10,0.0236127171368858
-Dynamic Harmonic Model,2010/2011,HHS Region 2,0.899905272583389
-Historical Average,2010/2011,HHS Region 2,1.08650376202809e-06
-Subtype Historical Average,2010/2011,HHS Region 2,0.100093640912849
-Dynamic Harmonic Model,2011/2012,HHS Region 2,0.889857317380446
-Historical Average,2011/2012,HHS Region 2,7.97966858856996e-07
-Subtype Historical Average,2011/2012,HHS Region 2,0.110141884652695
-Dynamic Harmonic Model,2012/2013,HHS Region 2,0.884113765347418
-Historical Average,2012/2013,HHS Region 2,1.02492123411209e-06
-Subtype Historical Average,2012/2013,HHS Region 2,0.115885209731348
-Dynamic Harmonic Model,2013/2014,HHS Region 2,0.889045903313364
-Historical Average,2013/2014,HHS Region 2,2.1020396644957e-06
-Subtype Historical Average,2013/2014,HHS Region 2,0.110951994646972
-Dynamic Harmonic Model,2014/2015,HHS Region 2,0.901431954933661
-Historical Average,2014/2015,HHS Region 2,1.52426530103721e-06
-Subtype Historical Average,2014/2015,HHS Region 2,0.0985665208010384
-Dynamic Harmonic Model,2015/2016,HHS Region 2,0.929571968578613
-Historical Average,2015/2016,HHS Region 2,9.81543157738625e-07
-Subtype Historical Average,2015/2016,HHS Region 2,0.0704270498782292
-Dynamic Harmonic Model,2016/2017,HHS Region 2,0.876896762324638
-Historical Average,2016/2017,HHS Region 2,7.65263066657545e-07
-Subtype Historical Average,2016/2017,HHS Region 2,0.123102472412295
-Dynamic Harmonic Model,2017/2018,HHS Region 2,0.871604561779604
-Historical Average,2017/2018,HHS Region 2,8.77836471645921e-07
-Subtype Historical Average,2017/2018,HHS Region 2,0.128394560383925
-Dynamic Harmonic Model,2010/2011,HHS Region 3,0.932400451199256
-Historical Average,2010/2011,HHS Region 3,8.09402731577175e-07
-Subtype Historical Average,2010/2011,HHS Region 3,0.0675987393980123
-Dynamic Harmonic Model,2011/2012,HHS Region 3,0.909913520411013
-Historical Average,2011/2012,HHS Region 3,8.97737908242051e-07
-Subtype Historical Average,2011/2012,HHS Region 3,0.0900855818510785
-Dynamic Harmonic Model,2012/2013,HHS Region 3,0.961930221389471
-Historical Average,2012/2013,HHS Region 3,7.87773569847247e-07
-Subtype Historical Average,2012/2013,HHS Region 3,0.0380689908369589
-Dynamic Harmonic Model,2013/2014,HHS Region 3,0.93784070946139
-Historical Average,2013/2014,HHS Region 3,1.01724984871531e-06
-Subtype Historical Average,2013/2014,HHS Region 3,0.0621582732887617
-Dynamic Harmonic Model,2014/2015,HHS Region 3,0.97408838330313
-Historical Average,2014/2015,HHS Region 3,6.19431439306639e-06
-Subtype Historical Average,2014/2015,HHS Region 3,0.0259054223824771
-Dynamic Harmonic Model,2015/2016,HHS Region 3,0.950149544013563
-Historical Average,2015/2016,HHS Region 3,5.30484123122074e-07
-Subtype Historical Average,2015/2016,HHS Region 3,0.0498499255023139
-Dynamic Harmonic Model,2016/2017,HHS Region 3,0.935431118176069
-Historical Average,2016/2017,HHS Region 3,7.09985083465185e-07
-Subtype Historical Average,2016/2017,HHS Region 3,0.0645681718388479
-Dynamic Harmonic Model,2017/2018,HHS Region 3,0.949991940062336
-Historical Average,2017/2018,HHS Region 3,4.98268318904295e-07
-Subtype Historical Average,2017/2018,HHS Region 3,0.0500075616693449
-Dynamic Harmonic Model,2010/2011,HHS Region 4,0.9308898798162
-Historical Average,2010/2011,HHS Region 4,1.74619378550161e-06
-Subtype Historical Average,2010/2011,HHS Region 4,0.0691083739900146
-Dynamic Harmonic Model,2011/2012,HHS Region 4,0.92912125750711
-Historical Average,2011/2012,HHS Region 4,1.7791798251667e-06
-Subtype Historical Average,2011/2012,HHS Region 4,0.0708769633130645
-Dynamic Harmonic Model,2012/2013,HHS Region 4,0.943382975970273
-Historical Average,2012/2013,HHS Region 4,1.81980554183662e-06
-Subtype Historical Average,2012/2013,HHS Region 4,0.056615204224185
-Dynamic Harmonic Model,2013/2014,HHS Region 4,0.938618145977669
-Historical Average,2013/2014,HHS Region 4,4.57258434575939e-06
-Subtype Historical Average,2013/2014,HHS Region 4,0.0613772814379856
-Dynamic Harmonic Model,2014/2015,HHS Region 4,0.95270516092554
-Historical Average,2014/2015,HHS Region 4,1.05818796335233e-05
-Subtype Historical Average,2014/2015,HHS Region 4,0.047284257194826
-Dynamic Harmonic Model,2015/2016,HHS Region 4,0.97637590153402
-Historical Average,2015/2016,HHS Region 4,6.48365366676612e-07
-Subtype Historical Average,2015/2016,HHS Region 4,0.0236234501006129
-Dynamic Harmonic Model,2016/2017,HHS Region 4,0.925829461481809
-Historical Average,2016/2017,HHS Region 4,1.69729663153483e-06
-Subtype Historical Average,2016/2017,HHS Region 4,0.0741688412215592
-Dynamic Harmonic Model,2017/2018,HHS Region 4,0.936984772786446
-Historical Average,2017/2018,HHS Region 4,1.59172314865648e-06
-Subtype Historical Average,2017/2018,HHS Region 4,0.0630136354904051
-Dynamic Harmonic Model,2010/2011,HHS Region 5,0.858012170397518
-Historical Average,2010/2011,HHS Region 5,7.91767974136064e-07
-Subtype Historical Average,2010/2011,HHS Region 5,0.141987037834508
-Dynamic Harmonic Model,2011/2012,HHS Region 5,0.862920537941602
-Historical Average,2011/2012,HHS Region 5,4.35721858192934e-07
-Subtype Historical Average,2011/2012,HHS Region 5,0.13707902633654
-Dynamic Harmonic Model,2012/2013,HHS Region 5,0.846624782301347
-Historical Average,2012/2013,HHS Region 5,9.43482090053771e-07
-Subtype Historical Average,2012/2013,HHS Region 5,0.153374274216563
-Dynamic Harmonic Model,2013/2014,HHS Region 5,0.88269874943393
-Historical Average,2013/2014,HHS Region 5,1.60064717639967e-06
-Subtype Historical Average,2013/2014,HHS Region 5,0.117299649918894
-Dynamic Harmonic Model,2014/2015,HHS Region 5,0.902017083718265
-Historical Average,2014/2015,HHS Region 5,8.39417327595033e-05
-Subtype Historical Average,2014/2015,HHS Region 5,0.0978989745489754
-Dynamic Harmonic Model,2015/2016,HHS Region 5,0.860608933958419
-Historical Average,2015/2016,HHS Region 5,8.07118698981119e-07
-Subtype Historical Average,2015/2016,HHS Region 5,0.139390258922882
-Dynamic Harmonic Model,2016/2017,HHS Region 5,0.837465276596861
-Historical Average,2016/2017,HHS Region 5,8.14824888849092e-07
-Subtype Historical Average,2016/2017,HHS Region 5,0.16253390857825
-Dynamic Harmonic Model,2017/2018,HHS Region 5,0.85050602827516
-Historical Average,2017/2018,HHS Region 5,5.81710361443199e-07
-Subtype Historical Average,2017/2018,HHS Region 5,0.149493390014479
-Dynamic Harmonic Model,2010/2011,HHS Region 6,0.96977808397492
-Historical Average,2010/2011,HHS Region 6,2.644112355913e-06
-Subtype Historical Average,2010/2011,HHS Region 6,0.030219271912724
-Dynamic Harmonic Model,2011/2012,HHS Region 6,0.960406397856404
-Historical Average,2011/2012,HHS Region 6,2.44485730582953e-06
-Subtype Historical Average,2011/2012,HHS Region 6,0.0395911572862905
-Dynamic Harmonic Model,2012/2013,HHS Region 6,0.967510708535459
-Historical Average,2012/2013,HHS Region 6,1.99334071662649e-06
-Subtype Historical Average,2012/2013,HHS Region 6,0.0324872981238244
-Dynamic Harmonic Model,2013/2014,HHS Region 6,0.96955702168982
-Historical Average,2013/2014,HHS Region 6,5.94849849132429e-06
-Subtype Historical Average,2013/2014,HHS Region 6,0.0304370298116885
-Dynamic Harmonic Model,2014/2015,HHS Region 6,0.986099735089653
-Historical Average,2014/2015,HHS Region 6,0.00621938543151767
-Subtype Historical Average,2014/2015,HHS Region 6,0.00768087947882893
-Dynamic Harmonic Model,2015/2016,HHS Region 6,0.973143780776586
-Historical Average,2015/2016,HHS Region 6,2.25581433553772e-06
-Subtype Historical Average,2015/2016,HHS Region 6,0.0268539634090781
-Dynamic Harmonic Model,2016/2017,HHS Region 6,0.981599702406727
-Historical Average,2016/2017,HHS Region 6,8.6813991400384e-07
-Subtype Historical Average,2016/2017,HHS Region 6,0.0183994294533589
-Dynamic Harmonic Model,2017/2018,HHS Region 6,0.967013145413022
-Historical Average,2017/2018,HHS Region 6,2.23616774619061e-06
-Subtype Historical Average,2017/2018,HHS Region 6,0.0329846184192314
-Dynamic Harmonic Model,2010/2011,HHS Region 7,0.980711875571927
-Historical Average,2010/2011,HHS Region 7,3.29565415332496e-07
-Subtype Historical Average,2010/2011,HHS Region 7,0.0192877948626582
-Dynamic Harmonic Model,2011/2012,HHS Region 7,0.980576738423124
-Historical Average,2011/2012,HHS Region 7,3.96646807618105e-07
-Subtype Historical Average,2011/2012,HHS Region 7,0.0194228649300687
-Dynamic Harmonic Model,2012/2013,HHS Region 7,0.982452493776167
-Historical Average,2012/2013,HHS Region 7,4.05286957279236e-07
-Subtype Historical Average,2012/2013,HHS Region 7,0.0175471009368762
-Dynamic Harmonic Model,2013/2014,HHS Region 7,0.985343342596522
-Historical Average,2013/2014,HHS Region 7,7.29329721912689e-07
-Subtype Historical Average,2013/2014,HHS Region 7,0.0146559280737563
-Dynamic Harmonic Model,2014/2015,HHS Region 7,0.988355639861546
-Historical Average,2014/2015,HHS Region 7,7.33673070836392e-07
-Subtype Historical Average,2014/2015,HHS Region 7,0.0116436264653835
-Dynamic Harmonic Model,2015/2016,HHS Region 7,0.98059122181831
-Historical Average,2015/2016,HHS Region 7,3.10924624764247e-07
-Subtype Historical Average,2015/2016,HHS Region 7,0.0194084672570653
-Dynamic Harmonic Model,2016/2017,HHS Region 7,0.979603484458858
-Historical Average,2016/2017,HHS Region 7,3.08624942210295e-07
-Subtype Historical Average,2016/2017,HHS Region 7,0.0203962069162
-Dynamic Harmonic Model,2017/2018,HHS Region 7,0.987848759741901
-Historical Average,2017/2018,HHS Region 7,2.27993719112e-07
-Subtype Historical Average,2017/2018,HHS Region 7,0.0121510122643803
-Dynamic Harmonic Model,2010/2011,HHS Region 8,0.949835002229968
-Historical Average,2010/2011,HHS Region 8,1.78378496002528e-06
-Subtype Historical Average,2010/2011,HHS Region 8,0.0501632139850719
-Dynamic Harmonic Model,2011/2012,HHS Region 8,0.940714209139159
-Historical Average,2011/2012,HHS Region 8,1.52405585714004e-06
-Subtype Historical Average,2011/2012,HHS Region 8,0.0592842668049836
-Dynamic Harmonic Model,2012/2013,HHS Region 8,0.953366319955732
-Historical Average,2012/2013,HHS Region 8,2.4739507729536e-06
-Subtype Historical Average,2012/2013,HHS Region 8,0.0466312060934948
-Dynamic Harmonic Model,2013/2014,HHS Region 8,0.950848542734258
-Historical Average,2013/2014,HHS Region 8,3.04947212727641e-06
-Subtype Historical Average,2013/2014,HHS Region 8,0.0491484077936152
-Dynamic Harmonic Model,2014/2015,HHS Region 8,0.999999787805565
-Historical Average,2014/2015,HHS Region 8,9.90838041271125e-09
-Subtype Historical Average,2014/2015,HHS Region 8,2.02286054377916e-07
-Dynamic Harmonic Model,2015/2016,HHS Region 8,0.950856989377853
-Historical Average,2015/2016,HHS Region 8,2.25805815989108e-06
-Subtype Historical Average,2015/2016,HHS Region 8,0.0491407525639871
-Dynamic Harmonic Model,2016/2017,HHS Region 8,0.947245267690714
-Historical Average,2016/2017,HHS Region 8,1.91912917079279e-06
-Subtype Historical Average,2016/2017,HHS Region 8,0.0527528131801154
-Dynamic Harmonic Model,2017/2018,HHS Region 8,0.947198693333356
-Historical Average,2017/2018,HHS Region 8,1.71498900540685e-06
-Subtype Historical Average,2017/2018,HHS Region 8,0.0527995916776383
-Dynamic Harmonic Model,2010/2011,HHS Region 9,0.847123756206747
-Historical Average,2010/2011,HHS Region 9,8.78096014117089e-06
-Subtype Historical Average,2010/2011,HHS Region 9,0.152867462833112
-Dynamic Harmonic Model,2011/2012,HHS Region 9,0.790680250640491
-Historical Average,2011/2012,HHS Region 9,6.89390202502571e-06
-Subtype Historical Average,2011/2012,HHS Region 9,0.209312855457484
-Dynamic Harmonic Model,2012/2013,HHS Region 9,0.871255556471858
-Historical Average,2012/2013,HHS Region 9,5.13908560802067e-06
-Subtype Historical Average,2012/2013,HHS Region 9,0.128739304442534
-Dynamic Harmonic Model,2013/2014,HHS Region 9,0.832182127684028
-Historical Average,2013/2014,HHS Region 9,0.000433473874734986
-Subtype Historical Average,2013/2014,HHS Region 9,0.167384398441237
-Dynamic Harmonic Model,2014/2015,HHS Region 9,0.819176768717763
-Historical Average,2014/2015,HHS Region 9,1.80639502004785e-05
-Subtype Historical Average,2014/2015,HHS Region 9,0.180805167332037
-Dynamic Harmonic Model,2015/2016,HHS Region 9,0.8517133234429
-Historical Average,2015/2016,HHS Region 9,1.16701794656375e-05
-Subtype Historical Average,2015/2016,HHS Region 9,0.148275006377634
-Dynamic Harmonic Model,2016/2017,HHS Region 9,0.816081937599723
-Historical Average,2016/2017,HHS Region 9,9.14837616403847e-06
-Subtype Historical Average,2016/2017,HHS Region 9,0.183908914024113
-Dynamic Harmonic Model,2017/2018,HHS Region 9,0.832533552064561
-Historical Average,2017/2018,HHS Region 9,7.46542838604718e-06
-Subtype Historical Average,2017/2018,HHS Region 9,0.167458982507053
-Dynamic Harmonic Model,2010/2011,US National,0.925998994761168
-Historical Average,2010/2011,US National,1.04188367577677e-06
-Subtype Historical Average,2010/2011,US National,0.0739999633551561
-Dynamic Harmonic Model,2011/2012,US National,0.87920453777546
-Historical Average,2011/2012,US National,1.48999588140682e-06
-Subtype Historical Average,2011/2012,US National,0.120793972228658
-Dynamic Harmonic Model,2012/2013,US National,0.945786626944239
-Historical Average,2012/2013,US National,1.00663115628319e-06
-Subtype Historical Average,2012/2013,US National,0.0542123664246051
-Dynamic Harmonic Model,2013/2014,US National,0.927925316062021
-Historical Average,2013/2014,US National,4.04586261414277e-06
-Subtype Historical Average,2013/2014,US National,0.072070638075365
-Dynamic Harmonic Model,2014/2015,US National,0.926754804746728
-Historical Average,2014/2015,US National,3.22826978394638e-06
-Subtype Historical Average,2014/2015,US National,0.0732419669834882
-Dynamic Harmonic Model,2015/2016,US National,0.917784438297002
-Historical Average,2015/2016,US National,1.31160662722498e-06
-Subtype Historical Average,2015/2016,US National,0.0822142500963706
-Dynamic Harmonic Model,2016/2017,US National,0.909427859755779
-Historical Average,2016/2017,US National,1.19613033381166e-06
-Subtype Historical Average,2016/2017,US National,0.0905709441138868
-Dynamic Harmonic Model,2017/2018,US National,0.921746646192914
-Historical Average,2017/2018,US National,8.55620662207374e-07
-Subtype Historical Average,2017/2018,US National,0.0782524981864241
-Dynamic Harmonic Model,2018/2019,HHS Region 1,0.967189502805562
-Historical Average,2018/2019,HHS Region 1,1.27476452057742e-06
-Subtype Historical Average,2018/2019,HHS Region 1,0.0328092224299174
-Dynamic Harmonic Model,2018/2019,HHS Region 10,0.980541387123019
-Historical Average,2018/2019,HHS Region 10,5.74885092931384e-06
-Subtype Historical Average,2018/2019,HHS Region 10,0.0194528640260515
-Dynamic Harmonic Model,2018/2019,HHS Region 2,0.893390912389603
-Historical Average,2018/2019,HHS Region 2,1.01776868157859e-06
-Subtype Historical Average,2018/2019,HHS Region 2,0.106608069841715
-Dynamic Harmonic Model,2018/2019,HHS Region 3,0.945908809679804
-Historical Average,2018/2019,HHS Region 3,8.60857499728322e-07
-Subtype Historical Average,2018/2019,HHS Region 3,0.054090329462696
-Dynamic Harmonic Model,2018/2019,HHS Region 4,0.941942897179788
-Historical Average,2018/2019,HHS Region 4,2.00136453412962e-06
-Subtype Historical Average,2018/2019,HHS Region 4,0.0580551014556781
-Dynamic Harmonic Model,2018/2019,HHS Region 5,0.862718382135536
-Historical Average,2018/2019,HHS Region 5,9.03826676750716e-07
-Subtype Historical Average,2018/2019,HHS Region 5,0.137280714037788
-Dynamic Harmonic Model,2018/2019,HHS Region 6,0.972554957296635
-Historical Average,2018/2019,HHS Region 6,2.70045580301784e-06
-Subtype Historical Average,2018/2019,HHS Region 6,0.0274423422475622
-Dynamic Harmonic Model,2018/2019,HHS Region 7,0.983312171332595
-Historical Average,2018/2019,HHS Region 7,4.32878192542086e-07
-Subtype Historical Average,2018/2019,HHS Region 7,0.0166873957892124
-Dynamic Harmonic Model,2018/2019,HHS Region 8,0.955465926186264
-Historical Average,2018/2019,HHS Region 8,2.057669575366e-06
-Subtype Historical Average,2018/2019,HHS Region 8,0.0445320161441608
-Dynamic Harmonic Model,2018/2019,HHS Region 9,0.833114372754543
-Historical Average,2018/2019,HHS Region 9,1.10568658912758e-05
-Subtype Historical Average,2018/2019,HHS Region 9,0.166874570379565
-Dynamic Harmonic Model,2018/2019,US National,0.920036539554294
-Historical Average,2018/2019,US National,1.52782505112993e-06
-Subtype Historical Average,2018/2019,US National,0.0799619326206549
+Dynamic Harmonic Model,2010/2011,HHS Region 1,0.911684951522211
+Historical Average,2010/2011,HHS Region 1,0.0881746613931109
+Subtype Historical Average,2010/2011,HHS Region 1,0.000140387084678555
+Dynamic Harmonic Model,2011/2012,HHS Region 1,0.926195757003029
+Historical Average,2011/2012,HHS Region 1,0.0737268448496262
+Subtype Historical Average,2011/2012,HHS Region 1,7.73981473447481e-05
+Dynamic Harmonic Model,2012/2013,HHS Region 1,0.910717092111428
+Historical Average,2012/2013,HHS Region 1,0.0892363664182796
+Subtype Historical Average,2012/2013,HHS Region 1,4.65414702926076e-05
+Dynamic Harmonic Model,2013/2014,HHS Region 1,0.916607897583083
+Historical Average,2013/2014,HHS Region 1,0.0833581059416607
+Subtype Historical Average,2013/2014,HHS Region 1,3.39964752558527e-05
+Dynamic Harmonic Model,2014/2015,HHS Region 1,0.941511136575243
+Historical Average,2014/2015,HHS Region 1,0.0583093877924705
+Subtype Historical Average,2014/2015,HHS Region 1,0.000179475632286339
+Dynamic Harmonic Model,2015/2016,HHS Region 1,0.9145916207948
+Historical Average,2015/2016,HHS Region 1,0.0853415288962004
+Subtype Historical Average,2015/2016,HHS Region 1,6.68503089993643e-05
+Dynamic Harmonic Model,2016/2017,HHS Region 1,0.89647501347244
+Historical Average,2016/2017,HHS Region 1,0.103474246325029
+Subtype Historical Average,2016/2017,HHS Region 1,5.07402025307831e-05
+Dynamic Harmonic Model,2017/2018,HHS Region 1,0.895248989617774
+Historical Average,2017/2018,HHS Region 1,0.104731670500608
+Subtype Historical Average,2017/2018,HHS Region 1,1.93398816188867e-05
+Dynamic Harmonic Model,2018/2019,HHS Region 1,0.898740794938677
+Historical Average,2018/2019,HHS Region 1,0.100893955216574
+Subtype Historical Average,2018/2019,HHS Region 1,0.000365249844748687
+Dynamic Harmonic Model,2010/2011,HHS Region 10,0.86789816428077
+Historical Average,2010/2011,HHS Region 10,0.00321358759841522
+Subtype Historical Average,2010/2011,HHS Region 10,0.128888248120814
+Dynamic Harmonic Model,2011/2012,HHS Region 10,0.851548636259548
+Historical Average,2011/2012,HHS Region 10,0.0121574417512555
+Subtype Historical Average,2011/2012,HHS Region 10,0.136293921989197
+Dynamic Harmonic Model,2012/2013,HHS Region 10,0.859464102829243
+Historical Average,2012/2013,HHS Region 10,0.00440376925483416
+Subtype Historical Average,2012/2013,HHS Region 10,0.136132127915923
+Dynamic Harmonic Model,2013/2014,HHS Region 10,0.875521817978451
+Historical Average,2013/2014,HHS Region 10,0.000144016073072289
+Subtype Historical Average,2013/2014,HHS Region 10,0.124334165948477
+Dynamic Harmonic Model,2014/2015,HHS Region 10,0.85500135450501
+Historical Average,2014/2015,HHS Region 10,0.050370463640127
+Subtype Historical Average,2014/2015,HHS Region 10,0.0946281818548626
+Dynamic Harmonic Model,2015/2016,HHS Region 10,0.848066971546191
+Historical Average,2015/2016,HHS Region 10,0.00211459894527925
+Subtype Historical Average,2015/2016,HHS Region 10,0.14981842950853
+Dynamic Harmonic Model,2016/2017,HHS Region 10,0.88552937342315
+Historical Average,2016/2017,HHS Region 10,0.113947351698724
+Subtype Historical Average,2016/2017,HHS Region 10,0.000523274878126347
+Dynamic Harmonic Model,2017/2018,HHS Region 10,0.863460762572658
+Historical Average,2017/2018,HHS Region 10,0.000215713801925139
+Subtype Historical Average,2017/2018,HHS Region 10,0.136323523625417
+Dynamic Harmonic Model,2018/2019,HHS Region 10,0.873475316902585
+Historical Average,2018/2019,HHS Region 10,0.00177725284984595
+Subtype Historical Average,2018/2019,HHS Region 10,0.124747430247569
+Dynamic Harmonic Model,2010/2011,HHS Region 2,0.846732527650764
+Historical Average,2010/2011,HHS Region 2,7.88102960586603e-06
+Subtype Historical Average,2010/2011,HHS Region 2,0.15325959131963
+Dynamic Harmonic Model,2011/2012,HHS Region 2,0.846528739855063
+Historical Average,2011/2012,HHS Region 2,6.25511836903648e-06
+Subtype Historical Average,2011/2012,HHS Region 2,0.153465005026567
+Dynamic Harmonic Model,2012/2013,HHS Region 2,0.849255638126448
+Historical Average,2012/2013,HHS Region 2,8.86891480276374e-06
+Subtype Historical Average,2012/2013,HHS Region 2,0.150735492958749
+Dynamic Harmonic Model,2013/2014,HHS Region 2,0.861968904252317
+Historical Average,2013/2014,HHS Region 2,9.74715838505784e-06
+Subtype Historical Average,2013/2014,HHS Region 2,0.138021348589298
+Dynamic Harmonic Model,2014/2015,HHS Region 2,0.852547890787035
+Historical Average,2014/2015,HHS Region 2,7.09787765674571e-06
+Subtype Historical Average,2014/2015,HHS Region 2,0.147445011335308
+Dynamic Harmonic Model,2015/2016,HHS Region 2,0.856147122878964
+Historical Average,2015/2016,HHS Region 2,7.46046742593287e-06
+Subtype Historical Average,2015/2016,HHS Region 2,0.14384541665361
+Dynamic Harmonic Model,2016/2017,HHS Region 2,0.842884454287912
+Historical Average,2016/2017,HHS Region 2,1.03572307428157e-05
+Subtype Historical Average,2016/2017,HHS Region 2,0.157105188481345
+Dynamic Harmonic Model,2017/2018,HHS Region 2,0.825555288835929
+Historical Average,2017/2018,HHS Region 2,8.6706192892368e-06
+Subtype Historical Average,2017/2018,HHS Region 2,0.174436040544782
+Dynamic Harmonic Model,2018/2019,HHS Region 2,0.818836138230017
+Historical Average,2018/2019,HHS Region 2,4.90987504775017e-06
+Subtype Historical Average,2018/2019,HHS Region 2,0.181158951894935
+Dynamic Harmonic Model,2010/2011,HHS Region 3,0.850976453938392
+Historical Average,2010/2011,HHS Region 3,3.10416476596024e-05
+Subtype Historical Average,2010/2011,HHS Region 3,0.148992504413949
+Dynamic Harmonic Model,2011/2012,HHS Region 3,0.831176020190377
+Historical Average,2011/2012,HHS Region 3,1.61734918431402e-05
+Subtype Historical Average,2011/2012,HHS Region 3,0.16880780631778
+Dynamic Harmonic Model,2012/2013,HHS Region 3,0.877378146775351
+Historical Average,2012/2013,HHS Region 3,3.49445911900013e-05
+Subtype Historical Average,2012/2013,HHS Region 3,0.122586908633459
+Dynamic Harmonic Model,2013/2014,HHS Region 3,0.857793509062578
+Historical Average,2013/2014,HHS Region 3,3.31673815150924e-05
+Subtype Historical Average,2013/2014,HHS Region 3,0.142173323555907
+Dynamic Harmonic Model,2014/2015,HHS Region 3,0.886261352810459
+Historical Average,2014/2015,HHS Region 3,4.33133191152583e-05
+Subtype Historical Average,2014/2015,HHS Region 3,0.113695333870426
+Dynamic Harmonic Model,2015/2016,HHS Region 3,0.847587418601469
+Historical Average,2015/2016,HHS Region 3,3.98296575801588e-05
+Subtype Historical Average,2015/2016,HHS Region 3,0.152372751740951
+Dynamic Harmonic Model,2016/2017,HHS Region 3,0.863661047155595
+Historical Average,2016/2017,HHS Region 3,2.00005511416018e-05
+Subtype Historical Average,2016/2017,HHS Region 3,0.136318952293264
+Dynamic Harmonic Model,2017/2018,HHS Region 3,0.878437311909641
+Historical Average,2017/2018,HHS Region 3,3.97106488450769e-05
+Subtype Historical Average,2017/2018,HHS Region 3,0.121522977441514
+Dynamic Harmonic Model,2018/2019,HHS Region 3,0.849359867108074
+Historical Average,2018/2019,HHS Region 3,3.37758870603847e-05
+Subtype Historical Average,2018/2019,HHS Region 3,0.150606357004866
+Dynamic Harmonic Model,2010/2011,HHS Region 4,0.843109775710083
+Historical Average,2010/2011,HHS Region 4,3.90183624112916e-05
+Subtype Historical Average,2010/2011,HHS Region 4,0.156851205927506
+Dynamic Harmonic Model,2011/2012,HHS Region 4,0.834182180205059
+Historical Average,2011/2012,HHS Region 4,3.32627868509995e-05
+Subtype Historical Average,2011/2012,HHS Region 4,0.16578455700809
+Dynamic Harmonic Model,2012/2013,HHS Region 4,0.85037106645783
+Historical Average,2012/2013,HHS Region 4,4.09197762112206e-05
+Subtype Historical Average,2012/2013,HHS Region 4,0.149588013765959
+Dynamic Harmonic Model,2013/2014,HHS Region 4,0.841875979246237
+Historical Average,2013/2014,HHS Region 4,5.1747719323312e-05
+Subtype Historical Average,2013/2014,HHS Region 4,0.15807227303444
+Dynamic Harmonic Model,2014/2015,HHS Region 4,0.85583819130472
+Historical Average,2014/2015,HHS Region 4,4.32147066497106e-05
+Subtype Historical Average,2014/2015,HHS Region 4,0.14411859398863
+Dynamic Harmonic Model,2015/2016,HHS Region 4,0.862943033843467
+Historical Average,2015/2016,HHS Region 4,0.000219317261619622
+Subtype Historical Average,2015/2016,HHS Region 4,0.136837648894913
+Dynamic Harmonic Model,2016/2017,HHS Region 4,0.83824890154988
+Historical Average,2016/2017,HHS Region 4,2.30957770992687e-05
+Subtype Historical Average,2016/2017,HHS Region 4,0.161728002673021
+Dynamic Harmonic Model,2017/2018,HHS Region 4,0.855281029627026
+Historical Average,2017/2018,HHS Region 4,3.45166277741442e-05
+Subtype Historical Average,2017/2018,HHS Region 4,0.1446844537452
+Dynamic Harmonic Model,2018/2019,HHS Region 4,0.835121290139307
+Historical Average,2018/2019,HHS Region 4,3.26056379864264e-05
+Subtype Historical Average,2018/2019,HHS Region 4,0.164846104222706
+Dynamic Harmonic Model,2010/2011,HHS Region 5,0.816953827044082
+Historical Average,2010/2011,HHS Region 5,2.72213936373891e-05
+Subtype Historical Average,2010/2011,HHS Region 5,0.183018951562281
+Dynamic Harmonic Model,2011/2012,HHS Region 5,0.811244319355336
+Historical Average,2011/2012,HHS Region 5,3.41800717328628e-05
+Subtype Historical Average,2011/2012,HHS Region 5,0.188721500572931
+Dynamic Harmonic Model,2012/2013,HHS Region 5,0.812164915684938
+Historical Average,2012/2013,HHS Region 5,6.79403395223073e-05
+Subtype Historical Average,2012/2013,HHS Region 5,0.18776714397554
+Dynamic Harmonic Model,2013/2014,HHS Region 5,0.812250478387434
+Historical Average,2013/2014,HHS Region 5,1.45774248665662e-05
+Subtype Historical Average,2013/2014,HHS Region 5,0.187734944187699
+Dynamic Harmonic Model,2014/2015,HHS Region 5,0.810667394596296
+Historical Average,2014/2015,HHS Region 5,0.000698601748251415
+Subtype Historical Average,2014/2015,HHS Region 5,0.188634003655453
+Dynamic Harmonic Model,2015/2016,HHS Region 5,0.81950553698315
+Historical Average,2015/2016,HHS Region 5,0.000602992147581121
+Subtype Historical Average,2015/2016,HHS Region 5,0.179891470869269
+Dynamic Harmonic Model,2016/2017,HHS Region 5,0.794962220139747
+Historical Average,2016/2017,HHS Region 5,4.45981988250656e-05
+Subtype Historical Average,2016/2017,HHS Region 5,0.204993181661428
+Dynamic Harmonic Model,2017/2018,HHS Region 5,0.814861057441203
+Historical Average,2017/2018,HHS Region 5,0.00021698786698769
+Subtype Historical Average,2017/2018,HHS Region 5,0.18492195469181
+Dynamic Harmonic Model,2018/2019,HHS Region 5,0.81929611184193
+Historical Average,2018/2019,HHS Region 5,0.000184626514267504
+Subtype Historical Average,2018/2019,HHS Region 5,0.180519261643803
+Dynamic Harmonic Model,2010/2011,HHS Region 6,0.870669604737265
+Historical Average,2010/2011,HHS Region 6,0.129160357537917
+Subtype Historical Average,2010/2011,HHS Region 6,0.000170037724818137
+Dynamic Harmonic Model,2011/2012,HHS Region 6,0.826849583019383
+Historical Average,2011/2012,HHS Region 6,0.172994574969464
+Subtype Historical Average,2011/2012,HHS Region 6,0.000155842011152835
+Dynamic Harmonic Model,2012/2013,HHS Region 6,0.846374826352965
+Historical Average,2012/2013,HHS Region 6,0.153538928028675
+Subtype Historical Average,2012/2013,HHS Region 6,8.62456183595806e-05
+Dynamic Harmonic Model,2013/2014,HHS Region 6,0.840043244775691
+Historical Average,2013/2014,HHS Region 6,0.132122266405273
+Subtype Historical Average,2013/2014,HHS Region 6,0.0278344888190365
+Dynamic Harmonic Model,2014/2015,HHS Region 6,0.851476187108243
+Historical Average,2014/2015,HHS Region 6,0.148473053014847
+Subtype Historical Average,2014/2015,HHS Region 6,5.07598769095117e-05
+Dynamic Harmonic Model,2015/2016,HHS Region 6,0.844627307390759
+Historical Average,2015/2016,HHS Region 6,0.15525859491963
+Subtype Historical Average,2015/2016,HHS Region 6,0.000114097689611156
+Dynamic Harmonic Model,2016/2017,HHS Region 6,0.874191279500926
+Historical Average,2016/2017,HHS Region 6,0.125784632988353
+Subtype Historical Average,2016/2017,HHS Region 6,2.40875107208672e-05
+Dynamic Harmonic Model,2017/2018,HHS Region 6,0.857594597583761
+Historical Average,2017/2018,HHS Region 6,0.14237560939797
+Subtype Historical Average,2017/2018,HHS Region 6,2.97930182683179e-05
+Dynamic Harmonic Model,2018/2019,HHS Region 6,0.873470638083006
+Historical Average,2018/2019,HHS Region 6,0.0917235455501904
+Subtype Historical Average,2018/2019,HHS Region 6,0.0348058163668039
+Dynamic Harmonic Model,2010/2011,HHS Region 7,0.831719725031906
+Historical Average,2010/2011,HHS Region 7,3.0823265814706e-05
+Subtype Historical Average,2010/2011,HHS Region 7,0.168249451702279
+Dynamic Harmonic Model,2011/2012,HHS Region 7,0.824603124929067
+Historical Average,2011/2012,HHS Region 7,1.82215662884259e-05
+Subtype Historical Average,2011/2012,HHS Region 7,0.175378653504644
+Dynamic Harmonic Model,2012/2013,HHS Region 7,0.841630362039646
+Historical Average,2012/2013,HHS Region 7,3.09068315071334e-05
+Subtype Historical Average,2012/2013,HHS Region 7,0.158338731128847
+Dynamic Harmonic Model,2013/2014,HHS Region 7,0.835944278912184
+Historical Average,2013/2014,HHS Region 7,3.48802014416023e-05
+Subtype Historical Average,2013/2014,HHS Region 7,0.164020840886374
+Dynamic Harmonic Model,2014/2015,HHS Region 7,0.845086264970703
+Historical Average,2014/2015,HHS Region 7,4.05638160888457e-05
+Subtype Historical Average,2014/2015,HHS Region 7,0.154873171213208
+Dynamic Harmonic Model,2015/2016,HHS Region 7,0.841455134164146
+Historical Average,2015/2016,HHS Region 7,2.45556526043846e-05
+Subtype Historical Average,2015/2016,HHS Region 7,0.158520310183249
+Dynamic Harmonic Model,2016/2017,HHS Region 7,0.826006779498619
+Historical Average,2016/2017,HHS Region 7,3.56781065544785e-05
+Subtype Historical Average,2016/2017,HHS Region 7,0.173957542394827
+Dynamic Harmonic Model,2017/2018,HHS Region 7,0.83870323440675
+Historical Average,2017/2018,HHS Region 7,4.74093836056238e-05
+Subtype Historical Average,2017/2018,HHS Region 7,0.161249356209644
+Dynamic Harmonic Model,2018/2019,HHS Region 7,0.841343746117591
+Historical Average,2018/2019,HHS Region 7,3.11291452317973e-05
+Subtype Historical Average,2018/2019,HHS Region 7,0.158625124737177
+Dynamic Harmonic Model,2010/2011,HHS Region 8,0.917903842956676
+Historical Average,2010/2011,HHS Region 8,0.0820388430825366
+Subtype Historical Average,2010/2011,HHS Region 8,5.73139607875402e-05
+Dynamic Harmonic Model,2011/2012,HHS Region 8,0.915187169623939
+Historical Average,2011/2012,HHS Region 8,0.0846186907872462
+Subtype Historical Average,2011/2012,HHS Region 8,0.000194139588814382
+Dynamic Harmonic Model,2012/2013,HHS Region 8,0.926573269994238
+Historical Average,2012/2013,HHS Region 8,0.073400436435918
+Subtype Historical Average,2012/2013,HHS Region 8,2.62935698437282e-05
+Dynamic Harmonic Model,2013/2014,HHS Region 8,0.924898148645021
+Historical Average,2013/2014,HHS Region 8,0.0742945455083433
+Subtype Historical Average,2013/2014,HHS Region 8,0.000807305846635457
+Dynamic Harmonic Model,2014/2015,HHS Region 8,0.929224090657817
+Historical Average,2014/2015,HHS Region 8,0.0706920515372367
+Subtype Historical Average,2014/2015,HHS Region 8,8.38578049461413e-05
+Dynamic Harmonic Model,2015/2016,HHS Region 8,0.92504858490301
+Historical Average,2015/2016,HHS Region 8,0.07493125795824
+Subtype Historical Average,2015/2016,HHS Region 8,2.0157138750221e-05
+Dynamic Harmonic Model,2016/2017,HHS Region 8,0.924634415959509
+Historical Average,2016/2017,HHS Region 8,0.0752888317154182
+Subtype Historical Average,2016/2017,HHS Region 8,7.67523250727164e-05
+Dynamic Harmonic Model,2017/2018,HHS Region 8,0.915056917441347
+Historical Average,2017/2018,HHS Region 8,0.084890457493773
+Subtype Historical Average,2017/2018,HHS Region 8,5.26250648803918e-05
+Dynamic Harmonic Model,2018/2019,HHS Region 8,0.896314018104858
+Historical Average,2018/2019,HHS Region 8,0.103624013302674
+Subtype Historical Average,2018/2019,HHS Region 8,6.19685924682142e-05
+Dynamic Harmonic Model,2010/2011,HHS Region 9,0.876486840217728
+Historical Average,2010/2011,HHS Region 9,0.122687628333022
+Subtype Historical Average,2010/2011,HHS Region 9,0.000825531449249216
+Dynamic Harmonic Model,2011/2012,HHS Region 9,0.814633897228024
+Historical Average,2011/2012,HHS Region 9,0.185211463519354
+Subtype Historical Average,2011/2012,HHS Region 9,0.000154639252622715
+Dynamic Harmonic Model,2012/2013,HHS Region 9,0.864677662360844
+Historical Average,2012/2013,HHS Region 9,0.133085833719383
+Subtype Historical Average,2012/2013,HHS Region 9,0.00223650391977275
+Dynamic Harmonic Model,2013/2014,HHS Region 9,0.863576273694276
+Historical Average,2013/2014,HHS Region 9,0.136260257004739
+Subtype Historical Average,2013/2014,HHS Region 9,0.000163469300985276
+Dynamic Harmonic Model,2014/2015,HHS Region 9,0.843750576863811
+Historical Average,2014/2015,HHS Region 9,0.153233706035506
+Subtype Historical Average,2014/2015,HHS Region 9,0.0030157171006823
+Dynamic Harmonic Model,2015/2016,HHS Region 9,0.860501670398386
+Historical Average,2015/2016,HHS Region 9,0.139375639686527
+Subtype Historical Average,2015/2016,HHS Region 9,0.000122689915087278
+Dynamic Harmonic Model,2016/2017,HHS Region 9,0.853782146948284
+Historical Average,2016/2017,HHS Region 9,0.146049300774205
+Subtype Historical Average,2016/2017,HHS Region 9,0.000168552277511091
+Dynamic Harmonic Model,2017/2018,HHS Region 9,0.864329015117488
+Historical Average,2017/2018,HHS Region 9,0.135587581030145
+Subtype Historical Average,2017/2018,HHS Region 9,8.34038523670705e-05
+Dynamic Harmonic Model,2018/2019,HHS Region 9,0.842890780060429
+Historical Average,2018/2019,HHS Region 9,0.157041290262816
+Subtype Historical Average,2018/2019,HHS Region 9,6.79296767542022e-05
+Dynamic Harmonic Model,2010/2011,US National,0.906495610518957
+Historical Average,2010/2011,US National,0.00309743333673355
+Subtype Historical Average,2010/2011,US National,0.0904069561443099
+Dynamic Harmonic Model,2011/2012,US National,0.87052134943378
+Historical Average,2011/2012,US National,0.00226806271026576
+Subtype Historical Average,2011/2012,US National,0.127210587855954
+Dynamic Harmonic Model,2012/2013,US National,0.888317454571849
+Historical Average,2012/2013,US National,0.00998056211636702
+Subtype Historical Average,2012/2013,US National,0.101701983311784
+Dynamic Harmonic Model,2013/2014,US National,0.893941033298811
+Historical Average,2013/2014,US National,0.00374897630391132
+Subtype Historical Average,2013/2014,US National,0.102309990397278
+Dynamic Harmonic Model,2014/2015,US National,0.904605908597336
+Historical Average,2014/2015,US National,0.0182403634327713
+Subtype Historical Average,2014/2015,US National,0.0771537279698927
+Dynamic Harmonic Model,2015/2016,US National,0.907436129417009
+Historical Average,2015/2016,US National,0.00122153061604266
+Subtype Historical Average,2015/2016,US National,0.0913423399669482
+Dynamic Harmonic Model,2016/2017,US National,0.905704000551702
+Historical Average,2016/2017,US National,0.000386097928125879
+Subtype Historical Average,2016/2017,US National,0.0939099015201723
+Dynamic Harmonic Model,2017/2018,US National,0.899283712493814
+Historical Average,2017/2018,US National,0.0555205749623376
+Subtype Historical Average,2017/2018,US National,0.0451957125438485
+Dynamic Harmonic Model,2018/2019,US National,0.892346542140485
+Historical Average,2018/2019,US National,0.00017619636722348
+Subtype Historical Average,2018/2019,US National,0.107477261492291
+Dynamic Harmonic Model,2019/2020,HHS Region 1,0.912501350121336
+Historical Average,2019/2020,HHS Region 1,0.0874377816118569
+Subtype Historical Average,2019/2020,HHS Region 1,6.0868266806842e-05
+Dynamic Harmonic Model,2019/2020,HHS Region 10,0.864857756365001
+Historical Average,2019/2020,HHS Region 10,0.00331471145128201
+Subtype Historical Average,2019/2020,HHS Region 10,0.131827532183717
+Dynamic Harmonic Model,2019/2020,HHS Region 2,0.844707008362375
+Historical Average,2019/2020,HHS Region 2,7.72129554072426e-06
+Subtype Historical Average,2019/2020,HHS Region 2,0.155285270342084
+Dynamic Harmonic Model,2019/2020,HHS Region 3,0.860681838600169
+Historical Average,2019/2020,HHS Region 3,3.08336773659033e-05
+Subtype Historical Average,2019/2020,HHS Region 3,0.139287327722466
+Dynamic Harmonic Model,2019/2020,HHS Region 4,0.846424623411038
+Historical Average,2019/2020,HHS Region 4,4.08985439544507e-05
+Subtype Historical Average,2019/2020,HHS Region 4,0.153534478045007
+Dynamic Harmonic Model,2019/2020,HHS Region 5,0.812561571433755
+Historical Average,2019/2020,HHS Region 5,6.51789116608136e-05
+Subtype Historical Average,2019/2020,HHS Region 5,0.187373249654584
+Dynamic Harmonic Model,2019/2020,HHS Region 6,0.854293292014092
+Historical Average,2019/2020,HHS Region 6,0.145589235062613
+Subtype Historical Average,2019/2020,HHS Region 6,0.00011747292329502
+Dynamic Harmonic Model,2019/2020,HHS Region 7,0.836136985037497
+Historical Average,2019/2020,HHS Region 7,3.12106307350722e-05
+Subtype Historical Average,2019/2020,HHS Region 7,0.163831804331768
+Dynamic Harmonic Model,2019/2020,HHS Region 8,0.919998950732739
+Historical Average,2019/2020,HHS Region 8,0.0799380730837831
+Subtype Historical Average,2019/2020,HHS Region 8,6.29761834775628e-05
+Dynamic Harmonic Model,2019/2020,HHS Region 9,0.854428489363417
+Historical Average,2019/2020,HHS Region 9,0.145366506647103
+Subtype Historical Average,2019/2020,HHS Region 9,0.00020500398948033
+Dynamic Harmonic Model,2019/2020,US National,0.897081378178352
+Historical Average,2019/2020,US National,0.00396429876215824
+Subtype Historical Average,2019/2020,US National,0.0989543230594897
