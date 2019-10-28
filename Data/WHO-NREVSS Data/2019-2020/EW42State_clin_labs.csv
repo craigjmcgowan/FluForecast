@@ -1,0 +1,163 @@
+region_type,region,year,week,total_specimens,total_a,total_b,percent_positive,percent_a,percent_b,wk_date
+States,Alabama,2019,40,512,2,13,2.93,0.39,2.54,2019-09-29
+States,Alaska,2019,40,NA,NA,NA,NA,NA,NA,2019-09-29
+States,Arizona,2019,40,278,0,2,0.72,0,0.72,2019-09-29
+States,Arkansas,2019,40,89,0,0,0,0,0,2019-09-29
+States,California,2019,40,1436,18,10,1.95,1.25,0.7,2019-09-29
+States,Colorado,2019,40,458,2,0,0.44,0.44,0,2019-09-29
+States,Connecticut,2019,40,475,1,0,0.21,0.21,0,2019-09-29
+States,Delaware,2019,40,184,4,1,2.72,2.17,0.54,2019-09-29
+States,District of Columbia,2019,40,NA,NA,NA,NA,NA,NA,2019-09-29
+States,Florida,2019,40,NA,NA,NA,NA,NA,NA,2019-09-29
+States,Georgia,2019,40,874,8,16,2.75,0.92,1.83,2019-09-29
+States,Hawaii,2019,40,310,3,8,3.55,0.97,2.58,2019-09-29
+States,Idaho,2019,40,59,0,0,0,0,0,2019-09-29
+States,Illinois,2019,40,138,1,0,0.72,0.72,0,2019-09-29
+States,Indiana,2019,40,168,1,0,0.6,0.6,0,2019-09-29
+States,Iowa,2019,40,225,0,0,0,0,0,2019-09-29
+States,Kansas,2019,40,62,0,0,0,0,0,2019-09-29
+States,Kentucky,2019,40,388,1,0,0.26,0.26,0,2019-09-29
+States,Louisiana,2019,40,443,2,14,3.61,0.45,3.16,2019-09-29
+States,Maine,2019,40,34,0,0,0,0,0,2019-09-29
+States,Maryland,2019,40,79,1,3,5.06,1.27,3.8,2019-09-29
+States,Massachusetts,2019,40,321,2,0,0.62,0.62,0,2019-09-29
+States,Michigan,2019,40,953,3,2,0.52,0.31,0.21,2019-09-29
+States,Minnesota,2019,40,236,0,0,0,0,0,2019-09-29
+States,Mississippi,2019,40,44,0,1,2.27,0,2.27,2019-09-29
+States,Missouri,2019,40,687,2,1,0.44,0.29,0.15,2019-09-29
+States,Montana,2019,40,99,2,0,2.02,2.02,0,2019-09-29
+States,Nebraska,2019,40,62,0,0,0,0,0,2019-09-29
+States,Nevada,2019,40,NA,NA,NA,NA,NA,NA,2019-09-29
+States,New Hampshire,2019,40,NA,NA,NA,NA,NA,NA,2019-09-29
+States,New Jersey,2019,40,NA,NA,NA,NA,NA,NA,2019-09-29
+States,New Mexico,2019,40,247,1,0,0.4,0.4,0,2019-09-29
+States,New York,2019,40,1354,4,0,0.3,0.3,0,2019-09-29
+States,North Carolina,2019,40,102,2,0,1.96,1.96,0,2019-09-29
+States,North Dakota,2019,40,118,0,2,1.69,0,1.69,2019-09-29
+States,Ohio,2019,40,1202,0,2,0.17,0,0.17,2019-09-29
+States,Oklahoma,2019,40,194,0,0,0,0,0,2019-09-29
+States,Oregon,2019,40,502,4,2,1.2,0.8,0.4,2019-09-29
+States,Pennsylvania,2019,40,201,0,0,0,0,0,2019-09-29
+States,Rhode Island,2019,40,NA,NA,NA,NA,NA,NA,2019-09-29
+States,South Carolina,2019,40,212,0,0,0,0,0,2019-09-29
+States,South Dakota,2019,40,53,0,0,0,0,0,2019-09-29
+States,Tennessee,2019,40,35,0,0,0,0,0,2019-09-29
+States,Texas,2019,40,1681,20,32,3.09,1.19,1.9,2019-09-29
+States,Utah,2019,40,368,8,1,2.45,2.17,0.27,2019-09-29
+States,Vermont,2019,40,67,0,0,0,0,0,2019-09-29
+States,Virginia,2019,40,231,0,0,0,0,0,2019-09-29
+States,Washington,2019,40,842,12,1,1.54,1.43,0.12,2019-09-29
+States,West Virginia,2019,40,367,0,0,0,0,0,2019-09-29
+States,Wisconsin,2019,40,838,4,0,0.48,0.48,0,2019-09-29
+States,Wyoming,2019,40,NA,NA,NA,NA,NA,NA,2019-09-29
+States,Puerto Rico,2019,40,0,0,0,0,0,0,2019-09-29
+States,Virgin Islands,2019,40,NA,NA,NA,NA,NA,NA,2019-09-29
+States,New York City,2019,40,NA,NA,NA,NA,NA,NA,2019-09-29
+States,Alabama,2019,41,498,4,13,3.41,0.8,2.61,2019-10-06
+States,Alaska,2019,41,NA,NA,NA,NA,NA,NA,2019-10-06
+States,Arizona,2019,41,273,3,5,2.93,1.1,1.83,2019-10-06
+States,Arkansas,2019,41,94,1,1,2.13,1.06,1.06,2019-10-06
+States,California,2019,41,1454,26,11,2.54,1.79,0.76,2019-10-06
+States,Colorado,2019,41,441,7,3,2.27,1.59,0.68,2019-10-06
+States,Connecticut,2019,41,466,0,0,0,0,0,2019-10-06
+States,Delaware,2019,41,218,1,3,1.83,0.46,1.38,2019-10-06
+States,District of Columbia,2019,41,NA,NA,NA,NA,NA,NA,2019-10-06
+States,Florida,2019,41,NA,NA,NA,NA,NA,NA,2019-10-06
+States,Georgia,2019,41,761,11,16,3.55,1.45,2.1,2019-10-06
+States,Hawaii,2019,41,334,4,2,1.8,1.2,0.6,2019-10-06
+States,Idaho,2019,41,60,1,2,5,1.67,3.33,2019-10-06
+States,Illinois,2019,41,175,0,0,0,0,0,2019-10-06
+States,Indiana,2019,41,183,1,0,0.55,0.55,0,2019-10-06
+States,Iowa,2019,41,235,4,0,1.7,1.7,0,2019-10-06
+States,Kansas,2019,41,84,0,0,0,0,0,2019-10-06
+States,Kentucky,2019,41,425,0,0,0,0,0,2019-10-06
+States,Louisiana,2019,41,550,4,19,4.18,0.73,3.45,2019-10-06
+States,Maine,2019,41,42,0,0,0,0,0,2019-10-06
+States,Maryland,2019,41,80,0,1,1.25,0,1.25,2019-10-06
+States,Massachusetts,2019,41,391,4,1,1.28,1.02,0.26,2019-10-06
+States,Michigan,2019,41,1005,1,0,0.1,0.1,0,2019-10-06
+States,Minnesota,2019,41,282,1,0,0.35,0.35,0,2019-10-06
+States,Mississippi,2019,41,59,0,0,0,0,0,2019-10-06
+States,Missouri,2019,41,865,3,0,0.35,0.35,0,2019-10-06
+States,Montana,2019,41,123,0,0,0,0,0,2019-10-06
+States,Nebraska,2019,41,59,0,0,0,0,0,2019-10-06
+States,Nevada,2019,41,15,0,1,6.67,0,6.67,2019-10-06
+States,New Hampshire,2019,41,NA,NA,NA,NA,NA,NA,2019-10-06
+States,New Jersey,2019,41,NA,NA,NA,NA,NA,NA,2019-10-06
+States,New Mexico,2019,41,252,0,0,0,0,0,2019-10-06
+States,New York,2019,41,1479,6,4,0.68,0.41,0.27,2019-10-06
+States,North Carolina,2019,41,86,0,0,0,0,0,2019-10-06
+States,North Dakota,2019,41,153,0,1,0.65,0,0.65,2019-10-06
+States,Ohio,2019,41,1107,0,3,0.27,0,0.27,2019-10-06
+States,Oklahoma,2019,41,249,0,0,0,0,0,2019-10-06
+States,Oregon,2019,41,787,1,3,0.51,0.13,0.38,2019-10-06
+States,Pennsylvania,2019,41,247,0,0,0,0,0,2019-10-06
+States,Rhode Island,2019,41,NA,NA,NA,NA,NA,NA,2019-10-06
+States,South Carolina,2019,41,222,0,1,0.45,0,0.45,2019-10-06
+States,South Dakota,2019,41,57,0,0,0,0,0,2019-10-06
+States,Tennessee,2019,41,36,0,2,5.56,0,5.56,2019-10-06
+States,Texas,2019,41,2026,11,51,3.06,0.54,2.52,2019-10-06
+States,Utah,2019,41,373,3,1,1.07,0.8,0.27,2019-10-06
+States,Vermont,2019,41,88,0,0,0,0,0,2019-10-06
+States,Virginia,2019,41,237,0,0,0,0,0,2019-10-06
+States,Washington,2019,41,825,6,3,1.09,0.73,0.36,2019-10-06
+States,West Virginia,2019,41,336,0,1,0.3,0,0.3,2019-10-06
+States,Wisconsin,2019,41,750,4,0,0.53,0.53,0,2019-10-06
+States,Wyoming,2019,41,NA,NA,NA,NA,NA,NA,2019-10-06
+States,Puerto Rico,2019,41,0,0,0,0,0,0,2019-10-06
+States,Virgin Islands,2019,41,NA,NA,NA,NA,NA,NA,2019-10-06
+States,New York City,2019,41,NA,NA,NA,NA,NA,NA,2019-10-06
+States,Alabama,2019,42,382,1,5,1.57,0.26,1.31,2019-10-13
+States,Alaska,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,Arizona,2019,42,249,2,3,2.01,0.8,1.2,2019-10-13
+States,Arkansas,2019,42,109,0,1,0.92,0,0.92,2019-10-13
+States,California,2019,42,148,0,0,0,0,0,2019-10-13
+States,Colorado,2019,42,281,3,0,1.07,1.07,0,2019-10-13
+States,Connecticut,2019,42,473,3,0,0.63,0.63,0,2019-10-13
+States,Delaware,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,District of Columbia,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,Florida,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,Georgia,2019,42,613,6,4,1.63,0.98,0.65,2019-10-13
+States,Hawaii,2019,42,288,9,7,5.56,3.13,2.43,2019-10-13
+States,Idaho,2019,42,70,3,2,7.14,4.29,2.86,2019-10-13
+States,Illinois,2019,42,112,0,0,0,0,0,2019-10-13
+States,Indiana,2019,42,151,0,0,0,0,0,2019-10-13
+States,Iowa,2019,42,278,0,0,0,0,0,2019-10-13
+States,Kansas,2019,42,81,0,0,0,0,0,2019-10-13
+States,Kentucky,2019,42,469,2,0,0.43,0.43,0,2019-10-13
+States,Louisiana,2019,42,524,4,34,7.25,0.76,6.49,2019-10-13
+States,Maine,2019,42,44,0,0,0,0,0,2019-10-13
+States,Maryland,2019,42,108,1,1,1.85,0.93,0.93,2019-10-13
+States,Massachusetts,2019,42,321,1,0,0.31,0.31,0,2019-10-13
+States,Michigan,2019,42,827,3,0,0.36,0.36,0,2019-10-13
+States,Minnesota,2019,42,330,2,1,0.91,0.61,0.3,2019-10-13
+States,Mississippi,2019,42,56,0,3,5.36,0,5.36,2019-10-13
+States,Missouri,2019,42,929,0,0,0,0,0,2019-10-13
+States,Montana,2019,42,109,0,1,0.92,0,0.92,2019-10-13
+States,Nebraska,2019,42,77,0,0,0,0,0,2019-10-13
+States,Nevada,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,New Hampshire,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,New Jersey,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,New Mexico,2019,42,297,0,0,0,0,0,2019-10-13
+States,New York,2019,42,1530,4,2,0.39,0.26,0.13,2019-10-13
+States,North Carolina,2019,42,99,1,0,1.01,1.01,0,2019-10-13
+States,North Dakota,2019,42,162,0,5,3.09,0,3.09,2019-10-13
+States,Ohio,2019,42,1033,2,5,0.68,0.19,0.48,2019-10-13
+States,Oklahoma,2019,42,224,0,0,0,0,0,2019-10-13
+States,Oregon,2019,42,341,0,2,0.59,0,0.59,2019-10-13
+States,Pennsylvania,2019,42,292,0,0,0,0,0,2019-10-13
+States,Rhode Island,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,South Carolina,2019,42,229,1,0,0.44,0.44,0,2019-10-13
+States,South Dakota,2019,42,61,0,0,0,0,0,2019-10-13
+States,Tennessee,2019,42,39,0,0,0,0,0,2019-10-13
+States,Texas,2019,42,2127,22,59,3.81,1.03,2.77,2019-10-13
+States,Utah,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,Vermont,2019,42,94,0,0,0,0,0,2019-10-13
+States,Virginia,2019,42,135,1,0,0.74,0.74,0,2019-10-13
+States,Washington,2019,42,755,12,1,1.72,1.59,0.13,2019-10-13
+States,West Virginia,2019,42,142,1,0,0.7,0.7,0,2019-10-13
+States,Wisconsin,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,Wyoming,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,Puerto Rico,2019,42,0,0,0,0,0,0,2019-10-13
+States,Virgin Islands,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
+States,New York City,2019,42,NA,NA,NA,NA,NA,NA,2019-10-13
