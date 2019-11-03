@@ -13,8 +13,9 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 41
-epiweek <- 201941
+EW <- 42
+EW_paste <- str_pad(EW, 2, pad = "0")
+epiweek <- 201942
 order_week <- ifelse(EW < 40, EW + 52, EW)
 
 ##### Update data #####
@@ -22,8 +23,6 @@ source("R/read_data.R")
 source("R/save_who_nrevss.R")
 
 # Remove state info
-
-
 ili_current <- filter(ili_current, !location %in% state.name)
 virologic_combined <- filter(virologic_combined, !location %in% state.name)
 gtrend <- gtrend %>%
@@ -48,8 +47,6 @@ gtrend <- gtrend %>%
 ili_backfill_densities <- readRDS('Data/ili_backfill_densities.Rds') %>%
   filter(!location %in% state.name, season == '2019/2020')
 
-# set.seed(4321) # For reproducibility of backfill sample
-
 flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location) %>%
   # Add virologic data
   inner_join(select(virologic_combined, location, season, year, week, cum_h1per_6wk,
@@ -67,6 +64,16 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
   filter(!(year == 2015 & week == 33)) %>%
   mutate(order_week = week_inorder(week, season)) 
   
+##### Steenbok ######
+
+# Move current week's forecast to Shiny app folder
+steenbok_pred <- read_entry(paste0('Forecasts/Live/2019-2020/Historical Average/EW',
+                                   EW_paste, '.csv')) %>%
+  select(-forecast_week)
+
+write_csv(steenbok_pred, 
+          paste0('../ForecastShiny/RawData/2019-2020/NatReg/Historical Average/EW',
+                 EW_paste, '.csv'))
 
 ##### Kudu #####
 vir_ssn_per <- virologic_combined %>%
@@ -142,6 +149,9 @@ dir.create("Forecasts/Live/2019-2020/Subtype Historical Average/",
 kudu_flusight_path <- 
   "../cdc-flusight-ensemble/model-forecasts/real-time-component-models/Protea_Kudu" 
 
+kudu_shiny_path <- 
+  '../ForecastShiny/RawData/2019-2020/NatReg/Subtype Historical Average'
+
 # Create target densities and functions
 subtype_densities_1920 <- create_subtype_densities(
   ili_df = kudu_ili, vir_ssn_per = vir_ssn_per, vir_wk_per = vir_wk_per
@@ -162,15 +172,15 @@ kudu_pred <- create_subtype_forecast(
 
 kudu_pred$Value <- format(kudu_pred$Value, scientific = FALSE)
   
-EW_paste <- str_pad(EW, 2, pad = "0")
-  
 write_csv(kudu_pred,
           path = paste0("Forecasts/Live/2019-2020/Subtype Historical Average/EW", EW_paste, ".csv"))
   
-
 write_csv(kudu_pred, 
           path = paste0(kudu_flusight_path, "/EW", EW_paste,
                         "-", substr(epiweek, 1, 4), "-Protea_Kudu.csv"))
+
+write_csv(kudu_pred, 
+          path = paste0(kudu_shiny_path, "/EW", EW_paste, ".csv"))
 
 
 ##### Springbok #####
@@ -264,6 +274,9 @@ springbok_flusight_path <-
   "../cdc-flusight-ensemble/model-forecasts/real-time-component-models/Protea_Springbok" 
 
 springbok_cdc_path <- "CDC Submissions/2019-2020/Springbok"
+
+springbok_shiny_path <- 
+  '../ForecastShiny/RawData/2019-2020/NatReg/Dynamic Harmonic Model'
 
 springbok_pred <- fits %>%
   # Join backfill densities
@@ -389,7 +402,9 @@ springbok_pred <- fits %>%
          Unit = unit, Bin_start_incl = bin_start_incl, 
          Bin_end_notincl = bin_end_notincl, Value = value)
 
-write_csv(springbok_pred,path = paste0(springbok_path, "/EW", EW_paste, ".csv"))
+write_csv(springbok_pred, path = paste0(springbok_path, "/EW", EW_paste, ".csv"))
+
+write_csv(springbok_pred, path = paste0(springbok_shiny_path, "/EW", EW_paste, ".csv"))
 
 write_csv(springbok_pred, 
           path = paste0(springbok_flusight_path, "/EW", EW_paste,
@@ -403,8 +418,11 @@ write_csv(springbok_pred,
 
 cheetah_flusight_path <- 
   "../cdc-flusight-ensemble/model-forecasts/real-time-component-models/Protea_Cheetah"
+
 cheetah_cdc_path <- "CDC Submissions/2019-2020/Cheetah"
-  
+
+cheetah_shiny_path <- 
+  '../ForecastShiny/RawData/2019-2020/NatReg/Ensemble'  
 
 # List forecast files to be weighted
 model_files <- list.files(path = "Forecasts/Live/2019-2020", recursive = TRUE, full.names = T)
@@ -485,6 +503,10 @@ for(j in 1:length(weight_files)) {
     write.csv(stacked_entry, 
               file = paste0(cheetah_cdc_path, "/", this_week,
                             "-Protea_Cheetah-", Sys.Date(), ".csv"),
+              row.names = FALSE, quote = FALSE)
+    
+    write.csv(stacked_entry, 
+              file = paste0(cheetah_shiny_path, "/EW", EW_paste, ".csv"),
               row.names = FALSE, quote = FALSE)
   }
 }

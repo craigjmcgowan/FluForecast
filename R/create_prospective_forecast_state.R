@@ -13,35 +13,44 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 06
-epiweek <- 201906
+EW <- 42
+epiweek <- 201942
 
 ##### Update data #####
-source("R/read_data_state.R")
-source("R/gtrends_pull_data.R")
+source("R/read_data.R")
+
+
+ili_current <- readRDS('Data/ili_current.rds')
+virologic_combined <- readRDS('Data/virologic.rds')
+gtrend<- readRDS('Data/gtrend.RDS') 
+
+
+# Only keep state data
+ili_current <- filter(ili_current, location %in% state.name)
+virologic_combined <- filter(virologic_combined, location %in% state.name)
+gtrend <- gtrend %>%
+  filter(location %in% c(state.name, "US National"),
+         !season %in% c("2008/2009", "2009/2010"),
+         !(year == 2015 & week == 33))
+
 
 set.seed(101085) # For reproducibility of backfill sample
 
-state_flu_data_merge <- select(state_current, epiweek, ILI, year, week, season, location) %>%
-  inner_join(select(state_virologic, location, season, year, week, cum_h1per,
+state_flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location) %>%
+  inner_join(select(virologic_combined, location, season, year, week, cum_h1per,
                    cum_h3per, cum_bper),
             by = c("location", "season", "year", "week")) %>%
   # Add Google Trends data by location
-  right_join(bind_rows(mutate(gtrend_PA_flu_merge, location = "Pennsylvania"),
-                       mutate(gtrend_DE_flu_merge, location = "Delaware"),
-                       mutate(gtrend_MD_flu_merge, location = "Maryland"),
-                       mutate(gtrend_VA_flu_merge, location = "Virginia"),
-                       mutate(gtrend_WV_flu_merge, location = "West Virginia")) %>%
-               filter(year > 2010 | (year == 2010 & week >= 40)) %>%
-               rename(region_hits = hits) %>%
-               select(-date),
-            by = c("location", "season", "year", "week")) %>%
-  right_join(filter(gtrend_US_flu_merge, year > 2010 | (year == 2010 & week >= 40)),
-            by = c("season", "year", "week")) %>%
+  right_join(select(gtrend, season, week, year, location, region_hits = hits),
+             by = c("location", "season", "year", "week")) %>%
+  right_join(filter(gtrend, location == "US National") %>%
+               select(season, week, year, hits),
+             by = c("season", "year", "week")) %>%
+  # Add backfill...
   full_join(state_backfill,
             by = c("location", "season", "year", "week")) %>%
-  # Remove week 33 in 2014 so all seasons have 52 weeks - minimal activity
-  filter(!(year == 2014 & week == 33)) %>%
+  # Remove week 33 in 2015 so all seasons have 52 weeks - minimal activity
+  filter(!(year == 2015 & week == 33)) %>%
   mutate(
     order_week = case_when(
       week < 40 & season == "2014/2015" ~ week + 53,
@@ -69,14 +78,28 @@ state_flu_data_merge <- select(state_current, epiweek, ILI, year, week, season, 
   
 
 ##### Kudu #####
-vir_ssn_per <- state_virologic %>%
+vir_ssn_per <- virologic_combined %>%
+  filter(location %in% state.name) %>%
+  mutate(order_week = week_inorder(week, season)) %>%
   group_by(season, location) %>%
+  arrange(order_week, .by_group = TRUE) %>% 
   summarize(h1per = last(cum_h1per),
-            h3per = last(cum_h3per)) 
+            h3per = last(cum_h3per),
+            bper = last(cum_bper)) %>%
+  ungroup()
+
+vir_wk_per <- virologic_combined %>%
+  filter(location %in% state.name) %>%
+  mutate(wk_date = MMWRweek::MMWRweek2Date(year, week),
+         order_week = week_inorder(week, season)) %>%
+  select(location, season, order_week, 
+         h1per = cum_h1per_6wk, 
+         h3per = cum_h3per_6wk,
+         bper = cum_bper_6wk)
 
 # Create forecasts 
-kudu_ili <- state_current %>%
-  filter(year <= 2018, season != "2018/2019")
+kudu_ili <- ili_current %>%
+  filter(year <= 2019, season != "2019/2020")
 
 kudu_virologic <- state_virologic %>%
   filter(season == "2018/2019") %>%
