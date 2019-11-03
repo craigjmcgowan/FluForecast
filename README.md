@@ -14,8 +14,8 @@ from multiple forecasting teams.
 
 ### Current forecasts
 
-Forecasts are based on data from MMWR week 42, which encompasses Oct 13,
-2019 to Oct 19, 2019. For interactive forecasts, please visit the
+Forecasts are based on data from MMWR week 43, which encompasses Oct 20,
+2019 to Oct 26, 2019. For interactive forecasts, please visit the
 [CDC](http://predict.cdc.gov) or [FluSight
 Network](http://flusightnetwork.io/) pages. The plots below illustrate
 the forecasts for weighted percentage of outpatient visits due to

@@ -13,9 +13,9 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 42
+EW <- 43
+epiweek <- 201943
 EW_paste <- str_pad(EW, 2, pad = "0")
-epiweek <- 201942
 order_week <- ifelse(EW < 40, EW + 52, EW)
 
 ##### Update data #####
@@ -513,3 +513,5 @@ for(j in 1:length(weight_files)) {
 
 # Recreate README with updated forecasts
 rmarkdown::render("README.Rmd")
+
+Sys.time()
