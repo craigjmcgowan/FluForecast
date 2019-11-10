@@ -115,7 +115,7 @@ state_flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, lo
 ## If/how to include estimates of backfill\
 
 ##### Number of Fourier terms #####
-load("Data/state_fourier_fits.Rds")
+fourier_model_fits <- readRDS("Data/state_fourier_fits.Rds")
 
 fourier_model_fit_data <- tibble(season = c("2014/2015", "2015/2016", "2016/2017", 
                                             "2017/2018", "2018/2019")) %>%
@@ -220,7 +220,7 @@ message(paste('Start time:', fourier_start_time))
 
 fourier_scores <- tibble()
 
-for(this_season in unique(fourier_model_data$season)) {
+for(this_season in unique(fourier_model_data$season)[3:5]) {
  
   fourier_by_group <- fourier_model_data %>%
     filter(season == this_season) %>%

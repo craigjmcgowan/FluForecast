@@ -13,8 +13,8 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 43
-epiweek <- 201943
+EW <- 44
+epiweek <- 201944
 EW_paste <- str_pad(EW, 2, pad = "0")
 order_week <- ifelse(EW < 40, EW + 52, EW)
 
@@ -170,7 +170,7 @@ kudu_pred <- create_subtype_forecast(
     prob_no_onset = filter(prob_no_onset, season == "2019/2020")
   ) 
 
-kudu_pred$Value <- format(kudu_pred$Value, scientific = FALSE)
+kudu_pred$Value <- trimws(format(kudu_pred$Value, scientific = FALSE))
   
 write_csv(kudu_pred,
           path = paste0("Forecasts/Live/2019-2020/Subtype Historical Average/EW", EW_paste, ".csv"))
