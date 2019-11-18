@@ -1,0 +1,7 @@
+region_type,region,year,week,total_specimens,total_a,total_b,percent_positive,percent_a,percent_b,wk_date
+National,National,2019,40,19421,131,121,1.29756,0.674528,0.623037,2019-09-29
+National,National,2019,41,21452,138,180,1.48238,0.643297,0.839083,2019-10-06
+National,National,2019,42,21600,153,175,1.51852,0.708333,0.810185,2019-10-13
+National,National,2019,43,21880,184,327,2.33547,0.840951,1.49452,2019-10-20
+National,National,2019,44,20535,187,495,3.32116,0.91064,2.41052,2019-10-27
+National,National,2019,45,NA,NA,NA,NA,NA,NA,2019-11-03
