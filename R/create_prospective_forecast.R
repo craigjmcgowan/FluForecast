@@ -1,4 +1,4 @@
-# Create weekly prospective forecasts for 2018-2019 season
+# Create weekly prospective forecasts for 2019-2020 season
 
 library(tidyverse)
 library(FluSight)
@@ -13,8 +13,8 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 45
-epiweek <- 201945
+EW <- 46
+epiweek <- 201946
 EW_paste <- str_pad(EW, 2, pad = "0")
 order_week <- ifelse(EW < 40, EW + 52, EW)
 
