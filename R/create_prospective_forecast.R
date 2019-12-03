@@ -18,6 +18,7 @@ epiweek <- 201947
 EW_paste <- str_pad(EW, 2, pad = "0")
 order_week <- ifelse(EW < 40, EW + 52, EW)
 
+Sys.time()
 ##### Update data #####
 source("R/read_data.R")
 source("R/save_who_nrevss.R")
