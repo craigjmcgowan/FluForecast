@@ -14,8 +14,8 @@ from multiple forecasting teams.
 
 ### Current forecasts
 
-Forecasts are based on data from MMWR week 51, which encompasses Dec 15,
-2019 to Dec 21, 2019. For interactive forecasts, please visit the
+Forecasts are based on data from MMWR week 52, which encompasses Dec 22,
+2019 to Dec 28, 2019. For interactive forecasts, please visit the
 [CDC](http://predict.cdc.gov) or [FluSight
 Network](http://flusightnetwork.io/) pages. The plots below illustrate
 the forecasts for weighted percentage of outpatient visits due to
