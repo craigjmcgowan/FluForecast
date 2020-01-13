@@ -13,8 +13,8 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 52
-epiweek <- 201952
+EW <- 01
+epiweek <- 202001
 EW_paste <- str_pad(EW, 2, pad = "0")
 order_week <- ifelse(EW < 40, EW + 52, EW)
 
@@ -291,7 +291,7 @@ springbok_pred <- fits %>%
   left_join(select(gtrend_arima_fits, location, season, region_model = arima_model),
             by = c("season", "location")) %>%
   mutate(
-    pred_data = pmap(list(season, week, location, epiweek), 
+    pred_data = pmap(list(season, order_week, location, epiweek), 
                      ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
                               season != paste0(substr(..1, 6, 9), "/",
                                                as.numeric(substr(..1, 6, 9)) + 1),
@@ -337,7 +337,7 @@ springbok_pred <- fits %>%
     max_week = ifelse(season == "2014/2015", 53, 52),
     # Create data frame of xreg terms for forecasting
     gtrend_forecast = pmap(
-      list(pred_data, nat_model, location, season, week, max_week),
+      list(pred_data, nat_model, location, season, order_week, max_week),
       ~ tibble(hits = c(flu_data_merge %>%
                           filter(location == ..3, season == ..4, 
                                  order_week == ..5 + 1) %>%
@@ -347,7 +347,7 @@ springbok_pred <- fits %>%
         as.matrix()
     ),
     reg_gtrend_forecast = pmap(
-      list(pred_data, region_model, location, season, week, max_week),
+      list(pred_data, region_model, location, season, order_week, max_week),
       ~ tibble(region_hits = c(flu_data_merge %>%
                                  filter(location == ..3, season == ..4, 
                                         order_week == ..5 + 1) %>%
