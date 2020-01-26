@@ -14,8 +14,8 @@ from multiple forecasting teams.
 
 ### Current forecasts
 
-Forecasts are based on data from MMWR week 2, which encompasses Jan 05,
-2020 to Jan 11, 2020. For interactive forecasts, please visit the
+Forecasts are based on data from MMWR week 3, which encompasses Jan 12,
+2020 to Jan 18, 2020. For interactive forecasts, please visit the
 [CDC](http://predict.cdc.gov) or [FluSight
 Network](http://flusightnetwork.io/) pages. The plots below illustrate
 the forecasts for weighted percentage of outpatient visits due to
