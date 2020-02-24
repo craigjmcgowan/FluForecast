@@ -13,8 +13,8 @@ source("R/utils.R")
 source("R/create_subtype_forecast.R")
 
 ##### Set week that forecasts are being based on #####
-EW <- 06
-epiweek <- 202006
+EW <- 07
+epiweek <- 202007
 EW_paste <- str_pad(EW, 2, pad = "0")
 order_week <- ifelse(EW < 40, EW + 52, EW)
 
