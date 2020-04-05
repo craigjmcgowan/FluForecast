@@ -14,8 +14,8 @@ from multiple forecasting teams.
 
 ### Current forecasts
 
-Forecasts are based on data from MMWR week 12, which encompasses Mar 15,
-2020 to Mar 21, 2020. For interactive forecasts, please visit the
+Forecasts are based on data from MMWR week 13, which encompasses Mar 22,
+2020 to Mar 28, 2020. For interactive forecasts, please visit the
 [CDC](http://predict.cdc.gov) or [FluSight
 Network](http://flusightnetwork.io/) pages. The plots below illustrate
 the forecasts for weighted percentage of outpatient visits due to
