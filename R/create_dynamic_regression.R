@@ -107,6 +107,14 @@ ILI_1819 <- readRDS("Data/ili_init_pub_list.rds")[['201928']] %>%
   select(season, location, week, ILI) %>%
   mutate(ILI = round(ILI, 1))
 
+ILI_1920 <- readRDS("Data/ili_init_pub_list.rds")[['202028']] %>%
+  filter(!location %in% state.name) %>%
+  mutate(order_week = week_inorder(week, "2019/2020"),
+         season = "2019/2020") %>%
+  arrange(location, order_week) %>%
+  select(season, location, week, ILI) %>%
+  mutate(ILI = round(ILI, 1))
+
 nested_truth <- bind_rows(ILI_1011, ILI_1112, ILI_1213, ILI_1314, ILI_1415,
                           ILI_1516, ILI_1617, ILI_1718, ILI_1819) %>%
   nest(data = c(location, week, ILI)) %>%

@@ -42,7 +42,7 @@ US_flu_ratio <- function(gdata1, gdata2) {
 }
 
 # Helper function for pulling in Google Trends data for a region -------
-fetch_gtrend <- function(location) {
+fetch_gtrend <- function(location, query = 'flu') {
   require(gtrendsR)
   
   # Fix location to be in gtrend format if it isn't already
@@ -52,7 +52,7 @@ fetch_gtrend <- function(location) {
   if(location %in% state.abb)
     location <- paste0("US-", location)
   
-  flu_0407 <- gtrends(keyword = "flu",
+  flu_0407 <- gtrends(keyword = query,
                       geo = location,
                       time = paste(MMWRweek2Date(2004, 40), MMWRweek2Date(2007, 40)))$interest_over_time %>%
     mutate_at(vars(hits), as.character) %>%
@@ -60,7 +60,7 @@ fetch_gtrend <- function(location) {
                             TRUE ~ hits),
            hits = as.numeric(hits))
   
-  flu_0611 <- gtrends(keyword = "flu",
+  flu_0611 <- gtrends(keyword = query,
                       geo = location,
                       time = paste(MMWRweek2Date(2006, 40), MMWRweek2Date(2011, 40)))$interest_over_time %>%
     mutate_at(vars(hits), as.character) %>%
@@ -68,7 +68,7 @@ fetch_gtrend <- function(location) {
                             TRUE ~ hits),
            hits = as.numeric(hits))
   
-  flu_1015 <- gtrends(keyword = "flu",
+  flu_1015 <- gtrends(keyword = query,
                       geo = location,
                       time = paste(MMWRweek2Date(2010, 40), MMWRweek2Date(2015, 40)))$interest_over_time %>%
     mutate_at(vars(hits), as.character) %>%
@@ -76,7 +76,7 @@ fetch_gtrend <- function(location) {
                             TRUE ~ hits),
            hits = as.numeric(hits))
   
-  flu_1419 <- gtrends(keyword = "flu",
+  flu_1419 <- gtrends(keyword = query,
                       geo = location,
                       time = paste(MMWRweek2Date(2014, 40), MMWRweek2Date(2019, 40)))$interest_over_time %>%
     mutate_at(vars(hits), as.character) %>%
@@ -84,7 +84,7 @@ fetch_gtrend <- function(location) {
                             TRUE ~ hits),
            hits = as.numeric(hits))
   
-  flu_1820 <- gtrends(keyword = "flu",
+  flu_1820 <- gtrends(keyword = query,
                       geo = location,
                       paste(MMWRweek2Date(2018, 40), Sys.Date()))$interest_over_time %>%
     mutate_at(vars(hits), as.character) %>%
@@ -793,7 +793,7 @@ stack_forecasts <- function(files, stacking_weights, challenge = "ilinet") {
   ensemble_entry <- Reduce(
     f = left_join, 
     x = slim_entries) %>% 
-    as_data_frame %>%
+    as_tibble() %>%
     mutate(value = rowSums(.[grep("weighted_value", names(.))], na.rm = TRUE)) %>%
     select(-contains("_value")) %>%
     select(-contains("_weight")) %>%
