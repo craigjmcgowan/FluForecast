@@ -33,7 +33,7 @@ train_ili_1011 <- ili_current %>%
          !location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("Forecasts/2010-2011/Historical Average",
+dir.create("Forecasts/Training/2010-2011/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -56,7 +56,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/2010-2011/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Training/2010-2011/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -66,7 +66,7 @@ train_ili_1112 <- ili_current %>%
          !location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("Forecasts/2011-2012/Historical Average",
+dir.create("Forecasts/Training/2011-2012/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -89,7 +89,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/2011-2012/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Training/2011-2012/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -100,7 +100,7 @@ train_ili_1213 <- ili_current %>%
          !location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("Forecasts/2012-2013/Historical Average",
+dir.create("Forecasts/Training/2012-2013/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -123,7 +123,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/2012-2013/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Training/2012-2013/Historical Average/EW", j, ".csv"))
 
 }
 
@@ -133,7 +133,7 @@ train_ili_1314 <- ili_current %>%
          !location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("Forecasts/2013-2014/Historical Average/",
+dir.create("Forecasts/Training/2013-2014/Historical Average/",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -156,7 +156,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/2013-2014/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Training/2013-2014/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -166,7 +166,7 @@ train_ili_1415 <- ili_current %>%
          !location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("Forecasts/2014-2015/Historical Average",
+dir.create("Forecasts/Training/2014-2015/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -189,7 +189,7 @@ for(i in 40:73) {
   j <- str_pad(ifelse(i > 53, i - 53, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/2014-2015/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Training/2014-2015/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -199,7 +199,7 @@ state_train_ili_1415 <- ili_current %>%
          location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("State Forecasts/2014-2015/Historical Average", 
+dir.create("State Forecasts/Training/2014-2015/Historical Average", 
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -222,7 +222,7 @@ for(i in 40:73) {
   j <- str_pad(ifelse(i > 53, i - 53, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("State Forecasts/2014-2015/Historical Average/EW", j, ".csv"))
+            path = paste0("State Forecasts/Training/2014-2015/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -233,7 +233,7 @@ train_ili_1516 <- ili_current %>%
          !location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("Forecasts/2015-2016/Historical Average",
+dir.create("Forecasts/Training/2015-2016/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -256,7 +256,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/2015-2016/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Training/2015-2016/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -266,7 +266,7 @@ state_train_ili_1516 <- ili_current %>%
          location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("State Forecasts/2015-2016/Historical Average",
+dir.create("State Forecasts/Training/2015-2016/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -289,7 +289,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("State Forecasts/2015-2016/Historical Average/EW", j, ".csv"))
+            path = paste0("State Forecasts/Training/2015-2016/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -299,7 +299,7 @@ train_ili_1617 <- ili_current %>%
          !location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("Forecasts/2016-2017/Historical Average",
+dir.create("Forecasts/Training/2016-2017/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -322,7 +322,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/2016-2017/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Training/2016-2017/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -332,7 +332,7 @@ state_train_ili_1617 <- ili_current %>%
          location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("State Forecasts/2016-2017/Historical Average",
+dir.create("State Forecasts/Training/2016-2017/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -355,7 +355,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("State Forecasts/2016-2017/Historical Average/EW", j, ".csv"))
+            path = paste0("State Forecasts/Training/2016-2017/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -365,7 +365,7 @@ train_ili_1718 <- ili_current %>%
          !location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("Forecasts/2017-2018/Historical Average",
+dir.create("Forecasts/Training/2017-2018/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -388,7 +388,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/2017-2018/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Training/2017-2018/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -398,7 +398,7 @@ state_train_ili_1718 <- ili_current %>%
          location %in% state.name, location != "Louisiana") # Remove LA b/c only one year of training data
 
 # Create directory to store forecasts
-dir.create("State Forecasts/2017-2018/Historical Average",
+dir.create("State Forecasts/Training/2017-2018/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -421,7 +421,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("State Forecasts/2017-2018/Historical Average/EW", j, ".csv"))
+            path = paste0("State Forecasts/Training/2017-2018/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -431,7 +431,7 @@ train_ili_1819 <- ili_current %>%
          !location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("Forecasts/2018-2019/Historical Average",
+dir.create("Forecasts/Training/2018-2019/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -454,7 +454,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/2018-2019/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Training/2018-2019/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -464,7 +464,7 @@ state_train_ili_1819 <- ili_current %>%
          location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("State Forecasts/2018-2019/Historical Average",
+dir.create("State Forecasts/Training/2018-2019/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -487,7 +487,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("State Forecasts/2018-2019/Historical Average/EW", j, ".csv"))
+            path = paste0("State Forecasts/Training/2018-2019/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -521,7 +521,7 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("Forecasts/Live/2019-2020/Historical Average/EW", j, ".csv"))
+            path = paste0("Forecasts/Training/2019-2020/Historical Average/EW", j, ".csv"))
   
 }
 
@@ -531,7 +531,7 @@ state_train_ili_1920 <- ili_current %>%
          location %in% state.name)
 
 # Create directory to store forecasts
-dir.create("State Forecasts/2019-2020/Historical Average",
+dir.create("State Forecasts/Training/2019-2020/Historical Average",
            showWarnings = FALSE)
 
 # Create target densities and functions
@@ -554,6 +554,72 @@ for(i in 40:72) {
   j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
   
   write_csv(temp,
-            path = paste0("State Forecasts/2019-2020/Historical Average/EW", j, ".csv"))
+            path = paste0("State Forecasts/Training/2019-2020/Historical Average/EW", j, ".csv"))
+  
+}
+
+# Create forecasts for 2020/2021 ------
+train_ili_2021<- ili_current %>%
+  filter(year <= 2020, season != "2020/2021",
+         !location %in% state.name)
+
+# Create directory to store forecasts
+dir.create("Forecasts/Live/2020-2021/Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+historical_densities_2021 <- create_historical_densities(train_ili_2021,
+                                                         pseudo_onsets)
+
+historical_functions_2021 <- modify_depth(
+  historical_densities_2021, 2,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+for(i in 40:72) {
+  temp <- create_historical_forecast(
+    functions = historical_functions_2021,
+    pub_week = i,
+    season = "2020/2021",
+    prob_no_onset = filter(prob_no_onset, season == "2020/2021")
+  )
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("Forecasts/Live/2020-2021/Historical Average/EW", j, ".csv"))
+  
+}
+
+# State forecasts
+state_train_ili_2021 <- ili_current %>%
+  filter(year <= 2020, season != "2020/2021",
+         location %in% state.name)
+
+# Create directory to store forecasts
+dir.create("State Forecasts/Live/2020-2021/Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+state_historical_densities_2021 <- create_historical_densities(state_train_ili_2021,
+                                                               challenge = "state_ili")
+
+state_historical_functions_2021 <- modify_depth(
+  state_historical_densities_2021, 2,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+for(i in 40:72) {
+  temp <- create_historical_forecast(
+    functions = state_historical_functions_1920,
+    pub_week = i,
+    season = "2020/2021",
+    challenge = "state_ili"
+  )
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("State Forecasts/Live/2020-2021/Historical Average/EW", j, ".csv"))
   
 }

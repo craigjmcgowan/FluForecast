@@ -34,12 +34,26 @@ state_matchup <- tibble(abb = tolower(state.abb),
   # Add matchups for regions and national
   bind_rows(
     tibble(abb = c("nat", "hhs1", "hhs2", "hhs3", "hhs4", "hhs5", "hhs6", 
-                   "hhs7", "hhs8", "hhs9", "hhs10"),
+                   "hhs7", "hhs8", "hhs9", "hhs10", 'dc', 'pr'),
            name = c("US National", "HHS Region 1", "HHS Region 2", "HHS Region 3",
                     "HHS Region 4", "HHS Region 5", "HHS Region 6",  "HHS Region 7", 
-                    "HHS Region 8", "HHS Region 9", "HHS Region 10"))
+                    "HHS Region 8", "HHS Region 9", "HHS Region 10", 'District of Columbia',
+                    'Puerto Rico'))
   )
 
+region_matchup <- tibble(
+  state = c(state.name, 'Puerto Rico', 'District of Columbia'),
+  region = c('HHS Region 4', 'HHS Region 10', 'HHS Region 9', 'HHS Region 6', 'HHS Region 9',
+             'HHS Region 8', 'HHS Region 1', 'HHS Region 3', 'HHS Region 4', 'HHS Region 4',
+             'HHS Region 9', 'HHS Region 10', 'HHS Region 5', 'HHS Region 5', 'HHS Region 7',
+             'HHS Region 7', 'HHS Region 4', 'HHS Region 6', 'HHS Region 1', 'HHS Region 3', 
+             'HHS Region 1', 'HHS Region 5', 'HHS Region 5', 'HHS Region 4', 'HHS Region 7',
+             'HHS Region 8', 'HHS Region 7', 'HHS Region 9', 'HHS Region 1', 'HHS Region 2',
+             'HHS Region 6', 'HHS Region 2', 'HHS Region 4', 'HHS Region 8', 'HHS Region 5',
+             'HHS Region 6', 'HHS Region 10', 'HHS Region 3', 'HHS Region 1', 'HHS Region 4',
+             'HHS Region 8', 'HHS Region 4', 'HHS Region 6', 'HHS Region 8', 'HHS Region 1',
+             'HHS Region 3', 'HHS Region 10', 'HHS Region 3', 'HHS Region 5', 'HHS Region 8',
+             'HHS Region 2', 'HHS Region 3'))
 
 # ILI data ------
 current_epidata <- function(start_wk, end_wk) {
@@ -173,9 +187,9 @@ saveRDS(ili_backfill_avg, "Data/ili_backfill_avg.RDS")
 saveRDS(ili_backfill_month_avg, "Data/ili_backfill_month_avg.RDS")
 
 # Fetch virologic data from CDC -----
-virologic_national <- who_nrevss(region = "national", years = c(1997:2019))
-virologic_region <- who_nrevss(region = "hhs", years = c(1997:2019))
-virologic_state <- who_nrevss(region = "state", years = c(2010:2019))
+virologic_national <- who_nrevss(region = "national", years = c(1997:2020))
+virologic_region <- who_nrevss(region = "hhs", years = c(1997:2020))
+virologic_state <- who_nrevss(region = "state", years = c(2010:2020))
 
 virologic_before_1516 <- bind_rows(
   virologic_national[[1]],
@@ -330,19 +344,11 @@ saveRDS(gtrend, "Data/gtrend.Rds")
 # COVID data -----
 ### Covidtracking.com
 covid_tracking_us <- read_csv('https://covidtracking.com/api/v1/us/daily.csv') %>%
-  mutate(state = 'US')
-
-covid_tracking_state <- read_csv('https://covidtracking.com/api/v1/states/daily.csv')
-
-cols_keep <- names(covid_tracking_state)[names(covid_tracking_state) %in% names(covid_tracking_us)]
-
-covid_tracking <- bind_rows(
-  select(covid_tracking_us, all_of(cols_keep)),
-  select(covid_tracking_state, all_of(cols_keep))
-) %>%
-  mutate(date = ymd(date),
-         week = MMWRweek(date)$MMWRweek) %>%
-  group_by(week, state) %>%
+  mutate(location = 'US National',
+         date = ymd(date),
+         week = MMWRweek(date)$MMWRweek,
+         year = year(date)) %>%
+  group_by(week, year, location) %>%
   arrange(date, .by_group = TRUE) %>%
   summarize(date = first(date),
             positive = coalesce(last(positive), 0),
@@ -353,6 +359,56 @@ covid_tracking <- bind_rows(
             negativeIncrease = coalesce(mean(negativeIncrease, na.rm = T), 0)) %>%
   ungroup()
 
+covid_tracking_state_raw <- read_csv('https://covidtracking.com/api/v1/states/daily.csv') %>%
+  rename(state_abb = state) %>%
+  inner_join(mutate(state_matchup, state_abb = toupper(abb)), by = "state_abb") %>%
+  inner_join(region_matchup, by = c('name' = 'state'))
+
+covid_tracking_hhs <- covid_tracking_state_raw %>%
+  group_by(date, region) %>%
+  summarize(positive = coalesce(sum(positive, na.rm = T), 0),
+            negative = coalesce(sum(negative, na.rm = T), 0),
+            recovered = coalesce(sum(recovered, na.rm = T), 0),
+            death = coalesce(sum(death, na.rm = T), 0),
+            positiveIncrease = coalesce(sum(positiveIncrease, na.rm = T), 0),
+            negativeIncrease = coalesce(sum(negativeIncrease, na.rm = T), 0)) %>%
+  mutate(date = ymd(date),
+         week = MMWRweek(date)$MMWRweek,
+         year = year(date),
+         location = region) %>%
+  group_by(week, year, location) %>%
+  arrange(date, .by_group = TRUE) %>%
+  summarize(date = first(date),
+            positive = coalesce(last(positive), 0),
+            negative = coalesce(last(negative), 0),
+            recovered = coalesce(last(recovered), 0),
+            death = coalesce(last(death), 0),
+            positiveIncrease = coalesce(mean(positiveIncrease, na.rm = T), 0),
+            negativeIncrease = coalesce(mean(negativeIncrease, na.rm = T), 0)) %>%
+  ungroup()
+
+covid_tracking_state <- covid_tracking_state_raw %>%
+  mutate(date = ymd(date),
+         week = MMWRweek(date)$MMWRweek,
+         year = year(date),
+         location = name) %>%
+  group_by(week, year, location) %>%
+  arrange(date, .by_group = TRUE) %>%
+  summarize(date = first(date),
+            positive = coalesce(last(positive), 0),
+            negative = coalesce(last(negative), 0),
+            recovered = coalesce(last(recovered), 0),
+            death = coalesce(last(death), 0),
+            positiveIncrease = coalesce(mean(positiveIncrease, na.rm = T), 0),
+            negativeIncrease = coalesce(mean(negativeIncrease, na.rm = T), 0)) %>%
+  ungroup()
+  
+covid_tracking <- bind_rows(
+  covid_tracking_us,
+  covid_tracking_hhs,
+  covid_tracking_state
+)
+
 saveRDS(covid_tracking, "Data/covid_tracking.RDS")
 
 # Gtrends
@@ -362,6 +418,18 @@ covid_gtrend_us <- full_join(
   fetch_gtrend('US', 'coronavirus') %>%
     select(date, coronavirus_hits = hits),
   by = 'date'
-)
+) %>%
+  mutate(location = 'US National')
+
+covid_gtrend_state <- tibble(state_abb = c('CA', 'WA', 'NY')) %>%
+  mutate(data = map(state_abb, fetch_gtrend, 'covid')) %>%
+  unnest(col = c(data)) %>%
+  inner_join(mutate(state_matchup, state_abb = toupper(abb)), by = "state_abb") %>%
+  select(-state_abb, -abb, location = name)
+
+  
+gtrend_state_list <- tibble(state_abb = state.abb) %>%
+  mutate(data = map(state_abb, ~ fetch_gtrend(., 'coronavirus')))
+
 
 saveRDS(covid_gtrend_us, "Data/covid_gtrend.RDS")
