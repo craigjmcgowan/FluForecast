@@ -204,59 +204,53 @@ virologic_before_1516 <- bind_rows(
 
 virologic_ph_lab <- bind_rows(
   virologic_national[[2]], 
-  virologic_region[[2]]#, 
-  # virologic_state[[2]] %>%
-  #   mutate_at(c("a_2009_h1n1", "a_h3", "a_subtyping_not_performed",
-  #                "b", "bvic", "byam", "h3n2v", "total_specimens"),
-  #             as.integer)
-)
-
-
+  virologic_region[[2]]
+) 
  
-virologic_ph_lab_state <- virologic_state[[2]] %>%
-  mutate(season = paste(substr(season_description, 8, 11), 
-                        as.numeric(substr(season_description, 8, 11)) + 1,
-                        sep = "/")) %>%
-  mutate_at(c("a_2009_h1n1", "a_h3", "a_subtyping_not_performed",
-              "b", "bvic", "byam", "h3n2v", "total_specimens"),
-            as.integer) %>%
-  select(-region_type, -season_description, -wk_date) %>%
-  mutate_at(vars(c("a_2009_h1n1", "a_h3", "a_subtyping_not_performed",
-                   "b", "bvic", "byam", "h3n2v")),
-            function(x) ifelse(is.na(x), 0, x)) %>%
-  # Create mock H1 and H3 percents if all A samples had been tested
-  rowwise() %>%
-  mutate(h1sum = sum(a_2009_h1n1),
-         h3sum = sum(a_h3, h3n2v),
-         asum = sum(a_2009_h1n1, a_h3, a_subtyping_not_performed, h3n2v),
-         bsum = sum(b, bvic, byam),
-         # Subtype percentages of typed As
-         h1per_of_a = ifelse(is.na(h1sum / (h1sum + h3sum)), 0.5, 
-                             h1sum / (h1sum + h3sum)),
-         h3per_of_a = ifelse(is.na(h3sum / (h1sum + h3sum)), 0.5, 
-                             h3sum / (h1sum + h3sum)),
-         # Cumulative percentages of each type, assuming A type %s are representative
-         cum_bper = bsum / (asum + bsum),
-         cum_h1per = h1per_of_a * asum / (asum + bsum),
-         cum_h3per = h3per_of_a * asum / (asum + bsum),
-         # If no samples reported, make each type 33%
-         cum_h1per = ifelse(is.na(cum_h1per), 1/3, cum_h1per),
-         cum_h3per = ifelse(is.na(cum_h3per), 1/3, cum_h3per),
-         cum_bper = ifelse(is.na(cum_bper), 1/3, cum_bper)) %>% 
-  ungroup() %>%
-  # Create dataset with all weeks, with each week having the cumulative measure
-  full_join(crossing(season = c('2015/2016', '2016/2017', '2017/2018', '2018/2019'),
-                     week = c(1:52)),
-            by = "season") %>%
-  # Add year variable for future use
-  mutate(year = case_when(week < 40 ~ as.numeric(substr(season, 6, 9)),
-                          TRUE ~ as.numeric(substr(season, 1, 4)))) %>%
-  # Select variables of interest
-  select(location = region, season, week, year, a_2009_h1n1, a_h3, 
-         a_subtyping_not_performed, b, bvic, byam, 
-         h1per_of_a, h3per_of_a, cum_h1per, cum_h3per, cum_bper, total_specimens)
-  
-saveRDS(virologic_ph_lab_state, "Data/virologic_ph_lab_state.RDS")  
+# virologic_ph_lab_state <- virologic_state[[2]] %>%
+#   mutate(season = paste(substr(season_description, 8, 11), 
+#                         as.numeric(substr(season_description, 8, 11)) + 1,
+#                         sep = "/")) %>%
+#   mutate_at(c("a_2009_h1n1", "a_h3", "a_subtyping_not_performed",
+#               "b", "bvic", "byam", "h3n2v", "total_specimens"),
+#             as.integer) %>%
+#   select(-region_type, -season_description, -wk_date) %>%
+#   mutate_at(vars(c("a_2009_h1n1", "a_h3", "a_subtyping_not_performed",
+#                    "b", "bvic", "byam", "h3n2v")),
+#             function(x) ifelse(is.na(x), 0, x)) %>%
+#   # Create mock H1 and H3 percents if all A samples had been tested
+#   rowwise() %>%
+#   mutate(h1sum = sum(a_2009_h1n1),
+#          h3sum = sum(a_h3, h3n2v),
+#          asum = sum(a_2009_h1n1, a_h3, a_subtyping_not_performed, h3n2v),
+#          bsum = sum(b, bvic, byam),
+#          # Subtype percentages of typed As
+#          h1per_of_a = ifelse(is.na(h1sum / (h1sum + h3sum)), 0.5, 
+#                              h1sum / (h1sum + h3sum)),
+#          h3per_of_a = ifelse(is.na(h3sum / (h1sum + h3sum)), 0.5, 
+#                              h3sum / (h1sum + h3sum)),
+#          # Cumulative percentages of each type, assuming A type %s are representative
+#          cum_bper = bsum / (asum + bsum),
+#          cum_h1per = h1per_of_a * asum / (asum + bsum),
+#          cum_h3per = h3per_of_a * asum / (asum + bsum),
+#          # If no samples reported, make each type 33%
+#          cum_h1per = ifelse(is.na(cum_h1per), 1/3, cum_h1per),
+#          cum_h3per = ifelse(is.na(cum_h3per), 1/3, cum_h3per),
+#          cum_bper = ifelse(is.na(cum_bper), 1/3, cum_bper)) %>% 
+#   ungroup() %>%
+#   # Create dataset with all weeks, with each week having the cumulative measure
+#   full_join(crossing(season = c('2015/2016', '2016/2017', '2017/2018', '2018/2019'),
+#                      week = c(1:52)),
+#             by = "season") %>%
+#   # Add year variable for future use
+#   mutate(year = case_when(week < 40 ~ as.numeric(substr(season, 6, 9)),
+#                           TRUE ~ as.numeric(substr(season, 1, 4)))) %>%
+#   # Select variables of interest
+#   select(location = region, season, week, year, a_2009_h1n1, a_h3, 
+#          a_subtyping_not_performed, b, bvic, byam, 
+#          h1per_of_a, h3per_of_a, cum_h1per, cum_h3per, cum_bper, total_specimens)
+#   
+# saveRDS(virologic_ph_lab_state, "Data/virologic_ph_lab_state.RDS")  
 
 
 virologic_combined <- bind_rows(
@@ -324,7 +318,15 @@ virologic_combined <- bind_rows(
          cum_h1per_6wk, cum_h1per, cum_h3per_6wk, cum_h3per, 
          cum_bper_6wk, cum_bper, total_specimens, percent_positive)
 
-saveRDS(virologic_combined, file = "Data/virologic.Rds")
+# For 2015/2016 onwards, assign states the values from their HHS Region
+# Data aren't published at the state level weekly :-/
+virologic_state_ph_lab <- filter(virologic_combined, location != "US National",
+                                 year >= 2015, season != '2014/2015') %>%
+  full_join(region_matchup, by = c('location' = 'region')) %>%
+  select(-location) %>%
+  rename(location = state)
+
+saveRDS(bind_rows(virologic_combined, virologic_state_ph_lab), file = "Data/virologic.Rds")
 
 # Fetch Google Trends data -----
 gtrend_US_flu_merge <- fetch_gtrend("US") %>%
