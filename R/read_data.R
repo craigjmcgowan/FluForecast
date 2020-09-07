@@ -8,6 +8,7 @@ library(FluSight)
 library(epiforecast)
 library(zoo)
 
+
 # Load functions
 source("R/utils.R")
 source('R/EpiDataAPI.R')

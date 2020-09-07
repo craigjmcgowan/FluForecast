@@ -53,7 +53,7 @@ gtrend<- readRDS('Data/gtrend.RDS') %>%
 # covid_gtrend <- readRDS('Data/covid_gtrend.RDS')
 
 # Create clusters for use later in program
-cluster <- create_cluster(cores = parallel::detectCores() - 1)
+cluster <- new_cluster(parallel::detectCores() - 1)
 # cluster <- c(1:11)
 
 # Create truth for all seasons and combine datasets -------
@@ -170,7 +170,7 @@ flu_data_merge <- select(ili_current, epiweek, ILI, year, week, season, location
 
 
 ##### Number of Fourier terms #####
-# fourier_model_fits <- readRDS("Data/fourier_fits.Rds")
+fourier_model_fits <- readRDS("Data/fourier_fits.Rds")
 fourier_model_fits <- tibble(season = c("2010/2011","2011/2012", "2012/2013",
                                         "2013/2014", "2014/2015", "2015/2016",
                                         "2016/2017", "2017/2018", "2018/2019",
@@ -232,14 +232,12 @@ fourier_model_fits <- tibble(season = c("2010/2011","2011/2012", "2012/2013",
 
 saveRDS(fourier_model_fits, file = "Data/fourier_fits.Rds")
 
-# Set up data for model fitting in parallel
+# Set up data for model fitting in parallel - only need most recent season
+#   Can use prior model fits for early seasons generated in earlier challenges
 fourier_model_data <- crossing(model = c("fit_1", "fit_2", "fit_3", "fit_4",
                                          "fit_5", "fit_6", "fit_7", "fit_8", 
                                          "fit_9", "fit_10", "fit_11", "fit_12"),
-                       season = c("2010/2011", "2011/2012", "2012/2013", 
-                                  "2013/2014", "2014/2015", "2015/2016", 
-                                  "2016/2017", "2017/2018", "2018/2019",
-                                  "2019/2020"),
+                       season = c("2019/2020"),
                        week = c(43:71),
                        location = unique(flu_data_merge$location)) %>%
   filter(week < 71 | season == "2014/2015") %>%
@@ -259,69 +257,73 @@ fourier_model_data <- crossing(model = c("fit_1", "fit_2", "fit_3", "fit_4",
 
 # Set up party_df and load necessary libraries and functions
 # load("Data/fourier_scores.Rdata")
-fourier_scores <- tibble()
+
+# 
 start_time <- Sys.time()
-for (this_season in c("2010/2011", "2011/2012", "2012/2013", "2013/2014", 
+fourier_by_group <- fourier_model_data %>%
+  filter(season == '2019/2020') %>%
+  group_by(group) %>%
+  partition(cluster)
+
+cluster_library(cluster, c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek")) %>%
+  cluster_assign(flu_data_merge = flu_data_merge, 
+                 ili_init_pub_list = ili_init_pub_list,
+                 fit_to_forecast = fit_to_forecast, 
+                 sample_predictive_trajectories_arima = sample_predictive_trajectories_arima)
+
+# Create forecasts for Fourier terms
+fourier_forecasts_temp <- fourier_by_group %>%
+  mutate(
+    pred_data = pmap(list(season, week, location, epiweek, backfill), 
+                     ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
+                              season != paste0(substr(..1, 6, 9), "/",
+                                               as.numeric(substr(..1, 6, 9)) + 1),
+                              season != ..1 | order_week %in% 40:..2,
+                              location == ..3) %>%
+                       select(epiweek, location, ILI, season, week, order_week) %>%
+                       left_join(select(ili_init_pub_list[[paste(..4)]],
+                                        ILI, epiweek, location),
+                                 by = c("epiweek", "location")) %>%
+                       mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
+                       select(-ILI.x, -ILI.y) # %>%
+                       # mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))
+                     ),
+    
+    # Calculate max week for each season
+    max_week = ifelse(season == "2014/2015", 53, 52),
+    
+    # Apply backfill and generate forecast
+    pred_results = pmap(
+      list(fit, pred_data, location, season, model, max_week, backfill),
+      ~ fit_to_forecast(object = ..1,
+                        k = as.numeric(str_extract(..5, "[1-9][0-9]|[0-9]")),
+                        pred_data = ..2,
+                        location = ..3,
+                        season = ..4,
+                        max_week = ..6,
+                        backfill = ..7,
+                        npaths = 250)
+      )
+    ) %>%
+  collect() %>%
+  as_tibble() %>%
+  ungroup() %>%
+  select(season, model, location, week, pred_results) 
+
+Sys.time() - start_time
+# 
+saveRDS(fourier_forecasts_temp, file = paste0("Data/fourier_forecasts_2019.Rds"))
+
+# Score all season forecasts
+fourier_scores <- tibble()
+for (this_season in c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
                       "2014/2015", "2015/2016", "2016/2017", "2017/2018",
                       "2018/2019", "2019/2020")) {
   
-  fourier_by_group <- fourier_model_data %>%
-    filter(season == this_season) %>%
-    partition(group, cluster = cluster)
+  temp <- readRDS(paste0("Data/fourier_forecasts_", substr(this_season, 1, 4), ".Rds"))
   
-  fourier_by_group %>% 
-    cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek")) %>% 
-    cluster_assign_value("flu_data_merge", flu_data_merge) %>%
-    cluster_assign_value("ili_init_pub_list", ili_init_pub_list) %>%
-    cluster_assign_value("fit_to_forecast", fit_to_forecast) %>%
-    cluster_assign_value("sample_predictive_trajectories_arima", 
-                         sample_predictive_trajectories_arima)
-
-  # Create forecasts for Fourier terms
-  fourier_forecasts_temp <- fourier_by_group %>%
-    mutate(
-      pred_data = pmap(list(season, week, location, epiweek, backfill), 
-                       ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
-                                season != paste0(substr(..1, 6, 9), "/",
-                                                 as.numeric(substr(..1, 6, 9)) + 1),
-                                season != ..1 | order_week %in% 40:..2,
-                                location == ..3) %>%
-                         select(epiweek, location, ILI, season, week, order_week) %>%
-                         left_join(select(ili_init_pub_list[[paste(..4)]],
-                                          ILI, epiweek, location),
-                                   by = c("epiweek", "location")) %>%
-                         mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
-                         select(-ILI.x, -ILI.y) # %>%
-                         # mutate(ILI = ts(ILI, frequency = 52, start = c(2006, 40)))
-                       ),
-      
-      # Calculate max week for each season
-      max_week = ifelse(season == "2014/2015", 53, 52),
-      
-      # Apply backfill and generate forecast
-      pred_results = pmap(
-        list(fit, pred_data, location, season, model, max_week, backfill),
-        ~ fit_to_forecast(object = ..1,
-                          k = as.numeric(str_extract(..5, "[1-9][0-9]|[0-9]")),
-                          pred_data = ..2,
-                          location = ..3,
-                          season = ..4,
-                          max_week = ..6,
-                          backfill = ..7,
-                          npaths = 250)
-        )
-      ) %>%
-    collect() %>%
-    as_tibble() %>%
-    ungroup() %>%
-    select(season, model, location, week, pred_results) 
-  # 
-  # saveRDS(fourier_forecasts_temp, 
-  #         file = paste0("Data/fourier_forecasts_", 
-  #                       substr(this_season, 1, 4), ".Rds")) 
-
   # Normalize probabilities and score forecasts 
-  fourier_scores <- fourier_forecasts_temp %>% 
+  fourier_scores <- temp %>% 
     mutate(pred_results = map2(pred_results, location,
                                ~ mutate(.x, location = .y) %>%
                                  normalize_probs())) %>%
@@ -338,14 +340,9 @@ for (this_season in c("2010/2011", "2011/2012", "2012/2013", "2013/2014",
     unnest(cols = c(eval_scores)) %>%
     bind_rows(fourier_scores)
   
-  
-  rm(fourier_forecasts_temp, fourier_by_group)
-  
-  message(paste0('Season ', this_season, ' finished @ ', Sys.time()))
 }
 
 saveRDS(fourier_scores, file = "Data/CV_Fourier_Scores.RDS")
-Sys.time() - start_time
 
 # Determine best K value for each region
 best_k_cv <- fourier_scores %>%
@@ -362,6 +359,11 @@ saveRDS(best_k_cv, file = "Data/CV_Fourier_terms.Rds")
 
 best_k_cv <- readRDS("Data/CV_Fourier_terms.Rds")
 # arima_model_fits <- readRDS("Data/arima_fits.Rds")
+
+# Regions where K changed and everything needs to be refit
+refit_regions <- c("HHS Region 1", "HHS Region 10", "HHS Region 3",  "HHS Region 4",
+                   "HHS Region 7", "HHS Region 8" )
+
 arima_model_fit_data <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
                                             "2013/2014", "2014/2015", "2015/2016",
                                             "2016/2017", "2017/2018", "2018/2019",
@@ -378,6 +380,7 @@ arima_model_fit_data <- crossing(season = c("2010/2011", "2011/2012", "2012/2013
   unnest(col = c(train_data)) %>%
   # Nest by season and location
   nest(data = c(epiweek, ILI, year, week, order_week)) %>%
+  filter(season == "2019/2020" | location %in% refit_regions) %>%
   # Create time series of ILI
   mutate(data = map(data,
                    ~ mutate(.x,
@@ -388,40 +391,42 @@ arima_model_fit_data <- crossing(season = c("2010/2011", "2011/2012", "2012/2013
   mutate(group = rep(1:length(cluster), length.out = nrow(.)))
 
 # Set up clusters
-arima_fit_parallel <- arima_model_fit_data %>%
-  partition(group, cluster = cluster)
-
-arima_fit_parallel %>%
-  cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek"))
+# arima_fit_parallel <- arima_model_fit_data %>%
+#   group_by(group) %>%
+#   partition(cluster)
+# 
+# cluster_library(cluster, c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek"))
 
 # Fit ARIMA models
 arima_model_fits <- readRDS('Data/arima_fits.Rds')
-arima_model_fits <- arima_fit_parallel %>%
-  mutate(fit = pmap(
-    list(data, arima_1, arima_2, arima_3, K),
-    ~ try(Arima(..1$ILI, order = c(..2, ..3, ..4),
-            xreg = fourier(..1$ILI, K = ..5),
-            lambda = 0), silent = TRUE)
-    )) %>%
-  select(-data) %>%
-  collect() %>%
-  as_tibble() %>%
-  ungroup() %>%
-  filter(!grepl("Error", fit)) %>%
-  select(location, season, arima_1, arima_2, arima_3, K, fit)
-
-saveRDS(arima_model_fits, file = "Data/arima_fits.Rds")
+# arima_model_fits <- arima_fit_parallel %>%
+#   mutate(fit = pmap(
+#     list(data, arima_1, arima_2, arima_3, K),
+#     ~ try(Arima(..1$ILI, order = c(..2, ..3, ..4),
+#             xreg = fourier(..1$ILI, K = ..5),
+#             lambda = 0), silent = TRUE)
+#     )) %>%
+#   select(-data) %>%
+#   collect() %>%
+#   as_tibble() %>%
+#   ungroup() %>%
+#   filter(!grepl("Error", fit)) %>%
+#   select(location, season, arima_1, arima_2, arima_3, K, fit)
+# 
+# saveRDS(arima_model_fits, file = "Data/arima_fits.Rds")
 
 # Set up data for forecast creation in parallel
 arima_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/2013",
                                               "2013/2014", "2014/2015", "2015/2016",
-                                              "2016/2017", "2017/2018", "2018/2019"),
+                                              "2016/2017", "2017/2018", "2018/2019",
+                                              "2019/2020"),
                              arima_1 = 0:3,
                              arima_2 = 0:1,
                              arima_3 = 0:3,
                              week = c(43:71),
                              location = unique(flu_data_merge$location)) %>%
   filter(week < 71 | season == "2014/2015") %>%
+  filter(season == "2019/2020" | location %in% refit_regions) %>%
   mutate(epiweek = case_when(
     season == "2014/2015" & week > 53 ~ 
       as.numeric(paste0(substr(season, 6, 9), 
@@ -441,57 +446,55 @@ arima_model_data_setup <- crossing(season = c("2010/2011", "2011/2012", "2012/20
 # Create and score forecasts in single-season parallel chunks
 # Clear forecasts from memory after each season
 start_time <- Sys.time()
-for(this_season in c('2015/2016', '2016/2017', '2017/2018', '2018/2019')) {
-
+for (this_season in unique(arima_model_data_setup$season)) {
   arima_model_data_parallel <- arima_model_data_setup %>%
-    filter(season == this_season) %>%
-    partition(group, cluster = cluster)
+    group_by(group) %>%
+    partition(cluster)
   
   arima_model_data_parallel %>%
     cluster_library(c("tidyverse", "forecast", "lubridate", "FluSight", "MMWRweek")) %>% 
-    cluster_assign_value("flu_data_merge", flu_data_merge) %>%
-    cluster_assign_value("ili_init_pub_list", ili_init_pub_list) %>%
-    cluster_assign_value("fit_to_forecast", fit_to_forecast) %>%
-    cluster_assign_value("sample_predictive_trajectories_arima", 
-                         sample_predictive_trajectories_arima)
+    cluster_assign(flu_data_merge = flu_data_merge, 
+                   ili_init_pub_list = ili_init_pub_list,
+                   fit_to_forecast = fit_to_forecast, 
+                   sample_predictive_trajectories_arima = sample_predictive_trajectories_arima)
+    
   
-
   # Create forecasts for different ARIMA structures
   arima_forecasts <- arima_model_data_parallel %>%
-    mutate(
-      pred_data = pmap(list(season, week, location, epiweek), 
-                       ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
-                                season != paste0(substr(..1, 6, 9), "/",
-                                                 as.numeric(substr(..1, 6, 9)) + 1),
-                                season != ..1 | order_week %in% 40:..2,
-                                location == ..3) %>%
-                         select(epiweek, location, ILI, season, week, order_week) %>%
-                         left_join(select(ili_init_pub_list[[paste(..4)]],
-                                          ILI, epiweek, location),
-                                   by = c("epiweek", "location")) %>%
-                         mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
-                         select(-ILI.x, -ILI.y)),
-      
-      # Calculate max week for each season
-      max_week = ifelse(season == "2014/2015", 53, 52),
-      
-      # Apply backfill and generate forecast
-      pred_results = pmap(
-        list(fit, pred_data, location, season, K, max_week, backfill),
-        ~ fit_to_forecast(object = ..1,
-                          k = ..5,
-                          pred_data = ..2,
-                          location = ..3,
-                          season = ..4,
-                          max_week = ..6,
-                          backfill = ..7,
-                          npaths = 250)
-      )
-    ) %>%
-    collect() %>%
-    as_tibble() %>%
-    ungroup() %>%
-    select(season, arima_1:arima_3, location, week, pred_results)
+  mutate(
+    pred_data = pmap(list(season, week, location, epiweek), 
+                     ~ filter(flu_data_merge, year <= as.numeric(substr(..1, 6, 9)),
+                              season != paste0(substr(..1, 6, 9), "/",
+                                               as.numeric(substr(..1, 6, 9)) + 1),
+                              season != ..1 | order_week %in% 40:..2,
+                              location == ..3) %>%
+                       select(epiweek, location, ILI, season, week, order_week) %>%
+                       left_join(select(ili_init_pub_list[[paste(..4)]],
+                                        ILI, epiweek, location),
+                                 by = c("epiweek", "location")) %>%
+                       mutate(ILI = ifelse(is.na(ILI.y), ILI.x, ILI.y)) %>%
+                       select(-ILI.x, -ILI.y)),
+    
+    # Calculate max week for each season
+    max_week = ifelse(season == "2014/2015", 53, 52),
+    
+    # Apply backfill and generate forecast
+    pred_results = pmap(
+      list(fit, pred_data, location, season, K, max_week, backfill),
+      ~ fit_to_forecast(object = ..1,
+                        k = ..5,
+                        pred_data = ..2,
+                        location = ..3,
+                        season = ..4,
+                        max_week = ..6,
+                        backfill = ..7,
+                        npaths = 250)
+    )
+  ) %>%
+  collect() %>%
+  as_tibble() %>%
+  ungroup() %>%
+  select(season, arima_1:arima_3, location, week, pred_results)
  
   # Normalize probabilities and score forecasts 
   arima_scores <- arima_forecasts %>%
@@ -510,15 +513,11 @@ for(this_season in c('2015/2016', '2016/2017', '2017/2018', '2018/2019')) {
     select(season, arima_1:arima_3, eval_scores) %>%
     unnest(col = c(eval_scores)) 
   
-  saveRDS(arima_scores,
-          file = paste0("Data/CV_ARIMA_Scores_",
-                        substr(this_season, 1, 4), ".RDS"))
+  saveRDS(arima_scores, file = paste0("Data/CV_ARIMA_Scores_", 
+                                        substr(this_season, 1, 4), ".RDS"))
 
-  rm(arima_forecasts, arima_model_data_parallel)
-
-  message(paste0("Season ", this_season, " complete at ", Sys.time()))
+  message(paste0("Season ", this_season, " complete at ", Sys.time())) 
 }
-Sys.time() - start_time
 
 arima_scores_1011 <- readRDS("Data/CV_ARIMA_Scores_2010.RDS")
 arima_scores_1112 <- readRDS("Data/CV_ARIMA_Scores_2011.RDS")
@@ -529,13 +528,25 @@ arima_scores_1516 <- readRDS("Data/CV_ARIMA_Scores_2015.RDS")
 arima_scores_1617 <- readRDS("Data/CV_ARIMA_Scores_2016.RDS")
 arima_scores_1718 <- readRDS("Data/CV_ARIMA_Scores_2017.RDS")
 arima_scores_1819 <- readRDS("Data/CV_ARIMA_Scores_2018.RDS")
+arima_scores_1920 <- readRDS("Data/CV_ARIMA_Scores_2019.RDS")
+
+# Load prior scores and keep those that haven't been updated
+current_scores <- bind_rows(arima_scores_1011, arima_scores_1112,
+                            arima_scores_1213, arima_scores_1314,
+                            arima_scores_1415, arima_scores_1516,
+                            arima_scores_1617, arima_scores_1718,
+                            arima_scores_1819, arima_scores_1920)
+
+prior_scores <- readRDS('Data/CV_ARIMA_Scores_Prior.RDS') %>%
+  anti_join(current_scores, by = c("season", "arima_1", "arima_2", "arima_3", "location",
+                                   "target", "forecast_week"))
 
 # Determine best ARIMA model for each region
 best_arima_cv <- bind_rows(arima_scores_1011, arima_scores_1112,
                            arima_scores_1213, arima_scores_1314,
                            arima_scores_1415, arima_scores_1516,
                            arima_scores_1617, arima_scores_1718,
-                           arima_scores_1819) %>%
+                           arima_scores_1819) %>% #, arima_scores_1920) %>%
   group_by(location, arima_1, arima_2, arima_3) %>%
   summarize(avg_score = mean(score)) %>%
   group_by(location) %>%
@@ -545,9 +556,6 @@ best_arima_cv <- bind_rows(arima_scores_1011, arima_scores_1112,
 
 saveRDS(best_arima_cv, file = "Data/CV_ARIMA_terms.Rds")
 
-rm(arima_scores_1011, arima_scores_1112, arima_scores_1213, arima_scores_1314,
-   arima_scores_1415, arima_scores_1516, arima_scores_1617, arima_scores_1718,
-   arima_scores_1819)
 
 ##### Additional covariates #####
 

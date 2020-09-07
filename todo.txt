@@ -1,12 +1,9 @@
 # To Do
 
 # Bug fixes
-- Update files to new nest/unnest syntax
 
 # Clean up
 - Files to integrate:
-  - subtype_weight_avg
-    - It may be best not to integrate this depending on virus data resolution
   - create_prospective_forecast
 
 - Files to update data sources:
@@ -15,32 +12,13 @@
 # Upgrades
 
 ### DONE
-- Better way to create Gtrends future data used for forecasted values 
-  - Create object from auto.arima at beginning of season
-  - Use fitted model object to make predictions of future Gtrends data as needed 
-  
-- X-week running average of subtype prevalence
-  - Update read_data to create 4, 6, 8 wk rolling averages
-  - Update national/regional Kudu code to use different rolling averages
-  - Update national/regional Springbok code to use 6 wk rolling average
 
 ### Theoretical / model structure
 - Virus data - no running subtype data available for states
   - Can we get this data?
   - Subtype historical average - can build kernels, but can't build CV forecasts accurately
   - Dynamic harmonic - can't use season to date subtype data as covariates
-
-- Try X-week running average of subtype prevalence in Springbok and Kudu, rather than cumulative to date
-  - Look at how bad backfill is
-    - Decent variability in individual weeks, but using rolling average smoothes it out
-    - Try using 6 week rolling average in Kudu and Springbok models
-    - Code to do:
-      - CV national/regional code for Kudu
-      - Create Kudu training forecasts based on best window
       
-  - Create fudge factor for previous seasons of final virus data to mimic initial values 
-  - Could change fudge factor over time - look at how ILI backfill varied across years
-
 - Pull information across regions for regional/state forecasts?
   - Maybe lagged terms as covariates? (k = 1, 2, 3, etc weeks)
   - Unclear how to get data for this to base a prediction on - circular dependencies possible
@@ -52,24 +30,18 @@
   
 - Reloop through Fourier, ARIMA, covariate CV steps to validate earlier decisions
 
+### COVID
+- Covariate in dynamic harmonic model?
+- Separate model to include in ensemble, leaving dynamic harmonic model alone?
 
-### Backfill
-- Estimate virologic backfill - NA for this season
-
-- Other ways to integrate backfill rather than simple regression term
-  - Is there a way to look at number of providers reporting in a given week to help inform what backfill might be?
-    - Looking at this, doesn't seem to be super correlated and prob not helpful
-  - Include term for percentage of providers reporting in a given week?
-    - See above, not worth including
-  - Build week/lag densities of backfill - apply those to observed data for a season prior to forecasting. 
-    No need to apply to training data - assume that is 100% accurate.
+- For both, how to evaluate COVID predictions?
+  - Data only begin to really show up in Week 8/9 on 2019/2020 flu season
 
 ### Practical
 - Automatic runs on Monday mornings
 - Automatic commit of Monday forecasts
 - Automatic push of Monday forecasts
 - Use ec2 server for this? Or at least automatic virologic data pulls?
-
 
 # Papers to read
 - LANL's papers on methods
