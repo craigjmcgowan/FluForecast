@@ -16,7 +16,7 @@ kudu_path <- "../cdc-flusight-ensemble/model-forecasts/component-models/Protea_K
 
 # Calculate cumulative virologic status across seasons -----
 vir_ssn_per <- virologic_combined %>%
-  filter(!location %in% state.name) %>%
+  # filter(!location %in% state.name) %>%
   mutate(order_week = week_inorder(week, season)) %>%
   group_by(season, location) %>%
   arrange(order_week, .by_group = TRUE) %>% 
@@ -26,13 +26,23 @@ vir_ssn_per <- virologic_combined %>%
   ungroup()
 
 vir_wk_per <- virologic_combined %>%
-  filter(!location %in% state.name) %>%
+  # filter(!location %in% state.name) %>%
   mutate(wk_date = MMWRweek::MMWRweek2Date(year, week),
          order_week = week_inorder(week, season)) %>%
   select(location, season, order_week, 
          h1per = cum_h1per_6wk, 
          h3per = cum_h3per_6wk,
          bper = cum_bper_6wk)
+
+# vir_state_per <- virologic_combined %>%
+#   filter(location %in% state.name) %>%
+#   mutate(order_week = week_inorder(week, season)) %>%
+#   group_by(season, location) %>%
+#   arrange(order_week, .by_group = TRUE) %>% 
+#   summarize(h1per = last(cum_h1per),
+#             h3per = last(cum_h3per),
+#             bper = last(cum_bper)) %>%
+#   ungroup()
 
 # Create data.frame of probability of no onset based on prior years -----
 onsets <- ili_current %>%
@@ -116,6 +126,9 @@ for(i in 40:72) {
             path = paste0(kudu_path, "/EW", j, "-", year, "-Protea_Kudu.csv"))
   
 }
+
+# State forecasts 
+
 
 # Create forecasts for 2011/2012 ------
 train_ili_1112 <- ili_current %>%
@@ -273,11 +286,10 @@ for(i in 40:72) {
 
 # Create forecasts for 2014/2015 ------
 train_ili_1415 <- ili_current %>%
-  filter(year <= 2014, season != "2014/2015",
-         !location %in% state.name)
+  filter(year <= 2014, season != "2014/2015")
 
 virologic_1415 <- virologic_combined %>%
-  filter(season == "2014/2015", !location %in% state.name) %>%
+  filter(season == "2014/2015") %>%
   # Create variable to keep weeks in order
   mutate(order_week = week_inorder(week, season)) %>%
   select(year, location, week, order_week, 
@@ -291,7 +303,8 @@ dir.create("Forecasts/Training/2014-2015/Subtype Historical Average",
 
 # Create target densities and functions
 subtype_densities_1415 <- create_subtype_densities(
-  train_ili_1415, vir_ssn_per = vir_ssn_per, vir_wk_per = vir_wk_per, 
+  filter(train_ili_1415, !location %in% state.name),
+  vir_ssn_per = vir_ssn_per, vir_wk_per = vir_wk_per, 
   pseudo_onsets = pseudo_onsets
 )
 
@@ -322,13 +335,49 @@ for(i in 40:73) {
   
 }
 
+# State forecasts --
+
+# Create directory to store forecasts
+dir.create("State Forecasts/Training/2014-2015/Subtype Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+state_subtype_densities_1415 <- create_subtype_densities(
+  ili_df = filter(train_ili_1415, location %in% state.name),
+  vir_ssn_per = vir_ssn_per, vir_wk_per = vir_wk_per, 
+  pseudo_onsets = pseudo_onsets, 
+  challenge = 'state_ili'
+)
+
+state_subtype_functions_1415 <- modify_depth(
+  state_subtype_densities_1415, 3,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+for(i in 40:73) {
+  temp <- create_subtype_forecast(
+    functions = state_subtype_functions_1415,
+    virologic = virologic_1415,
+    pub_week = i,
+    season = "2014/2015",
+    challenge = 'state_ili'
+  )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
+  j <- str_pad(ifelse(i > 53, i - 53, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("State Forecasts/Training/2014-2015/Subtype Historical Average/EW", j, ".csv"))
+  
+}
+
 # Create forecasts for 2015/2016 ------
 train_ili_1516 <- ili_current %>%
-  filter(year <= 2015, season != "2015/2016",
-         !location %in% state.name)
+  filter(year <= 2015, season != "2015/2016")
 
 virologic_1516 <- virologic_combined %>%
-  filter(season == "2015/2016", !location %in% state.name) %>%
+  filter(season == "2015/2016") %>%
   # Create variable to keep weeks in order
   mutate(order_week = week_inorder(week, season)) %>%
   select(year, location, week, order_week, 
@@ -373,13 +422,48 @@ for(i in 40:72) {
   
 }
 
+# State forecasts --
+
+# Create directory to store forecasts
+dir.create("State Forecasts/Training/2015-2016/Subtype Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+state_subtype_densities_1516 <- create_subtype_densities(
+  filter(train_ili_1516, location %in% state.name),
+  vir_ssn_per = vir_ssn_per, vir_wk_per = vir_wk_per, 
+  challenge = 'state_ili'
+)
+
+state_subtype_functions_1516 <- modify_depth(
+  state_subtype_densities_1516, 3,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+for(i in 40:72) {
+  temp <- create_subtype_forecast(
+    functions = state_subtype_functions_1516,
+    virologic = virologic_1516,
+    pub_week = i,
+    season = "2015/2016",
+    challenge = 'state_ili'
+  )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("State Forecasts/Training/2015-2016/Subtype Historical Average/EW", j, ".csv"))
+  
+}
+
 # Create forecasts for 2016/2017 ------
 train_ili_1617 <- ili_current %>%
-  filter(year <= 2016, season != "2016/2017",
-         !location %in% state.name)
+  filter(year <= 2016, season != "2016/2017")
 
 virologic_1617 <- virologic_combined %>%
-  filter(season == "2016/2017", !location %in% state.name) %>%
+  filter(season == "2016/2017") %>%
   # Create variable to keep weeks in order
   mutate(order_week = week_inorder(week, season)) %>%
   select(year, location, week, order_week, 
@@ -425,13 +509,48 @@ for(i in 40:72) {
   
 }
 
+# State forecasts -- 
+
+# Create directory to store forecasts
+dir.create("State Forecasts/Training/2016-2017/Subtype Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+state_subtype_densities_1617 <- create_subtype_densities(
+  filter(train_ili_1617, location %in% state.name),
+  vir_ssn_per = vir_ssn_per, vir_wk_per = vir_wk_per, 
+  challenge = 'state_ili'
+)
+
+state_subtype_functions_1617 <- modify_depth(
+  state_subtype_densities_1617, 3,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+for(i in 40:72) {
+  temp <- create_subtype_forecast(
+    functions = state_subtype_functions_1617,
+    virologic = virologic_1617,
+    pub_week = i,
+    season = "2016/2017",
+    challenge = 'state_ili'
+  )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("State Forecasts/Training/2016-2017/Subtype Historical Average/EW", j, ".csv"))
+  
+}
+
 # Create forecasts for 2017/2018 ------
 train_ili_1718 <- ili_current %>%
-  filter(year <= 2017, season != "2017/2018",
-         !location %in% state.name)
+  filter(year <= 2017, season != "2017/2018")
 
 virologic_1718 <- virologic_combined %>%
-  filter(season == "2017/2018", !location %in% state.name) %>%
+  filter(season == "2017/2018") %>%
   # Create variable to keep weeks in order
   mutate(order_week = week_inorder(week, season)) %>%
   select(year, location, week, order_week, 
@@ -476,13 +595,49 @@ for(i in 40:72) {
   
 }
 
+# State forecasts --
+
+# Create directory to store forecasts
+dir.create("State Forecasts/Training/2017-2018/Subtype Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+state_subtype_densities_1718 <- create_subtype_densities(
+  filter(train_ili_1718, location %in% state.name),
+  vir_ssn_per = vir_ssn_per, vir_wk_per = vir_wk_per, 
+  pseudo_onsets = pseudo_onsets, 
+  challenge = 'state_ili'
+)
+
+state_subtype_functions_1718 <- modify_depth(
+  state_subtype_densities_1718, 3,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+for(i in 40:72) {
+  temp <- create_subtype_forecast(
+    functions = state_subtype_functions_1718,
+    virologic = virologic_1718,
+    pub_week = i,
+    season = "2017/2018",
+    challenge = 'state_ili'
+  )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("State Forecasts/Training/2017-2018/Subtype Historical Average/EW", j, ".csv"))
+  
+}
+
 # Create forecasts for 2018/2019 ------
 train_ili_1819 <- ili_current %>%
-  filter(year <= 2018, season != "2018/2019",
-         !location %in% state.name)
+  filter(year <= 2018, season != "2018/2019")
 
 virologic_1819 <- virologic_combined %>%
-  filter(season == "2018/2019", !location %in% state.name) %>%
+  filter(season == "2018/2019") %>%
   # Create variable to keep weeks in order
   mutate(order_week = week_inorder(week, season)) %>%
   select(year, location, week, order_week, 
@@ -524,5 +679,130 @@ for(i in 40:72) {
   year <- ifelse(i > 52, 2019, 2018)
   write_csv(temp,
             path = paste0(kudu_path, "/EW", j, "-", year, "-Protea_Kudu.csv"))
+  
+}
+
+# State forecasts --
+
+# Create directory to store forecasts
+dir.create("State Forecasts/Training/2018-2019/Subtype Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+state_subtype_densities_1819 <- create_subtype_densities(
+  filter(train_ili_1819, location %in% state.name),
+  vir_ssn_per = vir_ssn_per, vir_wk_per = vir_wk_per, 
+  pseudo_onsets = pseudo_onsets, 
+  challenge = 'state_ili'
+)
+
+state_subtype_functions_1819 <- modify_depth(
+  state_subtype_densities_1819, 3,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+for(i in 40:72) {
+  temp <- create_subtype_forecast(
+    functions = state_subtype_functions_1819,
+    virologic = virologic_1819,
+    pub_week = i,
+    season = "2018/2019",
+    challenge = 'state_ili'
+  )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("State Forecasts/Training/2018-2019/Subtype Historical Average/EW", j, ".csv"))
+  
+}
+
+# Create forecasts for 2019/2020 ------
+train_ili_1920 <- ili_current %>%
+  filter(year <= 2019, season != "2019/2020")
+
+virologic_1920 <- virologic_combined %>%
+  filter(season == "2019/2020") %>%
+  # Create variable to keep weeks in order
+  mutate(order_week = week_inorder(week, season)) %>%
+  select(year, location, week, order_week, 
+         h1per_wk = cum_h1per_6wk, h3per_wk = cum_h3per_6wk,
+         bper_wk = cum_bper_6wk, h1per_ssn = cum_h1per,
+         h3per_ssn = cum_h3per, bper_ssn = cum_bper)
+
+# Create directory to store forecasts
+dir.create("Forecasts/Training/2019-2020/Subtype Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+subtype_densities_1920 <- create_subtype_densities(
+  train_ili_1920,  vir_ssn_per = vir_ssn_per, vir_wk_per = vir_wk_per, 
+  pseudo_onsets = pseudo_onsets
+)
+
+subtype_functions_1920 <- modify_depth(
+  subtype_densities_1920, 3,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+for(i in 40:72) {
+  temp <- create_subtype_forecast(
+    functions = subtype_functions_1920,
+    virologic = virologic_1920,
+    pub_week = i,
+    season = "2019/2020",
+    prob_no_onset = filter(prob_no_onset, season == "2019/2020")
+  )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("Forecasts/Training/2019-2020/Subtype Historical Average/EW", j, ".csv"))
+  
+  year <- ifelse(i > 52, 2020, 2019)
+  write_csv(temp,
+            path = paste0(kudu_path, "/EW", j, "-", year, "-Protea_Kudu.csv"))
+  
+}
+
+# State forecasts --
+
+# Create directory to store forecasts
+dir.create("State Forecasts/Training/2019-2020/Subtype Historical Average",
+           showWarnings = FALSE)
+
+# Create target densities and functions
+state_subtype_densities_1920 <- create_subtype_densities(
+  filter(train_ili_1920, location %in% state.name),
+  vir_ssn_per = vir_ssn_per, vir_wk_per = vir_wk_per, 
+  pseudo_onsets = pseudo_onsets, 
+  challenge = 'state_ili'
+)
+
+state_subtype_functions_1920 <- modify_depth(
+  state_subtype_densities_1920, 3,
+  function(dens) approxfun(dens$x, dens$y, rule = 2)
+)
+
+# Issue with i == 71
+for(i in 71:72) {
+  temp <- create_subtype_forecast(
+    functions = state_subtype_functions_1920,
+    virologic = virologic_1920,
+    pub_week = i,
+    season = "2019/2020",
+    challenge = 'state_ili'
+  )
+  
+  temp$Value <- format(temp$Value, scientific = FALSE)
+  
+  j <- str_pad(ifelse(i > 52, i - 52, i), 2, pad = "0")
+  
+  write_csv(temp,
+            path = paste0("State Forecasts/Training/2019-2020/Subtype Historical Average/EW", j, ".csv"))
   
 }

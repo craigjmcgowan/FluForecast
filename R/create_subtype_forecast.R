@@ -186,7 +186,7 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
                                     challenge = "ilinet", prob_no_onset = c()) {
 
   pred <- tibble()
-
+  
   for(this_location in names(functions[["h1"]][[2]])) {
     
     temp_vir <- filter(virologic, location == this_location,
@@ -213,15 +213,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
             value = ifelse(is.null(functions[["h1"]][["Season onset"]][[this_location]]),
                            1/34 * temp_vir$h1per_ssn,
                            integrate(functions[["h1"]][["Season onset"]][[this_location]],
-                                     i - 0.5, i + 0.5)$value * temp_vir$h1per_ssn) +
+                                     i - 0.5, i + 0.5, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
               ifelse(is.null(functions[["h3"]][["Season onset"]][[this_location]]),
                      1/34 * temp_vir$h3per_ssn,
                      integrate(functions[["h3"]][["Season onset"]][[this_location]],
-                               i - 0.5, i + 0.5)$value * temp_vir$h3per_ssn) +
+                               i - 0.5, i + 0.5, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
               ifelse(is.null(functions[["b"]][["Season onset"]][[this_location]]),
                      1/34 * temp_vir$bper_ssn,
                      integrate(functions[["b"]][["Season onset"]][[this_location]],
-                               i - 0.5, i + 0.5)$value * temp_vir$bper_ssn)
+                               i - 0.5, i + 0.5, subdivisions = 1000)$value * temp_vir$bper_ssn)
           ) %>%
             bind_rows(onset, .)
         }
@@ -236,15 +236,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           value = ifelse(is.null(functions[["h1"]][["Season peak week"]][[this_location]]),
                          1/34 * temp_vir$h1per_ssn,
                          integrate(functions[["h1"]][["Season peak week"]][[this_location]],
-                                   i - 0.5, i + 0.5)$value * temp_vir$h1per_ssn) +
+                                   i - 0.5, i + 0.5, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
             ifelse(is.null(functions[["h3"]][["Season peak week"]][[this_location]]),
                    1/34 * temp_vir$h3per_ssn,
                    integrate(functions[["h3"]][["Season peak week"]][[this_location]],
-                             i - 0.5, i + 0.5)$value * temp_vir$h3per_ssn) +
+                             i - 0.5, i + 0.5, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
             ifelse(is.null(functions[["b"]][["Season peak week"]][[this_location]]),
                    1/34 * temp_vir$bper_ssn,
                    integrate(functions[["b"]][["Season peak week"]][[this_location]],
-                             i - 0.5, i + 0.5)$value * temp_vir$bper_ssn)
+                             i - 0.5, i + 0.5, subdivisions = 1000)$value * temp_vir$bper_ssn)
         ) %>% bind_rows(pkwk, .)
         
       }
@@ -299,15 +299,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][["Season peak percentage"]][[this_location]]),
                        1/131 * temp_vir$h1per_ssn,
                        integrate(functions[["h1"]][["Season peak percentage"]][[this_location]],
-                                 0, 0.05)$value * temp_vir$h1per_ssn ) +
+                                 0, 0.05, subdivisions = 1000)$value * temp_vir$h1per_ssn ) +
           ifelse(is.null(functions[["h3"]][["Season peak percentage"]][[this_location]]),
                  1/131 * temp_vir$h3per_ssn,
                  integrate(functions[["h3"]][["Season peak percentage"]][[this_location]],
-                           0, 0.05)$value * temp_vir$h3per_ssn) +
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
           ifelse(is.null(functions[["b"]][["Season peak percentage"]][[this_location]]),
                  1/131 * temp_vir$bper_ssn,
                  integrate(functions[["b"]][["Season peak percentage"]][[this_location]],
-                           0, 0.05)$value * temp_vir$bper_ssn)
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$bper_ssn)
       )
       
       for (i in seq(0.1, 12.9, 0.1)) {
@@ -322,15 +322,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           value = ifelse(is.null(functions[["h1"]][["Season peak percentage"]][[this_location]]),
                          1/131 * temp_vir$h1per_ssn,
                          integrate(functions[["h1"]][["Season peak percentage"]][[this_location]],
-                                   i - 0.05, i + 0.05)$value * temp_vir$h1per_ssn) +
+                                   i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
             ifelse(is.null(functions[["h3"]][["Season peak percentage"]][[this_location]]),
                    1/131 * temp_vir$h3per_ssn,
                    integrate(functions[["h3"]][["Season peak percentage"]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$h3per_ssn) +
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
             ifelse(is.null(functions[["b"]][["Season peak percentage"]][[this_location]]),
                    1/131 * temp_vir$bper_ssn,
                    integrate(functions[["b"]][["Season peak percentage"]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$bper_ssn)
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$bper_ssn)
         ) %>% bind_rows(pkper, .)
       }
       
@@ -345,15 +345,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][["Season peak percentage"]][[this_location]]),
                        1/131 * temp_vir$h1per_ssn,
                        integrate(functions[["h1"]][["Season peak percentage"]][[this_location]],
-                                 12.95, 15)$value * temp_vir$h1per_ssn) +
+                                 12.95, 15, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
           ifelse(is.null(functions[["h3"]][["Season peak percentage"]][[this_location]]),
                  1/131 * temp_vir$h3per_ssn,
                  integrate(functions[["h3"]][["Season peak percentage"]][[this_location]],
-                           12.95, 15)$value * temp_vir$h3per_ssn) +
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
           ifelse(is.null(functions[["b"]][["Season peak percentage"]][[this_location]]),
                  1/131 * temp_vir$bper_ssn,
                  integrate(functions[["b"]][["Season peak percentage"]][[this_location]],
-                           12.95, 15)$value * temp_vir$bper_ssn)
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$bper_ssn)
       ) %>% 
         mutate(value = ifelse(all(tail(pkper$value) == tail(pkper$value, n = 1)),
                               tail(pkper$value, n = 1), value)) %>%
@@ -375,15 +375,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 1)]][[this_location]]),
                        1/131 * temp_vir$h1per_wk,
                        integrate(functions[["h1"]][[paste(pub_week + 1)]][[this_location]],
-                                 0, 0.05)$value * temp_vir$h1per_wk) +
+                                 0, 0.05, subdivisions = 1000)$value * temp_vir$h1per_wk) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 1)]][[this_location]]),
                  1/131 * temp_vir$h3per_wk,
                  integrate(functions[["h3"]][[paste(pub_week + 1)]][[this_location]],
-                           0, 0.05)$value * temp_vir$h3per_wk) +
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$h3per_wk) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 1)]][[this_location]]),
                  1/131 * temp_vir$bper_wk,
                  integrate(functions[["b"]][[paste(pub_week + 1)]][[this_location]],
-                           0, 0.05)$value * temp_vir$bper_wk)
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$bper_wk)
       )
       
       wk2 <- tibble(
@@ -396,15 +396,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 2)]][[this_location]]),
                        1/131 * temp_vir$h1per_wk,
                        integrate(functions[["h1"]][[paste(pub_week + 2)]][[this_location]],
-                                 0, 0.05)$value * temp_vir$h1per_wk) +
+                                 0, 0.05, subdivisions = 1000)$value * temp_vir$h1per_wk) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 2)]][[this_location]]),
                  1/131 * temp_vir$h3per_wk,
                  integrate(functions[["h3"]][[paste(pub_week + 2)]][[this_location]],
-                           0, 0.05)$value * temp_vir$h3per_wk) +
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$h3per_wk) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 2)]][[this_location]]),
                  1/131 * temp_vir$bper_wk,
                  integrate(functions[["b"]][[paste(pub_week + 2)]][[this_location]],
-                           0, 0.05)$value * temp_vir$bper_wk)
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$bper_wk)
       )
       
       wk3 <- tibble(
@@ -417,15 +417,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 3)]][[this_location]]),
                        1/131 * temp_vir$h1per_wk,
                        integrate(functions[["h1"]][[paste(pub_week + 3)]][[this_location]],
-                                 0, 0.05)$value * temp_vir$h1per_wk) +
+                                 0, 0.05, subdivisions = 1000)$value * temp_vir$h1per_wk) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 3)]][[this_location]]),
                  1/131 * temp_vir$h3per_wk,
                  integrate(functions[["h3"]][[paste(pub_week + 3)]][[this_location]],
-                           0, 0.05)$value * temp_vir$h3per_wk) +
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$h3per_wk) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 3)]][[this_location]]),
                  1/131 * temp_vir$bper_wk,
                  integrate(functions[["b"]][[paste(pub_week + 3)]][[this_location]],
-                           0, 0.05)$value * temp_vir$bper_wk)
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$bper_wk)
       )
       
       wk4 <- tibble(
@@ -438,15 +438,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 4)]][[this_location]]),
                        1/131 * temp_vir$h1per_wk,
                        integrate(functions[["h1"]][[paste(pub_week + 4)]][[this_location]],
-                                 0, 0.05)$value * temp_vir$h1per_wk) +
+                                 0, 0.05, subdivisions = 1000)$value * temp_vir$h1per_wk) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 4)]][[this_location]]),
                  1/131 * temp_vir$h3per_wk,
                  integrate(functions[["h3"]][[paste(pub_week + 4)]][[this_location]],
-                           0, 0.05)$value * temp_vir$h3per_wk) +
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$h3per_wk) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 4)]][[this_location]]),
                  1/131 * temp_vir$bper_wk,
                  integrate(functions[["b"]][[paste(pub_week + 4)]][[this_location]],
-                           0, 0.05)$value * temp_vir$bper_wk)
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$bper_wk)
       )
       
       # 0.1 < ILI < 13.0
@@ -462,15 +462,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 1)]][[this_location]]),
                          1/131 * temp_vir$h1per_wk,
                          integrate(functions[["h1"]][[paste(pub_week + 1)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$h1per_wk) +
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h1per_wk) +
             ifelse(is.null(functions[["h3"]][[paste(pub_week + 1)]][[this_location]]),
                    1/131 * temp_vir$h3per_wk,
                    integrate(functions[["h3"]][[paste(pub_week + 1)]][[this_location]],
-                       i - 0.05, i + 0.05)$value * temp_vir$h3per_wk) +
+                       i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h3per_wk) +
             ifelse(is.null(functions[["b"]][[paste(pub_week + 1)]][[this_location]]),
                    1/131 * temp_vir$bper_wk,
                    integrate(functions[["b"]][[paste(pub_week + 1)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$bper_wk)
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$bper_wk)
         ) %>% bind_rows(wk1, .)
         
         wk2 <- tibble(
@@ -483,15 +483,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 2)]][[this_location]]),
                          1/131 * temp_vir$h1per_wk,
                          integrate(functions[["h1"]][[paste(pub_week + 2)]][[this_location]],
-                                   i - 0.05, i + 0.05)$value * temp_vir$h1per_wk) +
+                                   i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h1per_wk) +
             ifelse(is.null(functions[["h3"]][[paste(pub_week + 2)]][[this_location]]),
                    1/131 * temp_vir$h3per_wk,
                    integrate(functions[["h3"]][[paste(pub_week + 2)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$h3per_wk) +
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h3per_wk) +
             ifelse(is.null(functions[["b"]][[paste(pub_week + 2)]][[this_location]]),
                    1/131 * temp_vir$bper_wk,
                    integrate(functions[["b"]][[paste(pub_week + 2)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$bper_wk)
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$bper_wk)
         ) %>% bind_rows(wk2, .)
         
         wk3 <- tibble(
@@ -504,15 +504,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 3)]][[this_location]]),
                          1/131 * temp_vir$h1per_wk,
                          integrate(functions[["h1"]][[paste(pub_week + 3)]][[this_location]],
-                                   i - 0.05, i + 0.05)$value * temp_vir$h1per_wk) +
+                                   i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h1per_wk) +
             ifelse(is.null(functions[["h3"]][[paste(pub_week + 3)]][[this_location]]),
                    1/131 * temp_vir$h3per_wk,
                    integrate(functions[["h3"]][[paste(pub_week + 3)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$h3per_wk) +
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h3per_wk) +
             ifelse(is.null(functions[["b"]][[paste(pub_week + 3)]][[this_location]]),
                    1/131 * temp_vir$bper_wk,
                    integrate(functions[["b"]][[paste(pub_week + 3)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$bper_wk)
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$bper_wk)
         ) %>% bind_rows(wk3, .)
         
         wk4 <- tibble(
@@ -525,15 +525,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 4)]][[this_location]]),
                          1/131 * temp_vir$h1per_wk,
                          integrate(functions[["h1"]][[paste(pub_week + 4)]][[this_location]],
-                                   i - 0.05, i + 0.05)$value * temp_vir$h1per_wk) +
+                                   i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h1per_wk) +
             ifelse(is.null(functions[["h3"]][[paste(pub_week + 4)]][[this_location]]),
                    1/131 * temp_vir$h3per_wk,
                    integrate(functions[["h3"]][[paste(pub_week + 4)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$h3per_wk) +
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h3per_wk) +
             ifelse(is.null(functions[["b"]][[paste(pub_week + 4)]][[this_location]]),
                    1/131 * temp_vir$bper_wk,
                    integrate(functions[["b"]][[paste(pub_week + 4)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$bper_wk)
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$bper_wk)
         ) %>% bind_rows(wk4, .)
         
       }
@@ -549,15 +549,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 1)]][[this_location]]),
                        1/131 * temp_vir$h1per_wk,
                        integrate(functions[["h1"]][[paste(pub_week + 1)]][[this_location]],
-                           12.95, 15)$value * temp_vir$h1per_wk) +
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$h1per_wk) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 1)]][[this_location]]),
                  1/131 * temp_vir$h3per_wk,
                  integrate(functions[["h3"]][[paste(pub_week + 1)]][[this_location]],
-                     12.95, 15)$value * temp_vir$h3per_wk) +
+                     12.95, 15, subdivisions = 1000)$value * temp_vir$h3per_wk) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 1)]][[this_location]]),
                  1/131 * temp_vir$bper_wk,
                  integrate(functions[["b"]][[paste(pub_week + 1)]][[this_location]],
-                           12.95, 15)$value * temp_vir$bper_wk)
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$bper_wk)
       ) %>% 
         mutate(value = ifelse(all(tail(wk1$value) == tail(wk1$value, n = 1)),
                               tail(wk1$value, n = 1), value)) %>%
@@ -573,15 +573,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 2)]][[this_location]]),
                        1/131 * temp_vir$h1per_wk,
                        integrate(functions[["h1"]][[paste(pub_week + 2)]][[this_location]],
-                                 12.95, 15)$value * temp_vir$h1per_wk) +
+                                 12.95, 15, subdivisions = 1000)$value * temp_vir$h1per_wk) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 2)]][[this_location]]),
                  1/131 * temp_vir$h3per_wk,
                  integrate(functions[["h3"]][[paste(pub_week + 2)]][[this_location]],
-                           12.95, 15)$value * temp_vir$h3per_wk) +
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$h3per_wk) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 2)]][[this_location]]),
                  1/131 * temp_vir$bper_wk,
                  integrate(functions[["b"]][[paste(pub_week + 2)]][[this_location]],
-                           12.95, 15)$value * temp_vir$bper_wk)
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$bper_wk)
       ) %>% 
         mutate(value = ifelse(all(tail(wk2$value) == tail(wk2$value, n = 1)),
                               tail(wk2$value, n = 1), value)) %>%
@@ -597,15 +597,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 3)]][[this_location]]),
                        1/131 * temp_vir$h1per_wk,
                        integrate(functions[["h1"]][[paste(pub_week + 3)]][[this_location]],
-                                 12.95, 15)$value * temp_vir$h1per_wk) +
+                                 12.95, 15, subdivisions = 1000)$value * temp_vir$h1per_wk) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 3)]][[this_location]]),
                  1/131 * temp_vir$h3per_wk,
                  integrate(functions[["h3"]][[paste(pub_week + 3)]][[this_location]],
-                           12.95, 15)$value * temp_vir$h3per_wk) +
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$h3per_wk) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 3)]][[this_location]]),
                  1/131 * temp_vir$bper_wk,
                  integrate(functions[["b"]][[paste(pub_week + 3)]][[this_location]],
-                           12.95, 15)$value * temp_vir$bper_wk)
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$bper_wk)
       ) %>%  
         mutate(value = ifelse(all(tail(wk3$value) == tail(wk3$value, n = 1)),
                               tail(wk3$value, n = 1), value)) %>%
@@ -621,15 +621,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 4)]][[this_location]]),
                        1/131 * temp_vir$h1per_wk,
                        integrate(functions[["h1"]][[paste(pub_week + 4)]][[this_location]],
-                                 12.95, 15)$value * temp_vir$h1per_wk) +
+                                 12.95, 15, subdivisions = 1000)$value * temp_vir$h1per_wk) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 4)]][[this_location]]),
                  1/131 * temp_vir$h3per_wk,
                  integrate(functions[["h3"]][[paste(pub_week + 4)]][[this_location]],
-                           12.95, 15)$value * temp_vir$h3per_wk) +
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$h3per_wk) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 4)]][[this_location]]),
                  1/131 * temp_vir$bper_wk,
                  integrate(functions[["b"]][[paste(pub_week + 4)]][[this_location]],
-                           12.95, 15)$value * temp_vir$bper_wk)
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$bper_wk)
       ) %>%   
         mutate(value = ifelse(all(tail(wk4$value) == tail(wk4$value, n = 1)),
                               tail(wk4$value, n = 1), value)) %>%
@@ -651,15 +651,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 1)]][[this_location]]),
                        1/131 * temp_vir$h1per_ssn,
                        integrate(functions[["h1"]][[paste(pub_week + 1)]][[this_location]],
-                                 0, 0.05)$value * temp_vir$h1per_ssn) +
+                                 0, 0.05, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 1)]][[this_location]]),
                  1/131 * temp_vir$h3per_ssn,
                  integrate(functions[["h3"]][[paste(pub_week + 1)]][[this_location]],
-                           0, 0.05)$value * temp_vir$h3per_ssn) +
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 1)]][[this_location]]),
                  1/131 * temp_vir$bper_ssn,
                  integrate(functions[["b"]][[paste(pub_week + 1)]][[this_location]],
-                           0, 0.05)$value * temp_vir$bper_ssn)
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$bper_ssn)
       )
       
       wk2 <- tibble(
@@ -672,15 +672,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 2)]][[this_location]]),
                        1/131 * temp_vir$h1per_ssn,
                        integrate(functions[["h1"]][[paste(pub_week + 2)]][[this_location]],
-                                 0, 0.05)$value * temp_vir$h1per_ssn) +
+                                 0, 0.05, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 2)]][[this_location]]),
                  1/131 * temp_vir$h3per_ssn,
                  integrate(functions[["h3"]][[paste(pub_week + 2)]][[this_location]],
-                           0, 0.05)$value * temp_vir$h3per_ssn) +
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 2)]][[this_location]]),
                  1/131 * temp_vir$bper_ssn,
                  integrate(functions[["b"]][[paste(pub_week + 2)]][[this_location]],
-                           0, 0.05)$value * temp_vir$bper_ssn)
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$bper_ssn)
       )
       
       wk3 <- tibble(
@@ -693,15 +693,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 3)]][[this_location]]),
                        1/131 * temp_vir$h1per_ssn,
                        integrate(functions[["h1"]][[paste(pub_week + 3)]][[this_location]],
-                                 0, 0.05)$value * temp_vir$h1per_ssn) +
+                                 0, 0.05, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 3)]][[this_location]]),
                  1/131 * temp_vir$h3per_ssn,
                  integrate(functions[["h3"]][[paste(pub_week + 3)]][[this_location]],
-                           0, 0.05)$value * temp_vir$h3per_ssn) +
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 3)]][[this_location]]),
                  1/131 * temp_vir$bper_ssn,
                  integrate(functions[["b"]][[paste(pub_week + 3)]][[this_location]],
-                           0, 0.05)$value * temp_vir$bper_ssn)
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$bper_ssn)
       )
       
       wk4 <- tibble(
@@ -714,15 +714,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 4)]][[this_location]]),
                        1/131 * temp_vir$h1per_ssn,
                        integrate(functions[["h1"]][[paste(pub_week + 4)]][[this_location]],
-                                 0, 0.05)$value * temp_vir$h1per_ssn) +
+                                 0, 0.05, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 4)]][[this_location]]),
                  1/131 * temp_vir$h3per_ssn,
                  integrate(functions[["h3"]][[paste(pub_week + 4)]][[this_location]],
-                           0, 0.05)$value * temp_vir$h3per_ssn) +
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 4)]][[this_location]]),
                  1/131 * temp_vir$bper_ssn,
                  integrate(functions[["b"]][[paste(pub_week + 4)]][[this_location]],
-                           0, 0.05)$value * temp_vir$bper_ssn)
+                           0, 0.05, subdivisions = 1000)$value * temp_vir$bper_ssn)
       )
       
       # 0.1 < ILI < 13.0
@@ -738,15 +738,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 1)]][[this_location]]),
                          1/131 * temp_vir$h1per_ssn,
                          integrate(functions[["h1"]][[paste(pub_week + 1)]][[this_location]],
-                                   i - 0.05, i + 0.05)$value * temp_vir$h1per_ssn) +
+                                   i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
             ifelse(is.null(functions[["h3"]][[paste(pub_week + 1)]][[this_location]]),
                    1/131 * temp_vir$h3per_ssn,
                    integrate(functions[["h3"]][[paste(pub_week + 1)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$h3per_ssn) +
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
             ifelse(is.null(functions[["b"]][[paste(pub_week + 1)]][[this_location]]),
                    1/131 * temp_vir$bper_ssn,
                    integrate(functions[["b"]][[paste(pub_week + 1)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$bper_ssn)
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$bper_ssn)
         ) %>% bind_rows(wk1, .)
         
         wk2 <- tibble(
@@ -759,15 +759,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 2)]][[this_location]]),
                          1/131 * temp_vir$h1per_ssn,
                          integrate(functions[["h1"]][[paste(pub_week + 2)]][[this_location]],
-                                   i - 0.05, i + 0.05)$value * temp_vir$h1per_ssn) +
+                                   i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
             ifelse(is.null(functions[["h3"]][[paste(pub_week + 2)]][[this_location]]),
                    1/131 * temp_vir$h3per_ssn,
                    integrate(functions[["h3"]][[paste(pub_week + 2)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$h3per_ssn) +
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
             ifelse(is.null(functions[["b"]][[paste(pub_week + 2)]][[this_location]]),
                    1/131 * temp_vir$bper_ssn,
                    integrate(functions[["b"]][[paste(pub_week + 2)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$bper_ssn)
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$bper_ssn)
         ) %>% bind_rows(wk2, .)
         
         wk3 <- tibble(
@@ -780,15 +780,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 3)]][[this_location]]),
                          1/131 * temp_vir$h1per_ssn,
                          integrate(functions[["h1"]][[paste(pub_week + 3)]][[this_location]],
-                                   i - 0.05, i + 0.05)$value * temp_vir$h1per_ssn) +
+                                   i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
             ifelse(is.null(functions[["h3"]][[paste(pub_week + 3)]][[this_location]]),
                    1/131 * temp_vir$h3per_ssn,
                    integrate(functions[["h3"]][[paste(pub_week + 3)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$h3per_ssn) +
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
             ifelse(is.null(functions[["b"]][[paste(pub_week + 3)]][[this_location]]),
                    1/131 * temp_vir$bper_ssn,
                    integrate(functions[["b"]][[paste(pub_week + 3)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$bper_ssn)
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$bper_ssn)
         ) %>% bind_rows(wk3, .)
         
         wk4 <- tibble(
@@ -801,15 +801,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
           value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 4)]][[this_location]]),
                          1/131 * temp_vir$h1per_ssn,
                          integrate(functions[["h1"]][[paste(pub_week + 4)]][[this_location]],
-                                   i - 0.05, i + 0.05)$value * temp_vir$h1per_ssn) +
+                                   i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
             ifelse(is.null(functions[["h3"]][[paste(pub_week + 4)]][[this_location]]),
                    1/131 * temp_vir$h3per_ssn,
                    integrate(functions[["h3"]][[paste(pub_week + 4)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$h3per_ssn) +
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
             ifelse(is.null(functions[["b"]][[paste(pub_week + 4)]][[this_location]]),
                    1/131 * temp_vir$bper_ssn,
                    integrate(functions[["b"]][[paste(pub_week + 4)]][[this_location]],
-                             i - 0.05, i + 0.05)$value * temp_vir$bper_ssn)
+                             i - 0.05, i + 0.05, subdivisions = 1000)$value * temp_vir$bper_ssn)
         ) %>% bind_rows(wk4, .)
         
       }
@@ -825,15 +825,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 1)]][[this_location]]),
                        1/131 * temp_vir$h1per_ssn,
                        integrate(functions[["h1"]][[paste(pub_week + 1)]][[this_location]],
-                                 12.95, 15)$value * temp_vir$h1per_ssn) +
+                                 12.95, 15, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 1)]][[this_location]]),
                  1/131 * temp_vir$h3per_ssn,
                  integrate(functions[["h3"]][[paste(pub_week + 1)]][[this_location]],
-                           12.95, 15)$value * temp_vir$h3per_ssn) +
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 1)]][[this_location]]),
                  1/131 * temp_vir$bper_ssn,
                  integrate(functions[["b"]][[paste(pub_week + 1)]][[this_location]],
-                           12.95, 15)$value * temp_vir$bper_ssn)
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$bper_ssn)
       ) %>% 
         mutate(value = ifelse(all(tail(wk1$value) == tail(wk1$value, n = 1)),
                               tail(wk1$value, n = 1), value)) %>%
@@ -849,15 +849,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 2)]][[this_location]]),
                        1/131 * temp_vir$h1per_ssn,
                        integrate(functions[["h1"]][[paste(pub_week + 2)]][[this_location]],
-                                 12.95, 15)$value * temp_vir$h1per_ssn) +
+                                 12.95, 15, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 2)]][[this_location]]),
                  1/131 * temp_vir$h3per_ssn,
                  integrate(functions[["h3"]][[paste(pub_week + 2)]][[this_location]],
-                           12.95, 15)$value * temp_vir$h3per_ssn) +
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 2)]][[this_location]]),
                  1/131 * temp_vir$bper_ssn,
                  integrate(functions[["b"]][[paste(pub_week + 2)]][[this_location]],
-                           12.95, 15)$value * temp_vir$bper_ssn)
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$bper_ssn)
       ) %>% 
         mutate(value = ifelse(all(tail(wk2$value) == tail(wk2$value, n = 1)),
                               tail(wk2$value, n = 1), value)) %>%
@@ -873,15 +873,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 3)]][[this_location]]),
                        1/131 * temp_vir$h1per_ssn,
                        integrate(functions[["h1"]][[paste(pub_week + 3)]][[this_location]],
-                                 12.95, 15)$value * temp_vir$h1per_ssn) +
+                                 12.95, 15, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 3)]][[this_location]]),
                  1/131 * temp_vir$h3per_ssn,
                  integrate(functions[["h3"]][[paste(pub_week + 3)]][[this_location]],
-                           12.95, 15)$value * temp_vir$h3per_ssn) +
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 3)]][[this_location]]),
                  1/131 * temp_vir$bper_ssn,
                  integrate(functions[["b"]][[paste(pub_week + 3)]][[this_location]],
-                           12.95, 15)$value * temp_vir$bper_ssn)
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$bper_ssn)
       ) %>%  
         mutate(value = ifelse(all(tail(wk3$value) == tail(wk3$value, n = 1)),
                               tail(wk3$value, n = 1), value)) %>%
@@ -897,15 +897,15 @@ create_subtype_forecast <- function(functions, virologic, pub_week,
         value = ifelse(is.null(functions[["h1"]][[paste(pub_week + 4)]][[this_location]]),
                        1/131 * temp_vir$h1per_ssn,
                        integrate(functions[["h1"]][[paste(pub_week + 4)]][[this_location]],
-                                 12.95, 15)$value * temp_vir$h1per_ssn) +
+                                 12.95, 15, subdivisions = 1000)$value * temp_vir$h1per_ssn) +
           ifelse(is.null(functions[["h3"]][[paste(pub_week + 4)]][[this_location]]),
                  1/131 * temp_vir$h3per_ssn,
                  integrate(functions[["h3"]][[paste(pub_week + 4)]][[this_location]],
-                           12.95, 15)$value * temp_vir$h3per_ssn) +
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$h3per_ssn) +
           ifelse(is.null(functions[["b"]][[paste(pub_week + 4)]][[this_location]]),
                  1/131 * temp_vir$bper_ssn,
                  integrate(functions[["b"]][[paste(pub_week + 4)]][[this_location]],
-                           12.95, 15)$value * temp_vir$bper_ssn)
+                           12.95, 15, subdivisions = 1000)$value * temp_vir$bper_ssn)
       ) %>%   
         mutate(value = ifelse(all(tail(wk4$value) == tail(wk4$value, n = 1)),
                               tail(wk4$value, n = 1), value)) %>%
