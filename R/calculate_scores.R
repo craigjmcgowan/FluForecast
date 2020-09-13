@@ -1,3 +1,5 @@
+start_time <- Sys.time()
+
 # Generate scores
 library(tidyverse)
 library(FluSight)
@@ -15,6 +17,7 @@ forecasts_1516 <- read_forecasts("Forecasts/Training/2015-2016")
 forecasts_1617 <- read_forecasts("Forecasts/Training/2016-2017")
 forecasts_1718 <- read_forecasts("Forecasts/Training/2017-2018")
 forecasts_1819 <- read_forecasts("Forecasts/Training/2018-2019")
+forecasts_1920 <- read_forecasts("Forecasts/Training/2019-2020")
 
 # Create observed ILI -----
 ili_current <- readRDS('Data/ili_current.RDS') %>%
@@ -64,15 +67,22 @@ ILI_1617 <- readRDS("Data/ili_init_pub_list.rds")[['201728']] %>%
   mutate(ILI = round(ILI, 1))
 
 ILI_1718 <- readRDS("Data/ili_init_pub_list.rds")[['201828']] %>%
-  filter(!location %in% state.name) %>%
+  filter(!location %in% c(state.name, 'District of Columbia', 'Puerto Rico')) %>%
   mutate(order_week = week_inorder(week, "2017/2018")) %>%
   arrange(location, order_week) %>%
   select(location, week, ILI) %>%
   mutate(ILI = round(ILI, 1))
 
 ILI_1819 <- readRDS("Data/ili_init_pub_list.rds")[['201928']] %>%
-  filter(!location %in% state.name) %>%
+  filter(!location %in% c(state.name, 'District of Columbia', 'Puerto Rico')) %>%
   mutate(order_week = week_inorder(week, "2018/2019")) %>%
+  arrange(location, order_week) %>%
+  select(location, week, ILI) %>%
+  mutate(ILI = round(ILI, 1))
+
+ILI_1920 <- readRDS("Data/ili_init_pub_list.rds")[['202028']] %>%
+  filter(!location %in% c(state.name, 'District of Columbia', 'Puerto Rico')) %>%
+  mutate(order_week = week_inorder(week, "2019/2020")) %>%
   arrange(location, order_week) %>%
   select(location, week, ILI) %>%
   mutate(ILI = round(ILI, 1))
@@ -103,6 +113,9 @@ truth_1718 <- create_truth(fluview = FALSE, year = 2017, weekILI = ILI_1718,
                            challenge = "ilinet", start_wk = 40, end_wk = 20)
 
 truth_1819 <- create_truth(fluview = FALSE, year = 2018, weekILI = ILI_1819,
+                           challenge = "ilinet", start_wk = 40, end_wk = 20)
+
+truth_1920 <- create_truth(fluview = FALSE, year = 2019, weekILI = ILI_1920,
                            challenge = "ilinet", start_wk = 40, end_wk = 20)
 
 
@@ -153,6 +166,8 @@ eval_period_1718 <- create_eval_period(ILI_1718, truth_1718, "2017/2018")
 
 eval_period_1819 <- create_eval_period(ILI_1819, truth_1819, "2018/2019")
 
+eval_period_1920 <- create_eval_period(ILI_1920, truth_1920, "2019/2020")
+
 
 # Score entries -----
 full_scores_1011 <- calc_scores(forecasts_1011, truth_1011, 
@@ -191,6 +206,11 @@ full_scores_1819 <- calc_scores(forecasts_1819, truth_1819,
                                 season = "2018/2019", exclude = FALSE, 
                                 eval = FALSE)
 
+full_scores_1920 <- calc_scores(forecasts_1920, truth_1920, 
+                                season = "2019/2020", exclude = FALSE, 
+                                eval = FALSE)
+
+# Evaluation period scores
 eval_scores_1011 <- calc_scores(forecasts_1011, truth_1011, 
                                 season = "2010/2011", exclude = FALSE, 
                                 eval = TRUE, eval_period = eval_period_1011)
@@ -227,19 +247,24 @@ eval_scores_1819 <- calc_scores(forecasts_1819, truth_1819,
                                 season = "2018/2019", exclude = FALSE, 
                                 eval = TRUE, eval_period = eval_period_1819)
 
+eval_scores_1920 <- calc_scores(forecasts_1920, truth_1920, 
+                                season = "2019/2020", exclude = FALSE, 
+                                eval = TRUE, eval_period = eval_period_1920)
+
 all_full_scores <- bind_rows(full_scores_1011, full_scores_1112, 
                              full_scores_1213, full_scores_1314,
                              full_scores_1415, full_scores_1516, 
                              full_scores_1617, full_scores_1718,
-                             full_scores_1819)
+                             full_scores_1819, full_scores_1920)
 
 all_eval_scores <- bind_rows(eval_scores_1011, eval_scores_1112, 
                              eval_scores_1213, eval_scores_1314,
                              eval_scores_1415, eval_scores_1516, 
                              eval_scores_1617, eval_scores_1718,
-                             eval_scores_1819)
+                             eval_scores_1819, eval_scores_1920)
 
 # Save scores -----
 saveRDS(all_full_scores, "Data/full_model_scores.Rds")
 saveRDS(all_eval_scores, "Data/eval_model_scores.Rds")
 
+Sys.time() - start_time

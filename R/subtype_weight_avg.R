@@ -788,8 +788,7 @@ state_subtype_functions_1920 <- modify_depth(
   function(dens) approxfun(dens$x, dens$y, rule = 2)
 )
 
-# Issue with i == 71
-for(i in 71:72) {
+for(i in 40:72) {
   temp <- create_subtype_forecast(
     functions = state_subtype_functions_1920,
     virologic = virologic_1920,

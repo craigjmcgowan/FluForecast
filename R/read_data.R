@@ -1,3 +1,5 @@
+start_time <- Sys.time()
+
 # Pull in and save datasets from EpiData and other sources 
 library(tidyverse)
 library(cdcfluview)
@@ -436,3 +438,5 @@ gtrend_state_list <- tibble(state_abb = state.abb) %>%
 
 
 saveRDS(covid_gtrend_us, "Data/covid_gtrend.RDS")
+
+Sys.time() - start_time
