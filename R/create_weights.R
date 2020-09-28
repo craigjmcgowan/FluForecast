@@ -10,8 +10,10 @@ library(pipeR)
 library(parallel)
 
 # Load scores
-all_eval_scores <- readRDS("Data/eval_model_scores.Rds")
-all_full_scores <- readRDS("Data/full_model_scores.Rds")
+all_eval_scores <- readRDS("Data/eval_model_scores.Rds") %>%
+  filter(season != '2019/2020')
+all_full_scores <- readRDS("Data/full_model_scores.Rds") %>%
+  filter(season != '2019/2020')
 
 source("R/utils.R")
 source("R/degenerate_em_functions.R")
@@ -20,7 +22,7 @@ source("R/degenerate_em_functions.R")
 options(mc.cores=parallel::detectCores()-1L)
 
 # Define prospective season
-pro_season <- "2019/2020"
+pro_season <- "2020/2021"
 
 # Define weight structures
 #   Equal weights
@@ -57,8 +59,8 @@ write.csv(equal_weights_df, "weights/equal-weights.csv", row.names = FALSE, quot
 
 ## Specify target types:
 target.types.list = list(
-  "seasonal"=c("Season onset", "Season peak week", "Season peak percentage"),
-  "weekly"=paste0(1:4," wk ahead")
+  "seasonal" = c("Season onset", "Season peak week", "Season peak percentage"),
+  "weekly" = paste0(1:4," wk ahead")
 )
 ## Specify 'months'
 month.types.list = list(
@@ -123,7 +125,7 @@ cv_full_scores <- all_full_scores %>%
   # Cast to array for weight estimating
   reshape2::acast(season ~ order_week ~ location ~ target ~ metric ~ team, 
                   value.var="score_to_optimize") %>>%
-                  {names(dimnames(.)) <- c("Season", "Model Week", "Location", "Target", "Metric", "Model"); .}
+  {names(dimnames(.)) <- c("Season", "Model Week", "Location", "Target", "Metric", "Model"); .}
 
 cv_eval_scores <- all_eval_scores %>%
   # Remove ensemble models
@@ -143,13 +145,14 @@ cv_eval_scores <- all_eval_scores %>%
   {names(dimnames(.)) <- c("Season", "Model Week", "Location", "Target", "Metric", "Model"); .}
   
 ## Indexer lists for prospective forecasts:
+## Order for these needs to align with dimensions of array above
 weighting.scheme.prospective.indexer.lists =
   weighting.scheme.partial.indexer.lists %>>%
   lapply(function(partial.indexer.list) {
-    c(list(all=NULL), # Season, Model Week
-      partial.indexer.list, # Location, Target
-      list(all=NULL), # Metric
-      list(all=NULL) # Model should always be all=NULL
+    c(list(all=NULL), # Season, 
+      partial.indexer.list, # Model week, Location, Target
+      list(all=NULL), # Metric - only one metric, so just leave as all = NULL
+      list(all=NULL) # Model should always be all=NULL - include all models for potential weights
     )
   })
 
@@ -157,8 +160,8 @@ weighting.scheme.prospective.indexer.lists =
 weighting.scheme.cv.indexer.lists =
   weighting.scheme.partial.indexer.lists %>>%
   lapply(function(partial.indexer.list) {
-    c(list(loo=NULL), # Season, Model Week
-      partial.indexer.list, # Location, Target
+    c(list(loo=NULL), # Season, - leave one season out sets up train/test data
+      partial.indexer.list, # Model week, Location, Target
       list(all=NULL), # Metric
       list(all=NULL) # Model should always be all=NULL
     )

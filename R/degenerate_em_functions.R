@@ -144,6 +144,8 @@ cv_apply = function(data, indexer_list, fn, parallel_dim_i=0L, ...) {
 degenerate_em_weights = function(distr.cond.lkhds,
                                  init.weights=rep(1/dim(distr.cond.lkhds)[2],dim(distr.cond.lkhds)[2]),
                                  stop.eps = sqrt(.Machine[["double.eps"]])) {
+  
+  # Check for starting weights too small, and that starting weights sum to one
   if (any(init.weights < 1e-10)) {
     stop("All init.weight's must be >=1e-10")
   }
