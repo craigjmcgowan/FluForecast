@@ -424,19 +424,35 @@ covid_gtrend_us <- full_join(
     select(date, coronavirus_hits = hits),
   by = 'date'
 ) %>%
+  full_join(
+    fetch_gtrend('US', 'covid test') %>%
+      select(date, covid_test_hits = hits),
+    by = 'date'
+  ) %>%
   mutate(location = 'US National')
 
-covid_gtrend_state <- tibble(state_abb = c('CA', 'WA', 'NY')) %>%
-  mutate(data = map(state_abb, fetch_gtrend, 'covid')) %>%
-  unnest(col = c(data)) %>%
-  inner_join(mutate(state_matchup, state_abb = toupper(abb)), by = "state_abb") %>%
-  select(-state_abb, -abb, location = name)
+covid_gtrend_state <- full_join(
+  tibble(state_abb = state.abb) %>%
+    mutate(data = map(state_abb, fetch_gtrend, 'covid')) %>%
+    unnest(col = c(data)) %>%
+    inner_join(mutate(state_matchup, state_abb = toupper(abb)), by = "state_abb") %>%
+    select(-state_abb, -abb, location = name, covid_hits = hits),
+  tibble(state_abb = state.abb) %>%
+    mutate(data = map(state_abb, fetch_gtrend, 'coronavirus')) %>%
+    unnest(col = c(data)) %>%
+    inner_join(mutate(state_matchup, state_abb = toupper(abb)), by = "state_abb") %>%
+    select(location = name, date, coronavirus_hits = hits),
+  by = c('location', 'date')
+) %>%
+  full_join(
+    tibble(state_abb = state.abb) %>%
+      mutate(data = map(state_abb, fetch_gtrend, 'covid test')) %>%
+      unnest(col = c(data)) %>%
+      inner_join(mutate(state_matchup, state_abb = toupper(abb)), by = "state_abb") %>%
+      select(location = name, date, covid_test_hits = hits),
+    by = c('location', 'date')
+)
 
-  
-gtrend_state_list <- tibble(state_abb = state.abb) %>%
-  mutate(data = map(state_abb, ~ fetch_gtrend(., 'coronavirus')))
-
-
-saveRDS(covid_gtrend_us, "Data/covid_gtrend.RDS")
+saveRDS(bind_rows(covid_gtrend_us, covid_gtrend_state), "Data/covid_gtrend.RDS")
 
 Sys.time() - start_time

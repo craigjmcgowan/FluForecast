@@ -406,7 +406,7 @@ calc_scores <- function(subs, truth, season, exclude = FALSE,
 create_eval_period <- function(ILI, truth, season) {
   
   max_MMWR <- ifelse(season %in% 
-                       c("1997/1998", "2003/2004", "2008/2009", "2014/2015"),
+                       c("1997/1998", "2003/2004", "2008/2009", "2014/2015", "2020/2021"),
                      53, 52)
   
   # Boundaries of MMWR weeks ILINet was above baseline
@@ -418,7 +418,8 @@ create_eval_period <- function(ILI, truth, season) {
     filter(ILI >= value) %>%
     group_by(location) %>%
     summarize(end_week = last(week)) %>%
-    left_join(truth %>% filter(target == "Season onset") %>% 
+    left_join(truth %>% 
+                filter(target == "Season onset") %>% 
                 mutate(start_week = case_when(
                   bin_start_incl == "none" ~ 42,
                   TRUE ~ as.numeric(bin_start_incl)
