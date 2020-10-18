@@ -541,8 +541,10 @@ prior_scores <- readRDS('Data/CV_ARIMA_Scores_Prior.RDS') %>%
   anti_join(current_scores, by = c("season", "arima_1", "arima_2", "arima_3", "location",
                                    "target", "forecast_week"))
 
+
 # Determine best ARIMA model for each region
-best_arima_cv <- bind_rows(arima_scores_1011, arima_scores_1112,
+best_arima_cv <- bind_rows(prior_scores, 
+                           arima_scores_1011, arima_scores_1112,
                            arima_scores_1213, arima_scores_1314,
                            arima_scores_1415, arima_scores_1516,
                            arima_scores_1617, arima_scores_1718,
